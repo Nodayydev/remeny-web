@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Szerver Beállítások</title>
+</head>
+<body>
+
+<h1>Szerver Beállítások</h1>
+
+<input id="name" placeholder="Szerver neve">
+<input id="ip" placeholder="IP cím">
+<input id="port" placeholder="Port" value="25565">
+<input id="logo" placeholder="Logo fájl" value="logo.png">
+
+<button onclick="saveConfig()">Mentés</button>
+
+<script>
+async function loadConfig() {
+    const response = await fetch("http://localhost:3000/api/server-config");
+    const config = await response.json();
+
+    document.getElementById("name").value = config.name || "";
+    document.getElementById("ip").value = config.ip || "";
+    document.getElementById("port").value = config.port || 25565;
+    document.getElementById("logo").value = config.logo || "logo.png";
+}
+
+async function saveConfig() {
+    const config = {
+        name: document.getElementById("name").value,
+        ip: document.getElementById("ip").value,
+        port: document.getElementById("port").value,
+        logo: document.getElementById("logo").value
+    };
+
+    await fetch("http://localhost:3000/api/server-config", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(config)
+    });
+
+    alert("Mentve!");
+}
+
+loadConfig();
+</script>
+
+</body>
+</html>

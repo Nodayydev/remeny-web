@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「 ✦ ʀᴇᴍᴇ́ɴʏ ✦ 」 | Minecraft Szerver</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .small-caps { font-variant-caps: small-caps; }
+        /* Bold gradient a Remény névhez: #55ffff -> #5555ff */
+        .remeny-gradient {
+            background: linear-gradient(90deg, #55ffff, #5555ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        .bg-gradient-custom { background: linear-gradient(135deg, #083344 0%, #000000 100%); }
+        .pixel-butterfly {
+            width: 100px; height: 80px;
+            background: linear-gradient(to right, #38bdf8, #1e3a8a);
+            clip-path: polygon(10% 0%, 90% 0%, 50% 50%, 90% 100%, 10% 100%, 50% 50%);
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.6));
+        }
+    </style>
+</head>
+<body class="bg-gradient-custom min-h-screen text-white font-sans">
+
+    <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-sky-900/50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <h1 class="text-2xl font-black small-caps tracking-widest text-white">
+                <span class="text-white">「 ✦ </span><span class="remeny-gradient">RÉMÉNY</span><span class="text-white"> ✦ 」</span>
+            </h1>
+            <nav class="flex gap-6 text-sm font-semibold">
+                <a href="#tortenet" class="hover:text-sky-400 transition">Történet</a>
+                <a href="#join" class="hover:text-sky-400 transition">Csatlakozás</a>
+                <a href="#discord" class="hover:text-sky-400 transition">Discord</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 text-center">
+        <section class="mb-20">
+            <div class="pixel-butterfly"></div>
+            <h2 class="text-6xl font-black mb-6 small-caps text-white">
+                <span class="text-white">「 ✦ </span><span class="remeny-gradient">RÉMÉNY</span><span class="text-white"> ✦ 」</span>
+            </h2>
+            <p class="text-xl text-sky-300 italic">Hogy mindig maradjon itt valami.</p>
+        </section>
+
+<section id="server-card" class="py-10">
+    <div id="minecraft-server-card" class="bg-black/70 border border-sky-900/60 rounded-xl max-w-3xl mx-auto p-5">
+        <p class="text-slate-400 italic">Szerver adatok betöltése...</p>
+    </div>
+</section>
+
+<section id="discord" class="py-16">
+    <h2 class="text-4xl font-bold mb-10 small-caps">Rangok</h2>
+
+    <div id="ranks-container" class="flex flex-wrap justify-center gap-4 mb-8">
+
+        <button onclick="showMembers('ɴᴇᴠᴇʀ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <span class="text-white">「</span><span style="color:#ff5555">N</span><span style="color:#ee4444">E</span><span style="color:#dd3333">V</span><span style="color:#cc2222">E</span><span style="color:#bb1111">R</span><span class="text-white">」</span>
+        </button>
+
+        <button onclick="showMembers('ʀᴏᴠᴇʀ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <span class="text-white">「</span><span style="color:#afffff">R</span><span style="color:#8effff">O</span><span style="color:#6dffff">V</span><span style="color:#4cffff">E</span><span style="color:#2bffff">R</span><span class="text-white">」</span>
+        </button>
+
+        <button onclick="showMembers('ʜᴇʟᴘɪ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <span class="text-white">「</span><span style="color:#e2b6ff">H</span><span style="color:#c892ff">E</span><span style="color:#ad6eff">L</span><span style="color:#934aff">P</span><span style="color:#7d2eff">I</span><span class="text-white">」</span>
+        </button>
+
+        <button onclick="showMembers('ʜᴏꜱᴛ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <span class="text-white">「</span><span style="color:#cceeff">H</span><span style="color:#b3e6ff">O</span><span style="color:#99ddff">S</span><span style="color:#80d4ff">T</span><span class="text-white">」</span>
+        </button>
+
+        <button onclick="showMembers('ᴛᴀɢ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <span class="text-white">「</span><span style="color:#afffaf">T</span><span style="color:#7fff7f">A</span><span style="color:#4fff4f">G</span><span class="text-white">」</span>
+        </button>
+
+    </div>
+
+    <div id="members-display" class="bg-black/60 border border-sky-900/50 p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center backdrop-blur-sm">
+        <p class="text-slate-500 italic">Kattints egy rangra a tagok megtekintéséhez.</p>
+    </div>
+</section>
+
+<script>
+let currentServerIP = "";
+
+async function loadServerCard() {
+    const card = document.getElementById("minecraft-server-card");
+
+    try {
+        const response = await fetch("http://localhost:3000/api/minecraft");
+        const server = await response.json();
+
+        currentServerIP = `${server.ip}:${server.port}`;
+
+        card.innerHTML = `
+            <div class="flex items-center gap-5 text-left">
+                <img src="${server.logo}" alt="${server.name}" class="w-20 h-20 rounded-lg object-cover">
+
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold text-white">${server.name}</h2>
+
+                    <p class="text-sky-300 font-semibold">
+                        ${server.ip}:${server.port}
+                    </p>
+
+                    <p class="text-white font-bold mt-2">
+                        ${server.online}/${server.max} játékos online
+                    </p>
+                    <p class="text-slate-300">
+                        ${server.version}
+                    </p>
+
+                    <div class="text-sm mt-2">
+                        ${server.motd}
+                    </div>
+
+                    </div>
+
+                    <div class="text-right">
+
+                <div class="text-right">
+                    <button onclick="copyIP()" class="mt-3 border border-green-500 text-green-400 px-3 py-1 rounded hover:bg-green-500/10 transition text-sm">
+                        IP másolása
+                    </button>
+                </div>
+            </div>
+        `;
+    } catch (error) {
+        card.innerHTML = `
+            <p class="text-red-400 italic">
+                Nem sikerült betölteni a Minecraft szerver adatait.
+            </p>
+        `;
+    }
+}
+
+function copyIP() {
+    navigator.clipboard.writeText(currentServerIP);
+    alert("IP kimásolva!");
+}
+
+async function showMembers(rankName) {
+    const display = document.getElementById("members-display");
+
+    display.innerHTML = `<p class="text-slate-400 italic">Tagok betöltése...</p>`;
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/rank/${encodeURIComponent(rankName)}`);
+        const members = await response.json();
+
+        if (!response.ok) {
+            display.innerHTML = `<p class="text-red-400 italic">${members.error || "Hiba történt."}</p>`;
+            return;
+        }
+
+        if (members.length === 0) {
+            display.innerHTML = `<p class="text-slate-400 italic">Nincs tag ebben a rangban.</p>`;
+            return;
+        }
+
+        display.innerHTML = `
+            <div class="w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto">
+                    ${members.map(member => `
+                        <div class="bg-black/30 border border-white/10 p-3 rounded-lg flex items-center gap-3">
+                            <img src="${member.avatar}" alt="${member.displayName}" class="w-10 h-10 rounded-full">
+
+                            <div class="text-left">
+                                <div class="font-semibold text-white">${member.displayName}</div>
+                                <div class="text-sm text-slate-400">@${member.username}</div>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            </div>
+        `;
+    } catch (error) {
+        display.innerHTML = `
+            <p class="text-red-400 italic">
+                Nem sikerült kapcsolódni a Discord API-hoz. Ellenőrizd, hogy fut-e a node index.js.
+            </p>
+        `;
+    }
+}
+
+loadServerCard();
+setInterval(loadServerCard, 30000);
+
+function copyIP() {
+    navigator.clipboard.writeText(currentServerIP);
+    alert("IP kimásolva!");
+}
+
+loadServerCard();
+    const display = document.getElementById("members-display");
+
+    const rankColors = {
+        "ɴᴇᴠᴇʀ": "#ff5555",
+        "ʀᴏᴠᴇʀ": "#55ffff",
+        "ʜᴇʟᴘɪ": "#c892ff",
+        "ʜᴏꜱᴛ": "#b3e6ff",
+        "ᴛᴀɢ": "#55ff55"
+    };
+async function showMembers(rankName) {
+    const display = document.getElementById("members-display");
+
+    display.innerHTML = `<p class="text-slate-400 italic">Tagok betöltése...</p>`;
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/rank/${encodeURIComponent(rankName)}`);
+        const members = await response.json();
+
+        if (!response.ok) {
+            display.innerHTML = `<p class="text-red-400 italic">${members.error || "Hiba történt."}</p>`;
+            return;
+        }
+
+        if (members.length === 0) {
+            display.innerHTML = `<p class="text-slate-400 italic">Nincs tag ebben a rangban.</p>`;
+            return;
+        }
+
+        display.innerHTML = `
+            <div class="w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto">
+                    ${members.map(member => `
+                        <div class="bg-black/30 border border-white/10 p-3 rounded-lg flex items-center gap-3">
+                            <img src="${member.avatar}" alt="${member.displayName}" class="w-10 h-10 rounded-full">
+
+                            <div class="text-left">
+                                <div class="font-semibold text-white">${member.displayName}</div>
+                                <div class="text-sm text-slate-400">@${member.username}</div>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            </div>
+        `;
+    } catch (error) {
+        display.innerHTML = `
+            <p class="text-red-400 italic">
+                Nem sikerült kapcsolódni a Discord API-hoz. Ellenőrizd, hogy fut-e a node index.js.
+            </p>
+        `;
+    }
+}
+</script>
+</main>
+</body>
+</html>
