@@ -105,7 +105,7 @@ async function loadServerCard() {
     const card = document.getElementById("minecraft-server-card");
 
     try {
-        const response = await fetch("http://localhost:3000/api/minecraft");
+        const response = await fetch("/api/minecraft");
         const server = await response.json();
 
         currentServerIP = `${server.ip}:${server.port}`;
@@ -174,7 +174,7 @@ async function showMembers(rankName) {
     display.innerHTML = `<p class="text-slate-400 italic">Tagok betöltése...</p>`;
 
     try {
-        const response = await fetch(`http://localhost:3000/api/rank/${encodeURIComponent(rankName)}`);
+        await fetch(`/api/rank/${encodeURIComponent(rankName)}`);
         const members = await response.json();
 
         if (!response.ok) {
