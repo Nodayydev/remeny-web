@@ -106,7 +106,9 @@ app.get("/api/minecraft", async (req, res) => {
     console.error(error);
   }
 });
-
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "teszt.html"));
+});
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
 });
