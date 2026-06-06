@@ -174,7 +174,12 @@ async function loadServerCard() {
         const response = await fetch("/api/minecraft");
         const server = await response.json();
 
-        currentServerIP = `${server.ip}:${server.port}`;
+        const heroMotd = document.getElementById("hero-motd");
+          if (heroMotd) {
+            heroMotd.innerHTML = server.motd;
+    }
+
+currentServerIP = `${server.ip}:${server.port}`;
 
         card.innerHTML = `
             <div class="hidden md:flex items-center gap-4 text-left">
