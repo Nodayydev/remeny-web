@@ -5,11 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>「 ✦ ʀᴇᴍᴇ́ɴʏ ✦ 」 | Minecraft Szerver</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-        .small-caps { font-variant-caps: small-caps; }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .small-caps {
+            font-variant-caps: small-caps;
+        }
 
         .remeny-gradient {
             background: linear-gradient(90deg, #55ffff, #5555ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .mineforum-gradient {
+            background: linear-gradient(90deg, #ffff55, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .mcportal-gradient {
+            background: linear-gradient(90deg, #55ffff, #5555ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .instagram-gradient {
+            background: linear-gradient(90deg, #ff55ff, #ffaa55);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: bold;
@@ -32,67 +64,105 @@
 
 <body class="bg-gradient-custom min-h-screen text-white font-sans">
 
-<header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-sky-900/50">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-        <h1 class="text-2xl font-black small-caps tracking-widest text-white">
+<main class="container mx-auto px-4 py-10 sm:py-16 text-center">
+
+    <section class="mb-16 sm:mb-20">
+        <div class="pixel-butterfly"></div>
+
+        <h1 class="text-4xl sm:text-6xl font-black mb-6 small-caps text-white">
             <span class="text-white">「 ✦ </span><span class="remeny-gradient">RÉMÉNY</span><span class="text-white"> ✦ 」</span>
         </h1>
 
-        <nav class="flex gap-6 text-sm font-semibold">
-            <a href="#tortenet" class="hover:text-sky-400 transition">Történet</a>
-            <a href="#join" class="hover:text-sky-400 transition">Csatlakozás</a>
-            <a href="#discord" class="hover:text-sky-400 transition">Discord</a>
-        </nav>
-    </div>
-</header>
-
-<main class="container mx-auto px-4 py-16 text-center">
-
-    <section class="mb-20">
-        <div class="pixel-butterfly"></div>
-
-        <h2 class="text-6xl font-black mb-6 small-caps text-white">
-            <span class="text-white">「 ✦ </span><span class="remeny-gradient">RÉMÉNY</span><span class="text-white"> ✦ 」</span>
-        </h2>
-
-        <p class="text-xl text-sky-300 italic">Hogy mindig maradjon itt valami.</p>
+        <p class="text-lg sm:text-xl text-sky-300 italic">
+            Hogy mindig maradjon itt valami.
+        </p>
     </section>
 
-    <section id="server-card" class="py-10">
-        <div id="minecraft-server-card" class="bg-black border border-sky-900 rounded-xl max-w-4xl mx-auto p-6">
+    <section id="server-card" class="py-8 sm:py-10">
+        <div id="minecraft-server-card" class="bg-black border border-sky-900 rounded-xl max-w-4xl mx-auto p-4 sm:p-6 overflow-hidden">
             <p class="text-slate-400 italic">Szerver adatok betöltése...</p>
         </div>
     </section>
 
-    <section id="discord" class="py-16">
-        <h2 class="text-4xl font-bold mb-10 small-caps">Rangok</h2>
+    <section id="partnerek" class="py-6">
+        <div class="grid grid-cols-2 gap-3 max-w-xl mx-auto">
 
-        <div id="ranks-container" class="flex flex-wrap justify-center gap-4 mb-8">
+        <a href="https://mineforum.hu/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="bg-black/60 border border-yellow-500/70 rounded-lg px-4 py-3 hover:bg-yellow-900/10 transition group">
 
-            <button onclick="showMembers('ɴᴇᴠᴇʀ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <h2 class="text-xl sm:text-2xl font-black small-caps">
+                <span class="mineforum-gradient">mineforum</span>
+            </h2>
+
+        </a>
+
+        <a href="https://www.mcportal.hu/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="bg-black/60 border border-cyan-500/70 rounded-lg px-4 py-3 hover:bg-cyan-900/10 transition group">
+
+            <h2 class="text-xl sm:text-2xl font-black small-caps">
+                <span class="mcportal-gradient">mcportal</span>
+            </h2>
+
+            </a>
+
+        </div>
+    </section>
+
+    <section id="discord" class="py-14 sm:py-16">
+        <h2 class="text-4xl font-bold mb-10 small-caps">rangok</h2>
+
+        <div id="ranks-container" class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3 sm:gap-4 mb-8 max-w-3xl mx-auto">
+
+            <button onclick="showMembers('ɴᴇᴠᴇʀ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide">
                 <span class="text-white">「</span><span style="color:#ff5555">N</span><span style="color:#ee4444">E</span><span style="color:#dd3333">V</span><span style="color:#cc2222">E</span><span style="color:#bb1111">R</span><span class="text-white">」</span>
             </button>
 
-            <button onclick="showMembers('ʀᴏᴠᴇʀ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <button onclick="showMembers('ʀᴏᴠᴇʀ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide">
                 <span class="text-white">「</span><span style="color:#afffff">R</span><span style="color:#8effff">O</span><span style="color:#6dffff">V</span><span style="color:#4cffff">E</span><span style="color:#2bffff">R</span><span class="text-white">」</span>
             </button>
 
-            <button onclick="showMembers('ʜᴇʟᴘɪ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <button onclick="showMembers('ʜᴇʟᴘɪ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide">
                 <span class="text-white">「</span><span style="color:#e2b6ff">H</span><span style="color:#c892ff">E</span><span style="color:#ad6eff">L</span><span style="color:#934aff">P</span><span style="color:#7d2eff">I</span><span class="text-white">」</span>
             </button>
 
-            <button onclick="showMembers('ʜᴏꜱᴛ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <button onclick="showMembers('ʜᴏꜱᴛ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide">
                 <span class="text-white">「</span><span style="color:#cceeff">H</span><span style="color:#b3e6ff">O</span><span style="color:#99ddff">S</span><span style="color:#80d4ff">T</span><span class="text-white">」</span>
             </button>
 
-            <button onclick="showMembers('ᴛᴀɢ')" class="bg-black/60 border border-sky-800 px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-lg font-bold font-sans tracking-wide">
+            <button onclick="showMembers('ᴛᴀɢ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide col-span-2 sm:col-span-1">
                 <span class="text-white">「</span><span style="color:#afffaf">T</span><span style="color:#7fff7f">A</span><span style="color:#4fff4f">G</span><span class="text-white">」</span>
             </button>
 
         </div>
 
-        <div id="members-display" class="bg-black/60 border border-sky-900/50 p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center backdrop-blur-sm">
-            <p class="text-slate-500 italic">Kattints egy rangra a tagok megtekintéséhez.</p>
+        <div id="members-display" class="bg-black/60 border border-sky-900/50 p-5 sm:p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center backdrop-blur-sm">
+            <p class="text-slate-500 italic">
+                Kattints egy rangra a tagok megtekintéséhez.
+            </p>
+        </div>
+    </section>
+
+    <section id="kozosseg" class="py-14 sm:py-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-10 small-caps">
+            közösségi platformok
+        </h2>
+
+        <div class="flex flex-wrap justify-center gap-4">
+
+            <a href="https://www.instagram.com/never_1_dayy/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="bg-black/70 border border-pink-500 px-7 py-4 rounded-xl hover:bg-pink-900/30 transition text-lg font-bold flex items-center gap-3">
+
+                <span class="text-2xl">📷</span>
+                <span class="instagram-gradient">Instagram</span>
+
+            </a>
+
         </div>
     </section>
 
@@ -111,7 +181,7 @@ async function loadServerCard() {
         currentServerIP = `${server.ip}:${server.port}`;
 
         card.innerHTML = `
-            <div class="flex items-center gap-4 text-left">
+            <div class="hidden md:flex items-center gap-4 text-left">
 
                 <img src="${server.logo}"
                      alt="${server.name}"
@@ -152,6 +222,39 @@ async function loadServerCard() {
                 </div>
 
             </div>
+
+            <div class="md:hidden text-center">
+
+                <img src="${server.logo}"
+                     alt="${server.name}"
+                     class="w-20 h-20 rounded-lg object-cover mx-auto mb-4">
+
+                <h2 class="text-2xl font-bold text-white">
+                    ${server.name}
+                </h2>
+
+                <div class="text-sky-300 font-semibold text-sm mt-1 break-words">
+                    ${server.ip}:${server.port}
+                </div>
+
+                <div class="text-white font-bold mt-4">
+                    ${server.online}/${server.max} játékos online
+                </div>
+
+                <div class="text-slate-400 text-sm mt-1">
+                    ${server.version}
+                </div>
+
+                <div class="mt-4 text-sm leading-relaxed font-mono break-words">
+                    ${server.motd}
+                </div>
+
+                <button onclick="copyIP()"
+                    class="mt-5 border border-green-500 text-green-400 px-5 py-2 rounded-lg hover:bg-green-500/10 transition text-sm">
+                    IP másolása
+                </button>
+
+            </div>
         `;
 
     } catch (error) {
@@ -189,7 +292,7 @@ async function showMembers(rankName) {
 
         display.innerHTML = `
             <div class="w-full">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
                     ${members.map(member => `
                         <div class="bg-black/30 border border-white/10 p-3 rounded-lg flex items-center gap-3">
                             <img src="${member.avatar}"
@@ -214,7 +317,7 @@ async function showMembers(rankName) {
     } catch (error) {
         display.innerHTML = `
             <p class="text-red-400 italic">
-                Nem sikerült kapcsolódni a Discord API-hoz. Ellenőrizd, hogy fut-e a node index.js.
+                Nem sikerült kapcsolódni a Discord API-hoz.
             </p>
         `;
     }
