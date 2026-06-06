@@ -5,9 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>「 ✦ ʀᴇᴍᴇ́ɴʏ ✦ 」 | Minecraft Szerver</title>
+
 <meta property="og:title" content="「 ✦ RÉMÉNY ✦ 」 | Minecraft Szerver">
 <meta property="og:description" content="Remény SMP Minecraft szerver">
 <meta property="og:image" content="https://remeny-web.onrender.com/preview.png">
+<meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://remeny-web.onrender.com/">
 <meta property="og:type" content="website">
 
@@ -94,19 +99,15 @@
         </h1>
 
         <div class="flex flex-wrap justify-center gap-4 mt-6">
-            <span class="border border-cyan-400 text-cyan-300 px-8 py-2 rounded-xl font-bold shadow-[0_0_15px_rgba(85,255,255,0.4)]">
+            <a href="#minecraft-server-card"
+               class="border border-cyan-400 text-cyan-300 px-8 py-2 rounded-xl font-bold shadow-[0_0_15px_rgba(85,255,255,0.4)] hover:bg-cyan-400/10 transition">
                 SMP
-            </span>
+            </a>
 
-            <span class="border border-yellow-400 text-yellow-300 px-8 py-2 rounded-xl font-bold shadow-[0_0_15px_rgba(255,170,0,0.4)]">
+            <a href="#hytale-server-card"
+               class="border border-yellow-400 text-yellow-300 px-8 py-2 rounded-xl font-bold shadow-[0_0_15px_rgba(255,170,0,0.4)] hover:bg-yellow-400/10 transition">
                 Hytale
-            </span>
-        </div>
-
-        <div class="mt-6 max-w-2xl mx-auto bg-black/60 border border-sky-800/70 rounded-xl px-5 py-3 shadow-[0_0_18px_rgba(56,189,248,0.25)]">
-            <div id="hero-motd" class="text-sm sm:text-base leading-relaxed font-mono text-slate-200">
-                MOTD betöltése...
-            </div>
+            </a>
         </div>
 
     </div>
@@ -152,7 +153,7 @@
                     </div>
 
                     <button onclick="copyHytaleIP()"
-                        class="mt-3 border border-yellow-500 text-yellow-300 px-3 py-1 rounded hover:bg-yellow-500/10 transition text-sm">
+                            class="mt-3 border border-yellow-500 text-yellow-300 px-3 py-1 rounded hover:bg-yellow-500/10 transition text-sm">
                         IP másolása
                     </button>
                 </div>
@@ -176,7 +177,7 @@
                 </div>
 
                 <button onclick="copyHytaleIP()"
-                    class="mt-5 border border-yellow-500 text-yellow-300 px-5 py-2 rounded-lg hover:bg-yellow-500/10 transition text-sm">
+                        class="mt-5 border border-yellow-500 text-yellow-300 px-5 py-2 rounded-lg hover:bg-yellow-500/10 transition text-sm">
                     IP másolása
                 </button>
             </div>
@@ -224,7 +225,7 @@
     <div id="ranks-container" class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3 sm:gap-4 mb-8 max-w-3xl mx-auto">
 
         <button onclick="showMembers('ɴᴇᴠᴇʀ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide backdrop-blur-md">
-            <span class="text-white">「</span><span style="color:#ff5555">N</span><span style="color:#ee4444">E</span><span style="color:#dd3333">V</span><span style="color:#cc2222">E</span><span style="color:#bb1111">R</span><span class="text-white">」</span>
+            <span class="text-white">「</span><span style="color:#ff7777">N</span><span style="color:#ee5555">E</span><span style="color:#cc3333">V</span><span style="color:#aa1111">E</span><span style="color:#770000">R</span><span class="text-white">」</span>
         </button>
 
         <button onclick="showMembers('ʀᴏᴠᴇʀ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide backdrop-blur-md">
@@ -232,7 +233,7 @@
         </button>
 
         <button onclick="showMembers('ʜᴇʟᴘɪ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide backdrop-blur-md">
-            <span class="text-white">「</span><span style="color:#e2b6ff">H</span><span style="color:#c892ff">E</span><span style="color:#ad6eff">L</span><span style="color:#934aff">P</span><span style="color:#7d2eff">I</span><span class="text-white">」</span>
+            <span class="text-white">「</span><span style="color:#ffffff">H</span><span style="color:#ffd6ef">E</span><span style="color:#ffaddc">L</span><span style="color:#ff7ac8">P</span><span style="color:#ff4fb4">I</span><span class="text-white">」</span>
         </button>
 
         <button onclick="showMembers('ʜᴏꜱᴛ')" class="bg-black/60 border border-sky-800 px-4 sm:px-6 py-2 rounded-xl hover:bg-sky-900/50 transition text-base sm:text-lg font-bold font-sans tracking-wide backdrop-blur-md">
@@ -271,7 +272,6 @@
 
     </div>
 </section>
-```
 
 </main>
 
@@ -284,11 +284,6 @@ async function loadServerCard() {
     try {
         const response = await fetch("/api/minecraft");
         const server = await response.json();
-
-        const heroMotd = document.getElementById("hero-motd");
-        if (heroMotd) {
-            heroMotd.innerHTML = server.motd;
-        }
 
         currentServerIP = `${server.ip}:${server.port}`;
 
@@ -327,7 +322,7 @@ async function loadServerCard() {
                     </div>
 
                     <button onclick="copyIP()"
-                        class="mt-3 border border-green-500 text-green-400 px-3 py-1 rounded hover:bg-green-500/10 transition text-sm">
+                            class="mt-3 border border-green-500 text-green-400 px-3 py-1 rounded hover:bg-green-500/10 transition text-sm">
                         IP másolása
                     </button>
 
@@ -362,7 +357,7 @@ async function loadServerCard() {
                 </div>
 
                 <button onclick="copyIP()"
-                    class="mt-5 border border-green-500 text-green-400 px-5 py-2 rounded-lg hover:bg-green-500/10 transition text-sm">
+                        class="mt-5 border border-green-500 text-green-400 px-5 py-2 rounded-lg hover:bg-green-500/10 transition text-sm">
                     IP másolása
                 </button>
 
@@ -446,3 +441,4 @@ setInterval(loadServerCard, 30000);
 
 </body>
 </html>
+
