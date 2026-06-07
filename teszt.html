@@ -336,6 +336,22 @@
                 height: 92px;
             }
         }
+    
+        .normal-text,
+        .normal-text * {
+            font-variant-caps: normal !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+        }
+
+        #minecraft-name,
+        #player-name-display,
+        #player-status {
+            font-variant-caps: normal !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+        }
+
     </style>
 </head>
 
@@ -378,7 +394,7 @@
 </div>
 
 <div id="login-panel"
-     class="hidden fixed top-20 right-4 z-50 w-[calc(100%-2rem)] max-w-sm glass-bubble glass-purple rounded-2xl p-5 text-left">
+     class="normal-text hidden fixed top-20 right-4 z-50 w-[calc(100%-2rem)] max-w-sm glass-bubble glass-purple rounded-2xl p-5 text-left">
 
     <div class="flex items-start justify-between gap-4">
         <div>
@@ -479,8 +495,8 @@
                 </h1>
 
                 <div class="flex flex-wrap justify-center gap-4">
-                    <button class="hero-btn-smp glass-bubble glass-cyan" onclick="showServerPanel('smp')">SMP</a>
-                    <button class="hero-btn-hytale glass-bubble glass-yellow" onclick="showServerPanel('hytale')">Hytale</a>
+                    <button type="button" class="hero-btn-smp glass-bubble glass-cyan" onclick="showServerPanel('smp')">SMP</button>
+                    <button type="button" class="hero-btn-hytale glass-bubble glass-yellow" onclick="showServerPanel('hytale')">Hytale</button>
                 </div>
 
             </div>
@@ -492,76 +508,12 @@
             szerverek
         </h2>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-
-            <div id="minecraft-server-card"
-                 class="glass-bubble glass-cyan rounded-xl p-4 sm:p-6 overflow-hidden">
-                <p class="text-slate-400 italic">Minecraft szerver adatok betöltése...</p>
-            </div>
-
-            <div id="hytale-server-card"
-                 class="glass-bubble glass-yellow rounded-xl p-4 sm:p-6 overflow-hidden">
-
-                <div class="hidden md:flex items-center gap-4 text-left">
-                    <img src="icon.png"
-                         alt="Remény Hytale logo"
-                         class="w-16 h-16 rounded-lg object-contain flex-shrink-0">
-
-                    <div class="flex-1 min-w-0">
-                        <h2 class="text-white text-xl font-black leading-none">
-                            Remény Hytale
-                        </h2>
-
-                        <div class="text-yellow-300 font-bold text-sm mt-1">
-                            remenyhytale.shockbyte.pro
-                        </div>
-
-                        <div class="mt-2 text-sm leading-relaxed font-mono text-slate-300">
-                            Hytale szerver hamarosan.
-                        </div>
-                    </div>
-
-                    <div class="text-right flex-shrink-0 min-w-[140px]">
-                        <div class="text-yellow-300 font-black">
-                            készülőben
-                        </div>
-
-                        <button onclick="copyHytaleIP()"
-                                class="mt-3 border border-yellow-500 text-yellow-300 px-3 py-1 rounded hover:bg-yellow-500/10 transition text-sm font-bold">
-                            IP másolása
-                        </button>
-                    </div>
-                </div>
-
-                <div class="md:hidden text-center">
-                    <img src="icon.png"
-                         alt="Remény Hytale logo"
-                         class="w-20 h-20 rounded-lg object-contain mx-auto mb-4">
-
-                    <h2 class="text-2xl font-black text-white">
-                        Remény Hytale
-                    </h2>
-
-                    <div class="text-yellow-300 font-bold text-sm mt-1 break-words">
-                        remenyhytale.shockbyte.pro
-                    </div>
-
-                    <div class="text-slate-300 mt-4 font-mono">
-                        Hytale szerver hamarosan.
-                    </div>
-
-                    <button onclick="copyHytaleIP()"
-                            class="mt-5 border border-yellow-500 text-yellow-300 px-5 py-2 rounded-lg hover:bg-yellow-500/10 transition text-sm font-bold">
-                        IP másolása
-                    </button>
-                </div>
-
-            </div>
-
+        <div id="server-display"
+             class="hidden glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-5xl mx-auto min-h-[160px] items-center justify-center mb-8">
         </div>
     </section>
 
-    <section id="partnerek" class="pt-6 pb-8">
+<section id="partnerek" class="pt-6 pb-8">
         <h2 class="text-3xl sm:text-4xl font-black mb-6 tracking-wider">
             partner
         </h2>
@@ -674,6 +626,11 @@ let currentServerIP = "";
 
 async function loadServerCard() {
     const card = document.getElementById("minecraft-server-card");
+
+    if (!card) {
+        return;
+    }
+
 
     try {
         const response = await fetch("/api/minecraft");
@@ -837,6 +794,9 @@ function showServerPanel(type) {
         return;
     }
 
+    display.classList.remove("hidden");
+    display.classList.add("flex");
+
     if (type === "smp") {
         display.innerHTML = `
             <div class="w-full flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
@@ -849,7 +809,7 @@ function showServerPanel(type) {
                         <span class="remeny-gradient">Remény SMP</span>
                     </h3>
 
-                    <p class="text-slate-300 font-bold mt-2 normal-case">
+                    <p class="text-slate-300 font-bold mt-2 normal-text">
                         remenymc.shockbyte.pro:25399
                     </p>
 
@@ -880,7 +840,7 @@ function showServerPanel(type) {
                         <span class="mineforum-gradient">Remény Hytale</span>
                     </h3>
 
-                    <p class="text-slate-300 font-bold mt-2 normal-case">
+                    <p class="text-slate-300 font-bold mt-2 normal-text">
                         remenyhytale.shockbyte.pro
                     </p>
 
@@ -903,7 +863,6 @@ function copySpecificIP(ip) {
     navigator.clipboard.writeText(ip);
     alert("IP kimásolva!");
 }
-
 
 const socialProfiles = {
     instagram: {
@@ -1053,6 +1012,23 @@ function toggleLoginPanel() {
 
 
 
+function setPlayerAvatar(avatar, playerName) {
+    if (!avatar) {
+        return;
+    }
+
+    avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(playerName)}/128`;
+
+    avatar.onerror = () => {
+        avatar.onerror = () => {
+            avatar.onerror = null;
+            avatar.src = `https://crafatar.com/avatars/${encodeURIComponent(playerName)}?size=128&overlay`;
+        };
+
+        avatar.src = `https://minotar.net/avatar/${encodeURIComponent(playerName)}/128.png`;
+    };
+}
+
 async function loadPlayerStats() {
     const input = document.getElementById("minecraft-name");
     const nameDisplay = document.getElementById("player-name-display");
@@ -1073,13 +1049,7 @@ async function loadPlayerStats() {
     nameDisplay.textContent = playerName;
     status.textContent = "Statok betöltése...";
 
-    if (avatar) {
-        avatar.src = `https://minotar.net/avatar/${encodeURIComponent(playerName)}/128.png`;
-        avatar.onerror = () => {
-            avatar.onerror = null;
-            avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(playerName)}/128`;
-        };
-    }
+    setPlayerAvatar(avatar, playerName);
 
     try {
         const response = await fetch(`/api/player-stats/${encodeURIComponent(playerName)}`);
