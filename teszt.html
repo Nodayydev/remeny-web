@@ -412,7 +412,7 @@
 
         <div id="members-display" class="glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center">
             <p class="text-slate-500 italic font-bold">
-                kattints egy rangra a tagok megtekintéséhez.
+                Kattints egy rangra a tagok megtekintéséhez.
             </p>
         </div>
     </section>
@@ -422,40 +422,38 @@
             közösségi platformok
         </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-8">
 
-            <a href="https://www.instagram.com/never_1_dayy/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="glass-bubble glass-pink px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
+            <button onclick="showSocial('instagram')"
+                    class="glass-bubble glass-pink px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
                 <span class="text-2xl">📷</span>
-                <span class="instagram-gradient">instagram</span>
-            </a>
+                <span class="instagram-gradient">Instagram</span>
+            </button>
 
-            <a href="https://x.com/neveronedayy"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="glass-bubble px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
+            <button onclick="showSocial('x')"
+                    class="glass-bubble px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
                 <span class="text-2xl">𝕏</span>
                 <span class="x-gradient">X</span>
-            </a>
+            </button>
 
-            <a href="https://www.youtube.com/@never_1_dayy"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="glass-bubble glass-pink px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
+            <button onclick="showSocial('youtube')"
+                    class="glass-bubble glass-pink px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
                 <span class="text-2xl">▶</span>
-                <span class="youtube-gradient">youtube</span>
-            </a>
+                <span class="youtube-gradient">YouTube</span>
+            </button>
 
-            <a href="https://github.com/Nodayydev"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="glass-bubble glass-purple px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
+            <button onclick="showSocial('github')"
+                    class="glass-bubble glass-purple px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
                 <span class="text-2xl">⌘</span>
-                <span class="github-gradient">github</span>
-            </a>
+                <span class="github-gradient">GitHub</span>
+            </button>
 
+        </div>
+
+        <div id="social-display" class="glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center">
+            <p class="text-slate-500 italic font-bold">
+                Kattints egy közösségi platformra a profil megtekintéséhez.
+            </p>
         </div>
     </section>
 
@@ -620,6 +618,103 @@ async function showMembers(rankName) {
         `;
     }
 }
+
+
+const socialProfiles = {
+    instagram: {
+        name: "Instagram",
+        handle: "@never_1_dayy",
+        url: "https://www.instagram.com/never_1_dayy/",
+        icon: "📷",
+        gradient: "instagram-gradient",
+        text: "Képek, posztok és Remény tartalmak."
+    },
+    x: {
+        name: "X",
+        handle: "@neveronedayy",
+        url: "https://x.com/neveronedayy",
+        icon: "𝕏",
+        gradient: "x-gradient",
+        text: "Rövid bejegyzések és frissítések."
+    },
+    youtube: {
+        name: "YouTube",
+        handle: "@never_1_dayy",
+        url: "https://www.youtube.com/@never_1_dayy",
+        icon: "▶",
+        gradient: "youtube-gradient",
+        text: "Videók és szerverhez kapcsolódó tartalmak."
+    },
+    github: {
+        name: "GitHub",
+        handle: "Nodayydev",
+        url: "https://github.com/Nodayydev",
+        icon: "⌘",
+        gradient: "github-gradient",
+        text: "Weboldal, projektek és fejlesztések."
+    }
+};
+
+function showSocial(platform) {
+    const display = document.getElementById("social-display");
+    const profile = socialProfiles[platform];
+
+    if (!display || !profile) {
+        return;
+    }
+
+    display.innerHTML = `
+        <div class="w-full text-left">
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+
+                <div class="w-20 h-20 rounded-2xl glass-bubble flex items-center justify-center text-4xl flex-shrink-0">
+                    ${profile.icon}
+                </div>
+
+                <div class="flex-1 text-center sm:text-left">
+                    <h3 class="text-2xl font-black tracking-wide">
+                        <span class="${profile.gradient}">${profile.name}</span>
+                    </h3>
+
+                    <p class="text-slate-300 font-bold mt-1">
+                        ${profile.handle}
+                    </p>
+
+                    <p class="text-slate-400 mt-3 leading-relaxed">
+                        ${profile.text}
+                    </p>
+
+                    <div class="mt-5 flex flex-wrap justify-center sm:justify-start gap-3">
+                        <a href="${profile.url}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="glass-bubble px-5 py-2 rounded-lg font-black hover:scale-[1.02] transition">
+                            Profil megnyitása
+                        </a>
+
+                        <button onclick="copySocialLink('${platform}')"
+                                class="glass-bubble px-5 py-2 rounded-lg font-black hover:scale-[1.02] transition">
+                            Link másolása
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    `;
+}
+
+function copySocialLink(platform) {
+    const profile = socialProfiles[platform];
+
+    if (!profile) {
+        return;
+    }
+
+    navigator.clipboard.writeText(profile.url);
+    alert("Link kimásolva!");
+}
+
 
 loadServerCard();
 setInterval(loadServerCard, 30000);
