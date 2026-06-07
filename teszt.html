@@ -119,7 +119,7 @@
         .hero-card-inner {
             background: rgba(3, 5, 24, 0.92);
             border-radius: 26px;
-            padding: 32px 24px;
+            padding: 26px 22px;
             backdrop-filter: blur(8px);
         }
 
@@ -263,7 +263,7 @@
 <body class="bg-remeny-fixed min-h-screen text-white font-sans">
 
 <div class="fixed top-4 left-4 z-50 flex items-center gap-3">
-    <div class="glass-bubble glass-cyan rounded-2xl px-4 py-3 text-left min-w-[105px]">
+    <div class="glass-bubble glass-cyan rounded-2xl px-4 py-3 text-left w-[145px] h-[70px] flex flex-col justify-center">
         <div id="clock-time" class="text-xl sm:text-2xl font-black leading-none text-white">
             --:--
         </div>
@@ -272,8 +272,8 @@
         </div>
     </div>
 
-    <div class="glass-bubble glass-purple rounded-2xl px-4 py-3 text-left min-w-[135px]">
-        <div id="clock-date" class="text-sm sm:text-base font-black text-white leading-tight">
+    <div class="glass-bubble glass-purple rounded-2xl px-4 py-3 text-left w-[145px] h-[70px] flex flex-col justify-center">
+        <div id="clock-date" class="text-sm font-black text-white leading-tight">
             ----
         </div>
         <div id="clock-day" class="text-xs text-slate-400 font-bold mt-1">
@@ -307,7 +307,7 @@
                 Minecraft profil
             </h3>
             <p class="text-slate-400 text-sm mt-1">
-                Fiók összekötése hamarosan.
+                Írd be a játékosnevedet.
             </p>
         </div>
 
@@ -318,17 +318,36 @@
     </div>
 
     <div class="mt-5 flex items-center gap-4">
-        <img src="icon.png"
+        <img id="player-avatar"
+             src="icon.png"
              alt="Minecraft profil"
              class="w-16 h-16 rounded-xl object-contain profile-avatar">
 
-        <div>
-            <div class="text-white font-black text-lg">
+        <div class="flex-1">
+            <div id="player-name-display" class="text-white font-black text-lg">
                 Vendég játékos
             </div>
-            <div class="text-slate-400 text-sm">
-                Nincs összekötve
+            <div id="player-status" class="text-slate-400 text-sm">
+                Nincs betöltve
             </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <label for="minecraft-name" class="block text-sm text-slate-300 font-black mb-2">
+            Minecraft név
+        </label>
+
+        <div class="flex gap-2">
+            <input id="minecraft-name"
+                   type="text"
+                   placeholder="pl. Never"
+                   class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-300 font-bold">
+
+            <button onclick="loadPlayerStats()"
+                    class="glass-bubble glass-cyan rounded-xl px-4 py-3 font-black hover:scale-[1.02] transition">
+                Betölt
+            </button>
         </div>
     </div>
 
@@ -354,19 +373,14 @@
         </div>
     </div>
 
-    <button onclick="openLinkInfo()"
-            class="mt-5 w-full glass-bubble glass-cyan rounded-xl px-5 py-3 font-black hover:scale-[1.02] transition">
-        Minecraft fiók összekötése
-    </button>
-
-    <p id="link-info" class="hidden text-slate-300 text-sm mt-4 leading-relaxed">
-        Az összekötéshez később lesz egy <span class="text-cyan-300 font-black">/link</span> parancs a Minecraft szerveren.
-        A kapott kódot itt lehet majd megadni.
+    <p class="text-slate-400 text-xs mt-4 leading-relaxed">
+        Az API-t később kötjük rá. Most a név alapján előkészített profilnézet működik crackelt játékosoknak is.
     </p>
 </div>
-<main class="relative z-10 container mx-auto px-4 py-10 sm:py-16 text-center">
 
-    <section class="min-h-[78vh] flex items-center justify-center">
+<main class="relative z-10 container mx-auto px-4 pt-4 sm:pt-6 pb-10 text-center">
+
+    <section class="min-h-[52vh] sm:min-h-[58vh] flex items-start justify-center pt-10 sm:pt-12">
         <div class="hero-card">
             <div class="hero-card-inner">
 
@@ -389,7 +403,7 @@
         </div>
     </section>
 
-    <section id="servers" class="pt-10 pb-8">
+    <section id="servers" class="pt-4 pb-8">
         <h2 class="text-3xl sm:text-4xl font-black mb-8 tracking-wider">
             szerverek
         </h2>
@@ -878,16 +892,45 @@ function toggleLoginPanel() {
     panel.classList.toggle("hidden");
 }
 
-function openLinkInfo() {
-    const info = document.getElementById("link-info");
 
-    if (!info) {
+
+async function loadPlayerStats() {
+    const input = document.getElementById("minecraft-name");
+    const nameDisplay = document.getElementById("player-name-display");
+    const status = document.getElementById("player-status");
+    const avatar = document.getElementById("player-avatar");
+
+    if (!input || !nameDisplay || !status) {
         return;
     }
 
-    info.classList.toggle("hidden");
-}
+    const playerName = input.value.trim();
 
+    if (!playerName) {
+        alert("Írd be a Minecraft nevedet!");
+        return;
+    }
+
+    nameDisplay.textContent = playerName;
+    status.textContent = "Profil előkészítve";
+
+    if (avatar) {
+        avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(playerName)}/128`;
+    }
+
+    document.getElementById("stat-kills").textContent = "0";
+    document.getElementById("stat-deaths").textContent = "0";
+    document.getElementById("stat-hours").textContent = "0";
+    document.getElementById("stat-blocks").textContent = "0";
+
+    // Később ide kötjük az API-t:
+    // const response = await fetch(`/api/player-stats/${encodeURIComponent(playerName)}`);
+    // const stats = await response.json();
+    // document.getElementById("stat-kills").textContent = stats.kills;
+    // document.getElementById("stat-deaths").textContent = stats.deaths;
+    // document.getElementById("stat-hours").textContent = stats.hours;
+    // document.getElementById("stat-blocks").textContent = stats.blocksPlaced;
+}
 
 
 function updateClock() {
@@ -921,6 +964,14 @@ function updateClock() {
     dateEl.textContent = `${year}. ${month} ${day}.`;
     dayEl.textContent = dayName;
 }
+
+
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && document.activeElement && document.activeElement.id === "minecraft-name") {
+        loadPlayerStats();
+    }
+});
 
 
 updateClock();
