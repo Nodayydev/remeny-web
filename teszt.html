@@ -222,6 +222,15 @@
                 0 0 24px rgba(255, 85, 200, 0.22);
         }
 
+        .profile-avatar {
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.28),
+                0 0 18px rgba(85,255,255,0.16);
+        }
+
         .glass-purple {
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.34),
@@ -252,6 +261,109 @@
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans">
+
+<div class="fixed top-4 left-4 z-50 flex items-center gap-3">
+    <div class="glass-bubble glass-cyan rounded-2xl px-4 py-3 text-left min-w-[105px]">
+        <div id="clock-time" class="text-xl sm:text-2xl font-black leading-none text-white">
+            --:--
+        </div>
+        <div class="text-xs text-slate-400 font-bold mt-1">
+            pontos idő
+        </div>
+    </div>
+
+    <div class="glass-bubble glass-purple rounded-2xl px-4 py-3 text-left min-w-[135px]">
+        <div id="clock-date" class="text-sm sm:text-base font-black text-white leading-tight">
+            ----
+        </div>
+        <div id="clock-day" class="text-xs text-slate-400 font-bold mt-1">
+            ----
+        </div>
+    </div>
+</div>
+
+<div class="fixed top-4 right-4 z-50 flex gap-3">
+    <a href="https://discord.gg/IDE_IRD_A_DISCORD_LINKET"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Discord"
+       class="glass-bubble glass-cyan w-12 h-12 rounded-2xl flex items-center justify-center text-2xl hover:scale-105 transition">
+        💬
+    </a>
+
+    <button onclick="toggleLoginPanel()"
+            title="Minecraft profil"
+            class="glass-bubble glass-purple w-12 h-12 rounded-2xl flex items-center justify-center text-2xl hover:scale-105 transition">
+        👤
+    </button>
+</div>
+
+<div id="login-panel"
+     class="hidden fixed top-20 right-4 z-50 w-[calc(100%-2rem)] max-w-sm glass-bubble glass-purple rounded-2xl p-5 text-left">
+
+    <div class="flex items-start justify-between gap-4">
+        <div>
+            <h3 class="text-2xl font-black tracking-wide">
+                Minecraft profil
+            </h3>
+            <p class="text-slate-400 text-sm mt-1">
+                Fiók összekötése hamarosan.
+            </p>
+        </div>
+
+        <button onclick="toggleLoginPanel()"
+                class="text-slate-400 hover:text-white transition text-xl font-black">
+            ×
+        </button>
+    </div>
+
+    <div class="mt-5 flex items-center gap-4">
+        <img src="icon.png"
+             alt="Minecraft profil"
+             class="w-16 h-16 rounded-xl object-contain profile-avatar">
+
+        <div>
+            <div class="text-white font-black text-lg">
+                Vendég játékos
+            </div>
+            <div class="text-slate-400 text-sm">
+                Nincs összekötve
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 mt-5">
+        <div class="glass-bubble rounded-xl px-3 py-3 text-center">
+            <div id="stat-kills" class="text-xl font-black text-white">0</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">ölés</div>
+        </div>
+
+        <div class="glass-bubble rounded-xl px-3 py-3 text-center">
+            <div id="stat-deaths" class="text-xl font-black text-white">0</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">halál</div>
+        </div>
+
+        <div class="glass-bubble rounded-xl px-3 py-3 text-center">
+            <div id="stat-hours" class="text-xl font-black text-white">0</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">óra játékban</div>
+        </div>
+
+        <div class="glass-bubble rounded-xl px-3 py-3 text-center">
+            <div id="stat-blocks" class="text-xl font-black text-white">0</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">lerakott blokk</div>
+        </div>
+    </div>
+
+    <button onclick="openLinkInfo()"
+            class="mt-5 w-full glass-bubble glass-cyan rounded-xl px-5 py-3 font-black hover:scale-[1.02] transition">
+        Minecraft fiók összekötése
+    </button>
+
+    <p id="link-info" class="hidden text-slate-300 text-sm mt-4 leading-relaxed">
+        Az összekötéshez később lesz egy <span class="text-cyan-300 font-black">/link</span> parancs a Minecraft szerveren.
+        A kapott kódot itt lehet majd megadni.
+    </p>
+</div>
 <main class="relative z-10 container mx-auto px-4 py-10 sm:py-16 text-center">
 
     <section class="min-h-[78vh] flex items-center justify-center">
@@ -627,7 +739,13 @@ const socialProfiles = {
         url: "https://www.instagram.com/never_1_dayy/",
         icon: "📷",
         gradient: "instagram-gradient",
-        text: "Képek, posztok és Remény tartalmak."
+        avatar: "icon.png",
+        bio: "Remény tartalmak, képek és közösségi posztok.",
+        stats: [
+            { label: "követő", value: "Írd át" },
+            { label: "követés", value: "Írd át" },
+            { label: "poszt", value: "Írd át" }
+        ]
     },
     x: {
         name: "X",
@@ -635,7 +753,13 @@ const socialProfiles = {
         url: "https://x.com/neveronedayy",
         icon: "𝕏",
         gradient: "x-gradient",
-        text: "Rövid bejegyzések és frissítések."
+        avatar: "icon.png",
+        bio: "Frissítések, rövid bejegyzések és Remény hírek.",
+        stats: [
+            { label: "követő", value: "Írd át" },
+            { label: "követés", value: "Írd át" },
+            { label: "poszt", value: "Írd át" }
+        ]
     },
     youtube: {
         name: "YouTube",
@@ -643,7 +767,13 @@ const socialProfiles = {
         url: "https://www.youtube.com/@never_1_dayy",
         icon: "▶",
         gradient: "youtube-gradient",
-        text: "Videók és szerverhez kapcsolódó tartalmak."
+        avatar: "icon.png",
+        bio: "Videók, szerveres tartalmak és Remény projektek.",
+        stats: [
+            { label: "feliratkozó", value: "Írd át" },
+            { label: "videó", value: "Írd át" },
+            { label: "megtekintés", value: "Írd át" }
+        ]
     },
     github: {
         name: "GitHub",
@@ -651,7 +781,13 @@ const socialProfiles = {
         url: "https://github.com/Nodayydev",
         icon: "⌘",
         gradient: "github-gradient",
-        text: "Weboldal, projektek és fejlesztések."
+        avatar: "icon.png",
+        bio: "Weboldal, fejlesztések, projektek és kódok.",
+        stats: [
+            { label: "repo", value: "Írd át" },
+            { label: "követő", value: "Írd át" },
+            { label: "projekt", value: "Írd át" }
+        ]
     }
 };
 
@@ -663,26 +799,41 @@ function showSocial(platform) {
         return;
     }
 
+    const statsHtml = profile.stats.map(stat => `
+        <div class="glass-bubble rounded-xl px-4 py-3 text-center">
+            <div class="text-xl font-black text-white">${stat.value}</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">${stat.label}</div>
+        </div>
+    `).join("");
+
     display.innerHTML = `
-        <div class="w-full text-left">
-            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+        <div class="w-full">
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
 
-                <div class="w-20 h-20 rounded-2xl glass-bubble flex items-center justify-center text-4xl flex-shrink-0">
-                    ${profile.icon}
-                </div>
+                <img src="${profile.avatar}"
+                     alt="${profile.name} profilkép"
+                     class="profile-avatar w-24 h-24 rounded-2xl object-cover flex-shrink-0">
 
-                <div class="flex-1 text-center sm:text-left">
-                    <h3 class="text-2xl font-black tracking-wide">
-                        <span class="${profile.gradient}">${profile.name}</span>
-                    </h3>
+                <div class="flex-1">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 justify-center sm:justify-start">
+                        <h3 class="text-2xl font-black tracking-wide">
+                            <span class="${profile.gradient}">${profile.name}</span>
+                        </h3>
 
-                    <p class="text-slate-300 font-bold mt-1">
-                        ${profile.handle}
+                        <span class="text-slate-500 font-black hidden sm:inline">•</span>
+
+                        <p class="text-slate-300 font-bold">
+                            ${profile.handle}
+                        </p>
+                    </div>
+
+                    <p class="text-slate-300 mt-3 leading-relaxed font-bold">
+                        ${profile.bio}
                     </p>
 
-                    <p class="text-slate-400 mt-3 leading-relaxed">
-                        ${profile.text}
-                    </p>
+                    <div class="grid grid-cols-3 gap-3 mt-5">
+                        ${statsHtml}
+                    </div>
 
                     <div class="mt-5 flex flex-wrap justify-center sm:justify-start gap-3">
                         <a href="${profile.url}"
@@ -715,6 +866,65 @@ function copySocialLink(platform) {
     alert("Link kimásolva!");
 }
 
+
+
+function toggleLoginPanel() {
+    const panel = document.getElementById("login-panel");
+
+    if (!panel) {
+        return;
+    }
+
+    panel.classList.toggle("hidden");
+}
+
+function openLinkInfo() {
+    const info = document.getElementById("link-info");
+
+    if (!info) {
+        return;
+    }
+
+    info.classList.toggle("hidden");
+}
+
+
+
+function updateClock() {
+    const timeEl = document.getElementById("clock-time");
+    const dateEl = document.getElementById("clock-date");
+    const dayEl = document.getElementById("clock-day");
+
+    if (!timeEl || !dateEl || !dayEl) {
+        return;
+    }
+
+    const now = new Date();
+
+    const time = now.toLocaleTimeString("hu-HU", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    const month = now.toLocaleDateString("hu-HU", {
+        month: "long"
+    });
+
+    const dayName = now.toLocaleDateString("hu-HU", {
+        weekday: "long"
+    });
+
+    const year = now.getFullYear();
+    const day = now.getDate();
+
+    timeEl.textContent = time;
+    dateEl.textContent = `${year}. ${month} ${day}.`;
+    dayEl.textContent = dayName;
+}
+
+
+updateClock();
+setInterval(updateClock, 1000);
 
 loadServerCard();
 setInterval(loadServerCard, 30000);
