@@ -6,7 +6,9 @@ const fs = require("fs");
 const path = require("path");
 const { Client, GatewayIntentBits } = require("discord.js");
 const { status } = require("minecraft-server-util");
+
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
@@ -90,10 +92,6 @@ app.get("/api/minecraft", async (req, res) => {
       Number(config.port) || 25565
     );
 
-    console.log("MOTD:");
-    console.log(result.motd);
-    console.log(JSON.stringify(result.motd, null, 2));
-
     res.json({
       ...config,
       online: result.players.online,
@@ -104,11 +102,62 @@ app.get("/api/minecraft", async (req, res) => {
 
   } catch (error) {
     console.error(error);
+
+    res.status(500).json({
+      error: "Nem sikerült lekérni a Minecraft szerver adatait."
+    });
   }
 });
+
+app.get("/api/player-stats/:name", async (req, res) => {
+  try {
+    const playerName = req.params.name;
+
+    let stats = {};
+
+    try {
+      stats = JSON.parse(fs.readFileSync("player-stats.json", "utf8"));
+    } catch {
+      stats = {};
+    }
+
+    const playerKey = Object.keys(stats).find(
+      key => key.toLowerCase() === playerName.toLowerCase()
+    );
+
+    if (!playerKey) {
+      return res.json({
+        name: playerName,
+        kills: 0,
+        deaths: 0,
+        hours: 0,
+        blocksPlaced: 0,
+        found: false
+      });
+    }
+
+    res.json({
+      name: playerKey,
+      kills: stats[playerKey].kills || 0,
+      deaths: stats[playerKey].deaths || 0,
+      hours: stats[playerKey].hours || 0,
+      blocksPlaced: stats[playerKey].blocksPlaced || 0,
+      found: true
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: "Nem sikerült lekérni a játékos statokat."
+    });
+  }
+});
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "teszt.html"));
 });
+
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
 });
