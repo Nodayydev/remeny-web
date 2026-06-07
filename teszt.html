@@ -991,26 +991,37 @@ async function loadPlayerStats() {
     }
 
     nameDisplay.textContent = playerName;
-    status.textContent = "Profil előkészítve";
+    status.textContent = "Statok betöltése...";
 
     if (avatar) {
         avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(playerName)}/128`;
     }
 
-    document.getElementById("stat-kills").textContent = "0";
-    document.getElementById("stat-deaths").textContent = "0";
-    document.getElementById("stat-hours").textContent = "0";
-    document.getElementById("stat-blocks").textContent = "0";
+    try {
+        const response = await fetch(`/api/player-stats/${encodeURIComponent(playerName)}`);
+        const stats = await response.json();
 
-    // Később ide kötjük az API-t:
-    // const response = await fetch(`/api/player-stats/${encodeURIComponent(playerName)}`);
-    // const stats = await response.json();
-    // document.getElementById("stat-kills").textContent = stats.kills;
-    // document.getElementById("stat-deaths").textContent = stats.deaths;
-    // document.getElementById("stat-hours").textContent = stats.hours;
-    // document.getElementById("stat-blocks").textContent = stats.blocksPlaced;
+        if (!response.ok) {
+            status.textContent = stats.error || "Nem sikerült betölteni";
+            return;
+        }
+
+        document.getElementById("stat-kills").textContent = stats.kills;
+        document.getElementById("stat-deaths").textContent = stats.deaths;
+        document.getElementById("stat-hours").textContent = stats.hours;
+        document.getElementById("stat-blocks").textContent = stats.blocksPlaced;
+
+        if (stats.found) {
+            status.textContent = "Statok betöltve";
+        } else {
+            status.textContent = "Nincs még stat ehhez a névhez";
+        }
+
+    } catch (error) {
+        console.error(error);
+        status.textContent = "API kapcsolódási hiba";
+    }
 }
-
 
 function updateClock() {
     const timeEl = document.getElementById("clock-time");
