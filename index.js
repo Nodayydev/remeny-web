@@ -132,7 +132,8 @@ app.get("/api/player-stats/:name", async (req, res) => {
           deaths,
           play_seconds,
           blocks_placed,
-          distance_traveled
+          distance_traveled,
+          skin_url
        FROM player_stats
        WHERE LOWER(player_name) = LOWER(?)
        LIMIT 1`,
@@ -147,6 +148,7 @@ app.get("/api/player-stats/:name", async (req, res) => {
         hours: 0,
         blocksPlaced: 0,
         distanceTraveled: 0,
+        skinUrl: null,
         found: false
       });
     }
@@ -160,6 +162,7 @@ app.get("/api/player-stats/:name", async (req, res) => {
       hours: Math.floor((Number(player.play_seconds) || 0) / 3600),
       blocksPlaced: Number(player.blocks_placed) || 0,
       distanceTraveled: Math.floor(Number(player.distance_traveled) || 0),
+      skinUrl: player.skin_url || null,
       found: true
     });
 
