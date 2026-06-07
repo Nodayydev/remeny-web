@@ -7,8 +7,8 @@
 
     <meta property="og:title" content="「 ✦ RÉMÉNY ✦ 」">
     <meta property="og:description" content="Hogy mindig maradjon itt valami.">
-    <meta property="og:image" content="https://remeny-web.onrender.com/preview.png>
-    <meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png">
+    <meta property="og:image" content="https://remeny-web.onrender.com/preview.png?v=3">
+    <meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png?v=3">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -608,67 +608,75 @@
         }
 
     
-        /* Teljesen átlátszó, enyhén homályos glass */
-        body.glass-light .glass-bubble,
-        body.glass-light .hero-card,
-        body.glass-light .hero-btn-smp,
-        body.glass-light .hero-btn-hytale {
-            background: rgba(255, 255, 255, 0.015) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.18),
-                0 8px 24px rgba(0, 0, 0, 0.12) !important;
-            -webkit-backdrop-filter: blur(8px) saturate(135%) !important;
-            backdrop-filter: blur(8px) saturate(135%) !important;
-        }
-
-        body.glass-light .hero-card-inner {
-            background: rgba(255, 255, 255, 0.008) !important;
-            border: 1px solid rgba(255, 255, 255, 0.08) !important;
-            -webkit-backdrop-filter: blur(6px) saturate(130%) !important;
-            backdrop-filter: blur(6px) saturate(130%) !important;
-        }
-
-        body.glass-dark .glass-bubble,
-        body.glass-dark .hero-card,
-        body.glass-dark .hero-btn-smp,
-        body.glass-dark .hero-btn-hytale {
-            background: rgba(0, 0, 0, 0.08) !important;
-            border: 1px solid rgba(255, 255, 255, 0.14) !important;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.12),
-                0 8px 24px rgba(0, 0, 0, 0.18) !important;
-            -webkit-backdrop-filter: blur(8px) saturate(130%) !important;
-            backdrop-filter: blur(8px) saturate(130%) !important;
-        }
-
-        body.glass-dark .hero-card-inner {
-            background: rgba(0, 0, 0, 0.07) !important;
-            border: 1px solid rgba(255, 255, 255, 0.07) !important;
-            -webkit-backdrop-filter: blur(6px) saturate(125%) !important;
-            backdrop-filter: blur(6px) saturate(125%) !important;
-        }
-
-        .glass-bubble::before,
-        .hero-card::before {
-            opacity: 0.12 !important;
-        }
-
-        .hero-card-inner::before {
-            opacity: 0.08 !important;
+        .minecraft-avatar-crop {
+            background-repeat: no-repeat !important;
+            background-size: 800% 800% !important;
+            background-position: 14.285% 14.285% !important;
+            image-rendering: pixelated;
         }
 
     
-        /* Telefonos háttér */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(rgba(0, 0, 30, 0.35), rgba(0, 0, 0, 0.78)),
+                url("bg-remeny.png");
+            background-size: cover;
+            background-position: center;
+            pointer-events: none;
+        }
+
         @media (max-width: 640px) {
-            .bg-remeny-fixed {
+            body::before {
                 background:
                     linear-gradient(rgba(0, 0, 30, 0.35), rgba(0, 0, 0, 0.78)),
-                    url("bg-remeny-telefon.png") !important;
-                background-size: cover !important;
-                background-position: center top !important;
-                background-attachment: scroll !important;
+                    url("bg-remeny-telefon.png");
+                background-size: cover;
+                background-position: center top;
             }
+        }
+
+        .bg-remeny-fixed {
+            background: transparent !important;
+        }
+
+    
+        /* Telefonon is fix háttér külön réteggel */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(rgba(0, 0, 30, 0.35), rgba(0, 0, 0, 0.78)),
+                url("bg-remeny.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            transform: translateZ(0);
+        }
+
+        @media (max-width: 640px) {
+            body::before {
+                background:
+                    linear-gradient(rgba(0, 0, 30, 0.35), rgba(0, 0, 0, 0.78)),
+                    url("bg-remeny-telefon.png");
+                background-size: cover;
+                background-position: center top;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .bg-remeny-fixed {
+            background: transparent !important;
+        }
+
+        body {
+            background: #020617 !important;
         }
 
     </style>
@@ -1450,6 +1458,35 @@ function toggleLoginPanel() {
 
 
 
+function clearAvatarCrop(avatar) {
+    avatar.classList.remove("minecraft-avatar-crop");
+    avatar.style.backgroundImage = "";
+    avatar.style.backgroundSize = "";
+    avatar.style.backgroundPosition = "";
+    avatar.style.backgroundRepeat = "";
+    avatar.style.imageRendering = "";
+    avatar.style.padding = "";
+}
+
+function setAvatarFromSkinTexture(avatar, skinUrl, onFail) {
+    const tester = new Image();
+
+    tester.onload = () => {
+        avatar.onerror = null;
+        avatar.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+        avatar.classList.add("minecraft-avatar-crop");
+        avatar.style.backgroundImage = `url("${skinUrl}")`;
+        avatar.style.backgroundSize = "800% 800%";
+        avatar.style.backgroundPosition = "14.285% 14.285%";
+        avatar.style.backgroundRepeat = "no-repeat";
+        avatar.style.imageRendering = "pixelated";
+        avatar.style.padding = "0";
+    };
+
+    tester.onerror = onFail;
+    tester.src = skinUrl;
+}
+
 function setPlayerAvatar(avatar, playerName, skinUrl = null) {
     if (!avatar) {
         return;
@@ -1460,34 +1497,45 @@ function setPlayerAvatar(avatar, playerName, skinUrl = null) {
 
     const sources = [];
 
-    // SkinsRestorer / saját plugin által MySQL-ből vagy API-ból adott skin URL.
     if (skinUrl) {
-        sources.push(`${skinUrl}${skinUrl.includes("?") ? "&" : "?"}cache=${cache}`);
+        sources.push({
+            type: "skin-texture",
+            url: `${skinUrl}${skinUrl.includes("?") ? "&" : "?"}cache=${cache}`
+        });
     }
 
     sources.push(
-        `https://mc-heads.net/avatar/${name}/128?cache=${cache}`,
-        `https://minotar.net/avatar/${name}/128.png?cache=${cache}`,
-        `https://api.mineatar.io/face/${name}?scale=16&cache=${cache}`,
-        `https://visage.surgeplay.com/face/128/${name}?cache=${cache}`,
-        `https://crafatar.com/avatars/${name}?size=128&overlay&cache=${cache}`,
-        `https://skinsystem.ely.by/skins/${name}.png?cache=${cache}`,
-        `https://mc-heads.net/head/${name}/128?cache=${cache}`
+        { type: "image", url: `https://mc-heads.net/avatar/${name}/128?cache=${cache}` },
+        { type: "image", url: `https://minotar.net/avatar/${name}/128.png?cache=${cache}` },
+        { type: "image", url: `https://api.mineatar.io/face/${name}?scale=16&cache=${cache}` },
+        { type: "image", url: `https://visage.surgeplay.com/face/128/${name}?cache=${cache}` },
+        { type: "image", url: `https://crafatar.com/avatars/${name}?size=128&overlay&cache=${cache}` },
+        { type: "skin-texture", url: `https://skinsystem.ely.by/skins/${name}.png?cache=${cache}` },
+        { type: "image", url: `https://mc-heads.net/head/${name}/128?cache=${cache}` }
     );
 
     let index = 0;
 
     function tryNextSource() {
         if (index >= sources.length) {
+            clearAvatarCrop(avatar);
             avatar.src = "icon.png";
             return;
         }
 
-        avatar.src = sources[index];
+        const source = sources[index];
         index++;
+
+        if (source.type === "skin-texture") {
+            setAvatarFromSkinTexture(avatar, source.url, tryNextSource);
+            return;
+        }
+
+        clearAvatarCrop(avatar);
+        avatar.onerror = tryNextSource;
+        avatar.src = source.url;
     }
 
-    avatar.onerror = tryNextSource;
     tryNextSource();
 }
 
