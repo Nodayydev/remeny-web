@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
+const mysql = require("mysql2/promise");
 const { Client, GatewayIntentBits } = require("discord.js");
 const { status } = require("minecraft-server-util");
 
@@ -12,6 +13,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
+
+const dbPool = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT) || 3306,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 5,
+  queueLimit: 0
+});
 
 const client = new Client({
   intents: [
@@ -113,19 +125,20 @@ app.get("/api/player-stats/:name", async (req, res) => {
   try {
     const playerName = req.params.name;
 
-    let stats = {};
-
-    try {
-      stats = JSON.parse(fs.readFileSync("player-stats.json", "utf8"));
-    } catch {
-      stats = {};
-    }
-
-    const playerKey = Object.keys(stats).find(
-      key => key.toLowerCase() === playerName.toLowerCase()
+    const [rows] = await dbPool.execute(
+      `SELECT 
+          player_name,
+          kills,
+          deaths,
+          play_seconds,
+          blocks_placed
+       FROM player_stats
+       WHERE LOWER(player_name) = LOWER(?)
+       LIMIT 1`,
+      [playerName]
     );
 
-    if (!playerKey) {
+    if (rows.length === 0) {
       return res.json({
         name: playerName,
         kills: 0,
@@ -136,12 +149,14 @@ app.get("/api/player-stats/:name", async (req, res) => {
       });
     }
 
+    const player = rows[0];
+
     res.json({
-      name: playerKey,
-      kills: stats[playerKey].kills || 0,
-      deaths: stats[playerKey].deaths || 0,
-      hours: stats[playerKey].hours || 0,
-      blocksPlaced: stats[playerKey].blocksPlaced || 0,
+      name: player.player_name,
+      kills: Number(player.kills) || 0,
+      deaths: Number(player.deaths) || 0,
+      hours: Math.floor((Number(player.play_seconds) || 0) / 3600),
+      blocksPlaced: Number(player.blocks_placed) || 0,
       found: true
     });
 
