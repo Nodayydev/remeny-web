@@ -7,8 +7,8 @@
 
     <meta property="og:title" content="「 ✦ RÉMÉNY ✦ 」">
     <meta property="og:description" content="Hogy mindig maradjon itt valami.">
-    <meta property="og:image" content="https://remeny-web.onrender.com/preview.png">
-    <meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png">
+    <meta property="og:image" content="https://remeny-web.onrender.com/preview.png?v=3">
+    <meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png?v=3">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="「 ✦ RÉMÉNY ✦ 」">
     <meta name="twitter:description" content="Hogy mindig maradjon itt valami.">
-    <meta name="twitter:image" content="https://remeny-web.onrender.com/preview.png">
+    <meta name="twitter:image" content="https://remeny-web.onrender.com/preview.png?v=3">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -103,19 +103,17 @@
             max-width: 540px;
             margin: 0 auto;
             border-radius: 28px;
-            padding: 2px;
-            background: linear-gradient(
-                to top right,
-                #081653 0%,
-                #13309a 28%,
-                #3c2fa8 55%,
-                #9130c9 78%,
-                #ff61d8 100%
-            );
+            padding: 1px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            backdrop-filter: blur(18px) saturate(180%);
             box-shadow:
-                -18px 18px 50px rgba(18, 48, 140, 0.30),
-                18px -18px 50px rgba(255, 90, 220, 0.22),
-                0 0 40px rgba(178, 75, 255, 0.18);
+                inset 0 1px 0 rgba(255, 255, 255, 0.34),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+                0 10px 34px rgba(0, 0, 0, 0.34),
+                0 0 24px rgba(85, 255, 255, 0.18);
         }
 
         .hero-card-inner {
@@ -237,13 +235,6 @@
                 background-position: center top;
             }
 
-            .background-butterfly {
-                width: 190px;
-                right: -20px;
-                bottom: 12%;
-                opacity: 0.22;
-            }
-
             .hero-card {
                 max-width: 94%;
             }
@@ -261,8 +252,6 @@
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans">
-<img src="icon.png" alt="Háttér pillangó" class="background-butterfly">
-
 <main class="relative z-10 container mx-auto px-4 py-10 sm:py-16 text-center">
 
     <section class="min-h-[78vh] flex items-center justify-center">
@@ -310,7 +299,7 @@
 
                     <div class="flex-1 min-w-0">
                         <h2 class="text-white text-xl font-black leading-none">
-                            remény Hytale
+                            Remény Hytale
                         </h2>
 
                         <div class="text-yellow-300 font-bold text-sm mt-1">
@@ -318,7 +307,7 @@
                         </div>
 
                         <div class="mt-2 text-sm leading-relaxed font-mono text-slate-300">
-                            hytale szerver hamarosan.
+                            Hytale szerver hamarosan.
                         </div>
                     </div>
 
@@ -423,7 +412,7 @@
 
         <div id="members-display" class="glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center">
             <p class="text-slate-500 italic font-bold">
-                Kattints egy rangra a tagok megtekintéséhez.
+                kattints egy rangra a tagok megtekintéséhez.
             </p>
         </div>
     </section>
@@ -638,5 +627,3 @@ setInterval(loadServerCard, 30000);
 
 </body>
 </html>
-</html>
-
