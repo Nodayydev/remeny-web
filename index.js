@@ -131,7 +131,8 @@ app.get("/api/player-stats/:name", async (req, res) => {
           kills,
           deaths,
           play_seconds,
-          blocks_placed
+          blocks_placed,
+          distance_traveled
        FROM player_stats
        WHERE LOWER(player_name) = LOWER(?)
        LIMIT 1`,
@@ -145,6 +146,7 @@ app.get("/api/player-stats/:name", async (req, res) => {
         deaths: 0,
         hours: 0,
         blocksPlaced: 0,
+        distanceTraveled: 0,
         found: false
       });
     }
@@ -157,6 +159,7 @@ app.get("/api/player-stats/:name", async (req, res) => {
       deaths: Number(player.deaths) || 0,
       hours: Math.floor((Number(player.play_seconds) || 0) / 3600),
       blocksPlaced: Number(player.blocks_placed) || 0,
+      distanceTraveled: Math.floor(Number(player.distance_traveled) || 0),
       found: true
     });
 
