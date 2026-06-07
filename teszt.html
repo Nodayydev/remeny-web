@@ -7,8 +7,8 @@
 
     <meta property="og:title" content="「 ✦ RÉMÉNY ✦ 」">
     <meta property="og:description" content="Hogy mindig maradjon itt valami.">
-    <meta property="og:image" content="https://remeny-web.onrender.com/preview.png?v=3">
-    <meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png?v=3">
+    <meta property="og:image" content="https://remeny-web.onrender.com/preview.png>
+    <meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -656,6 +656,19 @@
 
         .hero-card-inner::before {
             opacity: 0.08 !important;
+        }
+
+    
+        /* Telefonos háttér */
+        @media (max-width: 640px) {
+            .bg-remeny-fixed {
+                background:
+                    linear-gradient(rgba(0, 0, 30, 0.35), rgba(0, 0, 0, 0.78)),
+                    url("bg-remeny-telefon.png") !important;
+                background-size: cover !important;
+                background-position: center top !important;
+                background-attachment: scroll !important;
+            }
         }
 
     </style>
