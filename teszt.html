@@ -403,7 +403,7 @@
              class="w-16 h-16 rounded-xl object-contain profile-avatar">
 
         <div class="flex-1">
-            <div id="player-name-display" class="text-white font-black text-lg">
+            <div id="player-name-display" class="text-white font-black text-lg normal-case">
                 Vendég játékos
             </div>
             <div id="player-status" class="text-slate-400 text-sm">
@@ -421,7 +421,7 @@
             <input id="minecraft-name"
                    type="text"
                    placeholder="pl. Never"
-                   class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-300 font-bold">
+                   class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-300 font-bold normal-case">
 
             <button onclick="loadPlayerStats()"
                     class="glass-bubble glass-cyan rounded-xl px-4 py-3 font-black hover:scale-[1.02] transition">
@@ -450,10 +450,15 @@
             <div id="stat-blocks" class="text-xl font-black text-white">0</div>
             <div class="text-xs text-slate-400 font-bold mt-1">lerakott blokk</div>
         </div>
+
+        <div class="glass-bubble rounded-xl px-3 py-3 text-center col-span-2">
+            <div id="stat-distance" class="text-xl font-black text-white">0</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">megtett blokk</div>
+        </div>
     </div>
 
     <p class="text-slate-400 text-xs mt-4 leading-relaxed">
-        Írd be a Minecraft nevedet a statok lekéréséhez.
+        Az API-t később kötjük rá. Most a név alapján előkészített profilnézet működik crackelt játékosoknak is.
     </p>
 </div>
 
@@ -474,8 +479,8 @@
                 </h1>
 
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#minecraft-server-card" class="hero-btn-smp glass-bubble glass-cyan">SMP</a>
-                    <a href="#hytale-server-card" class="hero-btn-hytale glass-bubble glass-yellow">Hytale</a>
+                    <button class="hero-btn-smp glass-bubble glass-cyan" onclick="showServerPanel('smp')">SMP</a>
+                    <button class="hero-btn-hytale glass-bubble glass-yellow" onclick="showServerPanel('hytale')">Hytale</a>
                 </div>
 
             </div>
@@ -825,6 +830,81 @@ async function showMembers(rankName) {
 }
 
 
+function showServerPanel(type) {
+    const display = document.getElementById("server-display");
+
+    if (!display) {
+        return;
+    }
+
+    if (type === "smp") {
+        display.innerHTML = `
+            <div class="w-full flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+                <img src="logo.png"
+                     alt="Remény SMP"
+                     class="w-24 h-24 rounded-xl object-cover profile-avatar flex-shrink-0">
+
+                <div class="flex-1">
+                    <h3 class="text-3xl font-black">
+                        <span class="remeny-gradient">Remény SMP</span>
+                    </h3>
+
+                    <p class="text-slate-300 font-bold mt-2 normal-case">
+                        remenymc.shockbyte.pro:25399
+                    </p>
+
+                    <p class="text-slate-400 mt-3 leading-relaxed">
+                        Minecraft túlélő szerver, közösségi rangokkal és Remény hangulattal.
+                    </p>
+
+                    <button onclick="copySpecificIP('remenymc.shockbyte.pro:25399')"
+                            class="mt-5 glass-bubble glass-cyan px-5 py-2 rounded-lg font-black hover:scale-[1.02] transition">
+                        IP másolása
+                    </button>
+                </div>
+            </div>
+        `;
+        display.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+    }
+
+    if (type === "hytale") {
+        display.innerHTML = `
+            <div class="w-full flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+                <img src="icon.png"
+                     alt="Remény Hytale"
+                     class="w-24 h-24 rounded-xl object-contain profile-avatar flex-shrink-0">
+
+                <div class="flex-1">
+                    <h3 class="text-3xl font-black">
+                        <span class="mineforum-gradient">Remény Hytale</span>
+                    </h3>
+
+                    <p class="text-slate-300 font-bold mt-2 normal-case">
+                        remenyhytale.shockbyte.pro
+                    </p>
+
+                    <p class="text-slate-400 mt-3 leading-relaxed">
+                        Hytale szerver hamarosan. Az IP előkészítve, a szerver később indul.
+                    </p>
+
+                    <button onclick="copySpecificIP('remenyhytale.shockbyte.pro')"
+                            class="mt-5 glass-bubble glass-yellow px-5 py-2 rounded-lg font-black hover:scale-[1.02] transition">
+                        IP másolása
+                    </button>
+                </div>
+            </div>
+        `;
+        display.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+}
+
+function copySpecificIP(ip) {
+    navigator.clipboard.writeText(ip);
+    alert("IP kimásolva!");
+}
+
+
 const socialProfiles = {
     instagram: {
         name: "Instagram",
@@ -994,7 +1074,11 @@ async function loadPlayerStats() {
     status.textContent = "Statok betöltése...";
 
     if (avatar) {
-        avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(playerName)}/128`;
+        avatar.src = `https://minotar.net/avatar/${encodeURIComponent(playerName)}/128.png`;
+        avatar.onerror = () => {
+            avatar.onerror = null;
+            avatar.src = `https://mc-heads.net/avatar/${encodeURIComponent(playerName)}/128`;
+        };
     }
 
     try {
@@ -1006,10 +1090,15 @@ async function loadPlayerStats() {
             return;
         }
 
-        document.getElementById("stat-kills").textContent = stats.kills;
-        document.getElementById("stat-deaths").textContent = stats.deaths;
-        document.getElementById("stat-hours").textContent = stats.hours;
-        document.getElementById("stat-blocks").textContent = stats.blocksPlaced;
+        document.getElementById("stat-kills").textContent = stats.kills || 0;
+        document.getElementById("stat-deaths").textContent = stats.deaths || 0;
+        document.getElementById("stat-hours").textContent = stats.hours || 0;
+        document.getElementById("stat-blocks").textContent = stats.blocksPlaced || 0;
+
+        const distanceElement = document.getElementById("stat-distance");
+        if (distanceElement) {
+            distanceElement.textContent = stats.distanceTraveled || 0;
+        }
 
         if (stats.found) {
             status.textContent = "Statok betöltve";
@@ -1022,6 +1111,7 @@ async function loadPlayerStats() {
         status.textContent = "API kapcsolódási hiba";
     }
 }
+
 
 function updateClock() {
     const timeEl = document.getElementById("clock-time");
