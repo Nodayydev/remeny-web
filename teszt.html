@@ -431,6 +431,55 @@
             z-index: 1;
         }
 
+    
+        #servers {
+            margin-top: -18px;
+        }
+
+        @media (max-width: 640px) {
+            #servers {
+                margin-top: -10px;
+            }
+        }
+
+    
+        /* Egységes glass kinézet a fő Remény buboréknak és az SMP/Hytale gomboknak */
+        .hero-card {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.045)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.28) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.38),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+                0 12px 34px rgba(0, 0, 0, 0.34),
+                0 0 28px rgba(120, 180, 255, 0.12) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(185%) !important;
+            backdrop-filter: blur(20px) saturate(185%) !important;
+        }
+
+        .hero-card-inner {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(3, 5, 24, 0.64)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.18),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-btn-smp,
+        .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.045)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.28) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.38),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+                0 12px 34px rgba(0, 0, 0, 0.34),
+                0 0 22px rgba(120, 180, 255, 0.12) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(185%) !important;
+            backdrop-filter: blur(20px) saturate(185%) !important;
+        }
+
     </style>
 </head>
 
@@ -495,7 +544,7 @@
         <img id="player-avatar"
              src="icon.png"
              alt="Minecraft profil"
-             class="w-16 h-16 rounded-xl object-contain profile-avatar">
+             class="w-16 h-16 rounded-xl object-contain profile-avatar bg-black/30 p-1">
 
         <div class="flex-1">
             <div id="player-name-display" class="text-white font-black text-lg normal-case">
@@ -559,7 +608,7 @@
 
 <main class="relative z-10 container mx-auto px-4 pt-36 sm:pt-8 pb-10 text-center">
 
-    <section class="min-h-[50vh] sm:min-h-[64vh] flex items-start justify-center pt-4 sm:pt-20">
+    <section class="min-h-[42vh] sm:min-h-[54vh] flex items-start justify-center pt-4 sm:pt-20">
         <div class="hero-card">
             <div class="hero-card-inner">
 
@@ -582,9 +631,9 @@
         </div>
     </section>
 
-    <section id="servers" class="pt-0 pb-8">
+    <section id="servers" class="pt-2 pb-6">
         <div id="server-display"
-             class="hidden glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-5xl mx-auto min-h-[160px] items-center justify-center mb-8">
+             class="hidden glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-5xl mx-auto min-h-[120px] items-center justify-center mb-8">
         </div>
     </section>
 
@@ -986,7 +1035,7 @@ async function showServerPanel(type) {
             `;
         }
 
-        display.scrollIntoView({ behavior: "smooth", block: "center" });
+        // nincs automatikus legörgetés
         return;
     }
 
@@ -1017,7 +1066,7 @@ async function showServerPanel(type) {
                 </div>
             </div>
         `;
-        display.scrollIntoView({ behavior: "smooth", block: "center" });
+        // nincs automatikus legörgetés
     }
 }
 
@@ -1181,14 +1230,16 @@ function setPlayerAvatar(avatar, playerName) {
     }
 
     const name = encodeURIComponent(playerName);
+    const cache = Date.now();
 
     const sources = [
-        `https://api.mineatar.io/face/${name}?scale=16`,
-        `https://mc-heads.net/avatar/${name}/128`,
-        `https://minotar.net/avatar/${name}/128.png`,
-        `https://visage.surgeplay.com/face/128/${name}`,
-        `https://crafatar.com/avatars/${name}?size=128&overlay`,
-        `https://mc-heads.net/head/${name}/128`
+        `https://mc-heads.net/avatar/${name}/128?cache=${cache}`,
+        `https://minotar.net/avatar/${name}/128.png?cache=${cache}`,
+        `https://api.mineatar.io/face/${name}?scale=16&cache=${cache}`,
+        `https://visage.surgeplay.com/face/128/${name}?cache=${cache}`,
+        `https://crafatar.com/avatars/${name}?size=128&overlay&cache=${cache}`,
+        `https://skinsystem.ely.by/skins/${name}.png?cache=${cache}`,
+        `https://mc-heads.net/head/${name}/128?cache=${cache}`
     ];
 
     let index = 0;
