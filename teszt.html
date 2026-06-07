@@ -238,6 +238,85 @@
                 0 0 24px rgba(190, 130, 255, 0.22);
         }
 
+
+        @media (max-width: 640px) {
+            .top-left-widgets {
+                position: absolute !important;
+                top: 14px !important;
+                left: 12px !important;
+                right: 12px !important;
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px !important;
+                z-index: 50 !important;
+            }
+
+            .top-left-widgets .top-info-box {
+                width: 100% !important;
+                height: 58px !important;
+                min-width: 0 !important;
+                padding: 8px 10px !important;
+                border-radius: 18px !important;
+            }
+
+            #clock-time {
+                font-size: 1.25rem !important;
+                line-height: 1.2rem !important;
+            }
+
+            #clock-date {
+                font-size: 0.78rem !important;
+                line-height: 0.92rem !important;
+                white-space: normal !important;
+            }
+
+            #clock-day {
+                font-size: 0.68rem !important;
+            }
+
+            .top-right-widgets {
+                position: absolute !important;
+                top: 82px !important;
+                right: 12px !important;
+                display: flex !important;
+                gap: 8px !important;
+                z-index: 51 !important;
+            }
+
+            .top-right-widgets .glass-bubble {
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
+                border-radius: 16px !important;
+                font-size: 1.35rem !important;
+                padding: 0 !important;
+            }
+
+            #login-panel {
+                top: 136px !important;
+                right: 12px !important;
+                left: 12px !important;
+                width: auto !important;
+            }
+
+            main {
+                padding-top: 140px !important;
+            }
+
+            main > section:first-child {
+                min-height: 46vh !important;
+                padding-top: 0 !important;
+            }
+
+            .hero-card {
+                max-width: 92% !important;
+            }
+
+            .hero-card-inner {
+                padding: 22px 14px !important;
+            }
+        }
+
         @media (max-width: 768px) {
             .bg-remeny-fixed {
                 background-attachment: scroll;
