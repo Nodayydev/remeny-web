@@ -1043,13 +1043,13 @@
                 0 12px 30px rgba(0, 0, 0, 0.24) !important;
         }
 
-        body.basic-light .glass-bubble,
-        body.basic-light .hero-card,
-        body.basic-light .hero-card-inner,
-        body.basic-light .hero-btn-smp,
-        body.basic-light .hero-btn-hytale,
-        body.basic-light #server-display,
-        body.basic-light #login-panel {
+        body.matt-light .glass-bubble,
+        body.matt-light .hero-card,
+        body.matt-light .hero-card-inner,
+        body.matt-light .hero-btn-smp,
+        body.matt-light .hero-btn-hytale,
+        body.matt-light #server-display,
+        body.matt-light #login-panel {
             border-radius: 12px !important;
             background: rgba(255, 255, 255, 0.30) !important;
             border: 1px solid rgba(255, 255, 255, 0.34) !important;
@@ -1060,13 +1060,13 @@
                 0 8px 22px rgba(0, 0, 0, 0.18) !important;
         }
 
-        body.basic-dark .glass-bubble,
-        body.basic-dark .hero-card,
-        body.basic-dark .hero-card-inner,
-        body.basic-dark .hero-btn-smp,
-        body.basic-dark .hero-btn-hytale,
-        body.basic-dark #server-display,
-        body.basic-dark #login-panel {
+        body.matt-dark .glass-bubble,
+        body.matt-dark .hero-card,
+        body.matt-dark .hero-card-inner,
+        body.matt-dark .hero-btn-smp,
+        body.matt-dark .hero-btn-hytale,
+        body.matt-dark #server-display,
+        body.matt-dark #login-panel {
             border-radius: 12px !important;
             background: rgba(3, 8, 28, 0.54) !important;
             border: 1px solid rgba(255, 255, 255, 0.18) !important;
@@ -1077,13 +1077,13 @@
                 0 10px 26px rgba(0, 0, 0, 0.32) !important;
         }
 
-        body.basic-light .hero-card,
-        body.basic-dark .hero-card {
+        body.matt-light .hero-card,
+        body.matt-dark .hero-card {
             border-radius: 18px !important;
         }
 
-        body.basic-light .hero-card-inner,
-        body.basic-dark .hero-card-inner {
+        body.matt-light .hero-card-inner,
+        body.matt-dark .hero-card-inner {
             border-radius: 16px !important;
         }
 
@@ -1110,32 +1110,1293 @@
             }
         }
 
+    
+        /* Kis stílusválasztó ablak */
+        .theme-widget {
+            position: fixed;
+            left: 14px;
+            bottom: 14px;
+            z-index: 80;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .theme-main-button {
+            width: 46px;
+            height: 46px;
+            border-radius: 999px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.22) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(170%) !important;
+            backdrop-filter: blur(16px) saturate(170%) !important;
+        }
+
+        .theme-menu {
+            width: 180px;
+            padding: 10px;
+            border-radius: 20px !important;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: rgba(2, 6, 23, 0.42) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
+            backdrop-filter: blur(18px) saturate(170%) !important;
+        }
+
+        .theme-menu.hidden {
+            display: none !important;
+        }
+
+        .theme-option {
+            width: 100%;
+            padding: 10px 12px;
+            font-weight: 900;
+            color: white;
+            text-align: center;
+            transition: 0.2s ease;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.02);
+        }
+
+        .theme-glass {
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            -webkit-backdrop-filter: blur(16px) saturate(170%);
+            backdrop-filter: blur(16px) saturate(170%);
+        }
+
+        .theme-matt {
+            border-radius: 9px;
+            background: rgba(4, 10, 30, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        /* 1. Sötét glass: kerek, üveges, háttérelmosós */
+        body.mode-glass .glass-bubble,
+        body.mode-glass .hero-card,
+        body.mode-glass .hero-btn-smp,
+        body.mode-glass .hero-btn-hytale,
+        body.mode-glass #server-display,
+        body.mode-glass #login-panel {
+            border-radius: 24px !important;
+            background: rgba(0, 0, 0, 0.075) !important;
+            border: 1px solid rgba(255, 255, 255, 0.16) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(155%) brightness(0.96) !important;
+            backdrop-filter: blur(16px) saturate(155%) brightness(0.96) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.14),
+                0 12px 30px rgba(0, 0, 0, 0.28) !important;
+        }
+
+        body.mode-glass .hero-card-inner {
+            border-radius: 22px !important;
+            background: rgba(0, 0, 0, 0.055) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            -webkit-backdrop-filter: blur(14px) saturate(145%) brightness(0.96) !important;
+            backdrop-filter: blur(14px) saturate(145%) brightness(0.96) !important;
+        }
+
+        body.mode-glass .hero-btn-smp,
+        body.mode-glass .hero-btn-hytale {
+            border-radius: 999px !important;
+        }
+
+        /* 2. Basic: iOS15-szerű, sötét, kevésbé átlátszó, kockásabb */
+        body.mode-matt .glass-bubble,
+        body.mode-matt .hero-card,
+        body.mode-matt .hero-btn-smp,
+        body.mode-matt .hero-btn-hytale,
+        body.mode-matt #server-display,
+        body.mode-matt #login-panel {
+            border-radius: 11px !important;
+            background: rgba(3, 8, 28, 0.78) !important;
+            border: 1px solid rgba(255, 255, 255, 0.16) !important;
+            -webkit-backdrop-filter: blur(7px) saturate(115%) !important;
+            backdrop-filter: blur(7px) saturate(115%) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 10px 26px rgba(0, 0, 0, 0.32) !important;
+        }
+
+        body.mode-matt .hero-card {
+            border-radius: 16px !important;
+        }
+
+        body.mode-matt .hero-card-inner {
+            border-radius: 14px !important;
+            background: rgba(3, 8, 28, 0.72) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        }
+
+        body.mode-matt .hero-btn-smp,
+        body.mode-matt .hero-btn-hytale {
+            border-radius: 10px !important;
+        }
+
+        body.mode-matt .rounded-2xl {
+            border-radius: 14px !important;
+        }
+
+        body.mode-matt .rounded-xl {
+            border-radius: 11px !important;
+        }
+
+        body.mode-matt .rounded-lg {
+            border-radius: 9px !important;
+        }
+
+        /* Hirdetésnek fenntartott üres, nem zavaró helyek */
+        .ad-empty-space {
+            width: min(92vw, 970px);
+            margin: 22px auto;
+            min-height: 0;
+            display: block;
+        }
+
+        .ad-empty-space:not(:empty) {
+            min-height: 90px;
+            padding: 8px;
+        }
+
+        @media (max-width: 640px) {
+            .theme-widget {
+                left: 12px;
+                bottom: 82px;
+            }
+
+            .theme-main-button {
+                width: 42px;
+                height: 42px;
+            }
+
+            .theme-menu {
+                width: 158px;
+                border-radius: 18px !important;
+            }
+
+            .theme-option {
+                font-size: 0.78rem;
+                padding: 9px 10px;
+            }
+
+            .ad-empty-space:not(:empty) {
+                min-height: 70px;
+            }
+        }
+
+    
+        /* Felső lenyitható stílus ablak */
+        .theme-top-panel {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 90;
+            width: min(92vw, 360px);
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(2, 6, 23, 0.34);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            -webkit-backdrop-filter: blur(18px) saturate(165%);
+            backdrop-filter: blur(18px) saturate(165%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.16),
+                0 14px 34px rgba(0, 0, 0, 0.34);
+        }
+
+        .theme-top-toggle {
+            width: 100%;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            color: white;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+        }
+
+        .theme-top-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 0 10px 10px;
+            max-height: 90px;
+            opacity: 1;
+            transition: max-height 0.22s ease, opacity 0.18s ease, padding 0.22s ease;
+        }
+
+        .theme-top-panel.collapsed .theme-top-content {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            pointer-events: none;
+        }
+
+        .theme-top-option {
+            padding: 9px 10px;
+            color: white;
+            font-weight: 900;
+            font-size: 0.78rem;
+            transition: 0.18s ease;
+        }
+
+        .theme-top-option:hover {
+            transform: scale(1.03);
+        }
+
+        .theme-top-glass {
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            -webkit-backdrop-filter: blur(15px) saturate(170%);
+            backdrop-filter: blur(15px) saturate(170%);
+        }
+
+        .theme-top-matt {
+            border-radius: 9px;
+            background: rgba(4, 10, 30, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        @media (max-width: 640px) {
+            .theme-top-panel {
+                top: 8px;
+                width: min(88vw, 330px);
+                border-radius: 16px;
+            }
+
+            .theme-top-toggle {
+                padding: 9px 12px;
+                font-size: 0.82rem;
+            }
+
+            .theme-top-content {
+                gap: 7px;
+                padding: 0 9px 9px;
+            }
+
+            .theme-top-option {
+                padding: 8px 8px;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* Több hirdetési hely, üres helyeken */
+        .ad-slot {
+            width: min(94vw, 970px);
+            margin: 24px auto;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ad-slot ins.adsbygoogle {
+            display: block;
+            width: 100%;
+            min-height: 90px;
+        }
+
+        .ad-slot-wide {
+            min-height: 90px;
+        }
+
+        .ad-slot-mobile {
+            min-height: 100px;
+        }
+
+        @media (max-width: 640px) {
+            .ad-slot {
+                width: calc(100vw - 28px);
+                margin: 18px auto;
+                min-height: 90px;
+            }
+        }
+
+    
+        /* Kicsi stílusválasztó, mint a Discord/Login ikonok */
+        .theme-top-panel {
+            display: none !important;
+        }
+
+        .theme-mini-widget {
+            position: fixed;
+            top: 82px;
+            right: 132px;
+            z-index: 95;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-mini-button {
+            width: 46px;
+            height: 46px;
+            border-radius: 16px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: white;
+            cursor: pointer;
+            padding: 0 !important;
+        }
+
+        .theme-mini-menu {
+            width: 112px;
+            padding: 8px;
+            border-radius: 16px !important;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .theme-mini-menu.hidden {
+            display: none !important;
+        }
+
+        .theme-mini-option {
+            width: 100%;
+            padding: 8px 9px;
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-align: center;
+            transition: 0.18s ease;
+        }
+
+        .theme-mini-option:hover {
+            transform: scale(1.03);
+        }
+
+        .theme-mini-glass {
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+            backdrop-filter: blur(14px) saturate(160%);
+        }
+
+        .theme-mini-matt {
+            border-radius: 8px;
+            background: rgba(4, 10, 30, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        @media (max-width: 640px) {
+            .theme-mini-widget {
+                top: 155px;
+                right: 104px;
+                gap: 7px;
+            }
+
+            .theme-mini-button {
+                width: 46px;
+                height: 46px;
+                border-radius: 16px !important;
+                font-size: 1.15rem;
+            }
+
+            .theme-mini-menu {
+                width: 104px;
+                padding: 7px;
+            }
+
+            .theme-mini-option {
+                padding: 7px 8px;
+                font-size: 0.68rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .theme-mini-widget {
+                right: 96px;
+            }
+        }
+
+    
+        /* Stílus gomb igazítása a Discord/Login ikonokhoz */
+        .theme-mini-widget {
+            top: 82px !important;
+            right: 132px !important;
+        }
+
+        .theme-mini-button {
+            width: 46px !important;
+            height: 46px !important;
+            border-radius: 16px !important;
+        }
+
+        @media (max-width: 640px) {
+            .theme-mini-widget {
+                top: 155px !important;
+                right: 126px !important;
+            }
+
+            .theme-mini-button {
+                width: 48px !important;
+                height: 48px !important;
+                border-radius: 17px !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .theme-mini-widget {
+                right: 116px !important;
+            }
+        }
+
+    
+        /* Stílusgomb a jobb felső ikonok sorában */
+        .theme-mini-widget,
+        .theme-top-panel,
+        .theme-widget {
+            display: none !important;
+        }
+
+        .top-icon-button {
+            width: 46px !important;
+            height: 46px !important;
+            min-width: 46px !important;
+            min-height: 46px !important;
+            border-radius: 16px !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 1.15rem !important;
+            font-weight: 900 !important;
+            color: white !important;
+            line-height: 1 !important;
+        }
+
+        .theme-inline-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 108px;
+            padding: 7px;
+            border-radius: 15px !important;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 100;
+        }
+
+        .theme-inline-menu.hidden {
+            display: none !important;
+        }
+
+        .theme-inline-option {
+            width: 100%;
+            padding: 7px 8px;
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 900;
+            text-align: center;
+            transition: 0.18s ease;
+        }
+
+        .theme-inline-liquid {
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+        }
+
+        .theme-inline-matt {
+            border-radius: 8px;
+            background: rgba(4, 10, 30, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        @media (max-width: 640px) {
+            .top-icon-button {
+                width: 48px !important;
+                height: 48px !important;
+                min-width: 48px !important;
+                min-height: 48px !important;
+                border-radius: 17px !important;
+            }
+
+            .theme-inline-menu {
+                width: 104px;
+            }
+        }
+
+    
+        /* Látható fix stílus gomb - Discord/Login ikonok mellett */
+        .theme-fixed-widget {
+            position: fixed !important;
+            top: 18px !important;
+            right: 128px !important;
+            z-index: 9999 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 8px !important;
+            pointer-events: auto !important;
+        }
+
+        .theme-fixed-button {
+            width: 46px !important;
+            height: 46px !important;
+            min-width: 46px !important;
+            min-height: 46px !important;
+            border-radius: 16px !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 1.2rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .theme-fixed-menu {
+            width: 110px !important;
+            padding: 7px !important;
+            border-radius: 15px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 7px !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .theme-fixed-menu.hidden {
+            display: none !important;
+        }
+
+        .theme-fixed-option {
+            width: 100%;
+            padding: 7px 8px;
+            color: white;
+            font-size: 0.68rem;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .theme-fixed-liquid {
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+        }
+
+        .theme-fixed-matt {
+            border-radius: 8px;
+            background: rgba(4, 10, 30, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        @media (max-width: 640px) {
+            .theme-fixed-widget {
+                top: 154px !important;
+                right: 126px !important;
+            }
+
+            .theme-fixed-button {
+                width: 48px !important;
+                height: 48px !important;
+                min-width: 48px !important;
+                min-height: 48px !important;
+                border-radius: 17px !important;
+            }
+
+            .theme-fixed-menu {
+                width: 104px !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .theme-fixed-widget {
+                right: 116px !important;
+            }
+        }
+
+    
+        /* Stílus gomb pontosabb méretezés */
+        .theme-fixed-widget {
+            position: fixed !important;
+            z-index: 9999 !important;
+            pointer-events: auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 7px !important;
+
+            /* desktop: jobb felső ikonok bal oldala */
+            top: 18px !important;
+            right: 132px !important;
+        }
+
+        .theme-fixed-button {
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            max-width: 44px !important;
+            max-height: 44px !important;
+            border-radius: 14px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+
+            font-size: 1.08rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+            color: white !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .theme-fixed-menu {
+            width: 104px !important;
+            padding: 7px !important;
+            border-radius: 14px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 6px !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .theme-fixed-menu.hidden {
+            display: none !important;
+        }
+
+        .theme-fixed-option {
+            width: 100% !important;
+            padding: 7px 8px !important;
+            color: white !important;
+            font-size: 0.66rem !important;
+            font-weight: 900 !important;
+            text-align: center !important;
+            line-height: 1.05 !important;
+            letter-spacing: 0.04em !important;
+        }
+
+        .theme-fixed-liquid {
+            border-radius: 999px !important;
+            background: rgba(255, 255, 255, 0.055) !important;
+            border: 1px solid rgba(255, 255, 255, 0.20) !important;
+            -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+            backdrop-filter: blur(14px) saturate(160%) !important;
+        }
+
+        .theme-fixed-matt {
+            border-radius: 8px !important;
+            background: rgba(4, 10, 30, 0.84) !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        }
+
+        @media (max-width: 640px) {
+            .theme-fixed-widget {
+                /* mobilon a két jobb oldali ikon mellett, ugyanazon sorban */
+                top: 154px !important;
+                right: 126px !important;
+                gap: 6px !important;
+            }
+
+            .theme-fixed-button {
+                width: 48px !important;
+                height: 48px !important;
+                min-width: 48px !important;
+                min-height: 48px !important;
+                max-width: 48px !important;
+                max-height: 48px !important;
+                border-radius: 17px !important;
+                font-size: 1.08rem !important;
+            }
+
+            .theme-fixed-menu {
+                width: 98px !important;
+                padding: 6px !important;
+                border-radius: 14px !important;
+            }
+
+            .theme-fixed-option {
+                padding: 7px 7px !important;
+                font-size: 0.62rem !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .theme-fixed-widget {
+                right: 116px !important;
+            }
+        }
+
+    
+        /* Matt mód: nincs üveghatás */
+        body.mode-matt .glass-bubble,
+        body.mode-matt .hero-card,
+        body.mode-matt .hero-card-inner,
+        body.mode-matt .hero-btn-smp,
+        body.mode-matt .hero-btn-hytale,
+        body.mode-matt #server-display,
+        body.mode-matt #login-panel,
+        body.mode-matt .theme-fixed-button,
+        body.mode-matt .theme-fixed-menu {
+            background: rgba(5, 10, 30, 0.94) !important;
+            border: 1px solid rgba(120, 150, 230, 0.28) !important;
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 26px rgba(0,0,0,0.36) !important;
+        }
+
+        body.mode-matt .glass-bubble::before,
+        body.mode-matt .hero-card::before,
+        body.mode-matt .hero-card-inner::before {
+            display: none !important;
+        }
+
+        /* Stílus lenyitó fix méretben, elugrás nélkül */
+        .theme-fixed-widget {
+            position: fixed !important;
+            top: 18px !important;
+            right: 132px !important;
+            z-index: 9999 !important;
+            width: 48px !important;
+            min-width: 48px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .theme-fixed-button {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            max-width: 48px !important;
+            max-height: 48px !important;
+            border-radius: 16px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 1.05rem !important;
+            line-height: 1 !important;
+            transform: none !important;
+        }
+
+        .theme-fixed-menu {
+            position: absolute !important;
+            top: 56px !important;
+            right: 0 !important;
+            width: 112px !important;
+            min-width: 112px !important;
+            padding: 8px !important;
+            border-radius: 15px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 7px !important;
+            transform-origin: top right;
+            animation: themeMenuIn 0.18s ease both;
+        }
+
+        .theme-fixed-menu.hidden {
+            display: none !important;
+        }
+
+        @keyframes themeMenuIn {
+            from { opacity: 0; transform: translateY(-5px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .theme-fixed-option {
+            width: 100% !important;
+            padding: 8px 8px !important;
+            font-size: 0.66rem !important;
+            line-height: 1.05 !important;
+            font-weight: 900 !important;
+            text-align: center !important;
+            white-space: nowrap !important;
+        }
+
+        .theme-fixed-liquid {
+            border-radius: 999px !important;
+            background: rgba(255,255,255,0.055) !important;
+            border: 1px solid rgba(255,255,255,0.20) !important;
+            -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+            backdrop-filter: blur(14px) saturate(160%) !important;
+        }
+
+        .theme-fixed-matt {
+            border-radius: 8px !important;
+            background: rgba(5, 10, 30, 0.96) !important;
+            border: 1px solid rgba(120, 150, 230, 0.28) !important;
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .theme-fixed-widget {
+                top: 154px !important;
+                right: 126px !important;
+                width: 48px !important;
+                min-width: 48px !important;
+            }
+
+            .theme-fixed-button {
+                width: 48px !important;
+                height: 48px !important;
+                min-width: 48px !important;
+                min-height: 48px !important;
+                border-radius: 17px !important;
+            }
+
+            .theme-fixed-menu {
+                top: 56px !important;
+                width: 104px !important;
+                min-width: 104px !important;
+                padding: 7px !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .theme-fixed-widget { right: 116px !important; }
+        }
+
+        /* Kis nyitási animációk */
+        #server-display:not(.hidden),
+        #rank-display:not(.hidden),
+        #members-display:not(.hidden),
+        #login-panel:not(.hidden),
+        #discord-panel:not(.hidden),
+        .server-strip-card,
+        .member-card {
+            animation: panelPopIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        @keyframes panelPopIn {
+            from { opacity: 0; transform: translateY(10px) scale(0.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Egérkövető liquid fény */
+        .glass-bubble,
+        .hero-card,
+        .hero-btn-smp,
+        .hero-btn-hytale,
+        #server-display,
+        #login-panel {
+            --mx: 50%;
+            --my: 50%;
+            transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+        }
+
+        .liquid-hover { position: relative; }
+
+        .liquid-hover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.18s ease;
+            background: radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.28), rgba(255,255,255,0.08) 22%, transparent 46%);
+            mix-blend-mode: screen;
+            z-index: 2;
+        }
+
+        .liquid-hover:hover::after { opacity: 1; }
+
+        body.mode-glass .liquid-hover:hover {
+            background-color: rgba(255,255,255,0.055) !important;
+            border-color: rgba(255,255,255,0.28) !important;
+            transform: translateY(-1px);
+        }
+
+        body.mode-matt .liquid-hover:hover {
+            background-color: rgba(9,16,42,0.98) !important;
+            border-color: rgba(150,180,255,0.36) !important;
+            transform: translateY(-1px);
+        }
+
+    
+        /* Stílusgomb végleges javítás: glass/matt */
+        .theme-fixed-widget {
+            position: fixed !important;
+            top: 18px !important;
+            right: 132px !important;
+            z-index: 2147483000 !important;
+            width: 48px !important;
+            height: 48px !important;
+            display: block !important;
+            pointer-events: auto !important;
+        }
+
+        .theme-fixed-button {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            max-width: 48px !important;
+            max-height: 48px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-radius: 16px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 1.08rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+            color: white !important;
+            cursor: pointer !important;
+            transform: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+
+        .theme-fixed-menu {
+            position: absolute !important;
+            top: 56px !important;
+            right: 0 !important;
+            width: 112px !important;
+            min-width: 112px !important;
+            padding: 8px !important;
+            border-radius: 16px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 7px !important;
+            background: rgba(2, 6, 23, 0.72) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+            backdrop-filter: blur(16px) saturate(160%) !important;
+            transform-origin: top right !important;
+            animation: themeMenuInFinal 0.18s ease both !important;
+            z-index: 2147483001 !important;
+            pointer-events: auto !important;
+        }
+
+        .theme-fixed-menu.hidden {
+            display: none !important;
+        }
+
+        @keyframes themeMenuInFinal {
+            from {
+                opacity: 0;
+                transform: translateY(-5px) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .theme-fixed-option {
+            width: 100% !important;
+            height: 34px !important;
+            padding: 0 8px !important;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.72rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+            text-align: center !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            border: 0 !important;
+        }
+
+        .theme-fixed-glass {
+            border-radius: 999px !important;
+            background: rgba(255, 255, 255, 0.075) !important;
+            border: 1px solid rgba(255, 255, 255, 0.22) !important;
+            -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+            backdrop-filter: blur(14px) saturate(160%) !important;
+        }
+
+        .theme-fixed-matt {
+            border-radius: 8px !important;
+            background: rgba(5, 10, 30, 0.96) !important;
+            border: 1px solid rgba(120, 150, 230, 0.30) !important;
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+        }
+
+        /* Matt mód tényleg matt legyen, ne glass */
+        body.mode-matt .glass-bubble,
+        body.mode-matt .hero-card,
+        body.mode-matt .hero-card-inner,
+        body.mode-matt .hero-btn-smp,
+        body.mode-matt .hero-btn-hytale,
+        body.mode-matt #server-display,
+        body.mode-matt #login-panel,
+        body.mode-matt .theme-fixed-button,
+        body.mode-matt .theme-fixed-menu {
+            background: rgba(5, 10, 30, 0.94) !important;
+            border: 1px solid rgba(120, 150, 230, 0.28) !important;
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.06),
+                0 10px 26px rgba(0, 0, 0, 0.36) !important;
+        }
+
+        body.mode-matt .glass-bubble::before,
+        body.mode-matt .hero-card::before,
+        body.mode-matt .hero-card-inner::before {
+            display: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .theme-fixed-widget {
+                top: 154px !important;
+                right: 126px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+
+            .theme-fixed-button {
+                width: 48px !important;
+                height: 48px !important;
+                min-width: 48px !important;
+                min-height: 48px !important;
+                border-radius: 17px !important;
+            }
+
+            .theme-fixed-menu {
+                top: 56px !important;
+                width: 104px !important;
+                min-width: 104px !important;
+                padding: 7px !important;
+            }
+
+            .theme-fixed-option {
+                height: 32px !important;
+                font-size: 0.68rem !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .theme-fixed-widget {
+                right: 116px !important;
+            }
+        }
+
+    
+        /* FINAL glass/matt + hover + animations */
+        body.mode-glass .glass-bubble,
+        body.mode-glass .hero-card,
+        body.mode-glass .hero-card-inner,
+        body.mode-glass .hero-btn-smp,
+        body.mode-glass .hero-btn-hytale,
+        body.mode-glass #server-display,
+        body.mode-glass #login-panel,
+        body.mode-glass #discord-panel,
+        body.mode-glass .server-strip-card,
+        body.mode-glass .member-card {
+            background: rgba(255, 255, 255, 0.018) !important;
+            border: 1px solid rgba(255, 255, 255, 0.16) !important;
+            -webkit-backdrop-filter: blur(7px) saturate(135%) brightness(1.04) !important;
+            backdrop-filter: blur(7px) saturate(135%) brightness(1.04) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.13),
+                0 8px 22px rgba(0, 0, 0, 0.16) !important;
+        }
+
+        body.mode-matt .glass-bubble,
+        body.mode-matt .hero-card,
+        body.mode-matt .hero-card-inner,
+        body.mode-matt .hero-btn-smp,
+        body.mode-matt .hero-btn-hytale,
+        body.mode-matt #server-display,
+        body.mode-matt #login-panel,
+        body.mode-matt #discord-panel,
+        body.mode-matt .server-strip-card,
+        body.mode-matt .member-card {
+            border-radius: 7px !important;
+            background: rgba(5, 9, 25, 0.96) !important;
+            border: 1px solid rgba(150, 170, 230, 0.18) !important;
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.045),
+                0 7px 18px rgba(0, 0, 0, 0.28) !important;
+        }
+
+        body.mode-matt .hero-card {
+            border-radius: 10px !important;
+        }
+
+        body.mode-matt .hero-card-inner {
+            border-radius: 8px !important;
+        }
+
+        body.mode-matt .hero-btn-smp,
+        body.mode-matt .hero-btn-hytale,
+        body.mode-matt .theme-fixed-button {
+            border-radius: 7px !important;
+        }
+
+        body.mode-matt .glass-bubble::before,
+        body.mode-matt .hero-card::before,
+        body.mode-matt .hero-card-inner::before {
+            display: none !important;
+        }
+
+        .liquid-hover {
+            position: relative;
+            overflow: hidden;
+            --mx: 50%;
+            --my: 50%;
+        }
+
+        .liquid-hover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.18s ease;
+            background:
+                radial-gradient(
+                    circle at var(--mx) var(--my),
+                    rgba(255, 255, 255, 0.35),
+                    rgba(120, 220, 255, 0.12) 18%,
+                    transparent 46%
+                );
+            z-index: 4;
+            mix-blend-mode: screen;
+        }
+
+        .liquid-hover:hover::after {
+            opacity: 1;
+        }
+
+        body.mode-glass .liquid-hover:hover {
+            background-color: rgba(255, 255, 255, 0.035) !important;
+            border-color: rgba(255, 255, 255, 0.26) !important;
+            transform: translateY(-1px);
+        }
+
+        body.mode-matt .liquid-hover:hover {
+            background-color: rgba(9, 14, 36, 0.99) !important;
+            border-color: rgba(180, 200, 255, 0.28) !important;
+            transform: translateY(-1px);
+        }
+
+        .panel-open-anim {
+            animation: panelOpenAnim 0.34s cubic-bezier(0.18, 0.9, 0.2, 1) both;
+            transform-origin: top center;
+        }
+
+        @keyframes panelOpenAnim {
+            from {
+                opacity: 0;
+                transform: translateY(-8px) scaleY(0.92) scaleX(0.985);
+                filter: blur(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scaleY(1) scaleX(1);
+                filter: blur(0);
+            }
+        }
+
+        .server-strip-card,
+        .member-card,
+        #server-display:not(.hidden),
+        #login-panel:not(.hidden),
+        #discord-panel:not(.hidden) {
+            animation: panelOpenAnim 0.34s cubic-bezier(0.18, 0.9, 0.2, 1) both;
+        }
+
+        .theme-fixed-menu:not(.hidden) {
+            animation: panelOpenAnim 0.22s cubic-bezier(0.18, 0.9, 0.2, 1) both !important;
+        }
+
+        .theme-fixed-menu {
+            right: 0 !important;
+            transform-origin: top right !important;
+        }
+
+        .theme-fixed-matt {
+            border-radius: 6px !important;
+            background: rgba(5, 9, 25, 0.98) !important;
+            border: 1px solid rgba(150, 170, 230, 0.18) !important;
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+        }
+
+        .theme-fixed-glass {
+            border-radius: 999px !important;
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            -webkit-backdrop-filter: blur(7px) saturate(135%) !important;
+            backdrop-filter: blur(7px) saturate(135%) !important;
+        }
+
     </style>
 </head>
 
-<body class="bg-remeny-fixed min-h-screen text-white font-sans glass-light-transparent">
-
-<div class="glass-toggle">
-    <button onclick="setGlassMode('light-transparent')"
-            class="glass-bubble glass-cyan">
-        világos átlátszó
+<body class="bg-remeny-fixed min-h-screen text-white font-sans -transparent mode-glass">
+<div id="theme-fixed-widget" class="theme-fixed-widget">
+    <button type="button"
+            onclick="toggleThemePanel()"
+            class="theme-fixed-button glass-bubble"
+            aria-label="Stílus választó">
+        ◐
     </button>
 
-    <button onclick="setGlassMode('dark-transparent')"
-            class="glass-bubble glass-purple">
-        sötét átlátszó
-    </button>
+    <div id="theme-menu" class="theme-fixed-menu hidden">
+        <button type="button"
+                onclick="setGlassMode('glass')" class="theme-fixed-option theme-fixed-glass">
+            glass
+        </button>
 
-    <button onclick="setGlassMode('basic-light')"
-            class="glass-bubble glass-cyan">
-        basic világos
-    </button>
-
-    <button onclick="setGlassMode('basic-dark')"
-            class="glass-bubble glass-purple">
-        basic sötét
-    </button>
+        <button type="button"
+                onclick="setGlassMode('matt')" class="theme-fixed-option theme-fixed-matt">
+            matt
+        </button>
+    </div>
 </div>
+
+
+
+<div class="top-right-icons fixed top-4 right-4 z-50 flex gap-3">        
+</div>
+
+
 
 
 <div class="top-left-widgets fixed top-4 left-4 z-50 flex items-center gap-3">
@@ -1290,6 +2551,8 @@
         </div>
     </section>
 
+<div class="ad-slot glass-bubble" aria-label="hirdetés helye"></div>
+
 <section id="partnerek" class="pt-6 pb-8">
         <h2 class="text-3xl sm:text-4xl font-black mb-6 tracking-wider">
             partner
@@ -1403,6 +2666,16 @@
 
 <script>
 
+function toggleThemePanel() {
+    const menu = document.getElementById("theme-menu");
+
+    if (!menu) {
+        return;
+    }
+
+    menu.classList.toggle("hidden");
+}
+
 function setGlassMode(mode) {
     document.body.classList.remove(
         "glass-light",
@@ -1410,43 +2683,105 @@ function setGlassMode(mode) {
         "glass-ios15",
         "glass-light-transparent",
         "glass-dark-transparent",
-        "basic-light",
-        "basic-dark"
+        "matt-light",
+        "matt-dark",
+        "mode-glass",
+        "mode-matt",
+        "mode-matt"
     );
 
-    if (mode === "dark-transparent") {
-        document.body.classList.add("glass-dark-transparent");
-        localStorage.setItem("glassMode", "dark-transparent");
+    if (mode === "matt" || mode === "basic") {
+        document.body.classList.add("mode-matt");
+        localStorage.setItem("glassMode", "matt");
+
+        const menu = document.getElementById("theme-menu");
+        if (menu) menu.classList.add("hidden");
+
         return;
     }
 
-    if (mode === "basic-light") {
-        document.body.classList.add("basic-light");
-        localStorage.setItem("glassMode", "basic-light");
-        return;
-    }
+    document.body.classList.add("mode-glass");
+    localStorage.setItem("glassMode", "glass");
 
-    if (mode === "basic-dark") {
-        document.body.classList.add("basic-dark");
-        localStorage.setItem("glassMode", "basic-dark");
-        return;
-    }
-
-    document.body.classList.add("glass-light-transparent");
-    localStorage.setItem("glassMode", "light-transparent");
+    const menu = document.getElementById("theme-menu");
+    if (menu) menu.classList.add("hidden");
 }
 
 const savedGlassMode = localStorage.getItem("glassMode");
 
-if (savedGlassMode === "dark-transparent") {
-    setGlassMode("dark-transparent");
-} else if (savedGlassMode === "basic-light") {
-    setGlassMode("basic-light");
-} else if (savedGlassMode === "basic-dark") {
-    setGlassMode("basic-dark");
+if (savedGlassMode === "matt" || savedGlassMode === "basic") {
+    setGlassMode("matt");
 } else {
-    setGlassMode("light-transparent");
+    setGlassMode("glass");
 }
+
+function loadAds() {
+    const ads = document.querySelectorAll("ins.adsbygoogle");
+
+    ads.forEach((ad) => {
+        if (ad.dataset.loaded === "true") {
+            return;
+        }
+
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            ad.dataset.loaded = "true";
+        } catch (error) {
+            console.warn("AdSense még nem töltött be:", error);
+        }
+    });
+}
+
+window.addEventListener("load", () => {
+    setTimeout(loadAds, 800);
+});
+
+
+function initLiquidHover() {
+    const elements = document.querySelectorAll(
+        ".glass-bubble, .hero-card, .hero-card-inner, .hero-btn-smp, .hero-btn-hytale, #server-display, #login-panel, #discord-panel, .server-strip-card, .member-card"
+    );
+
+    elements.forEach((element) => {
+        if (element.dataset.liquidHover === "true") {
+            return;
+        }
+
+        element.dataset.liquidHover = "true";
+        element.classList.add("liquid-hover");
+
+        element.addEventListener("pointermove", (event) => {
+            const rect = element.getBoundingClientRect();
+
+            if (!rect.width || !rect.height) {
+                return;
+            }
+
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+            element.style.setProperty("--mx", `${x}%`);
+            element.style.setProperty("--my", `${y}%`);
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", initLiquidHover);
+
+function refreshDynamicEffects() {
+    setTimeout(() => {
+        initLiquidHover();
+
+        document.querySelectorAll("#server-display, #login-panel, #discord-panel").forEach((panel) => {
+            if (!panel.classList.contains("hidden")) {
+                panel.classList.remove("panel-open-anim");
+                void panel.offsetWidth;
+                panel.classList.add("panel-open-anim");
+            }
+        });
+    }, 30);
+}
+
 
 let currentServerIP = "";
 
@@ -1724,6 +3059,7 @@ async function showServerPanel(type) {
             `;
         }
 
+        refreshDynamicEffects();
         return;
     }
 
@@ -1764,6 +3100,7 @@ async function showServerPanel(type) {
                 </div>
             </div>
         `;
+        refreshDynamicEffects();
     }
 }
 
@@ -1771,6 +3108,8 @@ function copySpecificIP(ip) {
     navigator.clipboard.writeText(ip);
     alert("IP kimásolva!");
 }
+
+setTimeout(initLiquidHover, 40);
 
 
 function toggleLoginPanel() {
