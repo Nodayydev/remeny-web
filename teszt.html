@@ -2998,6 +2998,113 @@
             pointer-events: auto !important;
         }
 
+    
+        /* Nagyobb stílusválasztó opciók */
+        .theme-inline-menu,
+        #theme-menu {
+            width: 142px !important;
+            min-width: 142px !important;
+            padding: 10px !important;
+            gap: 9px !important;
+            border-radius: 16px !important;
+        }
+
+        .theme-inline-option,
+        #theme-menu button {
+            height: 42px !important;
+            min-height: 42px !important;
+            padding: 0 12px !important;
+            font-size: 0.86rem !important;
+            font-weight: 900 !important;
+            letter-spacing: 0.04em !important;
+        }
+
+        @media (max-width: 640px) {
+            .theme-inline-menu,
+            #theme-menu {
+                width: 132px !important;
+                min-width: 132px !important;
+                padding: 9px !important;
+            }
+
+            .theme-inline-option,
+            #theme-menu button {
+                height: 40px !important;
+                min-height: 40px !important;
+                font-size: 0.8rem !important;
+            }
+        }
+
+        /* Egérre felvillanó liquid hover */
+        .liquid-hover {
+            position: relative !important;
+            overflow: hidden !important;
+            --mx: 50%;
+            --my: 50%;
+            transition:
+                background-color 0.22s ease,
+                border-color 0.22s ease,
+                transform 0.18s ease,
+                box-shadow 0.22s ease !important;
+        }
+
+        .liquid-hover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.18s ease;
+            background:
+                radial-gradient(
+                    circle at var(--mx) var(--my),
+                    rgba(255, 255, 255, 0.42),
+                    rgba(105, 220, 255, 0.18) 18%,
+                    transparent 48%
+                );
+            mix-blend-mode: screen;
+            z-index: 5;
+        }
+
+        .liquid-hover:hover::after {
+            opacity: 1;
+        }
+
+        body.mode-glass .liquid-hover:hover {
+            background-color: rgba(255, 255, 255, 0.045) !important;
+            border-color: rgba(255, 255, 255, 0.30) !important;
+            transform: translateY(-1px);
+        }
+
+        body.mode-matt .liquid-hover:hover {
+            background-color: rgba(10, 17, 44, 0.99) !important;
+            border-color: rgba(170, 195, 255, 0.30) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Szerverpanel nyitási animáció */
+        #server-display.panel-open-anim,
+        #rank-display.panel-open-anim,
+        #login-panel.panel-open-anim,
+        #discord-panel.panel-open-anim {
+            animation: remenyPanelOpen 0.32s cubic-bezier(0.18, 0.9, 0.2, 1) both;
+            transform-origin: top center;
+        }
+
+        @keyframes remenyPanelOpen {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scaleY(0.92) scaleX(0.985);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scaleY(1) scaleX(1);
+                filter: blur(0);
+            }
+        }
+
     </style>
 </head>
 
@@ -3976,7 +4083,6 @@ loadServerCard();
 setInterval(loadServerCard, 30000);
 </script>
 
-
 <script>
 (function () {
     function updateRemenyClock() {
@@ -3999,34 +4105,23 @@ setInterval(loadServerCard, 30000);
 
         ["clock-time", "current-time", "time"].forEach(function (id) {
             const element = document.getElementById(id);
-            if (element) {
-                element.textContent = timeText;
-            }
+            if (element) element.textContent = timeText;
         });
 
         ["clock-date", "current-date", "date"].forEach(function (id) {
             const element = document.getElementById(id);
-            if (element) {
-                element.textContent = dateText;
-            }
+            if (element) element.textContent = dateText;
         });
 
         ["clock-day", "current-day", "day"].forEach(function (id) {
             const element = document.getElementById(id);
-            if (element) {
-                element.textContent = dayText;
-            }
+            if (element) element.textContent = dayText;
         });
     }
 
     window.toggleThemePanel = function () {
         const menu = document.getElementById("theme-menu");
-
-        if (!menu) {
-            return;
-        }
-
-        menu.classList.toggle("hidden");
+        if (menu) menu.classList.toggle("hidden");
     };
 
     window.setGlassMode = function (mode) {
@@ -4046,40 +4141,239 @@ setInterval(loadServerCard, 30000);
         if (mode === "matt" || mode === "basic") {
             document.body.classList.add("mode-matt");
             localStorage.setItem("glassMode", "matt");
+        } else {
+            document.body.classList.add("mode-glass");
+            localStorage.setItem("glassMode", "glass");
+        }
 
-            const menu = document.getElementById("theme-menu");
-            if (menu) {
-                menu.classList.add("hidden");
+        const menu = document.getElementById("theme-menu");
+        if (menu) menu.classList.add("hidden");
+    };
+
+    function animatePanel(element) {
+        if (!element) return;
+
+        element.classList.remove("panel-open-anim");
+        void element.offsetWidth;
+        element.classList.add("panel-open-anim");
+    }
+
+    window.copySpecificIP = function (ip) {
+        navigator.clipboard.writeText(ip);
+        alert("IP kimásolva!");
+    };
+
+    window.copyIP = function () {
+        const ip = window.currentServerIP || "remenymc.shockbyte.pro:25399";
+        navigator.clipboard.writeText(ip);
+        alert("IP kimásolva!");
+    };
+
+    window.showServerPanel = async function (type) {
+        const display = document.getElementById("server-display");
+
+        if (!display) {
+            return;
+        }
+
+        display.classList.remove("hidden");
+        display.classList.add("flex");
+
+        if (type === "smp") {
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="logo.png"
+                         alt="Remény SMP"
+                         class="server-strip-logo">
+
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">
+                            Remény SMP
+                        </div>
+
+                        <div class="server-strip-ip">
+                            adatok betöltése...
+                        </div>
+
+                        <div class="server-strip-motd">
+                            Kérlek várj.
+                        </div>
+                    </div>
+
+                    <div class="server-strip-side">
+                        <div class="server-strip-online">...</div>
+                        <div class="server-strip-version">...</div>
+                    </div>
+                </div>
+            `;
+
+            animatePanel(display);
+            initLiquidHover();
+
+            try {
+                const response = await fetch("/api/minecraft");
+                const server = await response.json();
+
+                if (!response.ok) {
+                    display.innerHTML = `
+                        <div class="server-strip-card">
+                            <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                            <div class="server-strip-main">
+                                <div class="server-strip-title">Remény SMP</div>
+                                <div class="server-strip-ip">Nem sikerült betölteni.</div>
+                            </div>
+                        </div>
+                    `;
+                    animatePanel(display);
+                    initLiquidHover();
+                    return;
+                }
+
+                window.currentServerIP = `${server.ip}:${server.port}`;
+
+                display.innerHTML = `
+                    <div class="server-strip-card">
+                        <img src="${server.logo || "logo.png"}"
+                             alt="${server.name || "Remény SMP"}"
+                             class="server-strip-logo">
+
+                        <div class="server-strip-main">
+                            <div class="server-strip-title">
+                                ${server.name || "Remény SMP"}
+                            </div>
+
+                            <div class="server-strip-ip">
+                                ${server.ip}:${server.port}
+                            </div>
+
+                            <div class="server-strip-motd">
+                                ${server.motd || ""}
+                            </div>
+                        </div>
+
+                        <div class="server-strip-side">
+                            <div class="server-strip-online">
+                                ${server.online}/${server.max}
+                                <span class="text-green-400">▮▮▮</span>
+                            </div>
+
+                            <div class="server-strip-version">
+                                ${server.version || ""}
+                            </div>
+
+                            <button onclick="copyIP()"
+                                    class="server-strip-button border border-green-500 text-green-400 hover:bg-green-500/10">
+                                IP másolása
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                animatePanel(display);
+                initLiquidHover();
+            } catch (error) {
+                console.error(error);
+                display.innerHTML = `
+                    <div class="server-strip-card">
+                        <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                        <div class="server-strip-main">
+                            <div class="server-strip-title">Remény SMP</div>
+                            <div class="server-strip-ip">API kapcsolódási hiba.</div>
+                        </div>
+                    </div>
+                `;
+                animatePanel(display);
+                initLiquidHover();
             }
 
             return;
         }
 
-        document.body.classList.add("mode-glass");
-        localStorage.setItem("glassMode", "glass");
+        if (type === "hytale") {
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="icon.png"
+                         alt="Remény Hytale"
+                         class="server-strip-logo object-contain">
 
-        const menu = document.getElementById("theme-menu");
-        if (menu) {
-            menu.classList.add("hidden");
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">
+                            Remény Hytale
+                        </div>
+
+                        <div class="server-strip-ip text-yellow-300">
+                            remenyhytale.shockbyte.pro
+                        </div>
+
+                        <div class="server-strip-motd text-slate-300">
+                            Hytale szerver hamarosan.
+                        </div>
+                    </div>
+
+                    <div class="server-strip-side">
+                        <div class="server-strip-online text-yellow-300">
+                            készülőben
+                        </div>
+
+                        <div class="server-strip-version">
+                            Hytale
+                        </div>
+
+                        <button onclick="copySpecificIP('remenyhytale.shockbyte.pro')"
+                                class="server-strip-button border border-yellow-400 text-yellow-300 hover:bg-yellow-400/10">
+                            IP másolása
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            animatePanel(display);
+            initLiquidHover();
         }
     };
 
-    function startFixes() {
+    window.initLiquidHover = function () {
+        const elements = document.querySelectorAll(
+            ".glass-bubble, .hero-card, .hero-card-inner, .hero-btn-smp, .hero-btn-hytale, #server-display, #login-panel, #discord-panel, .server-strip-card, .member-card"
+        );
+
+        elements.forEach(function (element) {
+            if (element.dataset.liquidHover === "true") return;
+
+            element.dataset.liquidHover = "true";
+            element.classList.add("liquid-hover");
+
+            element.addEventListener("pointermove", function (event) {
+                const rect = element.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+
+                const x = ((event.clientX - rect.left) / rect.width) * 100;
+                const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+                element.style.setProperty("--mx", `${x}%`);
+                element.style.setProperty("--my", `${y}%`);
+            });
+        });
+    };
+
+    function startRemenyFixes() {
         updateRemenyClock();
         setInterval(updateRemenyClock, 1000);
 
-        const savedGlassMode = localStorage.getItem("glassMode");
-        if (savedGlassMode === "matt" || savedGlassMode === "basic") {
+        const savedMode = localStorage.getItem("glassMode");
+        if (savedMode === "matt" || savedMode === "basic") {
             window.setGlassMode("matt");
         } else {
             window.setGlassMode("glass");
         }
+
+        window.initLiquidHover();
     }
 
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", startFixes);
+        document.addEventListener("DOMContentLoaded", startRemenyFixes);
     } else {
-        startFixes();
+        startRemenyFixes();
     }
 })();
 </script>
