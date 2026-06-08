@@ -2963,6 +2963,41 @@
             }
         }
 
+    
+        /* Óra/stílus hotfix után is működő menü */
+        .theme-inline-menu {
+            position: absolute !important;
+            top: 58px !important;
+            right: 0 !important;
+            width: 108px !important;
+            min-width: 108px !important;
+            padding: 7px !important;
+            border-radius: 14px !important;
+            z-index: 2147483641 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 7px !important;
+            pointer-events: auto !important;
+        }
+
+        .theme-inline-menu.hidden {
+            display: none !important;
+        }
+
+        .theme-inline-option {
+            width: 100% !important;
+            height: 32px !important;
+            padding: 0 8px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.68rem !important;
+            font-weight: 900 !important;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
+
     </style>
 </head>
 
@@ -3939,6 +3974,114 @@ setInterval(updateClock, 1000);
 
 loadServerCard();
 setInterval(loadServerCard, 30000);
+</script>
+
+
+<script>
+(function () {
+    function updateRemenyClock() {
+        const now = new Date();
+
+        const timeText = now.toLocaleTimeString("hu-HU", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+
+        const monthText = now.toLocaleDateString("hu-HU", {
+            month: "long"
+        }).toUpperCase();
+
+        const dateText = `${now.getFullYear()}. ${monthText} ${now.getDate()}.`;
+
+        const dayText = now.toLocaleDateString("hu-HU", {
+            weekday: "long"
+        }).toUpperCase();
+
+        ["clock-time", "current-time", "time"].forEach(function (id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = timeText;
+            }
+        });
+
+        ["clock-date", "current-date", "date"].forEach(function (id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = dateText;
+            }
+        });
+
+        ["clock-day", "current-day", "day"].forEach(function (id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = dayText;
+            }
+        });
+    }
+
+    window.toggleThemePanel = function () {
+        const menu = document.getElementById("theme-menu");
+
+        if (!menu) {
+            return;
+        }
+
+        menu.classList.toggle("hidden");
+    };
+
+    window.setGlassMode = function (mode) {
+        document.body.classList.remove(
+            "glass-light",
+            "glass-dark",
+            "glass-ios15",
+            "glass-light-transparent",
+            "glass-dark-transparent",
+            "basic-light",
+            "basic-dark",
+            "mode-glass",
+            "mode-basic",
+            "mode-matt"
+        );
+
+        if (mode === "matt" || mode === "basic") {
+            document.body.classList.add("mode-matt");
+            localStorage.setItem("glassMode", "matt");
+
+            const menu = document.getElementById("theme-menu");
+            if (menu) {
+                menu.classList.add("hidden");
+            }
+
+            return;
+        }
+
+        document.body.classList.add("mode-glass");
+        localStorage.setItem("glassMode", "glass");
+
+        const menu = document.getElementById("theme-menu");
+        if (menu) {
+            menu.classList.add("hidden");
+        }
+    };
+
+    function startFixes() {
+        updateRemenyClock();
+        setInterval(updateRemenyClock, 1000);
+
+        const savedGlassMode = localStorage.getItem("glassMode");
+        if (savedGlassMode === "matt" || savedGlassMode === "basic") {
+            window.setGlassMode("matt");
+        } else {
+            window.setGlassMode("glass");
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startFixes);
+    } else {
+        startFixes();
+    }
+})();
 </script>
 
 </body>
