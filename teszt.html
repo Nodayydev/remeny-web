@@ -3758,6 +3758,41 @@
             }
         }
 
+    
+        /* Minecraft név input legyen jól olvasható és ne legyen bold/smallcaps */
+        #minecraft-name,
+        #minecraft-name-input,
+        input[name="minecraft-name"],
+        input[placeholder*="Minecraft"] {
+            font-weight: 500 !important;
+            text-transform: none !important;
+            font-variant-caps: normal !important;
+            letter-spacing: normal !important;
+        }
+
+        #player-name-display,
+        #player-status {
+            text-transform: none !important;
+            font-variant-caps: normal !important;
+            letter-spacing: normal !important;
+        }
+
+    
+        /* Remény gradient szöveg egységesítése */
+        .remeny-title-gradient,
+        .server-strip-title {
+            background: linear-gradient(90deg, #67e8f9, #3b82f6, #8b5cf6) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+            -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0 16px rgba(103, 232, 249, 0.20) !important;
+        }
+
+        .server-strip-title {
+            font-weight: 900 !important;
+        }
+
     </style>
 </head>
 
@@ -3883,3 +3918,1871 @@
             <div id="stat-deaths" class="text-xl font-black text-white">0</div>
             <div class="text-xs text-slate-400 font-bold mt-1">halál</div>
         </div>
+
+        <div class="glass-bubble rounded-xl px-3 py-3 text-center">
+            <div id="stat-hours" class="text-xl font-black text-white">0</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">óra játékban</div>
+        </div>
+
+        <div class="glass-bubble rounded-xl px-3 py-3 text-center">
+            <div id="stat-blocks" class="text-xl font-black text-white">0</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">lerakott blokk</div>
+        </div>
+
+        <div class="glass-bubble rounded-xl px-3 py-3 text-center col-span-2">
+            <div id="stat-distance" class="text-xl font-black text-white">0</div>
+            <div class="text-xs text-slate-400 font-bold mt-1">megtett blokk</div>
+        </div>
+    </div>
+
+    <p class="text-slate-400 text-xs mt-4 leading-relaxed">
+        Az API-t később kötjük rá. Most a név alapján előkészített profilnézet működik crackelt játékosoknak is.
+    </p>
+</div>
+
+<main class="relative z-10 container mx-auto px-4 pt-36 sm:pt-8 pb-10 text-center">
+
+    <section class="min-h-[42vh] sm:min-h-[54vh] flex items-start justify-center pt-4 sm:pt-20">
+        <div class="hero-card">
+            <div class="hero-card-inner">
+
+                <img src="icon.png"
+                     alt="Remény logo"
+                     class="hero-logo">
+
+                <h1 class="text-3xl sm:text-6xl font-black mb-6 text-white tracking-wide">
+                    <span class="text-white">「 ✦ </span>
+                    <span class="remeny-gradient">remény</span>
+                    <span class="text-white"> ✦ 」</span>
+                </h1>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button type="button" class="hero-btn-smp glass-bubble glass-cyan" onclick="showServerPanel('smp')">SMP</button>
+                    <button type="button" class="hero-btn-hytale glass-bubble glass-yellow" onclick="showServerPanel('hytale')">Hytale</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="servers" class="pt-2 pb-6">
+        <div id="server-display"
+             class="hidden glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-5xl mx-auto min-h-[120px] items-center justify-center mb-8">
+        </div>
+    </section>
+<section id="partnerek" class="pt-6 pb-8">
+        <h2 class="text-3xl sm:text-4xl font-black mb-6 tracking-wider">
+            partner
+        </h2>
+
+        <div class="grid grid-cols-2 gap-3 max-w-xl mx-auto">
+
+            <a href="https://mineforum.hu/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-yellow rounded-lg px-4 py-3 hover:scale-[1.02] transition group">
+
+                <h2 class="text-xl sm:text-2xl font-black tracking-wide">
+                    <span class="mineforum-gradient">mineforum</span>
+                </h2>
+
+            </a>
+
+            <a href="https://www.mcportal.hu/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-cyan rounded-lg px-4 py-3 hover:scale-[1.02] transition group">
+
+                <h2 class="text-xl sm:text-2xl font-black tracking-wide">
+                    <span class="mcportal-gradient">mcportal</span>
+                </h2>
+
+            </a>
+
+        </div>
+    </section>
+
+    <section id="discord" class="pt-8 pb-12">
+        <h2 class="text-4xl font-black mb-8 tracking-wider">rangok</h2>
+
+        <div id="ranks-container" class="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-3 sm:gap-4 mb-8 max-w-3xl mx-auto">
+
+            <button onclick="showMembers('ɴᴇᴠᴇʀ')" class="glass-bubble glass-cyan px-4 sm:px-6 py-2 rounded-xl hover:scale-[1.02] transition text-base sm:text-lg font-black font-sans tracking-wide">
+                <span class="text-white">「</span><span style="color:#ff7777">N</span><span style="color:#ee5555">E</span><span style="color:#cc3333">V</span><span style="color:#aa1111">E</span><span style="color:#770000">R</span><span class="text-white">」</span>
+            </button>
+
+            <button onclick="showMembers('ʀᴏᴠᴇʀ')" class="glass-bubble glass-cyan px-4 sm:px-6 py-2 rounded-xl hover:scale-[1.02] transition text-base sm:text-lg font-black font-sans tracking-wide">
+                <span class="text-white">「</span><span style="color:#afffff">R</span><span style="color:#8effff">O</span><span style="color:#6dffff">V</span><span style="color:#4cffff">E</span><span style="color:#2bffff">R</span><span class="text-white">」</span>
+            </button>
+
+            <button onclick="showMembers('ʜᴇʟᴘɪ')" class="glass-bubble glass-cyan px-4 sm:px-6 py-2 rounded-xl hover:scale-[1.02] transition text-base sm:text-lg font-black font-sans tracking-wide">
+                <span class="text-white">「</span><span style="color:#ffffff">H</span><span style="color:#ffd6ef">E</span><span style="color:#ffaddc">L</span><span style="color:#ff7ac8">P</span><span style="color:#ff4fb4">I</span><span class="text-white">」</span>
+            </button>
+
+            <button onclick="showMembers('ʜᴏꜱᴛ')" class="glass-bubble glass-cyan px-4 sm:px-6 py-2 rounded-xl hover:scale-[1.02] transition text-base sm:text-lg font-black font-sans tracking-wide">
+                <span class="text-white">「</span><span style="color:#cceeff">H</span><span style="color:#b3e6ff">O</span><span style="color:#99ddff">S</span><span style="color:#80d4ff">T</span><span class="text-white">」</span>
+            </button>
+
+            <button onclick="showMembers('ᴛᴀɢ')" class="glass-bubble glass-cyan px-4 sm:px-6 py-2 rounded-xl hover:scale-[1.02] transition text-base sm:text-lg font-black font-sans tracking-wide col-span-2 sm:col-span-1">
+                <span class="text-white">「</span><span style="color:#afffaf">T</span><span style="color:#7fff7f">A</span><span style="color:#4fff4f">G</span><span class="text-white">」</span>
+            </button>
+
+        </div>
+
+        <div id="members-display" class="glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center">
+            <p class="text-slate-500 italic font-bold">
+                Kattints egy rangra a tagok megtekintéséhez.
+            </p>
+        </div>
+    </section>
+
+    <section id="kozosseg" class="py-12">
+        <h2 class="text-3xl sm:text-4xl font-black mb-8 tracking-wider">
+            közösségi platformok
+        </h2>
+
+                                <div class="social-grid-final mb-8">
+
+            <a href="https://www.instagram.com/never_1_dayy/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-pink rounded-xl hover:scale-[1.02] transition font-black flex items-center justify-center">
+                <svg class="social-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.2-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.4 5.6 20 7.6 20h8.8c2 0 3.6-1.6 3.6-3.6V7.6C20 5.6 18.4 4 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+                </svg>
+                <span class="instagram-gradient">Instagram</span>
+            </a>
+
+            <a href="https://www.tiktok.com/@neveronedayy"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble rounded-xl hover:scale-[1.02] transition font-black flex items-center justify-center">
+                <svg class="social-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M16.6 5.82c-1.02-.66-1.7-1.8-1.7-3.1V2h-3.3v13.3a2.8 2.8 0 1 1-2-2.68V9.25a6.1 6.1 0 1 0 5.3 6.05V8.55a7.15 7.15 0 0 0 4.2 1.35V6.62c-.92 0-1.78-.28-2.5-.8z"/>
+                </svg>
+                <span>TikTok</span>
+            </a>
+
+            <a href="https://x.com/neveronedayy"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble rounded-xl hover:scale-[1.02] transition font-black flex items-center justify-center">
+                <svg class="social-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M18.9 2h3.3l-7.2 8.25L23.5 22h-6.65l-5.2-6.8L5.7 22H2.4l7.7-8.8L2 2h6.8l4.7 6.2L18.9 2zm-1.15 18h1.82L7.8 3.9H5.85L17.75 20z"/>
+                </svg>
+                <span class="x-gradient">X</span>
+            </a>
+
+            <a href="https://www.youtube.com/@never_1_dayy"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-pink rounded-xl hover:scale-[1.02] transition font-black flex items-center justify-center">
+                <svg class="social-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M23.5 6.2s-.23-1.65-.95-2.37c-.9-.95-1.92-.96-2.38-1.02C16.85 2.57 12 2.57 12 2.57h-.01s-4.85 0-8.17.24c-.46.06-1.48.07-2.38 1.02C.72 4.55.5 6.2.5 6.2S.26 8.13.26 10.06v1.81c0 1.93.24 3.86.24 3.86s.23 1.65.95 2.37c.9.95 2.08.92 2.6 1.02 1.9.18 7.95.24 7.95.24s4.86-.01 8.18-.25c.46-.05 1.48-.06 2.38-1.01.72-.72.95-2.37.95-2.37s.24-1.93.24-3.86v-1.81c0-1.93-.24-3.86-.24-3.86zM9.68 14.52V7.83l6.25 3.36-6.25 3.33z"/>
+                </svg>
+                <span class="youtube-gradient">YouTube</span>
+            </a>
+
+            <a href="https://github.com/Nodayydev"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-purple rounded-xl hover:scale-[1.02] transition font-black flex items-center justify-center">
+                <svg class="social-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.38-1.34-1.75-1.34-1.75-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0C17.02 4.7 18.02 5 18.02 5c.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.82 1.1.82 2.23v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .5z"/>
+                </svg>
+                <span class="github-gradient">GitHub</span>
+            </a>
+
+            <a href="https://discord.gg/MpJMRFJ7xv"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-cyan rounded-xl hover:scale-[1.02] transition font-black flex items-center justify-center">
+                <svg class="social-svg" viewBox="0 0 245 240" aria-hidden="true">
+                    <path fill="currentColor" d="M104.4 104.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.3-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zm36.2 0c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.3-5 10.2-11.1 0-6.1-4.5-11.1-10.2-11.1z"/>
+                    <path fill="currentColor" d="M189.5 20h-134C44.2 20 35 29.2 35 40.6v135.1c0 11.4 9.2 20.5 20.5 20.5h113.4l-5.3-18.5 12.8 11.9 12.1 11.2L210 220V40.6C210 29.2 200.8 20 189.5 20zm-39.7 130s-3.7-4.4-6.8-8.3c13.5-3.8 18.6-12.1 18.6-12.1-4.2 2.8-8.2 4.7-11.8 6-5.1 2.1-10 3.5-14.8 4.4-9.8 1.8-18.8 1.3-26.5-.1-5.8-1.1-10.8-2.7-15-4.4-2.4-.9-5-2.1-7.6-3.5-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.4-.3-1.9-1.1-3-1.9-3-1.9s5 8.1 18.1 12c-3.1 3.9-6.9 8.5-6.9 8.5-22.8-.7-31.5-15.7-31.5-15.7 0-33.2 14.8-60.1 14.8-60.1 14.8-11.1 28.9-10.8 28.9-10.8l1 1.2c-18.5 5.3-27 13.4-27 13.4s2.3-1.3 6.2-3.1c11.3-5 20.3-6.4 24-6.7.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30.1 9.6 0 0-8.1-7.7-25.6-13l1.4-1.6s14.1-.3 28.9 10.8c0 0 14.8 26.9 14.8 60.1 0 0-8.8 15-31.6 15.7z"/>
+                </svg>
+                <span>Discord</span>
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+
+function toggleThemePanel() {
+    const menu = document.getElementById("theme-menu");
+
+    if (!menu) {
+        return;
+    }
+
+    menu.classList.toggle("hidden");
+}
+
+function setGlassMode(mode) {
+    document.body.classList.remove(
+        "glass-light",
+        "glass-dark",
+        "glass-ios15",
+        "glass-light-transparent",
+        "glass-dark-transparent",
+        "basic-light",
+        "basic-dark",
+        "mode-glass",
+        "mode-basic",
+        "mode-matt"
+    );
+
+    if (mode === "matt" || mode === "basic") {
+        document.body.classList.add("mode-matt");
+        localStorage.setItem("glassMode", "matt");
+
+        const menu = document.getElementById("theme-menu");
+        if (menu) menu.classList.add("hidden");
+
+        return;
+    }
+
+    document.body.classList.add("mode-glass");
+    localStorage.setItem("glassMode", "glass");
+
+    const menu = document.getElementById("theme-menu");
+    if (menu) menu.classList.add("hidden");
+}
+
+const savedGlassMode = localStorage.getItem("glassMode");
+
+if (savedGlassMode === "matt" || savedGlassMode === "basic") {
+    setGlassMode("matt");
+} else {
+    setGlassMode("glass");
+}
+
+function loadAds() {
+    const ads = document.querySelectorAll("ins.adsbygoogle");
+
+    ads.forEach((ad) => {
+        if (ad.dataset.loaded === "true") {
+            return;
+        }
+
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            ad.dataset.loaded = "true";
+        } catch (error) {
+            console.warn("AdSense még nem töltött be:", error);
+        }
+    });
+}
+
+window.addEventListener("load", () => {
+    setTimeout(loadAds, 800);
+});
+
+
+function updateClock() {
+    const now = new Date();
+
+    const timeText = now.toLocaleTimeString("hu-HU", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    const monthText = now.toLocaleDateString("hu-HU", {
+        month: "long"
+    }).toUpperCase();
+
+    const dateText = `${now.getFullYear()}. ${monthText} ${now.getDate()}.`;
+
+    const dayText = now.toLocaleDateString("hu-HU", {
+        weekday: "long"
+    }).toUpperCase();
+
+    const timeIds = ["clock-time", "current-time", "time"];
+    const dateIds = ["clock-date", "current-date", "date"];
+    const dayIds = ["clock-day", "current-day", "day"];
+
+    timeIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = timeText;
+        }
+    });
+
+    dateIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = dateText;
+        }
+    });
+
+    dayIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = dayText;
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateClock();
+    setInterval(updateClock, 1000);
+});
+
+updateClock();
+setInterval(updateClock, 1000);
+
+
+let currentServerIP = "";
+
+async function loadServerCard() {
+    const card = document.getElementById("minecraft-server-card");
+
+    if (!card) {
+        return;
+    }
+
+    if (!card) {
+        return;
+    }
+
+
+    try {
+        const response = await fetch("/api/minecraft");
+        const server = await response.json();
+
+        currentServerIP = `${server.ip}:${server.port}`;
+
+        card.innerHTML = `
+            <div class="hidden md:flex items-center gap-4 text-left">
+
+                <img src="${server.logo}"
+                     alt="${server.name}"
+                     class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+
+                <div class="flex-1 min-w-0">
+
+                    <h2 class="text-white text-xl font-black leading-none">
+                        ${server.name}
+                    </h2>
+
+                    <div class="text-sky-300 font-bold text-sm mt-1">
+                        ${server.ip}:${server.port}
+                    </div>
+
+                    <div class="mt-2 text-sm leading-relaxed font-mono">
+                        ${server.motd}
+                    </div>
+
+                </div>
+
+                <div class="text-right flex-shrink-0 min-w-[140px]">
+
+                    <div class="text-white font-black">
+                        ${server.online}/${server.max}
+                        <span class="text-green-400">▮▮▮</span>
+                    </div>
+
+                    <div class="text-slate-400 text-sm mt-2">
+                        ${server.version}
+                    </div>
+
+                    <button onclick="copyIP()"
+                            class="mt-3 border border-green-500 text-green-400 px-3 py-1 rounded hover:bg-green-500/10 transition text-sm font-bold">
+                        IP másolása
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="md:hidden text-center">
+
+                <img src="${server.logo}"
+                     alt="${server.name}"
+                     class="w-20 h-20 rounded-lg object-cover mx-auto mb-4">
+
+                <h2 class="text-2xl font-black text-white">
+                    ${server.name}
+                </h2>
+
+                <div class="text-sky-300 font-bold text-sm mt-1 break-words">
+                    ${server.ip}:${server.port}
+                </div>
+
+                <div class="text-white font-black mt-4">
+                    ${server.online}/${server.max} játékos online
+                </div>
+
+                <div class="text-slate-400 text-sm mt-1">
+                    ${server.version}
+                </div>
+
+                <div class="mt-4 text-sm leading-relaxed font-mono break-words">
+                    ${server.motd}
+                </div>
+
+                <button onclick="copyIP()"
+                        class="mt-5 border border-green-500 text-green-400 px-5 py-2 rounded-lg hover:bg-green-500/10 transition text-sm font-bold">
+                    IP másolása
+                </button>
+
+            </div>
+        `;
+
+    } catch (error) {
+        card.innerHTML = `
+            <p class="text-red-400 italic">
+                Nem sikerült betölteni a Minecraft szerver adatait.
+            </p>
+        `;
+    }
+}
+
+function copyIP() {
+    navigator.clipboard.writeText(currentServerIP);
+    alert("Minecraft IP kimásolva!");
+}
+
+function copyHytaleIP() {
+    navigator.clipboard.writeText("remenyhytale.shockbyte.pro");
+    alert("Hytale IP kimásolva!");
+}
+
+async function showMembers(rankName) {
+    const display = document.getElementById("members-display");
+
+    display.innerHTML = `<p class="text-slate-400 italic">Tagok betöltése...</p>`;
+
+    try {
+        const response = await fetch(`/api/rank/${encodeURIComponent(rankName)}`);
+        const members = await response.json();
+
+        if (!response.ok) {
+            display.innerHTML = `<p class="text-red-400 italic">${members.error || "Hiba történt."}</p>`;
+            return;
+        }
+
+        if (members.length === 0) {
+            display.innerHTML = `<p class="text-slate-400 italic">Nincs tag ebben a rangban.</p>`;
+            return;
+        }
+
+        display.innerHTML = `
+            <div class="w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+                    ${members.map(member => `
+                        <div class="glass-bubble p-3 rounded-lg flex items-center gap-3">
+                            <img src="${member.avatar}"
+                                 alt="${member.displayName}"
+                                 class="w-10 h-10 rounded-full">
+
+                            <div class="text-left">
+                                <div class="font-bold text-white">
+                                    ${member.displayName}
+                                </div>
+
+                                <div class="text-sm text-slate-400">
+                                    @${member.username}
+                                </div>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            </div>
+        `;
+
+    } catch (error) {
+        display.innerHTML = `
+            <p class="text-red-400 italic">
+                Nem sikerült kapcsolódni a Discord API-hoz.
+            </p>
+        `;
+    }
+}
+
+
+async function showServerPanel(type) {
+    const display = document.getElementById("server-display");
+
+    if (!display) {
+        return;
+    }
+
+    display.classList.remove("hidden");
+    display.classList.add("flex");
+
+    if (type === "smp") {
+        display.innerHTML = `
+            <div class="server-strip-card">
+                <img src="logo.png"
+                     alt="Remény SMP"
+                     class="server-strip-logo">
+
+                <div class="server-strip-main">
+                    <div class="server-strip-title remeny-title-gradient">
+                        Remény SMP
+                    </div>
+
+                    <div class="server-strip-ip">
+                        adatok betöltése...
+                    </div>
+
+                    <div class="server-strip-motd">
+                        Kérlek várj.
+                    </div>
+                </div>
+
+                <div class="server-strip-side">
+                    <div class="server-strip-online">...</div>
+                    <div class="server-strip-version">...</div>
+                </div>
+            </div>
+        `;
+
+        try {
+            const response = await fetch("/api/minecraft");
+            const server = await response.json();
+
+            if (!response.ok) {
+                display.innerHTML = `
+                    <div class="server-strip-card">
+                        <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                        <div class="server-strip-main">
+                            <div class="server-strip-title remeny-title-gradient">Remény SMP</div>
+                            <div class="server-strip-ip">Nem sikerült betölteni.</div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            currentServerIP = `${server.ip}:${server.port}`;
+
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="${server.logo}"
+                         alt="${server.name}"
+                         class="server-strip-logo">
+
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">
+                            ${server.name}
+                        </div>
+
+                        <div class="server-strip-ip">
+                            ${server.ip}:${server.port}
+                        </div>
+
+                        <div class="server-strip-motd">
+                            ${server.motd || ""}
+                        </div>
+                    </div>
+
+                    <div class="server-strip-side">
+                        <div class="server-strip-online">
+                            ${server.online}/${server.max}
+                            <span class="text-green-400">▮▮▮</span>
+                        </div>
+
+                        <div class="server-strip-version">
+                            ${server.version}
+                        </div>
+
+                        <button onclick="copyIP()"
+                                class="server-strip-button border border-green-500 text-green-400 hover:bg-green-500/10">
+                            IP másolása
+                        </button>
+                    </div>
+                </div>
+            `;
+        } catch (error) {
+            console.error(error);
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                    <div class="server-strip-main">
+                        <div class="server-strip-title remeny-title-gradient">Remény SMP</div>
+                        <div class="server-strip-ip">API kapcsolódási hiba.</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        refreshDynamicEffects();
+        return;
+    }
+
+    if (type === "hytale") {
+        display.innerHTML = `
+            <div class="server-strip-card">
+                <img src="icon.png"
+                     alt="Remény Hytale"
+                     class="server-strip-logo object-contain">
+
+                <div class="server-strip-main">
+                    <div class="server-strip-title remeny-title-gradient">
+                        Remény Hytale
+                    </div>
+
+                    <div class="server-strip-ip text-yellow-300">
+                        remenyhytale.shockbyte.pro
+                    </div>
+
+                    <div class="server-strip-motd text-slate-300">
+                        Hytale szerver hamarosan.
+                    </div>
+                </div>
+
+                <div class="server-strip-side">
+                    <div class="server-strip-online text-yellow-300">
+                        készülőben
+                    </div>
+
+                    <div class="server-strip-version">
+                        Hytale
+                    </div>
+
+                    <button onclick="copySpecificIP('remenyhytale.shockbyte.pro')"
+                            class="server-strip-button border border-yellow-400 text-yellow-300 hover:bg-yellow-400/10">
+                        IP másolása
+                    </button>
+                </div>
+            </div>
+        `;
+        refreshDynamicEffects();
+    }
+}
+
+function copySpecificIP(ip) {
+    navigator.clipboard.writeText(ip);
+    alert("IP kimásolva!");
+}
+
+setTimeout(initLiquidHover, 40);
+
+
+function toggleLoginPanel() {
+    const panel = document.getElementById("login-panel");
+
+    if (!panel) {
+        return;
+    }
+
+    panel.classList.toggle("hidden");
+}
+
+
+
+function clearAvatarCrop(avatar) {
+    avatar.classList.remove("minecraft-avatar-crop");
+    avatar.style.backgroundImage = "";
+    avatar.style.backgroundSize = "";
+    avatar.style.backgroundPosition = "";
+    avatar.style.backgroundRepeat = "";
+    avatar.style.imageRendering = "";
+    avatar.style.padding = "";
+}
+
+function setAvatarFromSkinTexture(avatar, skinUrl, onFail) {
+    const image = new Image();
+    image.crossOrigin = "anonymous";
+
+    image.onload = () => {
+        try {
+            const canvas = document.createElement("canvas");
+            canvas.width = 128;
+            canvas.height = 128;
+
+            const ctx = canvas.getContext("2d");
+            ctx.imageSmoothingEnabled = false;
+
+            // Minecraft skin fej eleje: 8,8 mérettől 8x8 pixel.
+            ctx.drawImage(image, 8, 8, 8, 8, 0, 0, 128, 128);
+
+            // Kalap / overlay réteg: 40,8 mérettől 8x8 pixel.
+            ctx.drawImage(image, 40, 8, 8, 8, 0, 0, 128, 128);
+
+            clearAvatarCrop(avatar);
+            avatar.onerror = null;
+            avatar.src = canvas.toDataURL("image/png");
+            avatar.style.imageRendering = "pixelated";
+        } catch (error) {
+            console.error("Skin fej kivágás sikertelen:", error);
+            onFail();
+        }
+    };
+
+    image.onerror = onFail;
+    image.src = skinUrl;
+}
+
+function setPlayerAvatar(avatar, playerName, skinUrl = null) {
+    if (!avatar) {
+        return;
+    }
+
+    const name = encodeURIComponent(playerName);
+    const cache = Date.now();
+
+    const sources = [];
+
+    // Ha a RemenyStats / SkinsRestorer teljes skin URL-t ad, abból canvas-szal kivágjuk a fejet.
+    if (skinUrl) {
+        sources.push({
+            type: "skin-texture",
+            url: `${skinUrl}${skinUrl.includes("?") ? "&" : "?"}cache=${cache}`
+        });
+    }
+
+    // Publikus fej API-k fallbackként.
+    sources.push(
+        { type: "image", url: `https://mc-heads.net/avatar/${name}/128?cache=${cache}` },
+        { type: "image", url: `https://minotar.net/avatar/${name}/128.png?cache=${cache}` },
+        { type: "image", url: `https://api.mineatar.io/face/${name}?scale=16&cache=${cache}` },
+        { type: "image", url: `https://visage.surgeplay.com/face/128/${name}?cache=${cache}` },
+        { type: "image", url: `https://crafatar.com/avatars/${name}?size=128&overlay&cache=${cache}` },
+        { type: "skin-texture", url: `https://skinsystem.ely.by/skins/${name}.png?cache=${cache}` },
+        { type: "image", url: `https://mc-heads.net/head/${name}/128?cache=${cache}` }
+    );
+
+    let index = 0;
+
+    function tryNextSource() {
+        if (index >= sources.length) {
+            clearAvatarCrop(avatar);
+            avatar.onerror = null;
+            avatar.src = "icon.png";
+            return;
+        }
+
+        const source = sources[index];
+        index++;
+
+        if (source.type === "skin-texture") {
+            setAvatarFromSkinTexture(avatar, source.url, tryNextSource);
+            return;
+        }
+
+        clearAvatarCrop(avatar);
+        avatar.onerror = tryNextSource;
+        avatar.src = source.url;
+    }
+
+    tryNextSource();
+}
+
+async function loadPlayerStats() {
+    const input = document.getElementById("minecraft-name");
+    const nameDisplay = document.getElementById("player-name-display");
+    const status = document.getElementById("player-status");
+    const avatar = document.getElementById("player-avatar");
+
+    if (!input || !nameDisplay || !status) {
+        return;
+    }
+
+    const playerName = input.value.trim();
+
+    if (!playerName) {
+        alert("Írd be a Minecraft nevedet!");
+        return;
+    }
+
+    nameDisplay.textContent = playerName;
+    status.textContent = "Statok betöltése...";
+
+    try {
+        const response = await fetch(`/api/player-stats/${encodeURIComponent(playerName)}`);
+        const stats = await response.json();
+
+        setPlayerAvatar(avatar, playerName, stats.skinUrl || null);
+
+        if (!response.ok) {
+            status.textContent = stats.error || "Nem sikerült betölteni";
+            return;
+        }
+
+        document.getElementById("stat-kills").textContent = stats.kills || 0;
+        document.getElementById("stat-deaths").textContent = stats.deaths || 0;
+        document.getElementById("stat-hours").textContent = stats.hours || 0;
+        document.getElementById("stat-blocks").textContent = stats.blocksPlaced || 0;
+
+        const distanceElement = document.getElementById("stat-distance");
+        if (distanceElement) {
+            distanceElement.textContent = stats.distanceTraveled || 0;
+        }
+
+        if (stats.found) {
+            status.textContent = "Statok betöltve";
+        } else {
+            status.textContent = "Nincs még stat ehhez a névhez";
+        }
+
+    } catch (error) {
+        console.error(error);
+        setPlayerAvatar(avatar, playerName);
+        status.textContent = "API kapcsolódási hiba";
+    }
+}
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && document.activeElement && document.activeElement.id === "minecraft-name") {
+        loadPlayerStats();
+    }
+});
+
+
+updateClock();
+setInterval(updateClock, 1000);
+
+loadServerCard();
+setInterval(loadServerCard, 30000);
+</script>
+
+<script>
+(function () {
+    let openedServerType = null;
+
+    function animatePanel(element) {
+        if (!element) return;
+        element.classList.remove("panel-open-anim");
+        void element.offsetWidth;
+        element.classList.add("panel-open-anim");
+    }
+
+    window.toggleThemePanel = function () {
+        const menu = document.getElementById("theme-menu");
+        if (!menu) return;
+        menu.classList.toggle("hidden");
+    };
+
+    window.setGlassMode = function (mode) {
+        document.body.classList.remove(
+            "glass-light",
+            "glass-dark",
+            "glass-ios15",
+            "glass-light-transparent",
+            "glass-dark-transparent",
+            "basic-light",
+            "basic-dark",
+            "mode-glass",
+            "mode-basic",
+            "mode-matt"
+        );
+
+        if (mode === "matt" || mode === "basic") {
+            document.body.classList.add("mode-matt");
+            localStorage.setItem("glassMode", "matt");
+        } else {
+            document.body.classList.add("mode-glass");
+            localStorage.setItem("glassMode", "glass");
+        }
+
+        const menu = document.getElementById("theme-menu");
+        if (menu) menu.classList.add("hidden");
+
+        setTimeout(window.initLiquidHover, 30);
+    };
+
+    window.initLiquidHover = function () {
+        const elements = document.querySelectorAll(
+            ".glass-bubble, .hero-card, .hero-card-inner, .hero-btn-smp, .hero-btn-hytale, #server-display, #login-panel, #discord-panel, .server-strip-card, .member-card"
+        );
+
+        elements.forEach(function (element) {
+            if (element.dataset.liquidHover === "true") return;
+
+            element.dataset.liquidHover = "true";
+            element.classList.add("liquid-hover");
+
+            element.addEventListener("pointermove", function (event) {
+                const rect = element.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+
+                const x = ((event.clientX - rect.left) / rect.width) * 100;
+                const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+                element.style.setProperty("--mx", `${x}%`);
+                element.style.setProperty("--my", `${y}%`);
+            });
+        });
+    };
+
+    window.copySpecificIP = function (ip) {
+        navigator.clipboard.writeText(ip);
+        alert("IP kimásolva!");
+    };
+
+    window.copyIP = function () {
+        const ip = window.currentServerIP || "remenymc.shockbyte.pro:25399";
+        navigator.clipboard.writeText(ip);
+        alert("IP kimásolva!");
+    };
+
+    window.showServerPanel = async function (type) {
+        const display = document.getElementById("server-display");
+        if (!display) return;
+
+        if (openedServerType === type && !display.classList.contains("hidden")) {
+            display.classList.add("hidden");
+            display.classList.remove("flex");
+            display.innerHTML = "";
+            openedServerType = null;
+            return;
+        }
+
+        openedServerType = type;
+        display.classList.remove("hidden");
+        display.classList.add("flex");
+
+        if (type === "hytale") {
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="icon.png" alt="Remény Hytale" class="server-strip-logo object-contain">
+
+                    <div class="server-strip-main">
+                        <div class="server-strip-title remeny-title-gradient">Remény Hytale</div>
+                        <div class="server-strip-ip text-yellow-300">remenyhytale.shockbyte.pro</div>
+                        <div class="server-strip-motd text-slate-300">Hytale szerver hamarosan.</div>
+                    </div>
+
+                    <div class="server-strip-side">
+                        <div class="server-strip-online text-yellow-300">készülőben</div>
+                        <div class="server-strip-version">Hytale</div>
+                        <button onclick="copySpecificIP('remenyhytale.shockbyte.pro')"
+                                class="server-strip-button border border-yellow-400 text-yellow-300 hover:bg-yellow-400/10">
+                            IP másolása
+                        </button>
+                    </div>
+                </div>
+            `;
+            animatePanel(display);
+            setTimeout(window.initLiquidHover, 30);
+            return;
+        }
+
+        display.innerHTML = `
+            <div class="server-strip-card">
+                <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+
+                <div class="server-strip-main">
+                    <div class="server-strip-title remeny-title-gradient">Remény SMP</div>
+                    <div class="server-strip-ip">adatok betöltése...</div>
+                    <div class="server-strip-motd">Kérlek várj.</div>
+                </div>
+
+                <div class="server-strip-side">
+                    <div class="server-strip-online">...</div>
+                    <div class="server-strip-version">...</div>
+                </div>
+            </div>
+        `;
+        animatePanel(display);
+        setTimeout(window.initLiquidHover, 30);
+
+        try {
+            const response = await fetch("/api/minecraft");
+            const server = await response.json();
+
+            if (!response.ok) {
+                display.innerHTML = `
+                    <div class="server-strip-card">
+                        <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                        <div class="server-strip-main">
+                            <div class="server-strip-title remeny-title-gradient">Remény SMP</div>
+                            <div class="server-strip-ip">Nem sikerült betölteni.</div>
+                        </div>
+                    </div>
+                `;
+                animatePanel(display);
+                setTimeout(window.initLiquidHover, 30);
+                return;
+            }
+
+            window.currentServerIP = `${server.ip}:${server.port}`;
+
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="${server.logo || "logo.png"}" alt="${server.name || "Remény SMP"}" class="server-strip-logo">
+
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">${server.name || "Remény SMP"}</div>
+                        <div class="server-strip-ip">${server.ip}:${server.port}</div>
+                        <div class="server-strip-motd">${server.motd || ""}</div>
+                    </div>
+
+                    <div class="server-strip-side">
+                        <div class="server-strip-online">
+                            ${server.online}/${server.max}
+                            <span class="text-green-400">▮▮▮</span>
+                        </div>
+                        <div class="server-strip-version">${server.version || ""}</div>
+                        <button onclick="copyIP()"
+                                class="server-strip-button border border-green-500 text-green-400 hover:bg-green-500/10">
+                            IP másolása
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            animatePanel(display);
+            setTimeout(window.initLiquidHover, 30);
+        } catch (error) {
+            console.error(error);
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                    <div class="server-strip-main">
+                        <div class="server-strip-title remeny-title-gradient">Remény SMP</div>
+                        <div class="server-strip-ip">API kapcsolódási hiba.</div>
+                    </div>
+                </div>
+            `;
+            animatePanel(display);
+            setTimeout(window.initLiquidHover, 30);
+        }
+    };
+
+    function startFinalFix() {
+        const savedMode = localStorage.getItem("glassMode");
+        if (savedMode === "matt" || savedMode === "basic") {
+            window.setGlassMode("matt");
+        } else {
+            window.setGlassMode("glass");
+        }
+
+        window.initLiquidHover();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startFinalFix);
+    } else {
+        startFinalFix();
+    }
+})();
+</script>
+
+
+<script>
+(function () {
+    const isTouchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+    if (!isTouchDevice) {
+        return;
+    }
+
+    function removeMobileHoverEffect() {
+        document.querySelectorAll(".liquid-hover").forEach((element) => {
+            element.classList.remove("liquid-hover");
+            element.dataset.liquidHover = "mobile-disabled";
+            element.style.removeProperty("--mx");
+            element.style.removeProperty("--my");
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", removeMobileHoverEffect);
+    } else {
+        removeMobileHoverEffect();
+    }
+
+    setInterval(removeMobileHoverEffect, 1000);
+})();
+</script>
+
+<script id="remeny-final-repair">
+(function () {
+    function setTextByIds(ids, value) {
+        ids.forEach(function (id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        });
+    }
+
+    function updateClockRepair() {
+        const now = new Date();
+
+        const timeText = now.toLocaleTimeString("hu-HU", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        });
+
+        const dateText = `${now.getFullYear()}. ${now.toLocaleDateString("hu-HU", { month: "long" }).toUpperCase()} ${now.getDate()}.`;
+        const dayText = now.toLocaleDateString("hu-HU", { weekday: "long" }).toUpperCase();
+
+        setTextByIds(["clock-time", "current-time", "time"], timeText);
+        setTextByIds(["clock-date", "current-date", "date"], dateText);
+        setTextByIds(["clock-day", "current-day", "day"], dayText);
+    }
+
+    window.toggleThemePanel = function () {
+        const menu = document.getElementById("theme-menu");
+        if (menu) {
+            menu.classList.toggle("hidden");
+        }
+    };
+
+    window.setGlassMode = function (mode) {
+        document.body.classList.remove(
+            "glass-light",
+            "glass-dark",
+            "glass-ios15",
+            "glass-light-transparent",
+            "glass-dark-transparent",
+            "basic-light",
+            "basic-dark",
+            "mode-basic",
+            "mode-glass",
+            "mode-matt"
+        );
+
+        if (mode === "matt" || mode === "basic") {
+            document.body.classList.add("mode-matt");
+            localStorage.setItem("glassMode", "matt");
+        } else {
+            document.body.classList.add("mode-glass");
+            localStorage.setItem("glassMode", "glass");
+        }
+
+        const menu = document.getElementById("theme-menu");
+        if (menu) {
+            menu.classList.add("hidden");
+        }
+    };
+
+    window.toggleLoginPanel = function () {
+        const panel = document.getElementById("login-panel");
+        if (!panel) {
+            return;
+        }
+
+        panel.classList.toggle("hidden");
+
+        if (!panel.classList.contains("hidden")) {
+            panel.classList.remove("panel-open-anim");
+            void panel.offsetWidth;
+            panel.classList.add("panel-open-anim");
+        }
+    };
+
+    function bootRepair() {
+        updateClockRepair();
+        setInterval(updateClockRepair, 1000);
+
+        const saved = localStorage.getItem("glassMode");
+        if (saved === "matt" || saved === "basic") {
+            window.setGlassMode("matt");
+        } else {
+            window.setGlassMode("glass");
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bootRepair);
+    } else {
+        bootRepair();
+    }
+})();
+</script>
+
+
+<script id="remeny-rank-login-theme-repair">
+(function () {
+    function animatePanel(element) {
+        if (!element) return;
+        element.classList.remove("panel-open-anim");
+        void element.offsetWidth;
+        element.classList.add("panel-open-anim");
+    }
+
+    window.toggleThemePanel = function () {
+        const menu = document.getElementById("theme-menu");
+        if (menu) menu.classList.toggle("hidden");
+    };
+
+    window.setGlassMode = function (mode) {
+        document.body.classList.remove(
+            "glass-light", "glass-dark", "glass-ios15",
+            "glass-light-transparent", "glass-dark-transparent",
+            "basic-light", "basic-dark", "mode-basic", "mode-glass", "mode-matt"
+        );
+
+        if (mode === "matt" || mode === "basic") {
+            document.body.classList.add("mode-matt");
+            localStorage.setItem("glassMode", "matt");
+        } else {
+            document.body.classList.add("mode-glass");
+            localStorage.setItem("glassMode", "glass");
+        }
+
+        const menu = document.getElementById("theme-menu");
+        if (menu) menu.classList.add("hidden");
+    };
+
+    window.toggleLoginPanel = function () {
+        const panel = document.getElementById("login-panel");
+        if (!panel) return;
+
+        panel.classList.toggle("hidden");
+        if (!panel.classList.contains("hidden")) animatePanel(panel);
+    };
+
+    window.showMembers = async function (roleName) {
+        const display =
+            document.getElementById("members-display") ||
+            document.getElementById("rank-display") ||
+            document.getElementById("role-members");
+
+        if (!display) return;
+
+        if (display.dataset.openRole === roleName && !display.classList.contains("hidden")) {
+            display.classList.add("hidden");
+            display.innerHTML = "";
+            display.dataset.openRole = "";
+            return;
+        }
+
+        display.dataset.openRole = roleName;
+        display.classList.remove("hidden");
+        display.innerHTML = `
+            <div class="glass-bubble rounded-xl p-5 text-center font-black">
+                Tagok betöltése...
+            </div>
+        `;
+        animatePanel(display);
+
+        try {
+            const response = await fetch(`/api/rank/${encodeURIComponent(roleName)}`);
+            const members = await response.json();
+
+            if (!response.ok || !Array.isArray(members)) {
+                display.innerHTML = `
+                    <div class="glass-bubble rounded-xl p-5 text-center font-black text-red-300">
+                        Nem sikerült lekérni ezt a rangot.
+                    </div>
+                `;
+                animatePanel(display);
+                return;
+            }
+
+            if (members.length === 0) {
+                display.innerHTML = `
+                    <div class="glass-bubble rounded-xl p-5 text-center font-black">
+                        Ehhez a ranghoz nincs megjeleníthető tag.
+                    </div>
+                `;
+                animatePanel(display);
+                return;
+            }
+
+            display.innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                    ${members.map((member) => `
+                        <div class="member-card glass-bubble rounded-xl p-4 flex items-center gap-3">
+                            <img src="${member.avatar}" alt="${member.displayName || member.username}" class="w-12 h-12 rounded-xl object-cover">
+                            <div class="text-left min-w-0">
+                                <div class="font-black truncate">${member.displayName || member.username}</div>
+                                <div class="text-slate-400 text-sm truncate">@${member.username}</div>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+
+            animatePanel(display);
+            if (window.initLiquidHover) setTimeout(window.initLiquidHover, 30);
+        } catch (error) {
+            console.error(error);
+            display.innerHTML = `
+                <div class="glass-bubble rounded-xl p-5 text-center font-black text-red-300">
+                    API kapcsolódási hiba.
+                </div>
+            `;
+            animatePanel(display);
+        }
+    };
+
+    window.showRankMembers = window.showMembers;
+    window.loadRank = window.showMembers;
+
+    function repairRankButtons() {
+        document.querySelectorAll("button, a").forEach((element) => {
+            const text = (element.textContent || "").toLowerCase();
+
+            const match =
+                text.includes("never") ? "Never" :
+                text.includes("rover") ? "Rover" :
+                text.includes("helpi") ? "Helpi" :
+                text.includes("host") ? "Host" :
+                text.includes("tag") ? "Tag" :
+                null;
+
+            if (!match) return;
+
+            const section = element.closest("section");
+            if (section && section.id && section.id !== "rangok") return;
+
+            element.setAttribute("type", "button");
+            element.onclick = function (event) {
+                event.preventDefault();
+                window.showMembers(match);
+            };
+        });
+    }
+
+    function boot() {
+        const saved = localStorage.getItem("glassMode");
+        window.setGlassMode(saved === "matt" || saved === "basic" ? "matt" : "glass");
+        repairRankButtons();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
+})();
+</script>
+
+
+<script id="remeny-player-profile-final-fix">
+(function () {
+    function findMinecraftInput() {
+        return (
+            document.getElementById("minecraft-name") ||
+            document.getElementById("minecraft-name-input") ||
+            document.querySelector("input[name='minecraft-name']") ||
+            document.querySelector("input[placeholder*='Minecraft']") ||
+            document.querySelector("#login-panel input")
+        );
+    }
+
+    function setText(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = value;
+        }
+    }
+
+    function setAnyText(ids, value) {
+        ids.forEach((id) => setText(id, value));
+    }
+
+    function setNumberByLabels(stats) {
+        const cards = Array.from(document.querySelectorAll("#login-panel .glass-bubble, #login-panel [class*='rounded']"));
+
+        cards.forEach((card) => {
+            const text = (card.textContent || "").toLowerCase();
+
+            const numberElement =
+                card.querySelector(".text-2xl") ||
+                card.querySelector(".text-xl") ||
+                card.querySelector(".font-black") ||
+                card.firstElementChild;
+
+            if (!numberElement) {
+                return;
+            }
+
+            if (text.includes("ölés")) {
+                numberElement.textContent = stats.kills;
+            } else if (text.includes("halál")) {
+                numberElement.textContent = stats.deaths;
+            } else if (text.includes("óra")) {
+                numberElement.textContent = stats.hours;
+            } else if (text.includes("lerakott")) {
+                numberElement.textContent = stats.blocksPlaced;
+            } else if (text.includes("megtett")) {
+                numberElement.textContent = stats.distanceTraveled;
+            }
+        });
+    }
+
+    function setPlayerAvatarFinal(playerName, skinUrl) {
+        const avatar =
+            document.getElementById("player-avatar") ||
+            document.querySelector("#login-panel img");
+
+        if (!avatar) {
+            return;
+        }
+
+        const encoded = encodeURIComponent(playerName);
+        const cache = Date.now();
+
+        const sources = [];
+
+        if (skinUrl) {
+            sources.push(`${skinUrl}${skinUrl.includes("?") ? "&" : "?"}cache=${cache}`);
+        }
+
+        sources.push(
+            `https://mc-heads.net/avatar/${encoded}/128?cache=${cache}`,
+            `https://minotar.net/avatar/${encoded}/128.png?cache=${cache}`,
+            `https://api.mineatar.io/face/${encoded}?scale=16&cache=${cache}`,
+            `https://visage.surgeplay.com/face/128/${encoded}?cache=${cache}`,
+            `https://mc-heads.net/head/${encoded}/128?cache=${cache}`,
+            "icon.png"
+        );
+
+        let index = 0;
+
+        function next() {
+            if (index >= sources.length) {
+                avatar.src = "icon.png";
+                return;
+            }
+
+            avatar.onerror = next;
+            avatar.src = sources[index];
+            index++;
+        }
+
+        next();
+    }
+
+    window.loadPlayerStats = async function () {
+        const input = findMinecraftInput();
+        const name = input ? input.value.trim() : "";
+
+        if (!name) {
+            alert("Írj be egy Minecraft nevet.");
+            return;
+        }
+
+        setAnyText(["player-status"], "Betöltés...");
+        setAnyText(["player-name-display"], name);
+
+        try {
+            const response = await fetch(`/api/player-stats/${encodeURIComponent(name)}`, {
+                cache: "no-store"
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data && data.error ? data.error : "API hiba");
+            }
+
+            const stats = {
+                name: data.name || name,
+                kills: Number(data.kills) || 0,
+                deaths: Number(data.deaths) || 0,
+                hours: Number(data.hours) || 0,
+                blocksPlaced: Number(data.blocksPlaced) || 0,
+                distanceTraveled: Number(data.distanceTraveled) || 0
+            };
+
+            setAnyText(["player-name-display"], stats.name);
+            setAnyText(["player-status"], data.found ? "Statok betöltve" : "Nincs betöltve");
+
+            setAnyText(["player-kills", "kills"], stats.kills);
+            setAnyText(["player-deaths", "deaths"], stats.deaths);
+            setAnyText(["player-hours", "hours"], stats.hours);
+            setAnyText(["player-blocks", "blocks-placed", "blocksPlaced"], stats.blocksPlaced);
+            setAnyText(["player-distance", "distance-traveled", "distanceTraveled"], stats.distanceTraveled);
+
+            setNumberByLabels(stats);
+            setPlayerAvatarFinal(stats.name, data.skinUrl || data.skin_url || null);
+        } catch (error) {
+            console.error("Player stats hiba:", error);
+            setAnyText(["player-status"], "Nem sikerült betölteni");
+            alert("Nem sikerült lekérni a játékos statokat. Nézd meg Render Logs-ban, hogy az /api/player-stats működik-e.");
+        }
+    };
+
+    function bindPlayerProfile() {
+        const input = findMinecraftInput();
+        const panel = document.getElementById("login-panel");
+
+        if (input) {
+            input.id = "minecraft-name";
+            input.style.textTransform = "none";
+            input.style.fontWeight = "500";
+            input.setAttribute("autocomplete", "off");
+            input.setAttribute("spellcheck", "false");
+
+            input.onkeydown = function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    window.loadPlayerStats();
+                }
+            };
+        }
+
+        if (panel) {
+            const buttons = Array.from(panel.querySelectorAll("button"));
+            const loadButton = buttons.find((button) => {
+                const text = (button.textContent || "").toLowerCase();
+                return text.includes("betölt") || text.includes("betolt") || text.includes("load");
+            });
+
+            if (loadButton) {
+                loadButton.type = "button";
+                loadButton.onclick = function (event) {
+                    event.preventDefault();
+                    window.loadPlayerStats();
+                };
+            }
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindPlayerProfile);
+    } else {
+        bindPlayerProfile();
+    }
+
+    setTimeout(bindPlayerProfile, 500);
+})();
+</script>
+
+
+<script id="remeny-player-stats-final-working">
+(function () {
+    function getInput() {
+        return (
+            document.getElementById("minecraft-name") ||
+            document.getElementById("minecraft-name-input") ||
+            document.querySelector("#login-panel input") ||
+            document.querySelector("input[placeholder*='Minecraft']")
+        );
+    }
+
+    function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.textContent = String(value);
+        }
+    }
+
+    function setStatus(value) {
+        setText("player-status", value);
+        const status = document.querySelector("#login-panel .text-slate-400");
+        if (status && !status.textContent.toLowerCase().includes("ölés") && !status.textContent.toLowerCase().includes("halál")) {
+            status.textContent = value;
+        }
+    }
+
+    function setAvatar(playerName, skinUrl) {
+        const avatar = document.getElementById("player-avatar") || document.querySelector("#login-panel img");
+        if (!avatar) return;
+
+        const name = encodeURIComponent(playerName);
+        const cache = Date.now();
+
+        const sources = [];
+
+        if (skinUrl) {
+            sources.push(`${skinUrl}${skinUrl.includes("?") ? "&" : "?"}v=${cache}`);
+        }
+
+        sources.push(
+            `https://mc-heads.net/avatar/${name}/128?v=${cache}`,
+            `https://minotar.net/avatar/${name}/128.png?v=${cache}`,
+            `https://api.mineatar.io/face/${name}?scale=16&v=${cache}`,
+            `https://visage.surgeplay.com/face/128/${name}?v=${cache}`,
+            "icon.png"
+        );
+
+        let index = 0;
+        avatar.onerror = function () {
+            index++;
+            if (index < sources.length) {
+                avatar.src = sources[index];
+            } else {
+                avatar.src = "icon.png";
+            }
+        };
+
+        avatar.src = sources[0];
+    }
+
+    function applyStats(data, typedName) {
+        const name = data.name || data.player_name || typedName;
+
+        const kills = Number(data.kills) || 0;
+        const deaths = Number(data.deaths) || 0;
+        const hours = Number(data.hours) || Math.floor((Number(data.play_seconds) || 0) / 3600);
+        const blocksPlaced = Number(data.blocksPlaced ?? data.blocks_placed) || 0;
+        const distanceTraveled = Number(data.distanceTraveled ?? data.distance_traveled) || 0;
+
+        setText("player-name-display", name);
+        setStatus(data.found === false ? "Nincs adat az adatbázisban" : "Statok betöltve");
+
+        setText("stat-kills", kills);
+        setText("stat-deaths", deaths);
+        setText("stat-hours", hours);
+        setText("stat-blocks", blocksPlaced);
+        setText("stat-distance", distanceTraveled);
+
+        setText("player-kills", kills);
+        setText("player-deaths", deaths);
+        setText("player-hours", hours);
+        setText("player-blocks", blocksPlaced);
+        setText("player-distance", distanceTraveled);
+
+        setAvatar(name, data.skinUrl || data.skin_url || null);
+    }
+
+    window.loadPlayerStats = async function () {
+        const input = getInput();
+        const typedName = input ? input.value.trim() : "";
+
+        if (!typedName) {
+            alert("Írj be egy Minecraft nevet.");
+            return;
+        }
+
+        setText("player-name-display", typedName);
+        setStatus("Betöltés...");
+
+        try {
+            const response = await fetch(`/api/player-stats/${encodeURIComponent(typedName)}`, {
+                cache: "no-store"
+            });
+
+            let data = null;
+
+            try {
+                data = await response.json();
+            } catch (jsonError) {
+                throw new Error("Nem JSON választ adott az API.");
+            }
+
+            if (!response.ok) {
+                throw new Error(data && data.error ? data.error : "API hiba");
+            }
+
+            applyStats(data, typedName);
+        } catch (error) {
+            console.error("Játékos stat betöltési hiba:", error);
+
+            setStatus("API hiba");
+            setText("stat-kills", 0);
+            setText("stat-deaths", 0);
+            setText("stat-hours", 0);
+            setText("stat-blocks", 0);
+            setText("stat-distance", 0);
+
+            alert("Nem sikerült lekérni a játékos statokat. Nyisd meg ezt külön: /api/player-stats/" + typedName);
+        }
+    };
+
+    function bindPlayerStats() {
+        const input = getInput();
+        const panel = document.getElementById("login-panel");
+
+        if (input) {
+            input.id = "minecraft-name";
+            input.style.textTransform = "none";
+            input.style.fontWeight = "500";
+            input.setAttribute("autocomplete", "off");
+            input.setAttribute("spellcheck", "false");
+
+            input.onkeydown = function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    window.loadPlayerStats();
+                }
+            };
+        }
+
+        if (panel) {
+            const buttons = Array.from(panel.querySelectorAll("button"));
+            const loadButton = buttons.find((button) => {
+                const text = (button.textContent || "").toLowerCase();
+                return text.includes("betölt") || text.includes("betolt") || text.includes("load");
+            });
+
+            if (loadButton) {
+                loadButton.type = "button";
+                loadButton.onclick = function (event) {
+                    event.preventDefault();
+                    window.loadPlayerStats();
+                };
+            }
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindPlayerStats);
+    } else {
+        bindPlayerStats();
+    }
+
+    setTimeout(bindPlayerStats, 300);
+    setTimeout(bindPlayerStats, 1000);
+})();
+</script>
+
+
+<script id="remeny-player-stats-stable-final">
+(function () {
+    function getInput() {
+        return (
+            document.getElementById("minecraft-name") ||
+            document.getElementById("minecraft-name-input") ||
+            document.querySelector("#login-panel input") ||
+            document.querySelector("input[placeholder*='Minecraft']")
+        );
+    }
+
+    function setText(id, value) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = String(value);
+        }
+    }
+
+    function setStatus(value) {
+        setText("player-status", value);
+    }
+
+    function setAvatar(playerName, skinUrl) {
+        const avatar = document.getElementById("player-avatar") || document.querySelector("#login-panel img");
+        if (!avatar) return;
+
+        const name = encodeURIComponent(playerName);
+        const cache = Date.now();
+
+        const sources = [];
+
+        if (skinUrl) {
+            sources.push(`${skinUrl}${skinUrl.includes("?") ? "&" : "?"}v=${cache}`);
+        }
+
+        sources.push(
+            `https://mc-heads.net/avatar/${name}/128?v=${cache}`,
+            `https://minotar.net/avatar/${name}/128.png?v=${cache}`,
+            `https://api.mineatar.io/face/${name}?scale=16&v=${cache}`,
+            `https://visage.surgeplay.com/face/128/${name}?v=${cache}`,
+            "icon.png"
+        );
+
+        let index = 0;
+
+        avatar.onerror = function () {
+            index++;
+            if (index < sources.length) {
+                avatar.src = sources[index];
+            } else {
+                avatar.src = "icon.png";
+            }
+        };
+
+        avatar.src = sources[0];
+    }
+
+    function applyStats(data, typedName) {
+        const name = data.name || data.player_name || typedName;
+
+        const kills = Number(data.kills) || 0;
+        const deaths = Number(data.deaths) || 0;
+        const hours = Number(data.hours) || Math.floor((Number(data.play_seconds) || 0) / 3600);
+        const blocksPlaced = Number(data.blocksPlaced ?? data.blocks_placed) || 0;
+        const distanceTraveled = Number(data.distanceTraveled ?? data.distance_traveled) || 0;
+
+        setText("player-name-display", name);
+        setStatus(data.found === false ? "Nincs adat az adatbázisban" : "Statok betöltve");
+
+        setText("stat-kills", kills);
+        setText("stat-deaths", deaths);
+        setText("stat-hours", hours);
+        setText("stat-blocks", blocksPlaced);
+        setText("stat-distance", distanceTraveled);
+
+        setText("player-kills", kills);
+        setText("player-deaths", deaths);
+        setText("player-hours", hours);
+        setText("player-blocks", blocksPlaced);
+        setText("player-distance", distanceTraveled);
+
+        setAvatar(name, data.skinUrl || data.skin_url || null);
+    }
+
+    window.loadPlayerStats = async function () {
+        const input = getInput();
+        const typedName = input ? input.value.trim() : "";
+
+        if (!typedName) {
+            alert("Írj be egy Minecraft nevet.");
+            return;
+        }
+
+        setText("player-name-display", typedName);
+        setStatus("Betöltés...");
+
+        try {
+            const response = await fetch(`/api/player-stats/${encodeURIComponent(typedName)}`, {
+                cache: "no-store"
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data && data.error ? data.error : "API hiba");
+            }
+
+            applyStats(data, typedName);
+        } catch (error) {
+            console.error("Játékos stat betöltési hiba:", error);
+            setStatus("API hiba");
+            alert("Nem sikerült lekérni a játékos statokat. Teszteld külön: /api/player-stats/" + typedName);
+        }
+    };
+
+    function bindPlayerStats() {
+        const input = getInput();
+        const panel = document.getElementById("login-panel");
+
+        if (input) {
+            input.id = "minecraft-name";
+            input.style.textTransform = "none";
+            input.style.fontWeight = "500";
+            input.setAttribute("autocomplete", "off");
+            input.setAttribute("spellcheck", "false");
+
+            input.onkeydown = function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    window.loadPlayerStats();
+                }
+            };
+        }
+
+        if (panel) {
+            const buttons = Array.from(panel.querySelectorAll("button"));
+            const loadButton = buttons.find((button) => {
+                const text = (button.textContent || "").toLowerCase();
+                return text.includes("betölt") || text.includes("betolt") || text.includes("load");
+            });
+
+            if (loadButton) {
+                loadButton.type = "button";
+                loadButton.onclick = function (event) {
+                    event.preventDefault();
+                    window.loadPlayerStats();
+                };
+            }
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindPlayerStats);
+    } else {
+        bindPlayerStats();
+    }
+
+    setTimeout(bindPlayerStats, 500);
+})();
+</script>
+
+</body>
+</html>
