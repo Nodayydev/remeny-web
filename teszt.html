@@ -3926,6 +3926,276 @@
             z-index: 1;
         }
 
+    
+        /* FINAL finomítás: Hytale sárga, glass picit tükröződőbb, profil panel javítás */
+        .hero-btn-hytale,
+        .hero-btn-hytale span {
+            color: #ffe08a !important;
+            -webkit-text-fill-color: #ffe08a !important;
+            text-shadow:
+                0 1px 0 rgba(0, 0, 0, 0.45),
+                0 0 12px rgba(255, 190, 70, 0.34) !important;
+        }
+
+        .hero-btn-smp,
+        .hero-btn-smp span {
+            color: #9df5ff !important;
+            -webkit-text-fill-color: #9df5ff !important;
+            text-shadow:
+                0 1px 0 rgba(0, 0, 0, 0.45),
+                0 0 12px rgba(60, 220, 255, 0.30) !important;
+        }
+
+        body.mode-glass .hero-btn-smp,
+        body.mode-glass .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.012)),
+                rgba(2, 6, 23, 0.20) !important;
+            border: 1px solid rgba(255, 255, 255, 0.22) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.22),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.045),
+                0 10px 24px rgba(0, 0, 0, 0.22) !important;
+            -webkit-backdrop-filter: blur(11px) saturate(152%) brightness(1.04) !important;
+            backdrop-filter: blur(11px) saturate(152%) brightness(1.04) !important;
+        }
+
+        body.mode-glass .hero-btn-smp {
+            background:
+                linear-gradient(135deg, rgba(155, 245, 255, 0.13), rgba(255,255,255,0.018)),
+                rgba(2, 6, 23, 0.20) !important;
+        }
+
+        body.mode-glass .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(255, 210, 95, 0.15), rgba(255,255,255,0.018)),
+                rgba(2, 6, 23, 0.20) !important;
+        }
+
+        body.mode-matt .hero-btn-smp {
+            background: rgba(11, 30, 50, 0.98) !important;
+            color: #9df5ff !important;
+            border: none !important;
+            outline: none !important;
+        }
+
+        body.mode-matt .hero-btn-hytale {
+            background: rgba(48, 34, 9, 0.98) !important;
+            color: #ffe08a !important;
+            border: none !important;
+            outline: none !important;
+        }
+
+        #player-avatar {
+            object-fit: cover !important;
+            image-rendering: pixelated !important;
+            background: rgba(15, 23, 42, 0.7) !important;
+        }
+
+        #login-panel {
+            overflow: visible !important;
+        }
+
+    
+        /* FINAL: rangok glass módban is egy sorban */
+        #rangok .rank-grid,
+        #ranks .rank-grid,
+        .rank-grid,
+        .ranks-grid,
+        .rank-buttons,
+        .ranks-buttons {
+            display: grid !important;
+            grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+            align-items: stretch !important;
+        }
+
+        #rangok button,
+        #ranks button,
+        .rank-button,
+        .rank-card,
+        button[onclick*="showMembers"],
+        button[onclick*="showRankMembers"],
+        button[onclick*="loadRank"] {
+            min-width: 0 !important;
+            width: 100% !important;
+            max-width: none !important;
+            white-space: nowrap !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            box-sizing: border-box !important;
+        }
+
+        body.mode-glass #rangok button,
+        body.mode-glass #ranks button,
+        body.mode-glass .rank-button,
+        body.mode-glass .rank-card,
+        body.mode-glass button[onclick*="showMembers"],
+        body.mode-glass button[onclick*="showRankMembers"],
+        body.mode-glass button[onclick*="loadRank"] {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            border-width: 1px !important;
+            letter-spacing: 0.08em !important;
+            transform: none !important;
+        }
+
+        body.mode-glass #rangok .rank-grid,
+        body.mode-glass #ranks .rank-grid,
+        body.mode-glass .rank-grid,
+        body.mode-glass .ranks-grid,
+        body.mode-glass .rank-buttons,
+        body.mode-glass .ranks-buttons {
+            grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+        }
+
+        @media (max-width: 900px) {
+            #rangok .rank-grid,
+            #ranks .rank-grid,
+            .rank-grid,
+            .ranks-grid,
+            .rank-buttons,
+            .ranks-buttons,
+            body.mode-glass #rangok .rank-grid,
+            body.mode-glass #ranks .rank-grid,
+            body.mode-glass .rank-grid,
+            body.mode-glass .ranks-grid,
+            body.mode-glass .rank-buttons,
+            body.mode-glass .ranks-buttons {
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            }
+        }
+
+        @media (max-width: 560px) {
+            #rangok .rank-grid,
+            #ranks .rank-grid,
+            .rank-grid,
+            .ranks-grid,
+            .rank-buttons,
+            .ranks-buttons,
+            body.mode-glass #rangok .rank-grid,
+            body.mode-glass #ranks .rank-grid,
+            body.mode-glass .rank-grid,
+            body.mode-glass .ranks-grid,
+            body.mode-glass .rank-buttons,
+            body.mode-glass .ranks-buttons {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 10px !important;
+            }
+
+            #rangok button,
+            #ranks button,
+            .rank-button,
+            .rank-card,
+            button[onclick*="showMembers"],
+            button[onclick*="showRankMembers"],
+            button[onclick*="loadRank"] {
+                font-size: 0.78rem !important;
+                letter-spacing: 0.04em !important;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
+        }
+
+    
+        /* FINAL: alap buborékok rangokhoz és szerverhez */
+        .remeny-placeholder-bubble {
+            width: 100%;
+            max-width: 760px;
+            margin: 18px auto 0 auto;
+            padding: 18px 22px;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            color: rgba(226, 232, 240, 0.88);
+        }
+
+        .remeny-placeholder-bubble strong {
+            color: rgba(255, 255, 255, 0.98);
+            font-weight: 950;
+        }
+
+        .remeny-placeholder-bubble.hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .remeny-placeholder-bubble {
+                margin-top: 14px;
+                padding: 15px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+    
+        /* HARD FINAL: Hytale soha ne legyen szürke + placeholder buborékok */
+        .hero-btn-hytale,
+        .hero-btn-hytale *,
+        body.mode-glass .hero-btn-hytale,
+        body.mode-glass .hero-btn-hytale *,
+        body.mode-matt .hero-btn-hytale,
+        body.mode-matt .hero-btn-hytale * {
+            color: #ffe08a !important;
+            -webkit-text-fill-color: #ffe08a !important;
+            text-shadow:
+                0 1px 0 rgba(0,0,0,0.55),
+                0 0 14px rgba(255, 190, 70, 0.45) !important;
+        }
+
+        body.mode-glass .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(255, 210, 95, 0.20), rgba(255,255,255,0.035)),
+                rgba(28, 19, 4, 0.24) !important;
+            border-color: rgba(255, 220, 120, 0.38) !important;
+        }
+
+        body.mode-glass .hero-btn-smp {
+            background:
+                linear-gradient(135deg, rgba(100, 240, 255, 0.17), rgba(255,255,255,0.035)),
+                rgba(2, 18, 28, 0.24) !important;
+            border-color: rgba(120, 240, 255, 0.36) !important;
+        }
+
+        .hero-btn-smp,
+        .hero-btn-smp *,
+        body.mode-glass .hero-btn-smp,
+        body.mode-glass .hero-btn-smp *,
+        body.mode-matt .hero-btn-smp,
+        body.mode-matt .hero-btn-smp * {
+            color: #9df5ff !important;
+            -webkit-text-fill-color: #9df5ff !important;
+        }
+
+        .remeny-default-placeholder {
+            width: 100% !important;
+            max-width: 760px !important;
+            margin: 18px auto 0 auto !important;
+            padding: 18px 22px !important;
+            text-align: center !important;
+            font-weight: 850 !important;
+            letter-spacing: 0.02em !important;
+            color: rgba(226, 232, 240, 0.88) !important;
+            display: block !important;
+        }
+
+        .remeny-default-placeholder strong {
+            color: rgba(255,255,255,0.98) !important;
+            font-weight: 950 !important;
+        }
+
+        .remeny-default-placeholder.is-hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .remeny-default-placeholder {
+                margin-top: 14px !important;
+                padding: 15px 16px !important;
+                font-size: 0.9rem !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -4097,7 +4367,11 @@
     </section>
 
     <section id="servers" class="pt-2 pb-6">
-        <div id="server-display"
+                <div id="server-placeholder" class="remeny-default-placeholder glass-bubble glass-cyan rounded-2xl">
+                    <strong>Válassz szervert</strong> — kattints az <strong>SMP</strong> vagy <strong>Hytale</strong> gombra a szerver adataihoz.
+                </div>
+
+<div id="server-display"
              class="hidden glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-5xl mx-auto min-h-[120px] items-center justify-center mb-8">
         </div>
     </section>
@@ -4159,8 +4433,11 @@
             </button>
 
         </div>
+                <div id="rank-placeholder" class="remeny-default-placeholder glass-bubble glass-cyan rounded-2xl">
+                    <strong>Kattints egy rangra</strong> a tagok megtekintéséhez.
+                </div>
 
-        <div id="members-display" class="glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center">
+<div id="members-display" class="glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center">
             <p class="text-slate-500 italic font-bold">
                 Kattints egy rangra a tagok megtekintéséhez.
             </p>
@@ -6047,6 +6324,389 @@ setInterval(loadServerCard, 30000);
 
     setTimeout(bindCheckButton, 400);
     setTimeout(bindCheckButton, 1200);
+})();
+</script>
+
+
+<script id="remeny-player-profile-hard-final">
+(function () {
+    function q(sel) {
+        return document.querySelector(sel);
+    }
+
+    function getInput() {
+        return (
+            document.getElementById("minecraft-name") ||
+            document.getElementById("minecraft-name-input") ||
+            q("#login-panel input") ||
+            q("input[placeholder*='Minecraft']")
+        );
+    }
+
+    function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.textContent = String(value);
+        }
+    }
+
+    function setStatus(value) {
+        const el = document.getElementById("player-status");
+        if (!el) return;
+
+        el.textContent = value;
+        el.style.fontSize = "";
+        el.style.lineHeight = "";
+        el.style.color = "rgba(255,255,255,0.70)";
+
+        if (value === "✅") {
+            el.style.color = "#4ade80";
+            el.style.fontSize = "18px";
+            el.style.lineHeight = "1";
+        }
+    }
+
+    function setHeadAvatar(playerName) {
+        const avatar =
+            document.getElementById("player-avatar") ||
+            q("#login-panel img");
+
+        if (!avatar) return;
+
+        const name = encodeURIComponent(playerName || "Steve");
+        const cache = Date.now();
+
+        const sources = [
+            `https://mc-heads.net/avatar/${name}/128?v=${cache}`,
+            `https://minotar.net/avatar/${name}/128.png?v=${cache}`,
+            `https://api.mineatar.io/face/${name}?scale=16&v=${cache}`,
+            `https://visage.surgeplay.com/face/128/${name}?v=${cache}`,
+            "icon.png"
+        ];
+
+        let index = 0;
+
+        avatar.style.objectFit = "cover";
+        avatar.style.imageRendering = "pixelated";
+
+        avatar.onerror = function () {
+            index++;
+            if (index < sources.length) {
+                avatar.src = sources[index];
+            } else {
+                avatar.src = "icon.png";
+            }
+        };
+
+        avatar.src = sources[0];
+    }
+
+    function updateStatsInDom(data, typedName) {
+        const name = data.name || data.player_name || typedName;
+
+        const kills = Number(data.kills) || 0;
+        const deaths = Number(data.deaths) || 0;
+        const hours = Number(data.hours) || Math.floor((Number(data.play_seconds) || 0) / 3600);
+        const blocks = Number(data.blocksPlaced ?? data.blocks_placed) || 0;
+        const distance = Number(data.distanceTraveled ?? data.distance_traveled) || 0;
+
+        setText("player-name-display", name);
+
+        setText("stat-kills", kills);
+        setText("stat-deaths", deaths);
+        setText("stat-hours", hours);
+        setText("stat-blocks", blocks);
+        setText("stat-distance", distance);
+
+        setText("player-kills", kills);
+        setText("player-deaths", deaths);
+        setText("player-hours", hours);
+        setText("player-blocks", blocks);
+        setText("player-distance", distance);
+
+        setHeadAvatar(name);
+
+        if (data.found === false) {
+            setStatus("Nincs adat");
+        } else {
+            setStatus("✅");
+        }
+    }
+
+    window.loadPlayerStats = async function () {
+        const input = getInput();
+        const typedName = input ? input.value.trim() : "";
+
+        if (!typedName) {
+            alert("Írj be egy Minecraft nevet.");
+            return;
+        }
+
+        setText("player-name-display", typedName);
+        setStatus("Betöltés...");
+        setHeadAvatar(typedName);
+
+        try {
+            const res = await fetch(`/api/player-stats/${encodeURIComponent(typedName)}`, {
+                cache: "no-store"
+            });
+
+            let data = {};
+            try {
+                data = await res.json();
+            } catch (e) {
+                throw new Error("Az API nem JSON választ adott.");
+            }
+
+            if (!res.ok) {
+                throw new Error(data.error || "API hiba");
+            }
+
+            updateStatsInDom(data, typedName);
+        } catch (err) {
+            console.error("Minecraft profil betöltési hiba:", err);
+            setStatus("API hiba");
+            alert("Nem sikerült lekérni a játékos statokat. Teszteld külön: /api/player-stats/" + typedName);
+        }
+    };
+
+    function bind() {
+        const input = getInput();
+        if (input) {
+            input.id = "minecraft-name";
+            input.onkeydown = function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    window.loadPlayerStats();
+                }
+            };
+        }
+
+        const panel = document.getElementById("login-panel");
+        if (!panel) return;
+
+        const checkButton =
+            document.getElementById("player-load-button") ||
+            Array.from(panel.querySelectorAll("button")).find((btn) => {
+                const t = (btn.textContent || "").trim().toLowerCase();
+                return t === "✅" || t.includes("betölt") || t.includes("betolt") || t.includes("load");
+            });
+
+        if (checkButton) {
+            checkButton.id = "player-load-button";
+            checkButton.type = "button";
+            checkButton.textContent = "✅";
+            checkButton.onclick = function (event) {
+                event.preventDefault();
+                window.loadPlayerStats();
+            };
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bind);
+    } else {
+        bind();
+    }
+
+    setTimeout(bind, 300);
+    setTimeout(bind, 1000);
+})();
+</script>
+
+<script id="remeny-placeholders-hard-final">
+(function () {
+    function byId(id) {
+        return document.getElementById(id);
+    }
+
+    function show(el) {
+        if (el) el.classList.remove("is-hidden", "hidden");
+    }
+
+    function hide(el) {
+        if (el) el.classList.add("is-hidden");
+    }
+
+    function serverDisplay() {
+        return byId("server-display");
+    }
+
+    function rankDisplay() {
+        return byId("members-display") || byId("rank-display") || byId("role-members");
+    }
+
+    function hasVisibleContent(el) {
+        if (!el) return false;
+        if (el.classList.contains("hidden")) return false;
+        const txt = (el.textContent || "").trim();
+        const html = (el.innerHTML || "").trim();
+        return txt.length > 0 || html.length > 0;
+    }
+
+    function syncServerPlaceholder() {
+        const ph = byId("server-placeholder");
+        const display = serverDisplay();
+        if (!ph) return;
+
+        if (hasVisibleContent(display)) {
+            hide(ph);
+        } else {
+            show(ph);
+        }
+    }
+
+    function syncRankPlaceholder() {
+        const ph = byId("rank-placeholder");
+        const display = rankDisplay();
+        if (!ph) return;
+
+        if (hasVisibleContent(display)) {
+            hide(ph);
+        } else {
+            show(ph);
+        }
+    }
+
+    function hardWrapServer() {
+        const old = window.showServerPanel;
+        if (typeof old !== "function" || old.__placeholderHardWrapped) return;
+
+        const wrapped = async function (type) {
+            const display = serverDisplay();
+            const wasOpen = display && !display.classList.contains("hidden") && hasVisibleContent(display);
+            const previousType = display && display.dataset ? display.dataset.openServerType : "";
+
+            const result = await old.apply(this, arguments);
+
+            setTimeout(function () {
+                const nowDisplay = serverDisplay();
+
+                if (nowDisplay && !nowDisplay.classList.contains("hidden") && hasVisibleContent(nowDisplay)) {
+                    nowDisplay.dataset.openServerType = type;
+                }
+
+                // Ha ugyanarra kattintás bezárta, akkor placeholder látszódjon.
+                syncServerPlaceholder();
+            }, 20);
+
+            setTimeout(syncServerPlaceholder, 150);
+            setTimeout(syncServerPlaceholder, 500);
+
+            return result;
+        };
+
+        wrapped.__placeholderHardWrapped = true;
+        window.showServerPanel = wrapped;
+    }
+
+    function hardWrapRanks() {
+        ["showMembers", "showRankMembers", "loadRank"].forEach(function (fnName) {
+            const old = window[fnName];
+            if (typeof old !== "function" || old.__placeholderHardWrapped) return;
+
+            const wrapped = async function () {
+                const result = await old.apply(this, arguments);
+                setTimeout(syncRankPlaceholder, 20);
+                setTimeout(syncRankPlaceholder, 150);
+                setTimeout(syncRankPlaceholder, 500);
+                return result;
+            };
+
+            wrapped.__placeholderHardWrapped = true;
+            window[fnName] = wrapped;
+        });
+    }
+
+    function bindClickFallbacks() {
+        // Szerver gombok után is szinkronizáljunk, akkor is ha régi onclick fut.
+        document.querySelectorAll(".hero-btn-smp, .hero-btn-hytale").forEach(function (btn) {
+            if (btn.__placeholderClickBound) return;
+            btn.__placeholderClickBound = true;
+            btn.addEventListener("click", function () {
+                setTimeout(syncServerPlaceholder, 30);
+                setTimeout(syncServerPlaceholder, 180);
+                setTimeout(syncServerPlaceholder, 600);
+            });
+        });
+
+        // Rang gombok után is.
+        document.querySelectorAll("button, a").forEach(function (btn) {
+            if (btn.__rankPlaceholderClickBound) return;
+            const text = (btn.textContent || "").toLowerCase();
+            const looksRank =
+                text.includes("never") ||
+                text.includes("rover") ||
+                text.includes("helpi") ||
+                text.includes("host") ||
+                text.includes("tag");
+
+            if (!looksRank) return;
+
+            btn.__rankPlaceholderClickBound = true;
+            btn.addEventListener("click", function () {
+                setTimeout(syncRankPlaceholder, 30);
+                setTimeout(syncRankPlaceholder, 180);
+                setTimeout(syncRankPlaceholder, 600);
+            });
+        });
+    }
+
+    function observe() {
+        [serverDisplay(), rankDisplay()].forEach(function (el) {
+            if (!el || el.__hardPlaceholderObserver) return;
+            el.__hardPlaceholderObserver = true;
+
+            new MutationObserver(function () {
+                syncServerPlaceholder();
+                syncRankPlaceholder();
+            }).observe(el, {
+                attributes: true,
+                childList: true,
+                subtree: true,
+                attributeFilter: ["class", "style"]
+            });
+        });
+    }
+
+    function forceHytaleColor() {
+        document.querySelectorAll(".hero-btn-hytale, .hero-btn-hytale *").forEach(function (el) {
+            el.style.color = "#ffe08a";
+            el.style.webkitTextFillColor = "#ffe08a";
+        });
+    }
+
+    function boot() {
+        hardWrapServer();
+        hardWrapRanks();
+        bindClickFallbacks();
+        observe();
+        syncServerPlaceholder();
+        syncRankPlaceholder();
+        forceHytaleColor();
+
+        setTimeout(function () {
+            hardWrapServer();
+            hardWrapRanks();
+            bindClickFallbacks();
+            observe();
+            syncServerPlaceholder();
+            syncRankPlaceholder();
+            forceHytaleColor();
+        }, 600);
+
+        setInterval(function () {
+            syncServerPlaceholder();
+            syncRankPlaceholder();
+            forceHytaleColor();
+        }, 1200);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
 })();
 </script>
 
