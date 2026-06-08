@@ -3035,9 +3035,6 @@
             <h3 class="text-2xl font-black tracking-wide">
                 Írd be a játékos nevet
             </h3>
-            <p class="text-slate-400 text-sm mt-1">
-                Add meg a játékosnevedet.
-            </p>
         </div>
 
         <button onclick="toggleLoginPanel()"
@@ -3356,6 +3353,60 @@ function loadAds() {
 window.addEventListener("load", () => {
     setTimeout(loadAds, 800);
 });
+
+
+function updateClock() {
+    const now = new Date();
+
+    const timeText = now.toLocaleTimeString("hu-HU", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    const monthText = now.toLocaleDateString("hu-HU", {
+        month: "long"
+    }).toUpperCase();
+
+    const dateText = `${now.getFullYear()}. ${monthText} ${now.getDate()}.`;
+
+    const dayText = now.toLocaleDateString("hu-HU", {
+        weekday: "long"
+    }).toUpperCase();
+
+    const timeIds = ["clock-time", "current-time", "time"];
+    const dateIds = ["clock-date", "current-date", "date"];
+    const dayIds = ["clock-day", "current-day", "day"];
+
+    timeIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = timeText;
+        }
+    });
+
+    dateIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = dateText;
+        }
+    });
+
+    dayIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = dayText;
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateClock();
+    setInterval(updateClock, 1000);
+});
+
+updateClock();
+setInterval(updateClock, 1000);
+
 
 let currentServerIP = "";
 
@@ -3851,16 +3902,7 @@ async function loadPlayerStats() {
 }
 
 
-function updateClock() {
-    const timeEl = document.getElementById("clock-time");
-    const dateEl = document.getElementById("clock-date");
-    const dayEl = document.getElementById("clock-day");
-
-    if (!timeEl || !dateEl || !dayEl) {
-        return;
-    }
-
-    const now = new Date();
+const now = new Date();
 
     const time = now.toLocaleTimeString("hu-HU", {
         hour: "2-digit",
