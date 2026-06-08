@@ -941,6 +941,71 @@
             }
         }
 
+    
+        /* Pillangó kockás árnyék javítás */
+        .hero-logo,
+        .hero-card .hero-logo,
+        img.hero-logo {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            filter:
+                drop-shadow(0 0 8px rgba(120, 220, 255, 0.42))
+                drop-shadow(0 0 18px rgba(70, 150, 255, 0.26))
+                drop-shadow(0 0 30px rgba(60, 110, 255, 0.16)) !important;
+        }
+
+
+        /* iOS 15 glass mód: kockásabb, kevésbé átlátszó */
+        body.glass-ios15 .glass-bubble,
+        body.glass-ios15 .hero-card,
+        body.glass-ios15 .hero-btn-smp,
+        body.glass-ios15 .hero-btn-hytale,
+        body.glass-ios15 #server-display,
+        body.glass-ios15 #login-panel {
+            border-radius: 12px !important;
+            background:
+                linear-gradient(135deg, rgba(18, 28, 62, 0.46), rgba(4, 8, 24, 0.34)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.20) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(135%) !important;
+            backdrop-filter: blur(10px) saturate(135%) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.18),
+                0 10px 28px rgba(0, 0, 0, 0.30) !important;
+        }
+
+        body.glass-ios15 .hero-card {
+            border-radius: 18px !important;
+        }
+
+        body.glass-ios15 .hero-card-inner {
+            border-radius: 16px !important;
+            background:
+                linear-gradient(135deg, rgba(12, 20, 50, 0.42), rgba(2, 4, 18, 0.34)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.11) !important;
+            -webkit-backdrop-filter: blur(9px) saturate(130%) !important;
+            backdrop-filter: blur(9px) saturate(130%) !important;
+        }
+
+        body.glass-ios15 .hero-btn-smp,
+        body.glass-ios15 .hero-btn-hytale,
+        body.glass-ios15 .glass-toggle button {
+            border-radius: 10px !important;
+        }
+
+        body.glass-ios15 .rounded-2xl {
+            border-radius: 14px !important;
+        }
+
+        body.glass-ios15 .rounded-xl {
+            border-radius: 11px !important;
+        }
+
+        body.glass-ios15 .rounded-lg {
+            border-radius: 9px !important;
+        }
+
     </style>
 </head>
 
@@ -955,6 +1020,11 @@
     <button onclick="setGlassMode('dark')"
             class="glass-bubble glass-purple">
         sötét
+    </button>
+
+    <button onclick="setGlassMode('ios15')"
+            class="glass-bubble glass-cyan">
+        iOS 15
     </button>
 </div>
 
@@ -1182,39 +1252,42 @@
             közösségi platformok
         </h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-8">
 
-            <button onclick="showSocial('instagram')"
-                    class="glass-bubble glass-pink px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
+            <a href="https://www.instagram.com/never_1_dayy/"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-pink px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
                 <span class="text-2xl">📷</span>
                 <span class="instagram-gradient">Instagram</span>
-            </button>
+            </a>
 
-            <button onclick="showSocial('x')"
-                    class="glass-bubble px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
+            <a href="https://x.com/neveronedayy"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
                 <span class="text-2xl">𝕏</span>
                 <span class="x-gradient">X</span>
-            </button>
+            </a>
 
-            <button onclick="showSocial('youtube')"
-                    class="glass-bubble glass-pink px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
+            <a href="https://www.youtube.com/@never_1_dayy"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-pink px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
                 <span class="text-2xl">▶</span>
                 <span class="youtube-gradient">YouTube</span>
-            </button>
+            </a>
 
-            <button onclick="showSocial('github')"
-                    class="glass-bubble glass-purple px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
+            <a href="https://github.com/Nodayydev"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="glass-bubble glass-purple px-7 py-4 rounded-xl hover:scale-[1.02] transition text-lg font-black flex items-center justify-center gap-3">
                 <span class="text-2xl">⌘</span>
                 <span class="github-gradient">GitHub</span>
-            </button>
+            </a>
 
         </div>
 
-        <div id="social-display" class="glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-2xl mx-auto min-h-[150px] flex items-center justify-center">
-            <p class="text-slate-500 italic font-bold">
-                Kattints egy közösségi platformra a profil megtekintéséhez.
-            </p>
-        </div>
     </section>
 
 </main>
@@ -1222,11 +1295,17 @@
 <script>
 
 function setGlassMode(mode) {
-    document.body.classList.remove("glass-light", "glass-dark");
+    document.body.classList.remove("glass-light", "glass-dark", "glass-ios15");
 
     if (mode === "dark") {
         document.body.classList.add("glass-dark");
         localStorage.setItem("glassMode", "dark");
+        return;
+    }
+
+    if (mode === "ios15") {
+        document.body.classList.add("glass-ios15");
+        localStorage.setItem("glassMode", "ios15");
         return;
     }
 
@@ -1237,6 +1316,8 @@ function setGlassMode(mode) {
 const savedGlassMode = localStorage.getItem("glassMode");
 if (savedGlassMode === "dark") {
     setGlassMode("dark");
+} else if (savedGlassMode === "ios15") {
+    setGlassMode("ios15");
 } else {
     setGlassMode("light");
 }
@@ -1565,142 +1646,6 @@ function copySpecificIP(ip) {
     navigator.clipboard.writeText(ip);
     alert("IP kimásolva!");
 }
-
-
-const socialProfiles = {
-    instagram: {
-        name: "Instagram",
-        handle: "@never_1_dayy",
-        url: "https://www.instagram.com/never_1_dayy/",
-        icon: "📷",
-        gradient: "instagram-gradient",
-        avatar: "icon.png",
-        bio: "Remény tartalmak, képek és közösségi posztok.",
-        stats: [
-            { label: "követő", value: "Írd át" },
-            { label: "követés", value: "Írd át" },
-            { label: "poszt", value: "Írd át" }
-        ]
-    },
-    x: {
-        name: "X",
-        handle: "@neveronedayy",
-        url: "https://x.com/neveronedayy",
-        icon: "𝕏",
-        gradient: "x-gradient",
-        avatar: "icon.png",
-        bio: "Frissítések, rövid bejegyzések és Remény hírek.",
-        stats: [
-            { label: "követő", value: "Írd át" },
-            { label: "követés", value: "Írd át" },
-            { label: "poszt", value: "Írd át" }
-        ]
-    },
-    youtube: {
-        name: "YouTube",
-        handle: "@never_1_dayy",
-        url: "https://www.youtube.com/@never_1_dayy",
-        icon: "▶",
-        gradient: "youtube-gradient",
-        avatar: "icon.png",
-        bio: "Videók, szerveres tartalmak és Remény projektek.",
-        stats: [
-            { label: "feliratkozó", value: "Írd át" },
-            { label: "videó", value: "Írd át" },
-            { label: "megtekintés", value: "Írd át" }
-        ]
-    },
-    github: {
-        name: "GitHub",
-        handle: "Nodayydev",
-        url: "https://github.com/Nodayydev",
-        icon: "⌘",
-        gradient: "github-gradient",
-        avatar: "icon.png",
-        bio: "Weboldal, fejlesztések, projektek és kódok.",
-        stats: [
-            { label: "repo", value: "Írd át" },
-            { label: "követő", value: "Írd át" },
-            { label: "projekt", value: "Írd át" }
-        ]
-    }
-};
-
-function showSocial(platform) {
-    const display = document.getElementById("social-display");
-    const profile = socialProfiles[platform];
-
-    if (!display || !profile) {
-        return;
-    }
-
-    const statsHtml = profile.stats.map(stat => `
-        <div class="glass-bubble rounded-xl px-4 py-3 text-center">
-            <div class="text-xl font-black text-white">${stat.value}</div>
-            <div class="text-xs text-slate-400 font-bold mt-1">${stat.label}</div>
-        </div>
-    `).join("");
-
-    display.innerHTML = `
-        <div class="w-full">
-            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
-
-                <img src="${profile.avatar}"
-                     alt="${profile.name} profilkép"
-                     class="profile-avatar w-24 h-24 rounded-2xl object-cover flex-shrink-0">
-
-                <div class="flex-1">
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 justify-center sm:justify-start">
-                        <h3 class="text-2xl font-black tracking-wide">
-                            <span class="${profile.gradient}">${profile.name}</span>
-                        </h3>
-
-                        <span class="text-slate-500 font-black hidden sm:inline">•</span>
-
-                        <p class="text-slate-300 font-bold">
-                            ${profile.handle}
-                        </p>
-                    </div>
-
-                    <p class="text-slate-300 mt-3 leading-relaxed font-bold">
-                        ${profile.bio}
-                    </p>
-
-                    <div class="grid grid-cols-3 gap-3 mt-5">
-                        ${statsHtml}
-                    </div>
-
-                    <div class="mt-5 flex flex-wrap justify-center sm:justify-start gap-3">
-                        <a href="${profile.url}"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="glass-bubble px-5 py-2 rounded-lg font-black hover:scale-[1.02] transition">
-                            Profil megnyitása
-                        </a>
-
-                        <button onclick="copySocialLink('${platform}')"
-                                class="glass-bubble px-5 py-2 rounded-lg font-black hover:scale-[1.02] transition">
-                            Link másolása
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    `;
-}
-
-function copySocialLink(platform) {
-    const profile = socialProfiles[platform];
-
-    if (!profile) {
-        return;
-    }
-
-    navigator.clipboard.writeText(profile.url);
-    alert("Link kimásolva!");
-}
-
 
 
 function toggleLoginPanel() {
