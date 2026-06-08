@@ -3105,6 +3105,147 @@
             }
         }
 
+    
+        /* Stílus menü pozíció és hover finomítás */
+        .theme-inline-menu,
+        #theme-menu {
+            position: absolute !important;
+            top: 56px !important;
+            right: 0 !important;
+            width: 128px !important;
+            min-width: 128px !important;
+            height: auto !important;
+            min-height: 0 !important;
+            padding: 8px !important;
+            border-radius: 14px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            overflow: visible !important;
+            z-index: 2147483641 !important;
+            transform-origin: top right !important;
+        }
+
+        .theme-inline-menu.hidden,
+        #theme-menu.hidden {
+            display: none !important;
+        }
+
+        .theme-inline-option,
+        #theme-menu button {
+            width: 100% !important;
+            height: 36px !important;
+            min-height: 36px !important;
+            padding: 0 10px !important;
+            margin: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 0.78rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
+
+        @media (max-width: 640px) {
+            .theme-inline-menu,
+            #theme-menu {
+                top: 52px !important;
+                right: 0 !important;
+                width: 118px !important;
+                min-width: 118px !important;
+                padding: 7px !important;
+                gap: 7px !important;
+            }
+
+            .theme-inline-option,
+            #theme-menu button {
+                height: 34px !important;
+                min-height: 34px !important;
+                font-size: 0.72rem !important;
+            }
+        }
+
+        /* Finomabb egérkövető hatás */
+        .liquid-hover {
+            position: relative !important;
+            overflow: hidden !important;
+            --mx: 50%;
+            --my: 50%;
+        }
+
+        .liquid-hover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.16s ease;
+            z-index: 5;
+        }
+
+        body.mode-glass .liquid-hover::after {
+            background:
+                radial-gradient(
+                    circle at var(--mx) var(--my),
+                    rgba(255, 255, 255, 0.10),
+                    rgba(255, 255, 255, 0.035) 18%,
+                    transparent 40%
+                ) !important;
+            mix-blend-mode: screen;
+        }
+
+        body.mode-glass .liquid-hover:hover::after {
+            opacity: 1;
+        }
+
+        body.mode-glass .liquid-hover:hover {
+            background-color: rgba(255, 255, 255, 0.008) !important;
+            border-color: rgba(255, 255, 255, 0.20) !important;
+            transform: translateY(-1px);
+        }
+
+        body.mode-matt .liquid-hover::after {
+            background:
+                radial-gradient(
+                    circle at var(--mx) var(--my),
+                    rgba(255, 255, 255, 0.055),
+                    rgba(255, 255, 255, 0.020) 20%,
+                    transparent 42%
+                ) !important;
+            mix-blend-mode: normal;
+        }
+
+        body.mode-matt .liquid-hover:hover::after {
+            opacity: 1;
+        }
+
+        body.mode-matt .liquid-hover:hover {
+            background-color: rgba(12, 18, 42, 0.98) !important;
+            border-color: rgba(190, 205, 255, 0.18) !important;
+            transform: translateY(-1px);
+        }
+
+    
+        /* Telefonon ne legyen egérkövető hover/fény effekt */
+        @media (hover: none), (pointer: coarse), (max-width: 640px) {
+            .liquid-hover::after {
+                display: none !important;
+                opacity: 0 !important;
+            }
+
+            .liquid-hover:hover,
+            body.mode-glass .liquid-hover:hover,
+            body.mode-matt .liquid-hover:hover {
+                transform: none !important;
+                background-color: inherit !important;
+                border-color: inherit !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -4085,43 +4226,19 @@ setInterval(loadServerCard, 30000);
 
 <script>
 (function () {
-    function updateRemenyClock() {
-        const now = new Date();
+    let openedServerType = null;
 
-        const timeText = now.toLocaleTimeString("hu-HU", {
-            hour: "2-digit",
-            minute: "2-digit"
-        });
-
-        const monthText = now.toLocaleDateString("hu-HU", {
-            month: "long"
-        }).toUpperCase();
-
-        const dateText = `${now.getFullYear()}. ${monthText} ${now.getDate()}.`;
-
-        const dayText = now.toLocaleDateString("hu-HU", {
-            weekday: "long"
-        }).toUpperCase();
-
-        ["clock-time", "current-time", "time"].forEach(function (id) {
-            const element = document.getElementById(id);
-            if (element) element.textContent = timeText;
-        });
-
-        ["clock-date", "current-date", "date"].forEach(function (id) {
-            const element = document.getElementById(id);
-            if (element) element.textContent = dateText;
-        });
-
-        ["clock-day", "current-day", "day"].forEach(function (id) {
-            const element = document.getElementById(id);
-            if (element) element.textContent = dayText;
-        });
+    function animatePanel(element) {
+        if (!element) return;
+        element.classList.remove("panel-open-anim");
+        void element.offsetWidth;
+        element.classList.add("panel-open-anim");
     }
 
     window.toggleThemePanel = function () {
         const menu = document.getElementById("theme-menu");
-        if (menu) menu.classList.toggle("hidden");
+        if (!menu) return;
+        menu.classList.toggle("hidden");
     };
 
     window.setGlassMode = function (mode) {
@@ -4148,188 +4265,8 @@ setInterval(loadServerCard, 30000);
 
         const menu = document.getElementById("theme-menu");
         if (menu) menu.classList.add("hidden");
-    };
 
-    function animatePanel(element) {
-        if (!element) return;
-
-        element.classList.remove("panel-open-anim");
-        void element.offsetWidth;
-        element.classList.add("panel-open-anim");
-    }
-
-    window.copySpecificIP = function (ip) {
-        navigator.clipboard.writeText(ip);
-        alert("IP kimásolva!");
-    };
-
-    window.copyIP = function () {
-        const ip = window.currentServerIP || "remenymc.shockbyte.pro:25399";
-        navigator.clipboard.writeText(ip);
-        alert("IP kimásolva!");
-    };
-
-    window.showServerPanel = async function (type) {
-        const display = document.getElementById("server-display");
-
-        if (!display) {
-            return;
-        }
-
-        display.classList.remove("hidden");
-        display.classList.add("flex");
-
-        if (type === "smp") {
-            display.innerHTML = `
-                <div class="server-strip-card">
-                    <img src="logo.png"
-                         alt="Remény SMP"
-                         class="server-strip-logo">
-
-                    <div class="server-strip-main">
-                        <div class="server-strip-title">
-                            Remény SMP
-                        </div>
-
-                        <div class="server-strip-ip">
-                            adatok betöltése...
-                        </div>
-
-                        <div class="server-strip-motd">
-                            Kérlek várj.
-                        </div>
-                    </div>
-
-                    <div class="server-strip-side">
-                        <div class="server-strip-online">...</div>
-                        <div class="server-strip-version">...</div>
-                    </div>
-                </div>
-            `;
-
-            animatePanel(display);
-            initLiquidHover();
-
-            try {
-                const response = await fetch("/api/minecraft");
-                const server = await response.json();
-
-                if (!response.ok) {
-                    display.innerHTML = `
-                        <div class="server-strip-card">
-                            <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
-                            <div class="server-strip-main">
-                                <div class="server-strip-title">Remény SMP</div>
-                                <div class="server-strip-ip">Nem sikerült betölteni.</div>
-                            </div>
-                        </div>
-                    `;
-                    animatePanel(display);
-                    initLiquidHover();
-                    return;
-                }
-
-                window.currentServerIP = `${server.ip}:${server.port}`;
-
-                display.innerHTML = `
-                    <div class="server-strip-card">
-                        <img src="${server.logo || "logo.png"}"
-                             alt="${server.name || "Remény SMP"}"
-                             class="server-strip-logo">
-
-                        <div class="server-strip-main">
-                            <div class="server-strip-title">
-                                ${server.name || "Remény SMP"}
-                            </div>
-
-                            <div class="server-strip-ip">
-                                ${server.ip}:${server.port}
-                            </div>
-
-                            <div class="server-strip-motd">
-                                ${server.motd || ""}
-                            </div>
-                        </div>
-
-                        <div class="server-strip-side">
-                            <div class="server-strip-online">
-                                ${server.online}/${server.max}
-                                <span class="text-green-400">▮▮▮</span>
-                            </div>
-
-                            <div class="server-strip-version">
-                                ${server.version || ""}
-                            </div>
-
-                            <button onclick="copyIP()"
-                                    class="server-strip-button border border-green-500 text-green-400 hover:bg-green-500/10">
-                                IP másolása
-                            </button>
-                        </div>
-                    </div>
-                `;
-
-                animatePanel(display);
-                initLiquidHover();
-            } catch (error) {
-                console.error(error);
-                display.innerHTML = `
-                    <div class="server-strip-card">
-                        <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
-                        <div class="server-strip-main">
-                            <div class="server-strip-title">Remény SMP</div>
-                            <div class="server-strip-ip">API kapcsolódási hiba.</div>
-                        </div>
-                    </div>
-                `;
-                animatePanel(display);
-                initLiquidHover();
-            }
-
-            return;
-        }
-
-        if (type === "hytale") {
-            display.innerHTML = `
-                <div class="server-strip-card">
-                    <img src="icon.png"
-                         alt="Remény Hytale"
-                         class="server-strip-logo object-contain">
-
-                    <div class="server-strip-main">
-                        <div class="server-strip-title">
-                            Remény Hytale
-                        </div>
-
-                        <div class="server-strip-ip text-yellow-300">
-                            remenyhytale.shockbyte.pro
-                        </div>
-
-                        <div class="server-strip-motd text-slate-300">
-                            Hytale szerver hamarosan.
-                        </div>
-                    </div>
-
-                    <div class="server-strip-side">
-                        <div class="server-strip-online text-yellow-300">
-                            készülőben
-                        </div>
-
-                        <div class="server-strip-version">
-                            Hytale
-                        </div>
-
-                        <button onclick="copySpecificIP('remenyhytale.shockbyte.pro')"
-                                class="server-strip-button border border-yellow-400 text-yellow-300 hover:bg-yellow-400/10">
-                            IP másolása
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            animatePanel(display);
-            initLiquidHover();
-        }
+        setTimeout(window.initLiquidHover, 30);
     };
 
     window.initLiquidHover = function () {
@@ -4356,10 +4293,142 @@ setInterval(loadServerCard, 30000);
         });
     };
 
-    function startRemenyFixes() {
-        updateRemenyClock();
-        setInterval(updateRemenyClock, 1000);
+    window.copySpecificIP = function (ip) {
+        navigator.clipboard.writeText(ip);
+        alert("IP kimásolva!");
+    };
 
+    window.copyIP = function () {
+        const ip = window.currentServerIP || "remenymc.shockbyte.pro:25399";
+        navigator.clipboard.writeText(ip);
+        alert("IP kimásolva!");
+    };
+
+    window.showServerPanel = async function (type) {
+        const display = document.getElementById("server-display");
+        if (!display) return;
+
+        if (openedServerType === type && !display.classList.contains("hidden")) {
+            display.classList.add("hidden");
+            display.classList.remove("flex");
+            display.innerHTML = "";
+            openedServerType = null;
+            return;
+        }
+
+        openedServerType = type;
+        display.classList.remove("hidden");
+        display.classList.add("flex");
+
+        if (type === "hytale") {
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="icon.png" alt="Remény Hytale" class="server-strip-logo object-contain">
+
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">Remény Hytale</div>
+                        <div class="server-strip-ip text-yellow-300">remenyhytale.shockbyte.pro</div>
+                        <div class="server-strip-motd text-slate-300">Hytale szerver hamarosan.</div>
+                    </div>
+
+                    <div class="server-strip-side">
+                        <div class="server-strip-online text-yellow-300">készülőben</div>
+                        <div class="server-strip-version">Hytale</div>
+                        <button onclick="copySpecificIP('remenyhytale.shockbyte.pro')"
+                                class="server-strip-button border border-yellow-400 text-yellow-300 hover:bg-yellow-400/10">
+                            IP másolása
+                        </button>
+                    </div>
+                </div>
+            `;
+            animatePanel(display);
+            setTimeout(window.initLiquidHover, 30);
+            return;
+        }
+
+        display.innerHTML = `
+            <div class="server-strip-card">
+                <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+
+                <div class="server-strip-main">
+                    <div class="server-strip-title">Remény SMP</div>
+                    <div class="server-strip-ip">adatok betöltése...</div>
+                    <div class="server-strip-motd">Kérlek várj.</div>
+                </div>
+
+                <div class="server-strip-side">
+                    <div class="server-strip-online">...</div>
+                    <div class="server-strip-version">...</div>
+                </div>
+            </div>
+        `;
+        animatePanel(display);
+        setTimeout(window.initLiquidHover, 30);
+
+        try {
+            const response = await fetch("/api/minecraft");
+            const server = await response.json();
+
+            if (!response.ok) {
+                display.innerHTML = `
+                    <div class="server-strip-card">
+                        <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                        <div class="server-strip-main">
+                            <div class="server-strip-title">Remény SMP</div>
+                            <div class="server-strip-ip">Nem sikerült betölteni.</div>
+                        </div>
+                    </div>
+                `;
+                animatePanel(display);
+                setTimeout(window.initLiquidHover, 30);
+                return;
+            }
+
+            window.currentServerIP = `${server.ip}:${server.port}`;
+
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="${server.logo || "logo.png"}" alt="${server.name || "Remény SMP"}" class="server-strip-logo">
+
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">${server.name || "Remény SMP"}</div>
+                        <div class="server-strip-ip">${server.ip}:${server.port}</div>
+                        <div class="server-strip-motd">${server.motd || ""}</div>
+                    </div>
+
+                    <div class="server-strip-side">
+                        <div class="server-strip-online">
+                            ${server.online}/${server.max}
+                            <span class="text-green-400">▮▮▮</span>
+                        </div>
+                        <div class="server-strip-version">${server.version || ""}</div>
+                        <button onclick="copyIP()"
+                                class="server-strip-button border border-green-500 text-green-400 hover:bg-green-500/10">
+                            IP másolása
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            animatePanel(display);
+            setTimeout(window.initLiquidHover, 30);
+        } catch (error) {
+            console.error(error);
+            display.innerHTML = `
+                <div class="server-strip-card">
+                    <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">Remény SMP</div>
+                        <div class="server-strip-ip">API kapcsolódási hiba.</div>
+                    </div>
+                </div>
+            `;
+            animatePanel(display);
+            setTimeout(window.initLiquidHover, 30);
+        }
+    };
+
+    function startFinalFix() {
         const savedMode = localStorage.getItem("glassMode");
         if (savedMode === "matt" || savedMode === "basic") {
             window.setGlassMode("matt");
@@ -4371,10 +4440,38 @@ setInterval(loadServerCard, 30000);
     }
 
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", startRemenyFixes);
+        document.addEventListener("DOMContentLoaded", startFinalFix);
     } else {
-        startRemenyFixes();
+        startFinalFix();
     }
+})();
+</script>
+
+
+<script>
+(function () {
+    const isTouchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+    if (!isTouchDevice) {
+        return;
+    }
+
+    function removeMobileHoverEffect() {
+        document.querySelectorAll(".liquid-hover").forEach((element) => {
+            element.classList.remove("liquid-hover");
+            element.dataset.liquidHover = "mobile-disabled";
+            element.style.removeProperty("--mx");
+            element.style.removeProperty("--my");
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", removeMobileHoverEffect);
+    } else {
+        removeMobileHoverEffect();
+    }
+
+    setInterval(removeMobileHoverEffect, 1000);
 })();
 </script>
 
