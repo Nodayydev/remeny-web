@@ -3246,6 +3246,308 @@
             }
         }
 
+    
+        /* FINAL: óra/stílus menü javítás */
+        .top-right-widgets {
+            align-items: center !important;
+            overflow: visible !important;
+        }
+
+        .top-right-widgets > .relative {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            position: relative !important;
+            overflow: visible !important;
+            display: block !important;
+        }
+
+        .top-right-widgets .top-widget-button,
+        .top-right-widgets > .relative > button,
+        .top-right-widgets > a,
+        .top-right-widgets > button {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            max-width: 48px !important;
+            max-height: 48px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            border-radius: 16px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            line-height: 1 !important;
+        }
+
+        #theme-menu {
+            position: absolute !important;
+            top: 58px !important;
+            right: 0 !important;
+            left: auto !important;
+            width: 126px !important;
+            min-width: 126px !important;
+            max-width: 126px !important;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            padding: 8px !important;
+            margin: 0 !important;
+            border-radius: 14px !important;
+            overflow: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            z-index: 2147483641 !important;
+            transform-origin: top right !important;
+            animation: remenyThemeMenuOpen 0.18s ease both !important;
+        }
+
+        #theme-menu.hidden {
+            display: none !important;
+        }
+
+        #theme-menu button,
+        .theme-inline-option {
+            width: 100% !important;
+            height: 36px !important;
+            min-height: 36px !important;
+            max-height: 36px !important;
+            padding: 0 10px !important;
+            margin: 0 !important;
+            border: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 0.78rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            position: relative !important;
+        }
+
+        .theme-inline-glass,
+        #theme-menu button:first-child {
+            border-radius: 999px !important;
+            background: rgba(255, 255, 255, 0.055) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            -webkit-backdrop-filter: blur(8px) saturate(140%) !important;
+            backdrop-filter: blur(8px) saturate(140%) !important;
+        }
+
+        .theme-inline-matt,
+        #theme-menu button:last-child {
+            border-radius: 5px !important;
+            background: rgba(5, 9, 24, 0.98) !important;
+            border: 1px solid rgba(150, 170, 230, 0.14) !important;
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+        }
+
+        @keyframes remenyThemeMenuOpen {
+            from {
+                opacity: 0;
+                transform: translateY(-5px) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .top-right-widgets > .relative {
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
+                min-height: 44px !important;
+            }
+
+            .top-right-widgets .top-widget-button,
+            .top-right-widgets > .relative > button,
+            .top-right-widgets > a,
+            .top-right-widgets > button {
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
+                min-height: 44px !important;
+                max-width: 44px !important;
+                max-height: 44px !important;
+                border-radius: 16px !important;
+            }
+
+            #theme-menu {
+                top: 52px !important;
+                width: 118px !important;
+                min-width: 118px !important;
+                max-width: 118px !important;
+                padding: 7px !important;
+                gap: 7px !important;
+            }
+
+            #theme-menu button,
+            .theme-inline-option {
+                height: 34px !important;
+                min-height: 34px !important;
+                max-height: 34px !important;
+                font-size: 0.72rem !important;
+            }
+        }
+
+    
+        /* FINAL CLEAN: felső ikonok, stílusmenü, login panel */
+        .top-right-widgets {
+            align-items: center !important;
+            overflow: visible !important;
+        }
+
+        .top-right-widgets > a,
+        .top-right-widgets > button,
+        .top-right-widgets .theme-control,
+        .top-right-widgets .theme-control > button {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            max-width: 48px !important;
+            max-height: 48px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            border-radius: 16px !important;
+        }
+
+        .top-right-widgets .theme-control {
+            position: relative !important;
+            overflow: visible !important;
+            display: block !important;
+            z-index: 2147483000 !important;
+        }
+
+        .top-right-widgets .theme-control > button,
+        .top-right-widgets > a,
+        .top-right-widgets > button {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            line-height: 1 !important;
+        }
+
+        .theme-menu-clean {
+            position: absolute !important;
+            top: 58px !important;
+            right: 0 !important;
+            width: 126px !important;
+            min-width: 126px !important;
+            padding: 8px !important;
+            margin: 0 !important;
+            border-radius: 14px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            z-index: 2147483001 !important;
+            background: rgba(2, 6, 23, 0.72) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
+            -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
+            backdrop-filter: blur(14px) saturate(150%) !important;
+            animation: themeOpenClean 0.18s ease both !important;
+        }
+
+        .theme-menu-clean.hidden {
+            display: none !important;
+        }
+
+        .theme-choice {
+            width: 100% !important;
+            height: 36px !important;
+            min-height: 36px !important;
+            padding: 0 10px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.78rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+            border: 0 !important;
+            margin: 0 !important;
+        }
+
+        .theme-choice-glass {
+            border-radius: 999px !important;
+            background: rgba(255, 255, 255, 0.055) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        }
+
+        .theme-choice-matt {
+            border-radius: 5px !important;
+            background: rgba(5, 9, 24, 0.98) !important;
+            border: 1px solid rgba(150, 170, 230, 0.14) !important;
+        }
+
+        @keyframes themeOpenClean {
+            from {
+                opacity: 0;
+                transform: translateY(-5px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        #login-panel {
+            z-index: 2147482000 !important;
+        }
+
+        @media (max-width: 640px) {
+            .top-right-widgets {
+                position: absolute !important;
+                top: 82px !important;
+                right: 12px !important;
+                display: flex !important;
+                gap: 8px !important;
+                z-index: 51 !important;
+                overflow: visible !important;
+            }
+
+            .top-right-widgets > a,
+            .top-right-widgets > button,
+            .top-right-widgets .theme-control,
+            .top-right-widgets .theme-control > button {
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
+                min-height: 44px !important;
+                max-width: 44px !important;
+                max-height: 44px !important;
+                border-radius: 16px !important;
+            }
+
+            .theme-menu-clean {
+                top: 52px !important;
+                width: 118px !important;
+                min-width: 118px !important;
+                padding: 7px !important;
+                gap: 7px !important;
+            }
+
+            .theme-choice {
+                height: 34px !important;
+                min-height: 34px !important;
+                font-size: 0.72rem !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -3271,25 +3573,22 @@
 </div>
 
 <div class="top-right-widgets fixed top-4 right-4 z-50 flex gap-3">
-        <div class="relative">
+            <div class="theme-control relative">
         <button type="button"
-                onclick="toggleThemePanel()"
+                id="theme-toggle-button"
+                onclick="window.toggleThemePanel && window.toggleThemePanel()"
                 title="Stílus"
                 class="glass-bubble glass-cyan w-12 h-12 rounded-2xl flex items-center justify-center text-2xl hover:scale-105 transition top-widget-button"
                 aria-label="Stílus választó">
             ◐
         </button>
 
-        <div id="theme-menu" class="theme-inline-menu hidden glass-bubble">
-            <button type="button"
-                    onclick="setGlassMode('glass')"
-                    class="theme-inline-option theme-inline-glass">
+        <div id="theme-menu" class="theme-menu-clean hidden">
+            <button type="button" onclick="window.setGlassMode && window.setGlassMode('glass')" class="theme-choice theme-choice-glass">
                 glass
             </button>
 
-            <button type="button"
-                    onclick="setGlassMode('matt')"
-                    class="theme-inline-option theme-inline-matt">
+            <button type="button" onclick="window.setGlassMode && window.setGlassMode('matt')" class="theme-choice theme-choice-matt">
                 matt
             </button>
         </div>
@@ -3303,7 +3602,7 @@
         💬
     </a>
 
-    <button onclick="toggleLoginPanel()"
+    <button onclick="window.toggleLoginPanel && window.toggleLoginPanel()"
             title="Írd be a játékos nevet"
             class="glass-bubble glass-purple w-12 h-12 rounded-2xl flex items-center justify-center text-2xl hover:scale-105 transition">
         👤
@@ -3320,7 +3619,7 @@
             </h3>
         </div>
 
-        <button onclick="toggleLoginPanel()"
+        <button onclick="window.toggleLoginPanel && window.toggleLoginPanel()"
                 class="text-slate-400 hover:text-white transition text-xl font-black">
             ×
         </button>
@@ -4472,6 +4771,104 @@ setInterval(loadServerCard, 30000);
     }
 
     setInterval(removeMobileHoverEffect, 1000);
+})();
+</script>
+
+<script id="remeny-final-repair">
+(function () {
+    function setTextByIds(ids, value) {
+        ids.forEach(function (id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+            }
+        });
+    }
+
+    function updateClockRepair() {
+        const now = new Date();
+
+        const timeText = now.toLocaleTimeString("hu-HU", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        });
+
+        const dateText = `${now.getFullYear()}. ${now.toLocaleDateString("hu-HU", { month: "long" }).toUpperCase()} ${now.getDate()}.`;
+        const dayText = now.toLocaleDateString("hu-HU", { weekday: "long" }).toUpperCase();
+
+        setTextByIds(["clock-time", "current-time", "time"], timeText);
+        setTextByIds(["clock-date", "current-date", "date"], dateText);
+        setTextByIds(["clock-day", "current-day", "day"], dayText);
+    }
+
+    window.toggleThemePanel = function () {
+        const menu = document.getElementById("theme-menu");
+        if (menu) {
+            menu.classList.toggle("hidden");
+        }
+    };
+
+    window.setGlassMode = function (mode) {
+        document.body.classList.remove(
+            "glass-light",
+            "glass-dark",
+            "glass-ios15",
+            "glass-light-transparent",
+            "glass-dark-transparent",
+            "basic-light",
+            "basic-dark",
+            "mode-basic",
+            "mode-glass",
+            "mode-matt"
+        );
+
+        if (mode === "matt" || mode === "basic") {
+            document.body.classList.add("mode-matt");
+            localStorage.setItem("glassMode", "matt");
+        } else {
+            document.body.classList.add("mode-glass");
+            localStorage.setItem("glassMode", "glass");
+        }
+
+        const menu = document.getElementById("theme-menu");
+        if (menu) {
+            menu.classList.add("hidden");
+        }
+    };
+
+    window.toggleLoginPanel = function () {
+        const panel = document.getElementById("login-panel");
+        if (!panel) {
+            return;
+        }
+
+        panel.classList.toggle("hidden");
+
+        if (!panel.classList.contains("hidden")) {
+            panel.classList.remove("panel-open-anim");
+            void panel.offsetWidth;
+            panel.classList.add("panel-open-anim");
+        }
+    };
+
+    function bootRepair() {
+        updateClockRepair();
+        setInterval(updateClockRepair, 1000);
+
+        const saved = localStorage.getItem("glassMode");
+        if (saved === "matt" || saved === "basic") {
+            window.setGlassMode("matt");
+        } else {
+            window.setGlassMode("glass");
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bootRepair);
+    } else {
+        bootRepair();
+    }
 })();
 </script>
 
