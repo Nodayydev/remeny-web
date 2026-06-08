@@ -3996,107 +3996,6 @@
             overflow: visible !important;
         }
 
-    
-        /* FINAL: rangok glass módban is egy sorban */
-        #rangok .rank-grid,
-        #ranks .rank-grid,
-        .rank-grid,
-        .ranks-grid,
-        .rank-buttons,
-        .ranks-buttons {
-            display: grid !important;
-            grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-            gap: 12px !important;
-            align-items: stretch !important;
-        }
-
-        #rangok button,
-        #ranks button,
-        .rank-button,
-        .rank-card,
-        button[onclick*="showMembers"],
-        button[onclick*="showRankMembers"],
-        button[onclick*="loadRank"] {
-            min-width: 0 !important;
-            width: 100% !important;
-            max-width: none !important;
-            white-space: nowrap !important;
-            padding-left: 10px !important;
-            padding-right: 10px !important;
-            box-sizing: border-box !important;
-        }
-
-        body.mode-glass #rangok button,
-        body.mode-glass #ranks button,
-        body.mode-glass .rank-button,
-        body.mode-glass .rank-card,
-        body.mode-glass button[onclick*="showMembers"],
-        body.mode-glass button[onclick*="showRankMembers"],
-        body.mode-glass button[onclick*="loadRank"] {
-            padding-left: 10px !important;
-            padding-right: 10px !important;
-            border-width: 1px !important;
-            letter-spacing: 0.08em !important;
-            transform: none !important;
-        }
-
-        body.mode-glass #rangok .rank-grid,
-        body.mode-glass #ranks .rank-grid,
-        body.mode-glass .rank-grid,
-        body.mode-glass .ranks-grid,
-        body.mode-glass .rank-buttons,
-        body.mode-glass .ranks-buttons {
-            grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-            gap: 12px !important;
-        }
-
-        @media (max-width: 900px) {
-            #rangok .rank-grid,
-            #ranks .rank-grid,
-            .rank-grid,
-            .ranks-grid,
-            .rank-buttons,
-            .ranks-buttons,
-            body.mode-glass #rangok .rank-grid,
-            body.mode-glass #ranks .rank-grid,
-            body.mode-glass .rank-grid,
-            body.mode-glass .ranks-grid,
-            body.mode-glass .rank-buttons,
-            body.mode-glass .ranks-buttons {
-                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-            }
-        }
-
-        @media (max-width: 560px) {
-            #rangok .rank-grid,
-            #ranks .rank-grid,
-            .rank-grid,
-            .ranks-grid,
-            .rank-buttons,
-            .ranks-buttons,
-            body.mode-glass #rangok .rank-grid,
-            body.mode-glass #ranks .rank-grid,
-            body.mode-glass .rank-grid,
-            body.mode-glass .ranks-grid,
-            body.mode-glass .rank-buttons,
-            body.mode-glass .ranks-buttons {
-                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                gap: 10px !important;
-            }
-
-            #rangok button,
-            #ranks button,
-            .rank-button,
-            .rank-card,
-            button[onclick*="showMembers"],
-            button[onclick*="showRankMembers"],
-            button[onclick*="loadRank"] {
-                font-size: 0.78rem !important;
-                letter-spacing: 0.04em !important;
-                padding-left: 8px !important;
-                padding-right: 8px !important;
-            }
-        }
 
     
         /* FINAL: alap buborékok rangokhoz és szerverhez */
@@ -4193,6 +4092,132 @@
                 margin-top: 14px !important;
                 padding: 15px 16px !important;
                 font-size: 0.9rem !important;
+            }
+        }
+
+    
+        /* FINAL: rangok egymás mellett, nem egyetlen hosszú sorban */
+        #rangok .rank-grid,
+        #ranks .rank-grid,
+        .rank-grid,
+        .ranks-grid,
+        .rank-buttons,
+        .ranks-buttons {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+            grid-template-columns: none !important;
+        }
+
+        #rangok button,
+        #ranks button,
+        .rank-button,
+        .rank-card,
+        button[onclick*="showMembers"],
+        button[onclick*="showRankMembers"],
+        button[onclick*="loadRank"] {
+            width: auto !important;
+            min-width: 132px !important;
+            max-width: 180px !important;
+            flex: 0 1 148px !important;
+            white-space: nowrap !important;
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+            box-sizing: border-box !important;
+        }
+
+        body.mode-glass #rangok .rank-grid,
+        body.mode-glass #ranks .rank-grid,
+        body.mode-glass .rank-grid,
+        body.mode-glass .ranks-grid,
+        body.mode-glass .rank-buttons,
+        body.mode-glass .ranks-buttons {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            grid-template-columns: none !important;
+        }
+
+        @media (max-width: 560px) {
+            #rangok button,
+            #ranks button,
+            .rank-button,
+            .rank-card,
+            button[onclick*="showMembers"],
+            button[onclick*="showRankMembers"],
+            button[onclick*="loadRank"] {
+                min-width: 118px !important;
+                max-width: 155px !important;
+                flex: 1 1 128px !important;
+                font-size: 0.78rem !important;
+            }
+        }
+
+    
+        /* FINAL: az oldal alja a közösségi média legyen, ne lehessen sokat tovább görgetni */
+        body {
+            min-height: auto !important;
+        }
+
+        main {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        section:last-of-type {
+            margin-bottom: 0 !important;
+            padding-bottom: 18px !important;
+        }
+
+        #kozosseg,
+        #elerhetosegek,
+        #contact,
+        #social,
+        .social-grid-final {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        .social-grid-final {
+            padding-bottom: 18px !important;
+        }
+
+        footer,
+        .footer,
+        #footer {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 12px !important;
+        }
+
+        .ad-slot,
+        .ad-empty-space {
+            display: none !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+
+        body::after {
+            display: none !important;
+            content: none !important;
+        }
+
+        @media (max-width: 640px) {
+            section:last-of-type {
+                padding-bottom: 10px !important;
+            }
+
+            .social-grid-final {
+                padding-bottom: 10px !important;
+            }
+
+            main {
+                padding-bottom: 0 !important;
             }
         }
 
@@ -6707,6 +6732,233 @@ setInterval(loadServerCard, 30000);
     } else {
         boot();
     }
+})();
+</script>
+
+
+<script id="remeny-minecraft-profile-avatar-real-final">
+(function () {
+    function q(selector) {
+        return document.querySelector(selector);
+    }
+
+    function getInput() {
+        return (
+            document.getElementById("minecraft-name") ||
+            document.getElementById("minecraft-name-input") ||
+            q("#login-panel input") ||
+            q("input[placeholder*='Minecraft']")
+        );
+    }
+
+    function getAvatar() {
+        return document.getElementById("player-avatar") || q("#login-panel img");
+    }
+
+    function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = String(value);
+    }
+
+    function setStatus(value) {
+        const el = document.getElementById("player-status");
+        if (!el) return;
+
+        el.textContent = value;
+        el.style.color = value === "✅" ? "#4ade80" : "rgba(255,255,255,0.72)";
+        el.style.fontSize = value === "✅" ? "18px" : "";
+        el.style.lineHeight = value === "✅" ? "1" : "";
+    }
+
+    function isLikelyFullSkinUrl(url) {
+        if (!url) return false;
+        return !/(avatar|head|helm|face)/i.test(url);
+    }
+
+    function drawHeadFromSkin(avatar, skinUrl, onFail) {
+        const image = new Image();
+        image.crossOrigin = "anonymous";
+
+        image.onload = function () {
+            try {
+                const canvas = document.createElement("canvas");
+                canvas.width = 128;
+                canvas.height = 128;
+
+                const ctx = canvas.getContext("2d");
+                ctx.imageSmoothingEnabled = false;
+
+                // Minecraft skin: fej eleje 8,8,8,8
+                ctx.drawImage(image, 8, 8, 8, 8, 0, 0, 128, 128);
+
+                // Kalap / overlay 40,8,8,8
+                ctx.drawImage(image, 40, 8, 8, 8, 0, 0, 128, 128);
+
+                avatar.onerror = null;
+                avatar.src = canvas.toDataURL("image/png");
+                avatar.style.objectFit = "cover";
+                avatar.style.imageRendering = "pixelated";
+            } catch (error) {
+                console.warn("Skin fej kivágás sikertelen:", error);
+                onFail();
+            }
+        };
+
+        image.onerror = onFail;
+        image.src = `${skinUrl}${skinUrl.includes("?") ? "&" : "?"}v=${Date.now()}`;
+    }
+
+    function setHeadAvatar(playerName, skinUrl) {
+        const avatar = getAvatar();
+        if (!avatar) return;
+
+        avatar.style.objectFit = "cover";
+        avatar.style.imageRendering = "pixelated";
+
+        const encoded = encodeURIComponent(playerName || "Steve");
+        const cache = Date.now();
+
+        const fallbackSources = [
+            `https://mc-heads.net/avatar/${encoded}/128?v=${cache}`,
+            `https://minotar.net/avatar/${encoded}/128.png?v=${cache}`,
+            `https://api.mineatar.io/face/${encoded}?scale=16&v=${cache}`,
+            `https://visage.surgeplay.com/face/128/${encoded}?v=${cache}`,
+            "icon.png"
+        ];
+
+        function useFallback() {
+            let index = 0;
+            avatar.onerror = function () {
+                index++;
+                if (index < fallbackSources.length) {
+                    avatar.src = fallbackSources[index];
+                } else {
+                    avatar.onerror = null;
+                    avatar.src = "icon.png";
+                }
+            };
+            avatar.src = fallbackSources[0];
+        }
+
+        if (skinUrl && isLikelyFullSkinUrl(skinUrl)) {
+            drawHeadFromSkin(avatar, skinUrl, useFallback);
+            return;
+        }
+
+        if (skinUrl && !isLikelyFullSkinUrl(skinUrl)) {
+            avatar.onerror = useFallback;
+            avatar.src = `${skinUrl}${skinUrl.includes("?") ? "&" : "?"}v=${cache}`;
+            return;
+        }
+
+        useFallback();
+    }
+
+    function applyStats(data, typedName) {
+        const name = data.name || data.player_name || typedName;
+
+        const kills = Number(data.kills) || 0;
+        const deaths = Number(data.deaths) || 0;
+        const hours = Number(data.hours) || Math.floor((Number(data.play_seconds) || 0) / 3600);
+        const blocks = Number(data.blocksPlaced ?? data.blocks_placed) || 0;
+        const distance = Number(data.distanceTraveled ?? data.distance_traveled) || 0;
+
+        setText("player-name-display", name);
+        setText("stat-kills", kills);
+        setText("stat-deaths", deaths);
+        setText("stat-hours", hours);
+        setText("stat-blocks", blocks);
+        setText("stat-distance", distance);
+
+        setText("player-kills", kills);
+        setText("player-deaths", deaths);
+        setText("player-hours", hours);
+        setText("player-blocks", blocks);
+        setText("player-distance", distance);
+
+        setHeadAvatar(name, data.skinUrl || data.skin_url || null);
+        setStatus(data.found === false ? "Nincs adat" : "✅");
+    }
+
+    window.loadPlayerStats = async function () {
+        const input = getInput();
+        const name = input ? input.value.trim() : "";
+
+        if (!name) {
+            alert("Írj be egy Minecraft nevet.");
+            return;
+        }
+
+        setText("player-name-display", name);
+        setStatus("Betöltés...");
+        setHeadAvatar(name, null);
+
+        try {
+            const response = await fetch(`/api/player-stats/${encodeURIComponent(name)}`, {
+                cache: "no-store"
+            });
+
+            let data = {};
+            try {
+                data = await response.json();
+            } catch (error) {
+                throw new Error("Az API nem JSON választ adott.");
+            }
+
+            if (!response.ok) {
+                throw new Error(data.error || "API hiba");
+            }
+
+            applyStats(data, name);
+        } catch (error) {
+            console.error("Minecraft profil/API hiba:", error);
+            setStatus("API hiba");
+            alert("Nem sikerült lekérni a játékos statokat. Teszteld külön: /api/player-stats/" + name);
+        }
+    };
+
+    function bindProfileButton() {
+        const input = getInput();
+
+        if (input) {
+            input.id = "minecraft-name";
+            input.onkeydown = function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    window.loadPlayerStats();
+                }
+            };
+        }
+
+        const panel = document.getElementById("login-panel");
+        if (!panel) return;
+
+        const button =
+            document.getElementById("player-load-button") ||
+            Array.from(panel.querySelectorAll("button")).find(function (btn) {
+                const text = (btn.textContent || "").trim().toLowerCase();
+                return text === "✅" || text.includes("betölt") || text.includes("betolt") || text.includes("load");
+            });
+
+        if (button) {
+            button.id = "player-load-button";
+            button.type = "button";
+            button.textContent = "✅";
+            button.onclick = function (event) {
+                event.preventDefault();
+                window.loadPlayerStats();
+            };
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindProfileButton);
+    } else {
+        bindProfileButton();
+    }
+
+    setTimeout(bindProfileButton, 300);
+    setTimeout(bindProfileButton, 1000);
 })();
 </script>
 
