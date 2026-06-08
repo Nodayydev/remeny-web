@@ -7,20 +7,21 @@
 
     <meta property="og:title" content="「 ✦ RÉMÉNY ✦ 」">
     <meta property="og:description" content="Hogy mindig maradjon itt valami.">
-    <meta property="og:image" content="https://remeny-web.onrender.com/preview.png?v=3">
-    <meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png?v=3">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+
+
+
+
     <meta property="og:url" content="https://remeny-web.onrender.com/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="「 ✦ RÉMÉNY ✦ 」">
     <meta name="twitter:description" content="Hogy mindig maradjon itt valami.">
-    <meta name="twitter:image" content="https://remeny-web.onrender.com/preview.png?v=3">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1668891626196907"
+     crossorigin="anonymous"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         html {
@@ -1006,25 +1007,133 @@
             border-radius: 9px !important;
         }
 
+    
+        /* Új stílus módok */
+        body.glass-light-transparent .glass-bubble,
+        body.glass-light-transparent .hero-card,
+        body.glass-light-transparent .hero-card-inner,
+        body.glass-light-transparent .hero-btn-smp,
+        body.glass-light-transparent .hero-btn-hytale,
+        body.glass-light-transparent #server-display,
+        body.glass-light-transparent #login-panel {
+            border-radius: 22px !important;
+            background: rgba(255, 255, 255, 0.025) !important;
+            border: 1px solid rgba(255, 255, 255, 0.20) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(170%) brightness(1.08) !important;
+            backdrop-filter: blur(16px) saturate(170%) brightness(1.08) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.20),
+                0 10px 28px rgba(0, 0, 0, 0.14) !important;
+        }
+
+        body.glass-dark-transparent .glass-bubble,
+        body.glass-dark-transparent .hero-card,
+        body.glass-dark-transparent .hero-card-inner,
+        body.glass-dark-transparent .hero-btn-smp,
+        body.glass-dark-transparent .hero-btn-hytale,
+        body.glass-dark-transparent #server-display,
+        body.glass-dark-transparent #login-panel {
+            border-radius: 22px !important;
+            background: rgba(0, 0, 0, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(145%) brightness(0.96) !important;
+            backdrop-filter: blur(16px) saturate(145%) brightness(0.96) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                0 12px 30px rgba(0, 0, 0, 0.24) !important;
+        }
+
+        body.basic-light .glass-bubble,
+        body.basic-light .hero-card,
+        body.basic-light .hero-card-inner,
+        body.basic-light .hero-btn-smp,
+        body.basic-light .hero-btn-hytale,
+        body.basic-light #server-display,
+        body.basic-light #login-panel {
+            border-radius: 12px !important;
+            background: rgba(255, 255, 255, 0.30) !important;
+            border: 1px solid rgba(255, 255, 255, 0.34) !important;
+            -webkit-backdrop-filter: blur(7px) saturate(120%) !important;
+            backdrop-filter: blur(7px) saturate(120%) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.28),
+                0 8px 22px rgba(0, 0, 0, 0.18) !important;
+        }
+
+        body.basic-dark .glass-bubble,
+        body.basic-dark .hero-card,
+        body.basic-dark .hero-card-inner,
+        body.basic-dark .hero-btn-smp,
+        body.basic-dark .hero-btn-hytale,
+        body.basic-dark #server-display,
+        body.basic-dark #login-panel {
+            border-radius: 12px !important;
+            background: rgba(3, 8, 28, 0.54) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            -webkit-backdrop-filter: blur(7px) saturate(115%) !important;
+            backdrop-filter: blur(7px) saturate(115%) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                0 10px 26px rgba(0, 0, 0, 0.32) !important;
+        }
+
+        body.basic-light .hero-card,
+        body.basic-dark .hero-card {
+            border-radius: 18px !important;
+        }
+
+        body.basic-light .hero-card-inner,
+        body.basic-dark .hero-card-inner {
+            border-radius: 16px !important;
+        }
+
+        .glass-toggle {
+            flex-wrap: wrap;
+            max-width: 360px;
+        }
+
+        .glass-toggle button {
+            min-width: 118px;
+            font-size: 0.78rem;
+        }
+
+        @media (max-width: 640px) {
+            .glass-toggle {
+                max-width: 330px;
+                gap: 6px;
+            }
+
+            .glass-toggle button {
+                min-width: 148px;
+                font-size: 0.72rem;
+                padding: 7px 9px;
+            }
+        }
+
     </style>
 </head>
 
-<body class="bg-remeny-fixed min-h-screen text-white font-sans glass-light">
+<body class="bg-remeny-fixed min-h-screen text-white font-sans glass-light-transparent">
 
 <div class="glass-toggle">
-    <button onclick="setGlassMode('light')"
+    <button onclick="setGlassMode('light-transparent')"
             class="glass-bubble glass-cyan">
-        világos
+        világos átlátszó
     </button>
 
-    <button onclick="setGlassMode('dark')"
+    <button onclick="setGlassMode('dark-transparent')"
             class="glass-bubble glass-purple">
-        sötét
+        sötét átlátszó
     </button>
 
-    <button onclick="setGlassMode('ios15')"
+    <button onclick="setGlassMode('basic-light')"
             class="glass-bubble glass-cyan">
-        iOS 15
+        basic világos
+    </button>
+
+    <button onclick="setGlassMode('basic-dark')"
+            class="glass-bubble glass-purple">
+        basic sötét
     </button>
 </div>
 
@@ -1295,33 +1404,49 @@
 <script>
 
 function setGlassMode(mode) {
-    document.body.classList.remove("glass-light", "glass-dark", "glass-ios15");
+    document.body.classList.remove(
+        "glass-light",
+        "glass-dark",
+        "glass-ios15",
+        "glass-light-transparent",
+        "glass-dark-transparent",
+        "basic-light",
+        "basic-dark"
+    );
 
-    if (mode === "dark") {
-        document.body.classList.add("glass-dark");
-        localStorage.setItem("glassMode", "dark");
+    if (mode === "dark-transparent") {
+        document.body.classList.add("glass-dark-transparent");
+        localStorage.setItem("glassMode", "dark-transparent");
         return;
     }
 
-    if (mode === "ios15") {
-        document.body.classList.add("glass-ios15");
-        localStorage.setItem("glassMode", "ios15");
+    if (mode === "basic-light") {
+        document.body.classList.add("basic-light");
+        localStorage.setItem("glassMode", "basic-light");
         return;
     }
 
-    document.body.classList.add("glass-light");
-    localStorage.setItem("glassMode", "light");
+    if (mode === "basic-dark") {
+        document.body.classList.add("basic-dark");
+        localStorage.setItem("glassMode", "basic-dark");
+        return;
+    }
+
+    document.body.classList.add("glass-light-transparent");
+    localStorage.setItem("glassMode", "light-transparent");
 }
 
 const savedGlassMode = localStorage.getItem("glassMode");
-if (savedGlassMode === "dark") {
-    setGlassMode("dark");
-} else if (savedGlassMode === "ios15") {
-    setGlassMode("ios15");
-} else {
-    setGlassMode("light");
-}
 
+if (savedGlassMode === "dark-transparent") {
+    setGlassMode("dark-transparent");
+} else if (savedGlassMode === "basic-light") {
+    setGlassMode("basic-light");
+} else if (savedGlassMode === "basic-dark") {
+    setGlassMode("basic-dark");
+} else {
+    setGlassMode("light-transparent");
+}
 
 let currentServerIP = "";
 
