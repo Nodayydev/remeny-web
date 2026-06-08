@@ -3548,6 +3548,176 @@
             }
         }
 
+    
+        /* FINAL: stílus gomb pontosan ugyanakkora, login jó helyen, rang javítás */
+        .top-right-widgets {
+            align-items: center !important;
+            overflow: visible !important;
+        }
+
+        .top-right-widgets .theme-control {
+            position: relative !important;
+            overflow: visible !important;
+            flex: 0 0 auto !important;
+        }
+
+        .top-right-widgets .theme-control,
+        .top-right-widgets .theme-control > button,
+        .top-right-widgets > a,
+        .top-right-widgets > button {
+            width: 48px !important;
+            height: 48px !important;
+            min-width: 48px !important;
+            min-height: 48px !important;
+            max-width: 48px !important;
+            max-height: 48px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-radius: 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        .top-right-widgets .theme-control > button,
+        .top-right-widgets > a,
+        .top-right-widgets > button {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            line-height: 1 !important;
+            font-size: 1.5rem !important;
+        }
+
+        .theme-menu-clean {
+            position: absolute !important;
+            top: 58px !important;
+            right: 0 !important;
+            width: 126px !important;
+            min-width: 126px !important;
+            padding: 8px !important;
+            border-radius: 14px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 8px !important;
+            z-index: 2147483001 !important;
+            background: rgba(2, 6, 23, 0.72) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
+            -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
+            backdrop-filter: blur(14px) saturate(150%) !important;
+            animation: themeOpenClean 0.18s ease both !important;
+        }
+
+        .theme-menu-clean.hidden {
+            display: none !important;
+        }
+
+        .theme-choice {
+            width: 100% !important;
+            height: 36px !important;
+            min-height: 36px !important;
+            padding: 0 10px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.78rem !important;
+            font-weight: 900 !important;
+            line-height: 1 !important;
+            white-space: nowrap !important;
+            cursor: pointer !important;
+            border: 0 !important;
+            margin: 0 !important;
+        }
+
+        .theme-choice-glass {
+            border-radius: 999px !important;
+            background: rgba(255, 255, 255, 0.055) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+        }
+
+        .theme-choice-matt {
+            border-radius: 5px !important;
+            background: rgba(5, 9, 24, 0.98) !important;
+            border: 1px solid rgba(150, 170, 230, 0.14) !important;
+        }
+
+        @keyframes themeOpenClean {
+            from { opacity: 0; transform: translateY(-5px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        #login-panel {
+            position: fixed !important;
+            top: 76px !important;
+            right: 16px !important;
+            left: auto !important;
+            z-index: 2147482000 !important;
+        }
+
+        #rank-display,
+        #members-display {
+            transform-origin: top center;
+        }
+
+        #rank-display:not(.hidden),
+        #members-display:not(.hidden) {
+            animation: remenyPanelOpen 0.28s cubic-bezier(0.18, 0.9, 0.2, 1) both;
+        }
+
+        @media (max-width: 640px) {
+            .top-right-widgets {
+                position: absolute !important;
+                top: 82px !important;
+                right: 12px !important;
+                display: flex !important;
+                gap: 8px !important;
+                z-index: 51 !important;
+                align-items: center !important;
+                overflow: visible !important;
+            }
+
+            .top-right-widgets .theme-control,
+            .top-right-widgets .theme-control > button,
+            .top-right-widgets > a,
+            .top-right-widgets > button {
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
+                min-height: 44px !important;
+                max-width: 44px !important;
+                max-height: 44px !important;
+                border-radius: 16px !important;
+            }
+
+            .top-right-widgets .theme-control > button,
+            .top-right-widgets > a,
+            .top-right-widgets > button {
+                font-size: 1.35rem !important;
+            }
+
+            .theme-menu-clean {
+                top: 52px !important;
+                width: 118px !important;
+                min-width: 118px !important;
+                padding: 7px !important;
+                gap: 7px !important;
+            }
+
+            .theme-choice {
+                height: 34px !important;
+                min-height: 34px !important;
+                font-size: 0.72rem !important;
+            }
+
+            #login-panel {
+                top: 136px !important;
+                right: 12px !important;
+                left: 12px !important;
+                width: auto !important;
+                max-width: none !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -3573,22 +3743,26 @@
 </div>
 
 <div class="top-right-widgets fixed top-4 right-4 z-50 flex gap-3">
-            <div class="theme-control relative">
+    <div class="theme-control relative w-12 h-12">
         <button type="button"
                 id="theme-toggle-button"
                 onclick="window.toggleThemePanel && window.toggleThemePanel()"
                 title="Stílus"
-                class="glass-bubble glass-cyan w-12 h-12 rounded-2xl flex items-center justify-center text-2xl hover:scale-105 transition top-widget-button"
+                class="glass-bubble glass-cyan w-12 h-12 rounded-2xl flex items-center justify-center text-2xl hover:scale-105 transition"
                 aria-label="Stílus választó">
             ◐
         </button>
 
         <div id="theme-menu" class="theme-menu-clean hidden">
-            <button type="button" onclick="window.setGlassMode && window.setGlassMode('glass')" class="theme-choice theme-choice-glass">
+            <button type="button"
+                    onclick="window.setGlassMode && window.setGlassMode('glass')"
+                    class="theme-choice theme-choice-glass">
                 glass
             </button>
 
-            <button type="button" onclick="window.setGlassMode && window.setGlassMode('matt')" class="theme-choice theme-choice-matt">
+            <button type="button"
+                    onclick="window.setGlassMode && window.setGlassMode('matt')"
+                    class="theme-choice theme-choice-matt">
                 matt
             </button>
         </div>
@@ -4868,6 +5042,165 @@ setInterval(loadServerCard, 30000);
         document.addEventListener("DOMContentLoaded", bootRepair);
     } else {
         bootRepair();
+    }
+})();
+</script>
+
+
+<script id="remeny-rank-login-theme-repair">
+(function () {
+    function animatePanel(element) {
+        if (!element) return;
+        element.classList.remove("panel-open-anim");
+        void element.offsetWidth;
+        element.classList.add("panel-open-anim");
+    }
+
+    window.toggleThemePanel = function () {
+        const menu = document.getElementById("theme-menu");
+        if (menu) menu.classList.toggle("hidden");
+    };
+
+    window.setGlassMode = function (mode) {
+        document.body.classList.remove(
+            "glass-light", "glass-dark", "glass-ios15",
+            "glass-light-transparent", "glass-dark-transparent",
+            "basic-light", "basic-dark", "mode-basic", "mode-glass", "mode-matt"
+        );
+
+        if (mode === "matt" || mode === "basic") {
+            document.body.classList.add("mode-matt");
+            localStorage.setItem("glassMode", "matt");
+        } else {
+            document.body.classList.add("mode-glass");
+            localStorage.setItem("glassMode", "glass");
+        }
+
+        const menu = document.getElementById("theme-menu");
+        if (menu) menu.classList.add("hidden");
+    };
+
+    window.toggleLoginPanel = function () {
+        const panel = document.getElementById("login-panel");
+        if (!panel) return;
+
+        panel.classList.toggle("hidden");
+        if (!panel.classList.contains("hidden")) animatePanel(panel);
+    };
+
+    window.showMembers = async function (roleName) {
+        const display =
+            document.getElementById("members-display") ||
+            document.getElementById("rank-display") ||
+            document.getElementById("role-members");
+
+        if (!display) return;
+
+        if (display.dataset.openRole === roleName && !display.classList.contains("hidden")) {
+            display.classList.add("hidden");
+            display.innerHTML = "";
+            display.dataset.openRole = "";
+            return;
+        }
+
+        display.dataset.openRole = roleName;
+        display.classList.remove("hidden");
+        display.innerHTML = `
+            <div class="glass-bubble rounded-xl p-5 text-center font-black">
+                Tagok betöltése...
+            </div>
+        `;
+        animatePanel(display);
+
+        try {
+            const response = await fetch(`/api/rank/${encodeURIComponent(roleName)}`);
+            const members = await response.json();
+
+            if (!response.ok || !Array.isArray(members)) {
+                display.innerHTML = `
+                    <div class="glass-bubble rounded-xl p-5 text-center font-black text-red-300">
+                        Nem sikerült lekérni ezt a rangot.
+                    </div>
+                `;
+                animatePanel(display);
+                return;
+            }
+
+            if (members.length === 0) {
+                display.innerHTML = `
+                    <div class="glass-bubble rounded-xl p-5 text-center font-black">
+                        Ehhez a ranghoz nincs megjeleníthető tag.
+                    </div>
+                `;
+                animatePanel(display);
+                return;
+            }
+
+            display.innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                    ${members.map((member) => `
+                        <div class="member-card glass-bubble rounded-xl p-4 flex items-center gap-3">
+                            <img src="${member.avatar}" alt="${member.displayName || member.username}" class="w-12 h-12 rounded-xl object-cover">
+                            <div class="text-left min-w-0">
+                                <div class="font-black truncate">${member.displayName || member.username}</div>
+                                <div class="text-slate-400 text-sm truncate">@${member.username}</div>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+
+            animatePanel(display);
+            if (window.initLiquidHover) setTimeout(window.initLiquidHover, 30);
+        } catch (error) {
+            console.error(error);
+            display.innerHTML = `
+                <div class="glass-bubble rounded-xl p-5 text-center font-black text-red-300">
+                    API kapcsolódási hiba.
+                </div>
+            `;
+            animatePanel(display);
+        }
+    };
+
+    window.showRankMembers = window.showMembers;
+    window.loadRank = window.showMembers;
+
+    function repairRankButtons() {
+        document.querySelectorAll("button, a").forEach((element) => {
+            const text = (element.textContent || "").toLowerCase();
+
+            const match =
+                text.includes("never") ? "Never" :
+                text.includes("rover") ? "Rover" :
+                text.includes("helpi") ? "Helpi" :
+                text.includes("host") ? "Host" :
+                text.includes("tag") ? "Tag" :
+                null;
+
+            if (!match) return;
+
+            const section = element.closest("section");
+            if (section && section.id && section.id !== "rangok") return;
+
+            element.setAttribute("type", "button");
+            element.onclick = function (event) {
+                event.preventDefault();
+                window.showMembers(match);
+            };
+        });
+    }
+
+    function boot() {
+        const saved = localStorage.getItem("glassMode");
+        window.setGlassMode(saved === "matt" || saved === "basic" ? "matt" : "glass");
+        repairRankButtons();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
     }
 })();
 </script>
