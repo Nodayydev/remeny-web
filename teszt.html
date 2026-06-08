@@ -679,6 +679,268 @@
             background: #020617 !important;
         }
 
+    
+        /* Mobilos szerverpanel: csíkos, mint gépen */
+        #server-display {
+            width: min(92vw, 760px);
+        }
+
+        .server-strip-card {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-align: left;
+        }
+
+        .server-strip-logo {
+            width: 58px;
+            height: 58px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .server-strip-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .server-strip-title {
+            font-size: 1rem;
+            line-height: 1.05;
+            font-weight: 900;
+            color: white;
+        }
+
+        .server-strip-ip {
+            margin-top: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: rgb(103, 232, 249);
+            word-break: break-word;
+            text-transform: none !important;
+            font-variant-caps: normal !important;
+            letter-spacing: normal !important;
+        }
+
+        .server-strip-motd {
+            margin-top: 5px;
+            font-size: 0.72rem;
+            line-height: 1.25;
+            color: rgb(134, 239, 172);
+            max-height: 34px;
+            overflow: hidden;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            text-transform: none !important;
+            font-variant-caps: normal !important;
+            letter-spacing: normal !important;
+        }
+
+        .server-strip-side {
+            flex-shrink: 0;
+            text-align: right;
+            min-width: 82px;
+        }
+
+        .server-strip-online {
+            font-size: 0.9rem;
+            font-weight: 900;
+            color: white;
+        }
+
+        .server-strip-version {
+            margin-top: 4px;
+            font-size: 0.68rem;
+            color: rgb(148, 163, 184);
+        }
+
+        .server-strip-button {
+            margin-top: 8px;
+            border-radius: 8px;
+            padding: 6px 9px;
+            font-size: 0.68rem;
+            font-weight: 900;
+            transition: 0.2s ease;
+        }
+
+        @media (max-width: 640px) {
+            #server-display {
+                width: calc(100vw - 28px);
+                min-height: auto !important;
+                padding: 14px !important;
+                margin-top: 10px !important;
+            }
+
+            .server-strip-card {
+                gap: 10px;
+            }
+
+            .server-strip-logo {
+                width: 50px;
+                height: 50px;
+                border-radius: 10px;
+            }
+
+            .server-strip-title {
+                font-size: 0.95rem;
+            }
+
+            .server-strip-ip {
+                font-size: 0.66rem;
+            }
+
+            .server-strip-motd {
+                font-size: 0.64rem;
+                max-height: 30px;
+            }
+
+            .server-strip-side {
+                min-width: 70px;
+            }
+
+            .server-strip-online {
+                font-size: 0.75rem;
+            }
+
+            .server-strip-version {
+                font-size: 0.58rem;
+            }
+
+            .server-strip-button {
+                padding: 5px 7px;
+                font-size: 0.56rem;
+            }
+        }
+
+    
+        /* Mobil glass javítás: a háttér fix réteg, a buborékok pedig efölött mossák a hátteret */
+        html,
+        body {
+            min-height: 100%;
+            background: #020617 !important;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            pointer-events: none;
+            background:
+                linear-gradient(rgba(0, 0, 30, 0.28), rgba(0, 0, 0, 0.70)),
+                url("bg-remeny.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transform: translate3d(0, 0, 0);
+            will-change: transform;
+        }
+
+        @media (max-width: 640px) {
+            body::before {
+                background:
+                    linear-gradient(rgba(0, 0, 30, 0.22), rgba(0, 0, 0, 0.64)),
+                    url("bg-remeny-telefon.png");
+                background-size: cover;
+                background-position: center top;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .bg-remeny-fixed {
+            background: transparent !important;
+            isolation: isolate;
+        }
+
+        .glass-bubble,
+        .hero-card,
+        .hero-card-inner,
+        .hero-btn-smp,
+        .hero-btn-hytale,
+        #server-display,
+        #login-panel {
+            -webkit-backdrop-filter: blur(14px) saturate(160%) brightness(1.08) !important;
+            backdrop-filter: blur(14px) saturate(160%) brightness(1.08) !important;
+            background-color: rgba(255, 255, 255, 0.035) !important;
+            transform: translate3d(0, 0, 0);
+        }
+
+        body.glass-dark .glass-bubble,
+        body.glass-dark .hero-card,
+        body.glass-dark .hero-card-inner,
+        body.glass-dark .hero-btn-smp,
+        body.glass-dark .hero-btn-hytale,
+        body.glass-dark #server-display,
+        body.glass-dark #login-panel {
+            -webkit-backdrop-filter: blur(14px) saturate(145%) brightness(0.95) !important;
+            backdrop-filter: blur(14px) saturate(145%) brightness(0.95) !important;
+            background-color: rgba(0, 0, 0, 0.075) !important;
+        }
+
+        @media (max-width: 640px) {
+            .glass-bubble,
+            .hero-card,
+            .hero-card-inner,
+            .hero-btn-smp,
+            .hero-btn-hytale,
+            #server-display,
+            #login-panel {
+                -webkit-backdrop-filter: blur(16px) saturate(170%) brightness(1.08) !important;
+                backdrop-filter: blur(16px) saturate(170%) brightness(1.08) !important;
+            }
+        }
+
+    
+        /* Gépes verzióban is ugyanaz a folyékony glass hatás */
+        @media (min-width: 641px) {
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                z-index: -10;
+                pointer-events: none;
+                background:
+                    linear-gradient(rgba(0, 0, 30, 0.28), rgba(0, 0, 0, 0.70)),
+                    url("bg-remeny.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                transform: translate3d(0, 0, 0);
+                will-change: transform;
+            }
+
+            .bg-remeny-fixed {
+                background: transparent !important;
+                isolation: isolate;
+            }
+
+            .glass-bubble,
+            .hero-card,
+            .hero-card-inner,
+            .hero-btn-smp,
+            .hero-btn-hytale,
+            #server-display,
+            #login-panel {
+                -webkit-backdrop-filter: blur(16px) saturate(170%) brightness(1.08) !important;
+                backdrop-filter: blur(16px) saturate(170%) brightness(1.08) !important;
+                background-color: rgba(255, 255, 255, 0.035) !important;
+                transform: translate3d(0, 0, 0);
+            }
+
+            body.glass-dark .glass-bubble,
+            body.glass-dark .hero-card,
+            body.glass-dark .hero-card-inner,
+            body.glass-dark .hero-btn-smp,
+            body.glass-dark .hero-btn-hytale,
+            body.glass-dark #server-display,
+            body.glass-dark #login-panel {
+                -webkit-backdrop-filter: blur(16px) saturate(150%) brightness(0.95) !important;
+                backdrop-filter: blur(16px) saturate(150%) brightness(0.95) !important;
+                background-color: rgba(0, 0, 0, 0.075) !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -1161,8 +1423,29 @@ async function showServerPanel(type) {
 
     if (type === "smp") {
         display.innerHTML = `
-            <div id="selected-minecraft-server-card" class="w-full">
-                <p class="text-slate-400 italic">Szerver adatok betöltése...</p>
+            <div class="server-strip-card">
+                <img src="logo.png"
+                     alt="Remény SMP"
+                     class="server-strip-logo">
+
+                <div class="server-strip-main">
+                    <div class="server-strip-title">
+                        Remény SMP
+                    </div>
+
+                    <div class="server-strip-ip">
+                        adatok betöltése...
+                    </div>
+
+                    <div class="server-strip-motd">
+                        Kérlek várj.
+                    </div>
+                </div>
+
+                <div class="server-strip-side">
+                    <div class="server-strip-online">...</div>
+                    <div class="server-strip-version">...</div>
+                </div>
             </div>
         `;
 
@@ -1170,137 +1453,111 @@ async function showServerPanel(type) {
             const response = await fetch("/api/minecraft");
             const server = await response.json();
 
-            const card = document.getElementById("selected-minecraft-server-card");
-
-            if (!response.ok || !card) {
+            if (!response.ok) {
                 display.innerHTML = `
-                    <p class="text-red-400 italic">
-                        Nem sikerült betölteni a Minecraft szerver adatait.
-                    </p>
+                    <div class="server-strip-card">
+                        <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                        <div class="server-strip-main">
+                            <div class="server-strip-title">Remény SMP</div>
+                            <div class="server-strip-ip">Nem sikerült betölteni.</div>
+                        </div>
+                    </div>
                 `;
                 return;
             }
 
             currentServerIP = `${server.ip}:${server.port}`;
 
-            card.innerHTML = `
-                <div class="hidden md:flex items-center gap-4 text-left">
-
+            display.innerHTML = `
+                <div class="server-strip-card">
                     <img src="${server.logo}"
                          alt="${server.name}"
-                         class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                         class="server-strip-logo">
 
-                    <div class="flex-1 min-w-0">
-
-                        <h2 class="text-white text-xl font-bold leading-none">
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">
                             ${server.name}
-                        </h2>
+                        </div>
 
-                        <div class="text-sky-300 font-semibold text-sm mt-1 normal-text">
+                        <div class="server-strip-ip">
                             ${server.ip}:${server.port}
                         </div>
 
-                        <div class="mt-2 text-sm leading-relaxed font-mono normal-text">
-                            ${server.motd}
+                        <div class="server-strip-motd">
+                            ${server.motd || ""}
                         </div>
-
                     </div>
 
-                    <div class="text-right flex-shrink-0 min-w-[140px]">
-
-                        <div class="text-white font-bold">
+                    <div class="server-strip-side">
+                        <div class="server-strip-online">
                             ${server.online}/${server.max}
                             <span class="text-green-400">▮▮▮</span>
                         </div>
 
-                        <div class="text-slate-400 text-sm mt-2">
+                        <div class="server-strip-version">
                             ${server.version}
                         </div>
 
                         <button onclick="copyIP()"
-                            class="mt-3 border border-green-500 text-green-400 px-3 py-1 rounded hover:bg-green-500/10 transition text-sm">
+                                class="server-strip-button border border-green-500 text-green-400 hover:bg-green-500/10">
                             IP másolása
                         </button>
-
                     </div>
-
-                </div>
-
-                <div class="md:hidden text-center">
-
-                    <img src="${server.logo}"
-                         alt="${server.name}"
-                         class="w-20 h-20 rounded-lg object-cover mx-auto mb-4">
-
-                    <h2 class="text-2xl font-bold text-white">
-                        ${server.name}
-                    </h2>
-
-                    <div class="text-sky-300 font-semibold text-sm mt-1 break-words normal-text">
-                        ${server.ip}:${server.port}
-                    </div>
-
-                    <div class="text-white font-bold mt-4">
-                        ${server.online}/${server.max} játékos online
-                    </div>
-
-                    <div class="text-slate-400 text-sm mt-1">
-                        ${server.version}
-                    </div>
-
-                    <div class="mt-4 text-sm leading-relaxed font-mono break-words normal-text">
-                        ${server.motd}
-                    </div>
-
-                    <button onclick="copyIP()"
-                        class="mt-5 border border-green-500 text-green-400 px-5 py-2 rounded-lg hover:bg-green-500/10 transition text-sm">
-                        IP másolása
-                    </button>
-
                 </div>
             `;
-
         } catch (error) {
             console.error(error);
             display.innerHTML = `
-                <p class="text-red-400 italic">
-                    Nem sikerült betölteni a Minecraft szerver adatait.
-                </p>
+                <div class="server-strip-card">
+                    <img src="logo.png" alt="Remény SMP" class="server-strip-logo">
+                    <div class="server-strip-main">
+                        <div class="server-strip-title">Remény SMP</div>
+                        <div class="server-strip-ip">API kapcsolódási hiba.</div>
+                    </div>
+                </div>
             `;
         }
 
-        // nincs automatikus legörgetés
         return;
     }
 
     if (type === "hytale") {
         display.innerHTML = `
-            <div class="w-full flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+            <div class="server-strip-card">
                 <img src="icon.png"
                      alt="Remény Hytale"
-                     class="w-24 h-24 rounded-xl object-contain profile-avatar flex-shrink-0">
+                     class="server-strip-logo object-contain">
 
-                <div class="flex-1">
-                    <h3 class="text-3xl font-black">
-                        <span class="mineforum-gradient">Remény Hytale</span>
-                    </h3>
+                <div class="server-strip-main">
+                    <div class="server-strip-title">
+                        Remény Hytale
+                    </div>
 
-                    <p class="text-slate-300 font-bold mt-2 normal-text">
+                    <div class="server-strip-ip text-yellow-300">
                         remenyhytale.shockbyte.pro
-                    </p>
+                    </div>
 
-                    <p class="text-slate-400 mt-3 leading-relaxed">
+                    <div class="server-strip-motd text-slate-300">
                         Hytale szerver hamarosan.
-                    </p>
+                    </div>
+                </div>
+
+                <div class="server-strip-side">
+                    <div class="server-strip-online text-yellow-300">
+                        készülőben
+                    </div>
+
+                    <div class="server-strip-version">
+                        Hytale
+                    </div>
 
                     <button onclick="copySpecificIP('remenyhytale.shockbyte.pro')"
-                            class="mt-5 glass-bubble glass-yellow px-5 py-2 rounded-lg font-black hover:scale-[1.02] transition">
+                            class="server-strip-button border border-yellow-400 text-yellow-300 hover:bg-yellow-400/10">
                         IP másolása
                     </button>
                 </div>
             </div>
         `;
-        // nincs automatikus legörgetés
     }
 }
 
