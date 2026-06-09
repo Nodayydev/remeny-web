@@ -4262,6 +4262,45 @@
             }
         }
 
+    
+        /* Map: iframe + új lapon opció */
+        .map-action-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .map-action-row a,
+        #open-map-new-tab-frame {
+            text-decoration: none !important;
+            color: rgba(255,255,255,0.96) !important;
+        }
+
+        .map-frame-card::after {
+            content: "Ha a map nem jelenik meg itt, használd az Új lapon gombot.";
+            display: block;
+            padding: 10px 8px 2px 8px;
+            text-align: center;
+            color: rgba(226, 232, 240, 0.72);
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 640px) {
+            .map-action-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .map-action-row .map-show-button {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+        }
+
     </style>
 </head>
 
@@ -4594,21 +4633,41 @@
                         Ha biztosan látni akarod, nyomd meg a gombot.
                     </p>
 
-                    <button type="button"
-                            id="show-map-button"
-                            class="map-show-button glass-bubble glass-cyan rounded-2xl px-6 py-3 font-black hover:scale-105 transition">
-                        Látni akarom a mapot
-                    </button>
+                    <div class="map-action-row">
+                        <button type="button"
+                                id="show-map-button"
+                                class="map-show-button glass-bubble glass-cyan rounded-2xl px-6 py-3 font-black hover:scale-105 transition">
+                            Oldalon belül megnyitom
+                        </button>
+
+                        <a id="open-map-new-tab-warning"
+                           href="http://202.36.95.171:22097"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="map-show-button glass-bubble rounded-2xl px-6 py-3 font-black hover:scale-105 transition">
+                            Megnyitás új lapon
+                        </a>
+                    </div>
                 </div>
 
                 <div id="map-frame-card" class="map-frame-card glass-bubble glass-cyan rounded-3xl p-3 hidden">
                     <div class="flex items-center justify-between gap-3 px-3 pb-3">
                         <div class="font-black remeny-title-gradient">Remény map</div>
-                        <button type="button"
-                                id="hide-map-button"
-                                class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
-                            Bezárás
-                        </button>
+                        <div class="flex items-center gap-2">
+                            <a id="open-map-new-tab-frame"
+                               href="http://202.36.95.171:22097"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
+                                Új lapon
+                            </a>
+
+                            <button type="button"
+                                    id="hide-map-button"
+                                    class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
+                                Bezárás
+                            </button>
+                        </div>
                     </div>
 
                     <iframe src="https://202.36.95.171:22097" width="100%" height="700" style="border:none;border-radius:20px;" loading="lazy">
