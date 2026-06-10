@@ -3782,8 +3782,7 @@
 
     
         /* Remény gradient szöveg egységesítése */
-        .remeny-title-gradient,
-        .server-strip-title {
+        .remeny-title-gradient {
             background: linear-gradient(90deg, #67e8f9, #3b82f6, #8b5cf6) !important;
             -webkit-background-clip: text !important;
             background-clip: text !important;
@@ -3794,6 +3793,24 @@
 
         .server-strip-title {
             font-weight: 900 !important;
+        }
+
+        .server-strip-title-smp {
+            background: linear-gradient(90deg, #9bf6ff 0%, #59d8ff 38%, #5b7cff 72%, #8b5cf6 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+            -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0 16px rgba(91, 124, 255, 0.22) !important;
+        }
+
+        .server-strip-title-hytale {
+            background: linear-gradient(90deg, #ffffff 0%, #fff8d9 28%, #f8df7f 58%, #d6a62b 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+            -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0 14px rgba(214, 166, 43, 0.24) !important;
         }
 
     
@@ -5581,7 +5598,8 @@
 
   @media (max-width: 640px) {
     #server-display .server-strip-title {
-      font-size: 0.78rem !important;
+      font-size: 0.74rem !important;
+      line-height: 1.06 !important;
     }
 
     #server-display .server-strip-ip {
@@ -5666,8 +5684,9 @@
   }
 
   #server-display .server-strip-title {
-    font-size: 0.88rem !important;
-    line-height: 1.1 !important;
+    font-size: 0.82rem !important;
+    line-height: 1.08 !important;
+    letter-spacing: 0.01em !important;
   }
 
   #server-display .server-strip-ip {
@@ -5783,7 +5802,8 @@
     }
 
     #server-display .server-strip-title {
-      font-size: 0.78rem !important;
+      font-size: 0.74rem !important;
+      line-height: 1.06 !important;
     }
 
     #server-display .server-strip-ip {
@@ -7758,17 +7778,17 @@
             motd: "Block ami a TIÉD marad!",
             version: "Paper 26.1.2",
             online: 0,
-            max: 69
+            max: 777
         },
         hytale: {
             name: "Remény Hytale",
             ip: "remenyhytale.shockbyte.pro",
             port: 25838,
             logo: "hytale-logo.png",
-            motd: "Hytale szerver hamarosan.",
-            version: "Hytale",
-            online: "készülőben",
-            max: ""
+            motd: "Hivatalos Hytale szerver",
+            version: "Build Alpha",
+            online: 0,
+            max: 777
         }
     };
 
@@ -7893,11 +7913,10 @@
     }
 
     function onlineMarkup(data) {
-        if (data.online === "készülőben") {
-            return '<span style="color:#ffe16c;font-size:0.95rem;font-weight:900">készülőben</span>';
-        }
+        const online = Number.isFinite(Number(data.online)) ? Number(data.online) : 0;
+        const max = Number.isFinite(Number(data.max)) && Number(data.max) > 0 ? Number(data.max) : 777;
 
-        return escapeHtml(data.online ?? 0) + "/" + escapeHtml(data.max ?? 0) +
+        return escapeHtml(online) + "/" + escapeHtml(max) +
             ' <span class="server-strip-bars"><span></span><span></span><span></span></span>';
     }
 
@@ -7911,7 +7930,7 @@
                     <div class="server-long-main">
                         <img src="${escapeHtml(data.logo || "logo.png")}" alt="${escapeHtml(data.name)}" class="server-strip-logo">
                         <div class="server-long-text">
-                            <div class="server-strip-title remeny-title-gradient">${escapeHtml(data.name)}</div>
+                            <div class="server-strip-title ${escapeHtml(data.titleClass || '')}">${escapeHtml(data.name)}</div>
                             <div class="server-strip-ip" title="${escapeHtml(data.address)}">${escapeHtml(data.address)}</div>
                             ${data.motd ? `<div class="server-strip-motd">${escapeHtml(data.motd)}</div>` : ""}
                         </div>
@@ -7982,7 +8001,8 @@
                 motd: raw.motd || fallback[type].motd,
                 version: raw.version || fallback[type].version,
                 online: raw.online ?? fallback[type].online,
-                max: raw.max ?? fallback[type].max
+                max: raw.max ?? fallback[type].max,
+                titleClass: type === "hytale" ? "server-strip-title-hytale" : "server-strip-title-smp"
             };
 
             renderServer(data);
