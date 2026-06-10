@@ -4887,6 +4887,59 @@
   }
 </style>
 
+
+<style id="server-config-and-mobile-ranks-fix">
+  /* Telefonon a rangok teljesen látszódjanak, ne lógjanak ki félbe */
+  #ranks-container {
+    width: 100% !important;
+    max-width: min(100%, 1100px) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    justify-content: flex-start !important;
+    padding-left: max(14px, env(safe-area-inset-left)) !important;
+    padding-right: max(14px, env(safe-area-inset-right)) !important;
+    scroll-padding-left: 14px !important;
+    scroll-padding-right: 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  #ranks-container button {
+    flex: 0 0 auto !important;
+    min-width: 128px !important;
+  }
+
+  @media (max-width: 640px) {
+    #discord,
+    section#discord {
+      overflow: visible !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    #ranks-container {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      gap: 10px !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: calc(50% - 50vw) !important;
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+      justify-content: flex-start !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    #ranks-container button {
+      min-width: 118px !important;
+      max-width: 150px !important;
+      flex: 0 0 126px !important;
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+  }
+</style>
+
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans -transparent mode-glass">
@@ -8146,6 +8199,300 @@ setInterval(loadServerCard, 30000);
     } else {
         ensureMount(); bindButtons(); showPlaceholder();
     }
+})();
+</script>
+
+
+<script id="server-config-reader-final">
+(function () {
+    let openedType = null;
+
+    function byId(id) {
+        return document.getElementById(id);
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;");
+    }
+
+    function stripHtml(value) {
+        const div = document.createElement("div");
+        div.innerHTML = value || "";
+        return (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
+    }
+
+    async function getServerConfig() {
+        try {
+            const response = await fetch("/api/server-config", { cache: "no-store" });
+            if (!response.ok) throw new Error("server-config API hiba");
+            const config = await response.json();
+
+            return {
+                name: config.name || "Remény SMP",
+                ip: config.ip || "remenymc.shockbyte.pro",
+                port: config.port || "25399",
+                logo: config.logo || "logo.png"
+            };
+        } catch (error) {
+            console.warn("Nem sikerült betölteni a /api/server-config adatot:", error);
+            return {
+                name: "Remény SMP",
+                ip: "remenymc.shockbyte.pro",
+                port: "25399",
+                logo: "logo.png"
+            };
+        }
+    }
+
+    async function getMinecraftLiveData() {
+        try {
+            const response = await fetch("/api/minecraft", { cache: "no-store" });
+            if (!response.ok) throw new Error("minecraft API hiba");
+            return await response.json();
+        } catch (error) {
+            console.warn("Nem sikerült betölteni a /api/minecraft adatot:", error);
+            return {};
+        }
+    }
+
+    function normalizeIp(ip, port) {
+        if (!ip) return "";
+        const ipText = String(ip).trim();
+        const portText = String(port || "").trim();
+
+        if (!portText || ipText.includes(":")) return ipText;
+        return `${ipText}:${portText}`;
+    }
+
+    async function getSmpData() {
+        const config = await getServerConfig();
+        const live = await getMinecraftLiveData();
+
+        const fullIp = normalizeIp(config.ip, config.port);
+
+        return {
+            type: "smp",
+            title: config.name || live.name || "Remény SMP",
+            ip: fullIp || "remenymc.shockbyte.pro:25399",
+            motd: stripHtml(live.motd || "[1.21 + REMÉNYSMP] [26.1 +]"),
+            version: live.version || "Paper 26.1.2",
+            online: Number(live.online) || 0,
+            max: Number(live.max) || 69,
+            logo: config.logo || live.logo || "logo.png"
+        };
+    }
+
+    function getHytaleData() {
+        return {
+            type: "hytale",
+            title: "Remény Hytale",
+            ip: "Hamarosan",
+            motd: "Hytale szerver hamarosan.",
+            version: "Hytale",
+            online: "készülőben",
+            max: "",
+            logo: "icon.png"
+        };
+    }
+
+    function ensureServerArea() {
+        let servers = byId("servers");
+
+        if (!servers) {
+            servers = document.createElement("section");
+            servers.id = "servers";
+            servers.className = "pt-2 pb-6";
+
+            const hero = document.querySelector(".hero-card") || document.querySelector("main");
+            if (hero && hero.parentNode) {
+                hero.parentNode.insertAdjacentElement("afterend", servers);
+            } else {
+                document.body.appendChild(servers);
+            }
+        }
+
+        let placeholder = byId("server-placeholder");
+        if (!placeholder) {
+            placeholder = document.createElement("div");
+            placeholder.id = "server-placeholder";
+            placeholder.className = "remeny-default-placeholder glass-bubble glass-cyan rounded-2xl";
+            placeholder.innerHTML = "<strong>Válassz szervert</strong> — kattints az <strong>SMP</strong> vagy <strong>Hytale</strong> gombra a szerver adataihoz.";
+            servers.appendChild(placeholder);
+        } else if (placeholder.parentElement !== servers) {
+            servers.appendChild(placeholder);
+        }
+
+        let display = byId("server-display");
+        if (!display) {
+            display = document.createElement("div");
+            display.id = "server-display";
+            display.className = "hidden";
+            servers.appendChild(display);
+        } else if (display.parentElement !== servers) {
+            servers.appendChild(display);
+        }
+
+        return display;
+    }
+
+    function showPlaceholder() {
+        const ph = byId("server-placeholder");
+        if (ph) ph.classList.remove("hidden", "is-hidden");
+    }
+
+    function hidePlaceholder() {
+        const ph = byId("server-placeholder");
+        if (ph) ph.classList.add("is-hidden");
+    }
+
+    function onlineMarkup(data) {
+        if (data.type === "hytale") {
+            return '<span style="color:#ffe16c;font-size:1.1rem;font-weight:900">készülőben</span>';
+        }
+
+        return `${escapeHtml(data.online)}/${escapeHtml(data.max || 0)} <span class="server-strip-bars"><span></span><span></span><span></span></span>`;
+    }
+
+    function extraMarkup(data) {
+        if (data.type === "hytale") {
+            return '<div class="server-strip-extra"><span>hamarosan nyitunk</span></div>';
+        }
+
+        return '<div class="server-strip-extra"><span>[1.21 +</span><span class="server-strip-tag">REMÉNYSMP</span><span>]</span><span>[26.1 +</span><span>]</span></div>';
+    }
+
+    function buttonMarkup(data) {
+        if (data.type === "hytale") {
+            return "";
+        }
+
+        return `<button type="button" class="server-strip-button" data-copy-server-ip="${escapeHtml(data.ip)}">IP másolása</button>`;
+    }
+
+    function renderServer(data) {
+        const display = ensureServerArea();
+
+        display.innerHTML = `
+            <div class="server-strip-card">
+                <div class="server-long-layout">
+                    <div class="server-long-main">
+                        <img src="${escapeHtml(data.logo || "logo.png")}" alt="${escapeHtml(data.title)}" class="server-strip-logo">
+                        <div class="server-long-text">
+                            <div class="server-strip-title remeny-title-gradient">${escapeHtml(data.title)}</div>
+                            <div class="server-strip-ip">${escapeHtml(data.ip)}</div>
+                            ${extraMarkup(data)}
+                            <div class="server-strip-motd">${escapeHtml(data.motd || "")}</div>
+                        </div>
+                    </div>
+
+                    <div class="server-long-side">
+                        <div class="server-strip-online">${onlineMarkup(data)}</div>
+                        <div class="server-strip-version">${escapeHtml(data.version || "")}</div>
+                        ${buttonMarkup(data)}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        display.classList.remove("hidden");
+        display.dataset.openServerType = data.type;
+        openedType = data.type;
+        hidePlaceholder();
+
+        const copyButton = display.querySelector("[data-copy-server-ip]");
+        if (copyButton) {
+            copyButton.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const ip = copyButton.getAttribute("data-copy-server-ip");
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(ip).catch(function () {});
+                }
+
+                alert("IP kimásolva: " + ip);
+            };
+        }
+    }
+
+    function closeServer() {
+        const display = ensureServerArea();
+        display.innerHTML = "";
+        display.classList.add("hidden");
+        display.dataset.openServerType = "";
+        openedType = null;
+        showPlaceholder();
+    }
+
+    async function toggleServer(type) {
+        const display = ensureServerArea();
+        const currentType = display.dataset.openServerType || openedType;
+        const isOpen = !display.classList.contains("hidden") && display.innerHTML.trim().length > 0;
+
+        if (isOpen && currentType === type) {
+            closeServer();
+            return;
+        }
+
+        if (type === "hytale") {
+            renderServer(getHytaleData());
+        } else {
+            renderServer(await getSmpData());
+        }
+    }
+
+    window.showServerPanel = function (type) {
+        toggleServer(type === "hytale" ? "hytale" : "smp");
+    };
+
+    function bindServerButtons() {
+        document.querySelectorAll(".hero-btn-smp").forEach(function (button) {
+            button.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleServer("smp");
+            };
+        });
+
+        document.querySelectorAll(".hero-btn-hytale").forEach(function (button) {
+            button.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleServer("hytale");
+            };
+        });
+    }
+
+    document.addEventListener("click", function (event) {
+        const button = event.target.closest(".hero-btn-smp, .hero-btn-hytale");
+        if (!button) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+
+        toggleServer(button.classList.contains("hero-btn-hytale") ? "hytale" : "smp");
+    }, true);
+
+    function boot() {
+        ensureServerArea();
+        bindServerButtons();
+        showPlaceholder();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
+
+    setTimeout(bindServerButtons, 600);
+    setTimeout(bindServerButtons, 1600);
 })();
 </script>
 
