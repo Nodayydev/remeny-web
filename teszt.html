@@ -5931,6 +5931,69 @@
   }
 </style>
 
+
+<style id="motd-colors-and-glass-transparent-final">
+  /* Glass: sokkal átlátszóbb minden buborékon */
+  body.mode-glass .glass-bubble,
+  body.mode-glass .hero-card,
+  body.mode-glass .hero-card-inner,
+  body.mode-glass .hero-btn-smp,
+  body.mode-glass .hero-btn-hytale,
+  body.mode-glass #server-placeholder,
+  body.mode-glass #server-display .server-strip-card,
+  body.mode-glass #login-panel,
+  body.mode-glass #discord-panel,
+  body.mode-glass #members-display,
+  body.mode-glass .member-card,
+  body.mode-glass .remeny-default-placeholder,
+  body.mode-glass .social-grid-final a,
+  body.mode-glass #ranks-container button,
+  body.mode-glass .map-warning-card,
+  body.mode-glass .map-frame-card,
+  body.mode-glass .remeny-ai-note {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.035), rgba(255,255,255,0.006)),
+      rgba(2, 8, 26, 0.055) !important;
+    border-color: rgba(220, 245, 255, 0.10) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(155%) brightness(1.08) !important;
+    backdrop-filter: blur(20px) saturate(155%) brightness(1.08) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.12),
+      inset 0 -1px 0 rgba(255,255,255,0.02),
+      0 10px 28px rgba(0,0,0,0.12) !important;
+  }
+
+  body.mode-glass .hero-card,
+  body.mode-glass #server-display .server-strip-card {
+    background:
+      radial-gradient(circle at 18% 10%, rgba(255,255,255,0.09), transparent 30%),
+      rgba(2, 8, 26, 0.045) !important;
+  }
+
+  /* MOTD színek */
+  #server-display .server-strip-motd,
+  #server-display .server-strip-motd * {
+    font-family: inherit !important;
+    text-transform: none !important;
+    font-variant: normal !important;
+    font-variant-caps: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  #server-display .server-strip-motd {
+    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    color: rgba(235, 245, 255, 0.96) !important;
+  }
+
+  #server-display .server-strip-motd span {
+    font-weight: 850 !important;
+  }
+</style>
+
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans -transparent mode-glass">
@@ -8793,6 +8856,273 @@
         setTimeout(observeMembers, 500);
         setTimeout(normalizeRankState, 700);
         setTimeout(normalizeRankState, 1600);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
+})();
+</script>
+
+
+<script id="motd-colors-and-glass-transparent-final-script">
+(function () {
+    const mcColors = {
+        "0": "#000000",
+        "1": "#0000AA",
+        "2": "#00AA00",
+        "3": "#00AAAA",
+        "4": "#AA0000",
+        "5": "#AA00AA",
+        "6": "#FFAA00",
+        "7": "#AAAAAA",
+        "8": "#555555",
+        "9": "#5555FF",
+        "a": "#55FF55",
+        "b": "#55FFFF",
+        "c": "#FF5555",
+        "d": "#FF55FF",
+        "e": "#FFFF55",
+        "f": "#FFFFFF"
+    };
+
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;");
+    }
+
+    function decodeEntities(value) {
+        const textarea = document.createElement("textarea");
+        textarea.innerHTML = String(value || "");
+        return textarea.value;
+    }
+
+    function sanitizeMotdHtml(value) {
+        const raw = String(value || "");
+
+        const template = document.createElement("template");
+        template.innerHTML = raw;
+
+        const allowedTags = new Set(["SPAN", "BR", "B", "STRONG", "I", "EM"]);
+        const allowedStyle = new Set(["color", "font-weight", "font-style", "text-shadow"]);
+
+        function clean(node) {
+            Array.from(node.childNodes).forEach(function (child) {
+                if (child.nodeType === Node.ELEMENT_NODE) {
+                    if (!allowedTags.has(child.tagName)) {
+                        child.replaceWith(document.createTextNode(child.textContent || ""));
+                        return;
+                    }
+
+                    Array.from(child.attributes).forEach(function (attr) {
+                        const name = attr.name.toLowerCase();
+
+                        if (name === "style") {
+                            const safe = [];
+
+                            attr.value.split(";").forEach(function (part) {
+                                const pieces = part.split(":");
+                                if (pieces.length < 2) return;
+
+                                const key = pieces[0].trim().toLowerCase();
+                                const val = pieces.slice(1).join(":").trim();
+
+                                if (!allowedStyle.has(key)) return;
+                                if (/url|expression|javascript/i.test(val)) return;
+
+                                safe.push(key + ": " + val);
+                            });
+
+                            if (safe.length) {
+                                child.setAttribute("style", safe.join("; "));
+                            } else {
+                                child.removeAttribute("style");
+                            }
+                        } else {
+                            child.removeAttribute(attr.name);
+                        }
+                    });
+
+                    clean(child);
+                }
+            });
+        }
+
+        clean(template.content);
+        return template.innerHTML;
+    }
+
+    function minecraftCodesToHtml(value) {
+        let text = decodeEntities(value || "");
+        text = text.replace(/&([0-9a-frklmnor])/gi, "§$1");
+
+        let html = "";
+        let open = false;
+        let currentColor = "#FFFFFF";
+        let bold = false;
+        let italic = false;
+
+        function openSpan() {
+            const style = [
+                "color:" + currentColor,
+                bold ? "font-weight:900" : "font-weight:800",
+                italic ? "font-style:italic" : "font-style:normal"
+            ].join(";");
+
+            html += '<span style="' + style + '">';
+            open = true;
+        }
+
+        function closeSpan() {
+            if (open) {
+                html += "</span>";
+                open = false;
+            }
+        }
+
+        openSpan();
+
+        for (let i = 0; i < text.length; i++) {
+            const ch = text[i];
+
+            if ((ch === "§" || ch === "&") && i + 1 < text.length) {
+                const code = text[i + 1].toLowerCase();
+                i++;
+
+                if (mcColors[code]) {
+                    closeSpan();
+                    currentColor = mcColors[code];
+                    bold = false;
+                    italic = false;
+                    openSpan();
+                    continue;
+                }
+
+                if (code === "l") {
+                    closeSpan();
+                    bold = true;
+                    openSpan();
+                    continue;
+                }
+
+                if (code === "o") {
+                    closeSpan();
+                    italic = true;
+                    openSpan();
+                    continue;
+                }
+
+                if (code === "r") {
+                    closeSpan();
+                    currentColor = "#FFFFFF";
+                    bold = false;
+                    italic = false;
+                    openSpan();
+                    continue;
+                }
+
+                continue;
+            }
+
+            if (ch === "\n") {
+                html += "<br>";
+            } else {
+                html += escapeHtml(ch);
+            }
+        }
+
+        closeSpan();
+        return html;
+    }
+
+    function motdToColoredHtml(value) {
+        const raw = String(value || "");
+
+        if (!raw.trim()) {
+            return "Block ami a TIÉD marad!";
+        }
+
+        const decoded = decodeEntities(raw);
+
+        // Backend HTML MOTD esetén
+        if (decoded.includes("<span") || decoded.includes("<br") || decoded.includes("<b") || decoded.includes("<strong")) {
+            return sanitizeMotdHtml(decoded);
+        }
+
+        // Minecraft § vagy & színkódok esetén
+        if (/[§&][0-9a-frklmnor]/i.test(decoded)) {
+            return minecraftCodesToHtml(decoded);
+        }
+
+        return escapeHtml(decoded).replace(/\n/g, "<br>");
+    }
+
+    async function fetchLiveMotd() {
+        try {
+            const response = await fetch("/api/minecraft", { cache: "no-store" });
+            if (!response.ok) throw new Error("minecraft api hiba");
+
+            const data = await response.json();
+
+            // A legfontosabb: html legyen az első, különben a clean kiszedi a színeket.
+            return data.motdHtml || data.motd_html || data.htmlMotd || data.html || data.motd || data.rawMotd || "";
+        } catch (error) {
+            return "";
+        }
+    }
+
+    async function applyMotdColors() {
+        const display = document.getElementById("server-display");
+        if (!display || display.classList.contains("hidden")) return;
+
+        if ((display.dataset.openServerType || "").toLowerCase() !== "smp") return;
+
+        const motd = display.querySelector(".server-strip-motd");
+        if (!motd) return;
+
+        let raw = motd.getAttribute("data-raw-motd") || motd.innerHTML || motd.textContent || "";
+        const live = await fetchLiveMotd();
+
+        if (live) raw = live;
+
+        motd.innerHTML = motdToColoredHtml(raw);
+    }
+
+    function observeServer() {
+        const display = document.getElementById("server-display");
+        if (!display || display.__motdColorObserverFinal) return;
+
+        display.__motdColorObserverFinal = true;
+
+        const observer = new MutationObserver(function () {
+            setTimeout(applyMotdColors, 60);
+            setTimeout(applyMotdColors, 600);
+        });
+
+        observer.observe(display, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ["class", "data-open-server-type"]
+        });
+    }
+
+    function boot() {
+        observeServer();
+        applyMotdColors();
+
+        document.addEventListener("click", function (event) {
+            if (!event.target.closest(".hero-btn-smp")) return;
+
+            setTimeout(applyMotdColors, 150);
+            setTimeout(applyMotdColors, 800);
+            setTimeout(applyMotdColors, 1800);
+        }, true);
     }
 
     if (document.readyState === "loading") {
