@@ -4416,6 +4416,54 @@
             border: none !important;
         }
 
+    
+        /* HARD FIX: SMP/Hytale gomb működés és szerver panel */
+        #server-display {
+            width: 100%;
+            max-width: 1050px;
+            margin: 18px auto 0 auto;
+        }
+
+        #server-display.hidden {
+            display: none !important;
+        }
+
+        #server-placeholder.is-hidden {
+            display: none !important;
+        }
+
+        .hero-btn-smp,
+        .hero-btn-hytale {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            user-select: none !important;
+            position: relative !important;
+            z-index: 5 !important;
+        }
+
+        .server-strip-card {
+            width: 100%;
+        }
+
+    
+        /* Mojang leírás: sima dőlt szöveg, nem small caps */
+        .remeny-disclaimer,
+        .remeny-disclaimer strong {
+            text-transform: none !important;
+            font-variant: normal !important;
+            font-variant-caps: normal !important;
+            letter-spacing: normal !important;
+            font-style: italic !important;
+        }
+
+        .remeny-disclaimer {
+            font-weight: 500 !important;
+        }
+
+        .remeny-disclaimer strong {
+            font-weight: 700 !important;
+        }
+
     </style>
 </head>
 
@@ -4487,7 +4535,7 @@
     <div class="flex items-start justify-between gap-4">
         <div>
             <h3 class="text-2xl font-black tracking-wide">
-                Írd be a játékos nevet
+                Írd be a játékos nevét
             </h3>
         </div>
 
@@ -4505,23 +4553,23 @@
 
         <div class="flex-1">
             <div id="player-name-display" class="text-white font-black text-lg normal-case">
-                Vendég játékos
+                Vendég
             </div>
             <div id="player-status" class="text-slate-400 text-sm">
-                Nincs betöltve
+                Nincs betöltve.
             </div>
         </div>
     </div>
 
     <div class="mt-5">
         <label for="minecraft-name" class="block text-sm text-slate-300 font-black mb-2">
-            Minecraft név
+            Tudakozó
         </label>
 
         <div class="flex gap-2">
             <input id="minecraft-name"
                    type="text"
-                   placeholder="pl. Never"
+                   placeholder="Ird ide a nevet."
                    class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-300 font-bold normal-case" autocomplete="off" spellcheck="false">
 
             <button id="player-load-button" onclick="loadPlayerStats()"
@@ -4576,7 +4624,9 @@
                 <div class="flex flex-wrap justify-center gap-4">
                     <button type="button" class="hero-btn-smp glass-bubble glass-cyan" onclick="showServerPanel('smp')"><span>SMP</span></button>
                     <button type="button" class="hero-btn-hytale glass-bubble glass-yellow" onclick="showServerPanel('hytale')"><span>Hytale</span></button>
-                </div>
+                
+                <div id="server-display" class="hidden mt-6 max-w-5xl mx-auto"></div>
+</div>
 
             </div>
         </div>
@@ -7259,24 +7309,24 @@ setInterval(loadServerCard, 30000);
 })();
 </script>
 
-<script id="remeny-buttons-and-outside-final">
+<script id="remeny-smp-hytale-capture-final">
 (function () {
-    let openedServerType = null;
+    let openedType = null;
 
-    const SERVER_DATA = {
+    const DATA = {
         smp: {
             title: "Remény SMP",
-            icon: "icon.png",
             ip: "remenymc.shockbyte.pro:25399",
             status: "Minecraft szerver",
-            motd: "Túlélő SMP közösségi élmény"
+            motd: "Túlélő SMP közösségi élmény",
+            icon: "icon.png"
         },
         hytale: {
             title: "Remény Hytale",
-            icon: "icon.png",
             ip: "Hamarosan",
             status: "Hytale szerver",
-            motd: "Hamarosan elérhető"
+            motd: "Hamarosan elérhető",
+            icon: "icon.png"
         }
     };
 
@@ -7284,81 +7334,65 @@ setInterval(loadServerCard, 30000);
         return document.getElementById(id);
     }
 
-    function isHidden(el) {
-        return !el || el.classList.contains("hidden") || el.classList.contains("is-hidden");
-    }
-
-    function show(el) {
-        if (!el) return;
-        el.classList.remove("hidden", "is-hidden");
-    }
-
-    function hide(el) {
-        if (!el) return;
-        el.classList.add("hidden");
-    }
-
-    function containsAny(target, selectors) {
-        return selectors.some(function (selector) {
-            try {
-                const elements = document.querySelectorAll(selector);
-                return Array.from(elements).some(function (el) {
-                    return el && el.contains(target);
-                });
-            } catch (e) {
-                return false;
-            }
-        });
-    }
-
-    function getServerDisplay() {
+    function getDisplay() {
         return byId("server-display");
     }
 
-    function getServerPlaceholder() {
+    function getPlaceholder() {
         return byId("server-placeholder");
     }
 
-    function showServerPlaceholder() {
-        const ph = getServerPlaceholder();
+    function showPlaceholder() {
+        const ph = getPlaceholder();
         if (ph) ph.classList.remove("hidden", "is-hidden");
     }
 
-    function hideServerPlaceholder() {
-        const ph = getServerPlaceholder();
+    function hidePlaceholder() {
+        const ph = getPlaceholder();
         if (ph) ph.classList.add("is-hidden");
     }
 
-    function copyServerIP(text) {
-        if (!text || text === "Hamarosan") return;
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(function () {
-                alert("IP kimásolva!");
-            }).catch(function () {
-                alert(text);
-            });
-        } else {
-            alert(text);
-        }
-    }
-
-    function closeServerPanel() {
-        const display = getServerDisplay();
+    function closeServer() {
+        const display = getDisplay();
         if (!display) return;
 
         display.classList.add("hidden");
         display.innerHTML = "";
         display.dataset.openServerType = "";
-        openedServerType = null;
-        showServerPlaceholder();
+        openedType = null;
+        showPlaceholder();
     }
 
-    function renderServerPanel(type) {
-        const display = getServerDisplay();
-        if (!display) return;
+    function copyIp(ip) {
+        if (!ip || ip === "Hamarosan") return;
 
-        const server = SERVER_DATA[type] || SERVER_DATA.smp;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(ip).then(function () {
+                alert("IP kimásolva!");
+            }).catch(function () {
+                alert(ip);
+            });
+        } else {
+            alert(ip);
+        }
+    }
+
+    function openServer(type) {
+        const display = getDisplay();
+        if (!display) {
+            alert("Hiányzik a server-display elem a HTML-ből.");
+            return;
+        }
+
+        const current = display.dataset.openServerType || openedType;
+        const isOpen = !display.classList.contains("hidden") && display.innerHTML.trim().length > 0;
+
+        if (isOpen && current === type) {
+            closeServer();
+            return;
+        }
+
+        const server = DATA[type] || DATA.smp;
 
         display.innerHTML = `
             <div class="server-strip-card glass-bubble glass-cyan rounded-2xl p-4">
@@ -7389,7 +7423,7 @@ setInterval(loadServerCard, 30000);
                         ${server.ip !== "Hamarosan" ? `
                             <button type="button"
                                     class="glass-bubble rounded-xl px-4 py-2 text-sm font-black hover:scale-105 transition"
-                                    onclick="window.copyServerIPFinal && window.copyServerIPFinal('${server.ip}')">
+                                    data-copy-server-ip="${server.ip}">
                                 IP másolása
                             </button>
                         ` : ""}
@@ -7400,185 +7434,94 @@ setInterval(loadServerCard, 30000);
 
         display.classList.remove("hidden");
         display.dataset.openServerType = type;
-        openedServerType = type;
-        hideServerPlaceholder();
+        openedType = type;
+        hidePlaceholder();
 
         display.classList.remove("panel-open-anim");
         void display.offsetWidth;
         display.classList.add("panel-open-anim");
 
+        const copyButton = display.querySelector("[data-copy-server-ip]");
+        if (copyButton) {
+            copyButton.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                copyIp(copyButton.getAttribute("data-copy-server-ip"));
+            };
+        }
+
         if (window.initLiquidHover) {
-            setTimeout(window.initLiquidHover, 40);
+            setTimeout(window.initLiquidHover, 50);
         }
     }
 
-    window.copyServerIPFinal = copyServerIP;
+    function detectServerButton(target) {
+        const el = target.closest("button, a, .hero-btn-smp, .hero-btn-hytale");
+        if (!el) return null;
 
+        if (el.classList.contains("hero-btn-smp")) return "smp";
+        if (el.classList.contains("hero-btn-hytale")) return "hytale";
+
+        const txt = (el.textContent || "").trim().toLowerCase();
+        if (txt === "smp") return "smp";
+        if (txt.includes("hytale")) return "hytale";
+
+        return null;
+    }
+
+    // Globális függvény is legyen, ha bármi onclick ezt hívja.
     window.showServerPanel = function (type) {
-        const display = getServerDisplay();
-        if (!display) return;
-
-        const currentType = display.dataset.openServerType || openedServerType;
-        const isOpen = !display.classList.contains("hidden") && display.innerHTML.trim().length > 0;
-
-        if (isOpen && currentType === type) {
-            closeServerPanel();
-            return;
-        }
-
-        renderServerPanel(type);
+        openServer(type === "hytale" ? "hytale" : "smp");
     };
 
-    function findServerButtons() {
-        let smp = document.querySelector(".hero-btn-smp");
-        let hytale = document.querySelector(".hero-btn-hytale");
+    window.copyServerIPFinal = copyIp;
 
-        // Fallback: keressük szöveg alapján, ha a class valamiért nem jó
-        const allButtons = Array.from(document.querySelectorAll("button, a"));
-        if (!smp) {
-            smp = allButtons.find(function (el) {
-                return (el.textContent || "").trim().toLowerCase() === "smp";
-            });
-        }
-
-        if (!hytale) {
-            hytale = allButtons.find(function (el) {
-                return (el.textContent || "").trim().toLowerCase().includes("hytale");
-            });
-        }
-
-        return { smp, hytale };
-    }
-
-    function bindServerButtons() {
-        const buttons = findServerButtons();
-
-        if (buttons.smp) {
-            buttons.smp.type = "button";
-            buttons.smp.setAttribute("data-server-button", "smp");
-            buttons.smp.onclick = function (event) {
+    function bindDirect() {
+        document.querySelectorAll(".hero-btn-smp").forEach(function (btn) {
+            btn.setAttribute("data-remeny-server", "smp");
+            btn.onclick = function (event) {
                 event.preventDefault();
                 event.stopPropagation();
-                window.showServerPanel("smp");
+                openServer("smp");
             };
-        }
+        });
 
-        if (buttons.hytale) {
-            buttons.hytale.type = "button";
-            buttons.hytale.setAttribute("data-server-button", "hytale");
-            buttons.hytale.onclick = function (event) {
+        document.querySelectorAll(".hero-btn-hytale").forEach(function (btn) {
+            btn.setAttribute("data-remeny-server", "hytale");
+            btn.onclick = function (event) {
                 event.preventDefault();
                 event.stopPropagation();
-                window.showServerPanel("hytale");
+                openServer("hytale");
             };
-        }
+        });
 
-        const display = getServerDisplay();
+        const display = getDisplay();
         if (display && (display.classList.contains("hidden") || !display.innerHTML.trim())) {
-            showServerPlaceholder();
+            showPlaceholder();
         }
     }
 
-    function findLoginTriggers() {
-        const triggers = [];
-        const selectors = [
-            "#login-button",
-            "#profile-button",
-            "[onclick*='toggleLoginPanel']",
-            "[onclick*='login-panel']",
-            ".login-button",
-            ".profile-button",
-            ".top-widget-button"
-        ];
+    // Capture fázis: akkor is működik, ha régi onclick vagy más script rossz.
+    document.addEventListener("click", function (event) {
+        const type = detectServerButton(event.target);
+        if (!type) return;
 
-        selectors.forEach(function (selector) {
-            document.querySelectorAll(selector).forEach(function (el) {
-                const text = (el.textContent || "").toLowerCase();
-                const label = ((el.getAttribute("title") || "") + " " + (el.getAttribute("aria-label") || "")).toLowerCase();
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
 
-                if (
-                    selector !== ".top-widget-button" ||
-                    text.includes("👤") ||
-                    label.includes("profil") ||
-                    label.includes("login") ||
-                    label.includes("bejelent")
-                ) {
-                    triggers.push(el);
-                }
-            });
-        });
-
-        return Array.from(new Set(triggers));
-    }
-
-    function closeFloatingPanels(exceptTarget) {
-        const loginPanel = byId("login-panel");
-        const themeMenu = byId("theme-menu");
-        const discordPanel = byId("discord-panel");
-
-        if (
-            loginPanel &&
-            !isHidden(loginPanel) &&
-            !loginPanel.contains(exceptTarget) &&
-            !findLoginTriggers().some(function (el) { return el.contains(exceptTarget); })
-        ) {
-            hide(loginPanel);
-        }
-
-        if (
-            themeMenu &&
-            !isHidden(themeMenu) &&
-            !themeMenu.contains(exceptTarget) &&
-            !containsAny(exceptTarget, ["#theme-toggle-button", ".theme-control"])
-        ) {
-            hide(themeMenu);
-        }
-
-        if (
-            discordPanel &&
-            !isHidden(discordPanel) &&
-            !discordPanel.contains(exceptTarget) &&
-            !containsAny(exceptTarget, ["#discord-button", ".discord-button"])
-        ) {
-            hide(discordPanel);
-        }
-    }
-
-    function bindOutsideClose() {
-        if (window.__remenyOutsideFinalBound) return;
-        window.__remenyOutsideFinalBound = true;
-
-        document.addEventListener("click", function (event) {
-            closeFloatingPanels(event.target);
-        });
-
-        document.addEventListener("touchend", function (event) {
-            closeFloatingPanels(event.target);
-        });
-
-        document.addEventListener("keydown", function (event) {
-            if (event.key !== "Escape") return;
-            hide(byId("login-panel"));
-            hide(byId("theme-menu"));
-            hide(byId("discord-panel"));
-        });
-    }
-
-    function boot() {
-        bindServerButtons();
-        bindOutsideClose();
-
-        // Ha más régi script később újraírná az onclickeket, visszakötjük.
-        setTimeout(bindServerButtons, 400);
-        setTimeout(bindServerButtons, 1200);
-        setTimeout(bindServerButtons, 2500);
-    }
+        openServer(type);
+    }, true);
 
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", boot);
+        document.addEventListener("DOMContentLoaded", bindDirect);
     } else {
-        boot();
+        bindDirect();
     }
+
+    setTimeout(bindDirect, 300);
+    setTimeout(bindDirect, 1000);
+    setTimeout(bindDirect, 2500);
 })();
 </script>
 
