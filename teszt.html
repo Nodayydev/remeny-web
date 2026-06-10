@@ -7259,5 +7259,273 @@ setInterval(loadServerCard, 30000);
 })();
 </script>
 
+
+<script id="remeny-server-buttons-hard-final">
+(function () {
+    let openedServerType = null;
+
+    const SERVER_DATA = {
+        smp: {
+            title: "Remény SMP",
+            icon: "icon.png",
+            ip: "remenymc.shockbyte.pro:25399",
+            status: "Minecraft szerver",
+            motd: "Túlélő SMP közösségi élmény"
+        },
+        hytale: {
+            title: "Remény Hytale",
+            icon: "icon.png",
+            ip: "Hamarosan",
+            status: "Hytale szerver",
+            motd: "Hamarosan elérhető"
+        }
+    };
+
+    function getServerDisplay() {
+        return document.getElementById("server-display");
+    }
+
+    function getServerPlaceholder() {
+        return document.getElementById("server-placeholder");
+    }
+
+    function showPlaceholder() {
+        const ph = getServerPlaceholder();
+        if (ph) {
+            ph.classList.remove("hidden", "is-hidden");
+        }
+    }
+
+    function hidePlaceholder() {
+        const ph = getServerPlaceholder();
+        if (ph) {
+            ph.classList.add("is-hidden");
+        }
+    }
+
+    function copyText(text) {
+        if (!text || text === "Hamarosan") return;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+                alert("IP kimásolva!");
+            }).catch(function () {
+                alert(text);
+            });
+        } else {
+            alert(text);
+        }
+    }
+
+    function renderServer(type) {
+        const display = getServerDisplay();
+        if (!display) return;
+
+        const server = SERVER_DATA[type] || SERVER_DATA.smp;
+
+        display.innerHTML = `
+            <div class="server-strip-card glass-bubble glass-cyan rounded-2xl p-4">
+                <div class="flex flex-col md:flex-row md:items-center gap-4">
+                    <div class="flex items-center gap-4 min-w-0 flex-1">
+                        <img src="${server.icon}" alt="${server.title}" class="server-strip-logo w-14 h-14 rounded-xl object-contain">
+
+                        <div class="min-w-0 text-left">
+                            <div class="server-strip-title remeny-title-gradient text-xl md:text-2xl font-black">
+                                ${server.title}
+                            </div>
+
+                            <div class="server-strip-ip text-sky-300 font-black break-all">
+                                ${server.ip}
+                            </div>
+
+                            <div class="server-strip-motd text-slate-300 text-sm mt-1">
+                                ${server.motd}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-2 md:justify-end">
+                        <div class="glass-bubble rounded-xl px-4 py-2 text-sm font-black text-center">
+                            ${server.status}
+                        </div>
+
+                        ${server.ip !== "Hamarosan" ? `
+                            <button type="button"
+                                    class="glass-bubble rounded-xl px-4 py-2 text-sm font-black hover:scale-105 transition"
+                                    onclick="window.copyServerIPFinal && window.copyServerIPFinal('${server.ip}')">
+                                IP másolása
+                            </button>
+                        ` : ""}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        display.classList.remove("hidden");
+        display.dataset.openServerType = type;
+        openedServerType = type;
+        hidePlaceholder();
+
+        display.classList.remove("panel-open-anim");
+        void display.offsetWidth;
+        display.classList.add("panel-open-anim");
+
+        if (window.initLiquidHover) {
+            setTimeout(window.initLiquidHover, 40);
+        }
+    }
+
+    function closeServer() {
+        const display = getServerDisplay();
+        if (!display) return;
+
+        display.classList.add("hidden");
+        display.innerHTML = "";
+        display.dataset.openServerType = "";
+        openedServerType = null;
+        showPlaceholder();
+    }
+
+    window.copyServerIPFinal = copyText;
+
+    window.showServerPanel = function (type) {
+        const display = getServerDisplay();
+        if (!display) return;
+
+        const currentType = display.dataset.openServerType || openedServerType;
+        const isOpen = !display.classList.contains("hidden") && display.innerHTML.trim().length > 0;
+
+        if (isOpen && currentType === type) {
+            closeServer();
+            return;
+        }
+
+        renderServer(type);
+    };
+
+    function bindServerButtons() {
+        const smpButton = document.querySelector(".hero-btn-smp");
+        const hytaleButton = document.querySelector(".hero-btn-hytale");
+
+        if (smpButton) {
+            smpButton.type = "button";
+            smpButton.onclick = function (event) {
+                event.preventDefault();
+                window.showServerPanel("smp");
+            };
+        }
+
+        if (hytaleButton) {
+            hytaleButton.type = "button";
+            hytaleButton.onclick = function (event) {
+                event.preventDefault();
+                window.showServerPanel("hytale");
+            };
+        }
+
+        const display = getServerDisplay();
+        if (display && (display.classList.contains("hidden") || !display.innerHTML.trim())) {
+            showPlaceholder();
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindServerButtons);
+    } else {
+        bindServerButtons();
+    }
+
+    setTimeout(bindServerButtons, 400);
+    setTimeout(bindServerButtons, 1200);
+})();
+</script>
+
+
+<script id="remeny-click-outside-close">
+(function () {
+    function isVisible(element) {
+        return element &&
+            !element.classList.contains("hidden") &&
+            !element.classList.contains("is-hidden") &&
+            element.offsetParent !== null;
+    }
+
+    function closePanel(element) {
+        if (!element) return;
+        element.classList.add("hidden");
+    }
+
+    function inside(target, selectors) {
+        return selectors.some(function (selector) {
+            const element = document.querySelector(selector);
+            return element && element.contains(target);
+        });
+    }
+
+    function initOutsideClose() {
+        document.addEventListener("pointerdown", function (event) {
+            const target = event.target;
+
+            const loginPanel = document.getElementById("login-panel");
+            const themeMenu = document.getElementById("theme-menu");
+            const discordPanel = document.getElementById("discord-panel");
+
+            // Játékosnév/profil panel: záródjon, ha nem a panelre és nem a login ikonra kattintasz.
+            if (
+                isVisible(loginPanel) &&
+                !inside(target, [
+                    "#login-panel",
+                    "#login-button",
+                    ".login-button",
+                    ".top-widget-button[title='Profil']",
+                    ".top-widget-button[aria-label='Profil']"
+                ])
+            ) {
+                closePanel(loginPanel);
+            }
+
+            // Stílus menü: záródjon, ha nem a menüre és nem a stílus gombra kattintasz.
+            if (
+                isVisible(themeMenu) &&
+                !inside(target, [
+                    "#theme-menu",
+                    "#theme-toggle-button",
+                    ".theme-control"
+                ])
+            ) {
+                closePanel(themeMenu);
+            }
+
+            // Discord panel, ha van: záródjon kikattintásra.
+            if (
+                isVisible(discordPanel) &&
+                !inside(target, [
+                    "#discord-panel",
+                    "#discord-button",
+                    ".discord-button"
+                ])
+            ) {
+                closePanel(discordPanel);
+            }
+        }, true);
+
+        // ESC-re is záródjanak.
+        document.addEventListener("keydown", function (event) {
+            if (event.key !== "Escape") return;
+
+            closePanel(document.getElementById("login-panel"));
+            closePanel(document.getElementById("theme-menu"));
+            closePanel(document.getElementById("discord-panel"));
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initOutsideClose);
+    } else {
+        initOutsideClose();
+    }
+})();
+</script>
+
 </body>
 </html>
