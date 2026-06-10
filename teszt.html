@@ -182,16 +182,14 @@
         .glass-bubble {
             position: relative;
             overflow: hidden;
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.035)) !important;
-            border: 1px solid rgba(255, 255, 255, 0.26) !important;
-            -webkit-backdrop-filter: blur(18px) saturate(180%);
-            backdrop-filter: blur(18px) saturate(180%);
+            background: rgba(4, 10, 22, 0.12) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(135%);
+            backdrop-filter: blur(10px) saturate(135%);
             box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.34),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.07),
-                0 10px 34px rgba(0, 0, 0, 0.34),
-                0 0 22px rgba(120, 180, 255, 0.10);
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 22px rgba(0, 0, 0, 0.18),
+                0 0 16px rgba(120, 180, 255, 0.06);
         }
 
         .glass-bubble::before {
@@ -201,9 +199,9 @@
             pointer-events: none;
             border-radius: inherit;
             background:
-                radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.28), transparent 28%),
-                linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 42%);
-            opacity: 0.55;
+                radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.09), transparent 24%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.07), transparent 40%);
+            opacity: 0.38;
         }
 
         .glass-bubble > * {
@@ -213,23 +211,23 @@
 
         .glass-cyan {
             box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.34),
-                0 10px 34px rgba(0, 0, 0, 0.34),
-                0 0 24px rgba(85, 255, 255, 0.22);
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(85, 255, 255, 0.10);
         }
 
         .glass-yellow {
             box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.34),
-                0 10px 34px rgba(0, 0, 0, 0.34),
-                0 0 24px rgba(255, 190, 50, 0.22);
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(255, 190, 50, 0.10);
         }
 
         .glass-pink {
             box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.34),
-                0 10px 34px rgba(0, 0, 0, 0.34),
-                0 0 24px rgba(255, 85, 200, 0.22);
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(255, 85, 200, 0.10);
         }
 
         .profile-avatar {
@@ -243,9 +241,9 @@
 
         .glass-purple {
             box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.34),
-                0 10px 34px rgba(0, 0, 0, 0.34),
-                0 0 24px rgba(190, 130, 255, 0.22);
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(190, 130, 255, 0.10);
         }
 
 
@@ -1078,7 +1076,7 @@
         body.matt-dark #login-panel {
             border-radius: 12px !important;
             background: rgba(3, 8, 28, 0.54) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
             -webkit-backdrop-filter: blur(7px) saturate(115%) !important;
             backdrop-filter: blur(7px) saturate(115%) !important;
             box-shadow:
@@ -1157,7 +1155,7 @@
             flex-direction: column;
             gap: 8px;
             background: rgba(2, 6, 23, 0.42) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
             -webkit-backdrop-filter: blur(18px) saturate(170%) !important;
             backdrop-filter: blur(18px) saturate(170%) !important;
         }
@@ -1201,13 +1199,14 @@
         body.mode-glass #server-display,
         body.mode-glass #login-panel {
             border-radius: 24px !important;
-            background: rgba(0, 0, 0, 0.075) !important;
-            border: 1px solid rgba(255, 255, 255, 0.16) !important;
-            -webkit-backdrop-filter: blur(16px) saturate(155%) brightness(0.96) !important;
-            backdrop-filter: blur(16px) saturate(155%) brightness(0.96) !important;
+            background: rgba(3, 9, 22, 0.10) !important;
+            border: 1px solid rgba(255, 255, 255, 0.09) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(135%) brightness(0.92) !important;
+            backdrop-filter: blur(10px) saturate(135%) brightness(0.92) !important;
             box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.14),
-                0 12px 30px rgba(0, 0, 0, 0.28) !important;
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 10px 26px rgba(0, 0, 0, 0.18),
+                0 0 16px rgba(80, 160, 255, 0.06) !important;
         }
 
         body.mode-glass .hero-card-inner {
@@ -1810,7 +1809,7 @@
 
         .theme-fixed-liquid {
             border-radius: 999px !important;
-            background: rgba(255, 255, 255, 0.055) !important;
+            background: rgba(6, 12, 24, 0.12) !important;
             border: 1px solid rgba(255, 255, 255, 0.20) !important;
             -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
             backdrop-filter: blur(14px) saturate(160%) !important;
@@ -2099,7 +2098,7 @@
             flex-direction: column !important;
             gap: 7px !important;
             background: rgba(2, 6, 23, 0.72) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
             box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
             -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
             backdrop-filter: blur(16px) saturate(160%) !important;
@@ -2370,7 +2369,7 @@
         .theme-fixed-glass {
             border-radius: 999px !important;
             background: rgba(255, 255, 255, 0.02) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
             -webkit-backdrop-filter: blur(7px) saturate(135%) !important;
             backdrop-filter: blur(7px) saturate(135%) !important;
         }
@@ -2390,7 +2389,7 @@
         body.mode-glass #login-panel,
         body.mode-glass #discord-panel {
             background: rgba(2, 6, 23, 0.20) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
             -webkit-backdrop-filter: blur(10px) saturate(145%) brightness(0.92) !important;
             backdrop-filter: blur(10px) saturate(145%) brightness(0.92) !important;
             box-shadow:
@@ -3337,8 +3336,8 @@
         .theme-inline-glass,
         #theme-menu button:first-child {
             border-radius: 999px !important;
-            background: rgba(255, 255, 255, 0.055) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            background: rgba(6, 12, 24, 0.12) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
             -webkit-backdrop-filter: blur(8px) saturate(140%) !important;
             backdrop-filter: blur(8px) saturate(140%) !important;
         }
@@ -3456,7 +3455,7 @@
             gap: 8px !important;
             z-index: 2147483001 !important;
             background: rgba(2, 6, 23, 0.72) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
             box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
             -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
             backdrop-filter: blur(14px) saturate(150%) !important;
@@ -3487,8 +3486,8 @@
 
         .theme-choice-glass {
             border-radius: 999px !important;
-            background: rgba(255, 255, 255, 0.055) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            background: rgba(6, 12, 24, 0.12) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
         }
 
         .theme-choice-matt {
@@ -3603,7 +3602,7 @@
             gap: 8px !important;
             z-index: 2147483001 !important;
             background: rgba(2, 6, 23, 0.72) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
             box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34) !important;
             -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
             backdrop-filter: blur(14px) saturate(150%) !important;
@@ -3634,8 +3633,8 @@
 
         .theme-choice-glass {
             border-radius: 999px !important;
-            background: rgba(255, 255, 255, 0.055) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            background: rgba(6, 12, 24, 0.12) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
         }
 
         .theme-choice-matt {
@@ -6058,8 +6057,11 @@
        target="_blank"
        rel="noopener noreferrer"
        title="Discord"
-       class="glass-bubble glass-cyan w-12 h-12 rounded-2xl flex items-center justify-center text-2xl hover:scale-105 transition">
-        💬
+       aria-label="Discord meghívó"
+       class="glass-bubble glass-cyan w-12 h-12 rounded-2xl flex items-center justify-center hover:scale-105 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" class="w-6 h-6" fill="currentColor" aria-hidden="true">
+            <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.74,56.6.53,80.21A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.27a68.42,68.42,0,0,1-10.85-5.18c.91-.67,1.8-1.37,2.66-2.1a75.57,75.57,0,0,0,64.32,0c.87.73,1.76,1.43,2.67,2.1a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.08,105.25,105.25,0,0,0,32.19-16.14C129.27,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,59.93,31,52.85S36.06,40,42.45,40s11.58,5.82,11.47,12.85C53.81,59.93,48.74,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.23,59.93,73.23,52.85S78.3,40,84.69,40s11.58,5.82,11.47,12.85C96.05,59.93,91,65.69,84.69,65.69Z"/>
+        </svg>
     </a>
 
     <button onclick="window.toggleLoginPanel && window.toggleLoginPanel()"
@@ -6190,7 +6192,7 @@
                rel="noopener noreferrer"
                class="glass-bubble glass-yellow rounded-lg px-4 py-3 hover:scale-[1.02] transition group">
 
-                <h2 class="text-xl sm:text-2xl font-black tracking-wide">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-wide">
                     <span class="mineforum-gradient">mineforum</span>
                 </h2>
 
@@ -6201,7 +6203,7 @@
                rel="noopener noreferrer"
                class="glass-bubble glass-cyan rounded-lg px-4 py-3 hover:scale-[1.02] transition group">
 
-                <h2 class="text-xl sm:text-2xl font-black tracking-wide">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-wide">
                     <span class="mcportal-gradient">mcportal</span>
                 </h2>
 
