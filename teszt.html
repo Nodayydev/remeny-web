@@ -5199,6 +5199,401 @@
   }
 </style>
 
+
+<style id="server-mobile-single-long-final">
+  /* Telefonon ne legyen két szerver ablak, és a kártya maradjon hosszú */
+  #servers {
+    width: 100% !important;
+    max-width: 1120px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  #server-display {
+    width: 100% !important;
+    max-width: 980px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #server-display.hidden,
+  #server-placeholder.is-hidden {
+    display: none !important;
+  }
+
+  #server-display .server-strip-card {
+    width: 100% !important;
+    max-width: 980px !important;
+    box-sizing: border-box !important;
+  }
+
+  #server-display .server-long-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) max-content !important;
+    align-items: center !important;
+    gap: 14px !important;
+    width: 100% !important;
+  }
+
+  #server-display .server-long-main {
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  #server-display .server-long-side {
+    justify-self: end !important;
+    align-self: center !important;
+    min-width: 118px !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+  }
+
+  @media (max-width: 640px) {
+    #servers {
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    #server-display {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    #server-display .server-strip-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 13px 9px 13px 11px !important;
+      border-radius: 20px !important;
+    }
+
+    #server-display .server-long-layout {
+      grid-template-columns: minmax(0, 1fr) max-content !important;
+      gap: 7px !important;
+      align-items: center !important;
+    }
+
+    #server-display .server-long-main {
+      gap: 9px !important;
+      align-items: center !important;
+    }
+
+    #server-display .server-strip-logo {
+      width: 58px !important;
+      height: 58px !important;
+      flex: 0 0 58px !important;
+      border-radius: 15px !important;
+    }
+
+    #server-display .server-long-text {
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+
+    #server-display .server-strip-title {
+      font-size: 0.78rem !important;
+      line-height: 1.05 !important;
+    }
+
+    #server-display .server-strip-ip {
+      font-size: 0.67rem !important;
+      line-height: 1.15 !important;
+      word-break: break-word !important;
+    }
+
+    #server-display .server-strip-motd {
+      font-size: 0.66rem !important;
+      line-height: 1.22 !important;
+      max-height: none !important;
+      overflow: visible !important;
+      white-space: normal !important;
+    }
+
+    #server-display .server-long-side {
+      min-width: 76px !important;
+      max-width: 86px !important;
+      gap: 5px !important;
+      align-items: flex-end !important;
+      justify-self: end !important;
+    }
+
+    #server-display .server-strip-online {
+      font-size: 0.82rem !important;
+      white-space: nowrap !important;
+      text-align: right !important;
+    }
+
+    #server-display .server-strip-version {
+      font-size: 0.58rem !important;
+      white-space: nowrap !important;
+      text-align: right !important;
+    }
+
+    #server-display .server-strip-button {
+      min-width: 72px !important;
+      max-width: 78px !important;
+      padding: 6px 5px !important;
+      font-size: 0.56rem !important;
+      border-radius: 10px !important;
+      white-space: nowrap !important;
+    }
+
+    #server-display .server-strip-bars {
+      gap: 2px !important;
+      margin-left: 2px !important;
+    }
+
+    #server-display .server-strip-bars span {
+      width: 5px !important;
+      height: 10px !important;
+    }
+  }
+</style>
+
+
+<style id="server-mobile-card-clean-wide-final">
+  /* Mobil szerverkártya: ne legyen dupla ablak, legyen szélesebb és olvashatóbb */
+  #server-display {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+  }
+
+  body.mode-glass #server-display,
+  body.mode-matt #server-display {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  #server-display .server-strip-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  @media (max-width: 640px) {
+    #servers {
+      width: 100vw !important;
+      max-width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: calc(50% - 50vw) !important;
+      padding-left: 6px !important;
+      padding-right: 6px !important;
+      box-sizing: border-box !important;
+    }
+
+    #server-display {
+      width: calc(100vw - 12px) !important;
+      max-width: calc(100vw - 12px) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    #server-display .server-strip-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 12px 10px !important;
+      border-radius: 22px !important;
+      box-sizing: border-box !important;
+    }
+
+    #server-display .server-long-layout {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 88px !important;
+      gap: 8px !important;
+      align-items: center !important;
+      width: 100% !important;
+    }
+
+    #server-display .server-long-main {
+      min-width: 0 !important;
+      display: grid !important;
+      grid-template-columns: 58px minmax(0, 1fr) !important;
+      gap: 10px !important;
+      align-items: center !important;
+    }
+
+    #server-display .server-strip-logo {
+      width: 58px !important;
+      height: 58px !important;
+      min-width: 58px !important;
+      max-width: 58px !important;
+      flex: 0 0 58px !important;
+      border-radius: 15px !important;
+      object-fit: cover !important;
+    }
+
+    #server-display .server-long-text {
+      min-width: 0 !important;
+      overflow: hidden !important;
+      text-align: left !important;
+    }
+
+    #server-display .server-strip-title {
+      font-size: 0.82rem !important;
+      line-height: 1.05 !important;
+      letter-spacing: 0.02em !important;
+      white-space: normal !important;
+      word-break: normal !important;
+    }
+
+    #server-display .server-strip-ip {
+      display: block !important;
+      max-width: 100% !important;
+      font-size: 0.66rem !important;
+      line-height: 1.12 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      word-break: normal !important;
+    }
+
+    #server-display .server-strip-motd {
+      display: block !important;
+      max-width: 100% !important;
+      margin-top: 6px !important;
+      font-size: 0.64rem !important;
+      line-height: 1.18 !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      max-height: none !important;
+      word-break: normal !important;
+    }
+
+    #server-display .server-long-side {
+      width: 88px !important;
+      min-width: 88px !important;
+      max-width: 88px !important;
+      justify-self: end !important;
+      align-self: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-end !important;
+      text-align: right !important;
+      gap: 5px !important;
+    }
+
+    #server-display .server-strip-online {
+      font-size: 0.92rem !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+    }
+
+    #server-display .server-strip-bars {
+      gap: 3px !important;
+      margin-left: 3px !important;
+    }
+
+    #server-display .server-strip-bars span {
+      width: 6px !important;
+      height: 12px !important;
+    }
+
+    #server-display .server-strip-version {
+      font-size: 0.58rem !important;
+      line-height: 1.1 !important;
+      white-space: nowrap !important;
+    }
+
+    #server-display .server-strip-button {
+      min-width: 76px !important;
+      max-width: 84px !important;
+      padding: 6px 6px !important;
+      font-size: 0.55rem !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+      border-radius: 11px !important;
+    }
+  }
+
+  @media (max-width: 380px) {
+    #server-display .server-long-layout {
+      grid-template-columns: minmax(0, 1fr) 80px !important;
+      gap: 6px !important;
+    }
+
+    #server-display .server-long-main {
+      grid-template-columns: 52px minmax(0, 1fr) !important;
+      gap: 8px !important;
+    }
+
+    #server-display .server-strip-logo {
+      width: 52px !important;
+      height: 52px !important;
+      min-width: 52px !important;
+      max-width: 52px !important;
+    }
+
+    #server-display .server-long-side {
+      width: 80px !important;
+      min-width: 80px !important;
+      max-width: 80px !important;
+    }
+
+    #server-display .server-strip-title {
+      font-size: 0.76rem !important;
+    }
+
+    #server-display .server-strip-ip {
+      font-size: 0.60rem !important;
+    }
+
+    #server-display .server-strip-motd {
+      font-size: 0.60rem !important;
+    }
+
+    #server-display .server-strip-button {
+      min-width: 70px !important;
+      max-width: 76px !important;
+      font-size: 0.50rem !important;
+      padding: 6px 4px !important;
+    }
+  }
+</style>
+
+
+<style id="server-json-smp-hytale-style-final">
+  /* SMP és Hytale ugyanabból a server.json formátumból */
+  #server-display .server-strip-logo {
+    object-fit: cover !important;
+  }
+
+  #server-display .server-strip-ip {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  #server-display .server-strip-motd {
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+
+  @media (max-width: 640px) {
+    #server-display .server-strip-title {
+      font-size: 0.78rem !important;
+    }
+
+    #server-display .server-strip-ip {
+      font-size: 0.64rem !important;
+    }
+
+    #server-display .server-strip-motd {
+      font-size: 0.62rem !important;
+    }
+  }
+</style>
+
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans -transparent mode-glass">
@@ -8801,6 +9196,565 @@ setInterval(loadServerCard, 30000);
     } else {
         boot();
     }
+})();
+</script>
+
+
+<!-- SERVER_GLASS_MOTD_SIZE_FIX_START -->
+<style id="server-glass-motd-size-fix">
+  /* Glass mód: jóval áttetszőbb minden nagyobb panelen */
+  body.mode-glass .glass-bubble,
+  body.mode-glass .hero-card,
+  body.mode-glass .hero-card-inner,
+  body.mode-glass .hero-btn-smp,
+  body.mode-glass .hero-btn-hytale,
+  body.mode-glass #server-display,
+  body.mode-glass #login-panel,
+  body.mode-glass #members-display,
+  body.mode-glass #server-placeholder,
+  body.mode-glass .server-strip-card,
+  body.mode-glass .social-link,
+  body.mode-glass .rank-btn,
+  body.mode-glass .top-widget,
+  body.mode-glass .toggle-panel {
+      background: rgba(10, 18, 30, 0.14) !important;
+      border-color: rgba(255, 255, 255, 0.10) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.09) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+      backdrop-filter: blur(18px) saturate(145%) !important;
+  }
+
+  body.mode-glass .glass-bubble::before,
+  body.mode-glass .hero-card::before,
+  body.mode-glass .hero-btn-smp::before,
+  body.mode-glass .hero-btn-hytale::before,
+  body.mode-glass .server-strip-card::before {
+      opacity: 0.18 !important;
+  }
+
+  /* Szerver panel finomhangolás */
+  .server-strip-card {
+      width: 100%;
+  }
+
+  .server-strip-logo {
+      width: 72px !important;
+      height: 72px !important;
+      border-radius: 18px !important;
+      object-fit: cover !important;
+      flex-shrink: 0 !important;
+  }
+
+  .server-strip-title {
+      font-size: 0.88rem !important;
+      line-height: 1.15 !important;
+      font-weight: 900 !important;
+  }
+
+  .server-strip-ip {
+      font-size: 0.78rem !important;
+  }
+
+  .server-strip-motd {
+      margin-top: 7px !important;
+      font-size: 0.76rem !important;
+      line-height: 1.35 !important;
+      color: rgba(226, 232, 240, 0.95) !important;
+      max-height: none !important;
+      overflow: visible !important;
+      display: block !important;
+      white-space: normal !important;
+      word-break: break-word !important;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.35) !important;
+  }
+
+  .server-strip-version {
+      font-size: 0.72rem !important;
+  }
+
+  .server-strip-button {
+      font-size: 0.72rem !important;
+      padding: 7px 10px !important;
+  }
+
+  @media (max-width: 640px) {
+      .server-strip-logo {
+          width: 62px !important;
+          height: 62px !important;
+          border-radius: 16px !important;
+      }
+
+      .server-strip-title {
+          font-size: 0.80rem !important;
+      }
+
+      .server-strip-ip {
+          font-size: 0.70rem !important;
+      }
+
+      .server-strip-motd {
+          font-size: 0.70rem !important;
+          line-height: 1.32 !important;
+      }
+  }
+</style>
+
+<script id="server-glass-motd-size-fix-script">
+(function () {
+  function stripHtml(value) {
+    const div = document.createElement('div');
+    div.innerHTML = value || '';
+    return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
+  }
+
+  async function getLiveMotdFallback() {
+    try {
+      const response = await fetch('/api/minecraft', { cache: 'no-store' });
+      if (!response.ok) throw new Error('api error');
+      const data = await response.json();
+      const motd = stripHtml(data && data.motd ? data.motd : '');
+      return motd || 'Hogy mindig maradjon itt valami.';
+    } catch (e) {
+      return 'Hogy mindig maradjon itt valami.';
+    }
+  }
+
+  async function patchServerDisplay() {
+    const display = document.getElementById('server-display');
+    if (!display) return;
+
+    const logo = display.querySelector('.server-strip-logo');
+    const title = display.querySelector('.server-strip-title');
+    const motd = display.querySelector('.server-strip-motd');
+
+    if (logo) {
+      logo.setAttribute('loading', 'eager');
+      logo.setAttribute('decoding', 'async');
+    }
+
+    if (title && title.textContent && /remény\s*smp/i.test(title.textContent.trim())) {
+      title.textContent = 'Remény SMP';
+    }
+
+    const openType = (display.dataset.openServerType || '').toLowerCase();
+    if (openType === 'smp') {
+      if (motd) {
+        const cleaned = stripHtml(motd.innerHTML || motd.textContent || '');
+        if (!cleaned) {
+          motd.textContent = await getLiveMotdFallback();
+        } else {
+          motd.textContent = cleaned;
+        }
+      } else {
+        const textWrap = display.querySelector('.server-long-text');
+        if (textWrap) {
+          const div = document.createElement('div');
+          div.className = 'server-strip-motd';
+          div.textContent = await getLiveMotdFallback();
+          textWrap.appendChild(div);
+        }
+      }
+    }
+  }
+
+  function bootServerFix() {
+    patchServerDisplay();
+    const display = document.getElementById('server-display');
+    if (!display) return;
+
+    const observer = new MutationObserver(function () {
+      patchServerDisplay();
+    });
+
+    observer.observe(display, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'data-open-server-type']
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootServerFix);
+  } else {
+    bootServerFix();
+  }
+})();
+</script>
+<!-- SERVER_GLASS_MOTD_SIZE_FIX_END -->
+
+
+<script id="server-mobile-single-long-final-script">
+(function () {
+    function moveAndCleanServerArea() {
+        const servers = document.getElementById("servers");
+        if (!servers) return;
+
+        const displays = Array.from(document.querySelectorAll("#server-display"));
+        const placeholders = Array.from(document.querySelectorAll("#server-placeholder"));
+
+        let mainDisplay = displays.find(function (el) {
+            return el.parentElement === servers;
+        }) || displays[0];
+
+        let mainPlaceholder = placeholders.find(function (el) {
+            return el.parentElement === servers;
+        }) || placeholders[0];
+
+        if (!mainPlaceholder) {
+            mainPlaceholder = document.createElement("div");
+            mainPlaceholder.id = "server-placeholder";
+            mainPlaceholder.className = "remeny-default-placeholder glass-bubble glass-cyan rounded-2xl";
+            mainPlaceholder.innerHTML = "<strong>Válassz szervert</strong> — kattints az <strong>SMP</strong> vagy <strong>Hytale</strong> gombra a szerver adataihoz.";
+        }
+
+        if (!mainDisplay) {
+            mainDisplay = document.createElement("div");
+            mainDisplay.id = "server-display";
+            mainDisplay.className = "hidden";
+        }
+
+        // Duplikált szerver ablakok eltávolítása, ettől nem lesz két panel telefonon.
+        displays.forEach(function (el) {
+            if (el !== mainDisplay) el.remove();
+        });
+
+        placeholders.forEach(function (el) {
+            if (el !== mainPlaceholder) el.remove();
+        });
+
+        if (mainPlaceholder.parentElement !== servers) servers.appendChild(mainPlaceholder);
+        if (mainDisplay.parentElement !== servers) servers.appendChild(mainDisplay);
+
+        // A helyes sorrend: placeholder, majd a megnyíló hosszú szerver panel.
+        if (mainPlaceholder.nextElementSibling !== mainDisplay) {
+            mainPlaceholder.insertAdjacentElement("afterend", mainDisplay);
+        }
+    }
+
+    function patchAfterOpen() {
+        moveAndCleanServerArea();
+
+        const display = document.getElementById("server-display");
+        if (!display) return;
+
+        const observer = new MutationObserver(function () {
+            moveAndCleanServerArea();
+        });
+
+        observer.observe(display, { childList: true, subtree: true });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", patchAfterOpen);
+    } else {
+        patchAfterOpen();
+    }
+
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest(".hero-btn-smp, .hero-btn-hytale")) return;
+        setTimeout(moveAndCleanServerArea, 0);
+        setTimeout(moveAndCleanServerArea, 80);
+    }, true);
+})();
+</script>
+
+
+<script id="server-json-smp-hytale-final">
+(function () {
+    let openedType = null;
+    let cachedServerJson = null;
+
+    function byId(id) {
+        return document.getElementById(id);
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;");
+    }
+
+    function stripHtml(value) {
+        const div = document.createElement("div");
+        div.innerHTML = value || "";
+        return (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
+    }
+
+    function normalizeIp(ip, port) {
+        const ipText = String(ip || "").trim();
+        const portText = String(port || "").trim();
+
+        if (!ipText) return "";
+        if (!portText || ipText.includes(":")) return ipText;
+        return `${ipText}:${portText}`;
+    }
+
+    async function loadServerJson() {
+        if (cachedServerJson) return cachedServerJson;
+
+        const urls = [
+            "/server.json",
+            "server.json",
+            "/api/server-config"
+        ];
+
+        for (const url of urls) {
+            try {
+                const response = await fetch(url, { cache: "no-store" });
+                if (!response.ok) continue;
+
+                const data = await response.json();
+
+                // Új formátum: { smp:{...}, hytale:{...} }
+                if (data && (data.smp || data.hytale)) {
+                    cachedServerJson = data;
+                    return cachedServerJson;
+                }
+
+                // Régi forma támogatása: { name, ip, port, logo }
+                if (data && (data.name || data.ip)) {
+                    cachedServerJson = { smp: data };
+                    return cachedServerJson;
+                }
+            } catch (error) {}
+        }
+
+        cachedServerJson = {
+            smp: {
+                name: "Remény SMP",
+                ip: "remenymc.shockbyte.pro",
+                port: 25399,
+                logo: "mc-logo.png"
+            },
+            hytale: {
+                name: "Remény Hytale",
+                ip: "remenyhytale.shockbyte.pro",
+                port: 25838,
+                logo: "hytale-logo.png"
+            }
+        };
+
+        return cachedServerJson;
+    }
+
+    async function getMinecraftLiveData(type) {
+        // A meglévő /api/minecraft valószínűleg SMP-re van kötve, ezért Hytale-nél csak JSON-t használunk.
+        if (type !== "smp") return {};
+
+        try {
+            const response = await fetch("/api/minecraft", { cache: "no-store" });
+            if (!response.ok) throw new Error("minecraft API hiba");
+            return await response.json();
+        } catch (error) {
+            return {};
+        }
+    }
+
+    async function getServerData(type) {
+        const json = await loadServerJson();
+        const config = json[type] || {};
+        const live = await getMinecraftLiveData(type);
+
+        const fallback = type === "hytale"
+            ? {
+                name: "Remény Hytale",
+                ip: "remenyhytale.shockbyte.pro",
+                port: 25838,
+                logo: "hytale-logo.png",
+                motd: "Hytale szerver hamarosan.",
+                version: "Hytale",
+                online: "készülőben",
+                max: ""
+            }
+            : {
+                name: "Remény SMP",
+                ip: "remenymc.shockbyte.pro",
+                port: 25399,
+                logo: "mc-logo.png",
+                motd: "Block ami a TIÉD marad!",
+                version: "Paper 26.1.2",
+                online: 0,
+                max: 69
+            };
+
+        return {
+            type,
+            title: config.name || live.name || fallback.name,
+            ip: normalizeIp(config.ip || live.ip || fallback.ip, config.port || live.port || fallback.port),
+            motd: stripHtml(config.motd || live.motd || fallback.motd),
+            version: config.version || live.version || fallback.version,
+            online: config.online ?? live.online ?? fallback.online,
+            max: config.max ?? live.max ?? fallback.max,
+            logo: config.logo || live.logo || fallback.logo
+        };
+    }
+
+    function ensureServerArea() {
+        const servers = byId("servers");
+        if (!servers) return byId("server-display");
+
+        let placeholder = byId("server-placeholder");
+        if (!placeholder) {
+            placeholder = document.createElement("div");
+            placeholder.id = "server-placeholder";
+            placeholder.className = "remeny-default-placeholder glass-bubble glass-cyan rounded-2xl";
+            placeholder.innerHTML = "<strong>Válassz szervert</strong> — kattints az <strong>SMP</strong> vagy <strong>Hytale</strong> gombra a szerver adataihoz.";
+            servers.appendChild(placeholder);
+        }
+
+        let display = byId("server-display");
+        if (!display) {
+            display = document.createElement("div");
+            display.id = "server-display";
+            display.className = "hidden";
+            servers.appendChild(display);
+        }
+
+        if (placeholder.parentElement !== servers) servers.appendChild(placeholder);
+        if (display.parentElement !== servers) servers.appendChild(display);
+
+        return display;
+    }
+
+    function showPlaceholder() {
+        const ph = byId("server-placeholder");
+        if (ph) ph.classList.remove("hidden", "is-hidden");
+    }
+
+    function hidePlaceholder() {
+        const ph = byId("server-placeholder");
+        if (ph) ph.classList.add("is-hidden");
+    }
+
+    function onlineMarkup(data) {
+        if (data.online === "készülőben") {
+            return '<span style="color:#ffe16c;font-size:1.0rem;font-weight:900">készülőben</span>';
+        }
+
+        return `${escapeHtml(data.online || 0)}/${escapeHtml(data.max || 0)} <span class="server-strip-bars"><span></span><span></span><span></span></span>`;
+    }
+
+    function renderServer(data) {
+        const display = ensureServerArea();
+        if (!display) return;
+
+        display.innerHTML = `
+            <div class="server-strip-card">
+                <div class="server-long-layout">
+                    <div class="server-long-main">
+                        <img src="${escapeHtml(data.logo || "logo.png")}" alt="${escapeHtml(data.title)}" class="server-strip-logo">
+                        <div class="server-long-text">
+                            <div class="server-strip-title remeny-title-gradient">${escapeHtml(data.title)}</div>
+                            <div class="server-strip-ip" title="${escapeHtml(data.ip)}">${escapeHtml(data.ip)}</div>
+                            ${data.motd ? `<div class="server-strip-motd">${escapeHtml(data.motd)}</div>` : ""}
+                        </div>
+                    </div>
+
+                    <div class="server-long-side">
+                        <div class="server-strip-online">${onlineMarkup(data)}</div>
+                        <div class="server-strip-version">${escapeHtml(data.version || "")}</div>
+                        ${data.ip && data.ip !== "Hamarosan" ? `<button type="button" class="server-strip-button" data-copy-server-ip="${escapeHtml(data.ip)}">IP másolása</button>` : ""}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        display.classList.remove("hidden");
+        display.dataset.openServerType = data.type;
+        openedType = data.type;
+        hidePlaceholder();
+
+        const copyButton = display.querySelector("[data-copy-server-ip]");
+        if (copyButton) {
+            copyButton.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const ip = copyButton.getAttribute("data-copy-server-ip");
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(ip).catch(function () {});
+                }
+
+                alert("IP kimásolva: " + ip);
+            };
+        }
+    }
+
+    function closeServer() {
+        const display = ensureServerArea();
+        if (!display) return;
+
+        display.innerHTML = "";
+        display.classList.add("hidden");
+        display.dataset.openServerType = "";
+        openedType = null;
+        showPlaceholder();
+    }
+
+    async function toggleServer(type) {
+        const display = ensureServerArea();
+        const currentType = display ? (display.dataset.openServerType || openedType) : "";
+        const isOpen = display && !display.classList.contains("hidden") && display.innerHTML.trim().length > 0;
+
+        if (isOpen && currentType === type) {
+            closeServer();
+            return;
+        }
+
+        renderServer(await getServerData(type));
+    }
+
+    window.showServerPanel = function (type) {
+        toggleServer(type === "hytale" ? "hytale" : "smp");
+    };
+
+    function bindButtons() {
+        document.querySelectorAll(".hero-btn-smp").forEach(function (button) {
+            button.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleServer("smp");
+            };
+        });
+
+        document.querySelectorAll(".hero-btn-hytale").forEach(function (button) {
+            button.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleServer("hytale");
+            };
+        });
+    }
+
+    document.addEventListener("click", function (event) {
+        const button = event.target.closest(".hero-btn-smp, .hero-btn-hytale");
+        if (!button) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+
+        toggleServer(button.classList.contains("hero-btn-hytale") ? "hytale" : "smp");
+    }, true);
+
+    function boot() {
+        ensureServerArea();
+        bindButtons();
+        showPlaceholder();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
+
+    setTimeout(bindButtons, 600);
+    setTimeout(bindButtons, 1600);
 })();
 </script>
 
