@@ -5883,6 +5883,54 @@
   }
 </style>
 
+
+<style id="motd-color-render-final-style">
+  /* MOTD színek megjelenítése */
+  #server-display .server-strip-motd,
+  #server-display .server-strip-motd * {
+    font-family: inherit !important;
+    font-style: normal !important;
+    text-transform: none !important;
+    font-variant: normal !important;
+    font-variant-caps: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  #server-display .server-strip-motd {
+    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    color: rgba(235, 245, 255, 0.95);
+  }
+
+  #server-display .server-strip-motd span {
+    font-weight: 800;
+  }
+</style>
+
+
+<style id="rank-empty-bubble-hardfix-style">
+  /* Rangoknál ne maradjon ott üres buborék */
+  #members-display.rank-empty-hidden,
+  #members-display.hidden,
+  #members-display.is-hidden {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+  }
+
+  #rank-placeholder.hidden,
+  #rank-placeholder.is-hidden {
+    display: none !important;
+  }
+</style>
+
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans -transparent mode-glass">
@@ -8409,7 +8457,7 @@
                 port: live.port || base.port,
                 address: live.address || normalizeIp(live.ip || base.ip, live.port || base.port),
                 logo: live.logo || base.logo,
-                motd: stripHtml(live.motd || base.motd || "Block ami a TIÉD marad!"),
+                motd: live.motd || base.motd || "Block ami a TIÉD marad!",
                 version: live.version || base.version,
                 online: live.online ?? base.online,
                 max: live.max ?? base.max
@@ -8492,6 +8540,266 @@
 
     setTimeout(bindButtons, 600);
     setTimeout(bindButtons, 1600);
+})();
+</script>
+
+
+<script id="motd-color-render-final-script">
+(function () {
+    function sanitizeMotdHtml(value) {
+        const raw = String(value || "");
+
+        // Ha plain text, sima szövegként adjuk vissza.
+        if (!raw.includes("<")) {
+            return raw
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replace(/\n/g, "<br>");
+        }
+
+        const template = document.createElement("template");
+        template.innerHTML = raw;
+
+        const allowedTags = new Set(["SPAN", "BR", "B", "STRONG", "I", "EM"]);
+        const allowedStyle = new Set(["color", "font-weight", "font-style", "text-shadow"]);
+
+        function clean(node) {
+            [...node.childNodes].forEach(function (child) {
+                if (child.nodeType === Node.ELEMENT_NODE) {
+                    if (!allowedTags.has(child.tagName)) {
+                        child.replaceWith(document.createTextNode(child.textContent || ""));
+                        return;
+                    }
+
+                    [...child.attributes].forEach(function (attr) {
+                        const name = attr.name.toLowerCase();
+
+                        if (name === "style") {
+                            const safeParts = [];
+                            attr.value.split(";").forEach(function (part) {
+                                const pieces = part.split(":");
+                                if (pieces.length < 2) return;
+
+                                const key = pieces[0].trim().toLowerCase();
+                                const val = pieces.slice(1).join(":").trim();
+
+                                if (!allowedStyle.has(key)) return;
+                                if (/url|expression|javascript/i.test(val)) return;
+
+                                safeParts.push(key + ": " + val);
+                            });
+
+                            if (safeParts.length) {
+                                child.setAttribute("style", safeParts.join("; "));
+                            } else {
+                                child.removeAttribute("style");
+                            }
+                        } else if (name !== "class") {
+                            child.removeAttribute(attr.name);
+                        }
+                    });
+
+                    clean(child);
+                }
+            });
+        }
+
+        clean(template.content);
+        return template.innerHTML;
+    }
+
+    function patchMotdColor() {
+        const display = document.getElementById("server-display");
+        if (!display || display.classList.contains("hidden")) return;
+
+        const motd = display.querySelector(".server-strip-motd");
+        if (!motd) return;
+
+        // Ha a backend HTML MOTD-t küld, ne textContent legyen, hanem biztonságos HTML.
+        const raw = motd.getAttribute("data-raw-motd");
+        if (raw) {
+            motd.innerHTML = sanitizeMotdHtml(raw);
+            return;
+        }
+
+        const current = motd.innerHTML || motd.textContent || "";
+        if (current.includes("&lt;span") || current.includes("<span")) {
+            const decoded = current
+                .replaceAll("&lt;", "<")
+                .replaceAll("&gt;", ">")
+                .replaceAll("&quot;", '"')
+                .replaceAll("&amp;", "&");
+            motd.innerHTML = sanitizeMotdHtml(decoded);
+        }
+    }
+
+    function hookRenderOutput() {
+        const display = document.getElementById("server-display");
+        if (!display) return;
+
+        const observer = new MutationObserver(function () {
+            setTimeout(patchMotdColor, 0);
+        });
+
+        observer.observe(display, {
+            childList: true,
+            subtree: true
+        });
+
+        patchMotdColor();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", hookRenderOutput);
+    } else {
+        hookRenderOutput();
+    }
+})();
+</script>
+
+
+<script id="rank-empty-bubble-hardfix-script">
+(function () {
+    function byId(id) {
+        return document.getElementById(id);
+    }
+
+    function isDefaultOrEmptyMembers() {
+        const members = byId("members-display");
+        if (!members) return true;
+
+        const text = (members.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+        const hasMemberCard =
+            members.querySelector(".member-card") ||
+            members.querySelector("[data-member]") ||
+            members.querySelector("img") ||
+            members.querySelector("a[href]");
+
+        if (!text) return true;
+        if (text.includes("kattints egy rangra")) return true;
+
+        return !hasMemberCard && text.length < 3;
+    }
+
+    function hideMembersShowPlaceholder() {
+        const members = byId("members-display");
+        const placeholder = byId("rank-placeholder");
+
+        if (members) {
+            members.classList.add("hidden", "is-hidden", "rank-empty-hidden");
+            members.style.display = "none";
+            members.style.minHeight = "0";
+            members.style.height = "0";
+            members.style.padding = "0";
+            members.style.margin = "0";
+        }
+
+        if (placeholder) {
+            placeholder.classList.remove("hidden", "is-hidden");
+            placeholder.style.display = "";
+        }
+    }
+
+    function showMembersHidePlaceholder() {
+        const members = byId("members-display");
+        const placeholder = byId("rank-placeholder");
+
+        if (placeholder) {
+            placeholder.classList.add("is-hidden");
+            placeholder.style.display = "none";
+        }
+
+        if (members) {
+            members.classList.remove("hidden", "is-hidden", "rank-empty-hidden");
+            members.style.display = "";
+            members.style.minHeight = "";
+            members.style.height = "";
+            members.style.padding = "";
+            members.style.margin = "";
+        }
+    }
+
+    function normalizeRankState() {
+        if (isDefaultOrEmptyMembers()) {
+            hideMembersShowPlaceholder();
+        } else {
+            showMembersHidePlaceholder();
+        }
+    }
+
+    function patchShowMembers() {
+        if (window.__rankEmptyBubbleHardfixPatched) return;
+        if (typeof window.showMembers !== "function") return;
+
+        const oldShowMembers = window.showMembers;
+
+        window.showMembers = function () {
+            const result = oldShowMembers.apply(this, arguments);
+
+            setTimeout(normalizeRankState, 0);
+            setTimeout(normalizeRankState, 150);
+            setTimeout(normalizeRankState, 500);
+
+            return result;
+        };
+
+        window.__rankEmptyBubbleHardfixPatched = true;
+    }
+
+    function bindOutsideClose() {
+        if (window.__rankEmptyBubbleOutsideBound) return;
+        window.__rankEmptyBubbleOutsideBound = true;
+
+        document.addEventListener("click", function (event) {
+            const target = event.target;
+
+            if (
+                target.closest("#ranks-container") ||
+                target.closest("#members-display") ||
+                target.closest("#rank-placeholder")
+            ) {
+                return;
+            }
+
+            hideMembersShowPlaceholder();
+        });
+    }
+
+    function observeMembers() {
+        const members = byId("members-display");
+        if (!members || members.__rankEmptyObserver) return;
+
+        members.__rankEmptyObserver = true;
+
+        const observer = new MutationObserver(function () {
+            setTimeout(normalizeRankState, 50);
+        });
+
+        observer.observe(members, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
+    }
+
+    function boot() {
+        patchShowMembers();
+        bindOutsideClose();
+        observeMembers();
+        normalizeRankState();
+
+        setTimeout(patchShowMembers, 500);
+        setTimeout(observeMembers, 500);
+        setTimeout(normalizeRankState, 700);
+        setTimeout(normalizeRankState, 1600);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
 })();
 </script>
 
