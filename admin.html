@@ -8,17 +8,33 @@
 
 <h1>Szerver Beállítások</h1>
 
+<label>Szerver típusa:</label>
+<select id="serverType" onchange="loadConfig()">
+    <option value="smp">SMP</option>
+    <option value="hytale">Hytale</option>
+</select>
+
+<br><br>
+
 <input id="name" placeholder="Szerver neve">
 <input id="ip" placeholder="IP cím">
-<input id="port" placeholder="Port" value="25565">
-<input id="logo" placeholder="Logo fájl" value="logo.png">
+<input id="port" placeholder="Port">
+<input id="logo" placeholder="Logo fájl">
+
+<br><br>
 
 <button onclick="saveConfig()">Mentés</button>
 
 <script>
+
+let allConfigs = {};
+
 async function loadConfig() {
     const response = await fetch("http://localhost:3000/api/server-config");
-    const config = await response.json();
+    allConfigs = await response.json();
+
+    const type = document.getElementById("serverType").value;
+    const config = allConfigs[type] || {};
 
     document.getElementById("name").value = config.name || "";
     document.getElementById("ip").value = config.ip || "";
@@ -27,7 +43,10 @@ async function loadConfig() {
 }
 
 async function saveConfig() {
-    const config = {
+
+    const type = document.getElementById("serverType").value;
+
+    allConfigs[type] = {
         name: document.getElementById("name").value,
         ip: document.getElementById("ip").value,
         port: document.getElementById("port").value,
@@ -39,13 +58,14 @@ async function saveConfig() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(config)
+        body: JSON.stringify(allConfigs)
     });
 
     alert("Mentve!");
 }
 
 loadConfig();
+
 </script>
 
 </body>
