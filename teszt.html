@@ -9459,11 +9459,33 @@ setInterval(loadServerCard, 30000);
 })();
 </script>
 
-
-<script id="server-json-smp-hytale-final">
+<script id="server-json-smp-hytale-no-minecraft-api-final">
 (function () {
     let openedType = null;
-    let cachedServerJson = null;
+    let cachedConfig = null;
+
+    const FALLBACK = {
+        smp: {
+            name: "Remény SMP",
+            ip: "remenymc.shockbyte.pro",
+            port: 25399,
+            logo: "mc-logo.png",
+            motd: "Block ami a TIÉD marad!",
+            version: "Paper 26.1.2",
+            online: 0,
+            max: 69
+        },
+        hytale: {
+            name: "Remény Hytale",
+            ip: "remenyhytale.shockbyte.pro",
+            port: 25838,
+            logo: "hytale-logo.png",
+            motd: "Hytale szerver hamarosan.",
+            version: "Hytale",
+            online: "készülőben",
+            max: ""
+        }
+    };
 
     function byId(id) {
         return document.getElementById(id);
@@ -9477,12 +9499,6 @@ setInterval(loadServerCard, 30000);
             .replaceAll('"', "&quot;");
     }
 
-    function stripHtml(value) {
-        const div = document.createElement("div");
-        div.innerHTML = value || "";
-        return (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
-    }
-
     function normalizeIp(ip, port) {
         const ipText = String(ip || "").trim();
         const portText = String(port || "").trim();
@@ -9492,14 +9508,24 @@ setInterval(loadServerCard, 30000);
         return `${ipText}:${portText}`;
     }
 
-    async function loadServerJson() {
-        if (cachedServerJson) return cachedServerJson;
+    function normalizeConfig(raw) {
+        // támogatja:
+        // { smp:{...}, hytale:{...} }
+        // és régi:
+        // { name, ip, port, logo }
+        const smpRaw = raw && raw.smp ? raw.smp : (raw || {});
+        const hytaleRaw = raw && raw.hytale ? raw.hytale : {};
 
-        const urls = [
-            "/server.json",
-            "server.json",
-            "/api/server-config"
-        ];
+        return {
+            smp: { ...FALLBACK.smp, ...smpRaw },
+            hytale: { ...FALLBACK.hytale, ...hytaleRaw }
+        };
+    }
+
+    async function loadConfig() {
+        if (cachedConfig) return cachedConfig;
+
+        const urls = ["/server.json", "server.json", "/api/server-config"];
 
         for (const url of urls) {
             try {
@@ -9507,88 +9533,28 @@ setInterval(loadServerCard, 30000);
                 if (!response.ok) continue;
 
                 const data = await response.json();
-
-                // Új formátum: { smp:{...}, hytale:{...} }
-                if (data && (data.smp || data.hytale)) {
-                    cachedServerJson = data;
-                    return cachedServerJson;
-                }
-
-                // Régi forma támogatása: { name, ip, port, logo }
-                if (data && (data.name || data.ip)) {
-                    cachedServerJson = { smp: data };
-                    return cachedServerJson;
-                }
+                cachedConfig = normalizeConfig(data);
+                return cachedConfig;
             } catch (error) {}
         }
 
-        cachedServerJson = {
-            smp: {
-                name: "Remény SMP",
-                ip: "remenymc.shockbyte.pro",
-                port: 25399,
-                logo: "mc-logo.png"
-            },
-            hytale: {
-                name: "Remény Hytale",
-                ip: "remenyhytale.shockbyte.pro",
-                port: 25838,
-                logo: "hytale-logo.png"
-            }
-        };
-
-        return cachedServerJson;
-    }
-
-    async function getMinecraftLiveData(type) {
-        // A meglévő /api/minecraft valószínűleg SMP-re van kötve, ezért Hytale-nél csak JSON-t használunk.
-        if (type !== "smp") return {};
-
-        try {
-            const response = await fetch("/api/minecraft", { cache: "no-store" });
-            if (!response.ok) throw new Error("minecraft API hiba");
-            return await response.json();
-        } catch (error) {
-            return {};
-        }
+        cachedConfig = normalizeConfig(FALLBACK);
+        return cachedConfig;
     }
 
     async function getServerData(type) {
-        const json = await loadServerJson();
-        const config = json[type] || {};
-        const live = await getMinecraftLiveData(type);
-
-        const fallback = type === "hytale"
-            ? {
-                name: "Remény Hytale",
-                ip: "remenyhytale.shockbyte.pro",
-                port: 25838,
-                logo: "hytale-logo.png",
-                motd: "Hytale szerver hamarosan.",
-                version: "Hytale",
-                online: "készülőben",
-                max: ""
-            }
-            : {
-                name: "Remény SMP",
-                ip: "remenymc.shockbyte.pro",
-                port: 25399,
-                logo: "mc-logo.png",
-                motd: "Block ami a TIÉD marad!",
-                version: "Paper 26.1.2",
-                online: 0,
-                max: 69
-            };
+        const config = await loadConfig();
+        const base = type === "hytale" ? config.hytale : config.smp;
 
         return {
             type,
-            title: config.name || live.name || fallback.name,
-            ip: normalizeIp(config.ip || live.ip || fallback.ip, config.port || live.port || fallback.port),
-            motd: stripHtml(config.motd || live.motd || fallback.motd),
-            version: config.version || live.version || fallback.version,
-            online: config.online ?? live.online ?? fallback.online,
-            max: config.max ?? live.max ?? fallback.max,
-            logo: config.logo || live.logo || fallback.logo
+            title: base.name || FALLBACK[type].name,
+            ip: normalizeIp(base.ip || FALLBACK[type].ip, base.port || FALLBACK[type].port),
+            logo: base.logo || FALLBACK[type].logo,
+            motd: base.motd || FALLBACK[type].motd,
+            version: base.version || FALLBACK[type].version,
+            online: base.online ?? FALLBACK[type].online,
+            max: base.max ?? FALLBACK[type].max
         };
     }
 
