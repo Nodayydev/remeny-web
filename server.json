@@ -1,6 +1,14 @@
 {
-  "name": "Remény SMP",
-  "ip": "remenymc.shockbyte.pro",
-  "port": "25399",
-  "logo": "logo.png"
+  "smp": {
+    "name": "Remény SMP",
+    "ip": "remenymc.shockbyte.pro",
+    "port": 25399,
+    "logo": "mc-logo.png"
+  },
+  "hytale": {
+    "name": "Remény Hytale",
+    "ip": "remenyhytale.shockbyte.pro",
+    "port": 25838,
+    "logo": "hytale-logo.png"
+  }
 }
