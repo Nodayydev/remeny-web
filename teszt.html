@@ -4445,26 +4445,448 @@
             width: 100%;
         }
 
-    
-        /* Mojang leírás: sima dőlt szöveg, nem small caps */
-        .remeny-disclaimer,
-        .remeny-disclaimer strong {
-            text-transform: none !important;
-            font-variant: normal !important;
-            font-variant-caps: normal !important;
-            letter-spacing: normal !important;
-            font-style: italic !important;
-        }
-
-        .remeny-disclaimer {
-            font-weight: 500 !important;
-        }
-
-        .remeny-disclaimer strong {
-            font-weight: 700 !important;
-        }
-
     </style>
+
+
+    <style id="server-card-long-override">
+        #servers {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            padding-top: 0.5rem;
+            padding-bottom: 1.2rem;
+        }
+
+        #server-placeholder,
+        #server-display {
+            width: min(100%, 980px);
+            margin-inline: auto;
+        }
+
+        #server-display.hidden {
+            display: none !important;
+        }
+
+        #server-placeholder.is-hidden {
+            display: none !important;
+        }
+
+        #server-display .server-strip-card {
+            width: 100%;
+            max-width: 980px;
+            padding: 18px 20px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(2,10,30,0.96), rgba(1,7,25,0.93));
+            border: 1px solid rgba(64, 196, 255, 0.45);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.mode-glass #server-display .server-strip-card {
+            background: linear-gradient(135deg, rgba(3, 11, 34, 0.90), rgba(1, 8, 28, 0.86));
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        body.mode-matt #server-display .server-strip-card {
+            background: linear-gradient(135deg, #050b1d, #020816);
+            border-color: rgba(59, 130, 246, 0.40);
+        }
+
+        #server-display .server-strip-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(56,189,248,0.06), transparent 28%, transparent 72%, rgba(96,165,250,0.04));
+            pointer-events: none;
+        }
+
+        #server-display .server-long-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #server-display .server-long-main {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        #server-display .server-strip-logo {
+            width: 68px;
+            height: 68px;
+            flex: 0 0 68px;
+            border-radius: 18px;
+            object-fit: contain;
+            background: rgba(255,255,255,0.03);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+            padding: 4px;
+        }
+
+        #server-display .server-long-text {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        #server-display .server-strip-title {
+            font-size: clamp(1.35rem, 2.1vw, 1.85rem);
+            line-height: 1.1;
+            font-weight: 900;
+        }
+
+        #server-display .server-strip-ip {
+            color: #8ee8ff;
+            font-weight: 800;
+            font-size: 1.02rem;
+            word-break: break-word;
+        }
+
+        #server-display .server-strip-extra {
+            color: rgba(255,255,255,0.92);
+            font-weight: 800;
+            font-size: 0.96rem;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        #server-display .server-strip-tag {
+            color: #67e8f9;
+            font-size: 0.84rem;
+            font-weight: 900;
+        }
+
+        #server-display .server-strip-motd {
+            color: rgba(226, 232, 240, 0.82);
+            font-size: 0.95rem;
+            margin-top: 2px;
+        }
+
+        #server-display .server-long-side {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 10px;
+            min-width: 150px;
+        }
+
+        #server-display .server-strip-online {
+            color: #ffffff;
+            font-size: 1.65rem;
+            font-weight: 900;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        #server-display .server-strip-bars {
+            display: inline-flex;
+            gap: 6px;
+            margin-left: 8px;
+            vertical-align: middle;
+            transform: translateY(-2px);
+        }
+
+        #server-display .server-strip-bars span {
+            width: 10px;
+            height: 18px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, #78ff8b, #4ade80);
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.22);
+            display: inline-block;
+        }
+
+        #server-display .server-strip-version {
+            color: rgba(226,232,240,0.86);
+            font-size: 0.94rem;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        #server-display .server-strip-button {
+            min-width: 116px;
+            padding: 10px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(74,222,128,0.85);
+            color: #69ff8d;
+            background: rgba(10, 24, 16, 0.35);
+            font-weight: 900;
+            font-size: 0.92rem;
+            transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+        }
+
+        #server-display .server-strip-button:hover {
+            transform: translateY(-1px);
+            background: rgba(34,197,94,0.10);
+            box-shadow: 0 8px 20px rgba(34,197,94,0.12);
+        }
+
+        #server-display .server-strip-button--yellow {
+            border-color: rgba(250, 204, 21, 0.85);
+            color: #ffe16c;
+            background: rgba(38, 33, 10, 0.35);
+        }
+
+        #server-display .server-strip-button--yellow:hover {
+            background: rgba(250,204,21,0.10);
+            box-shadow: 0 8px 20px rgba(250,204,21,0.10);
+        }
+
+        @media (max-width: 768px) {
+            #server-display .server-strip-card {
+                padding: 16px;
+                border-radius: 22px;
+            }
+
+            #server-display .server-long-layout {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            #server-display .server-long-side {
+                align-items: flex-start;
+                min-width: 0;
+            }
+
+            #server-display .server-strip-online {
+                font-size: 1.45rem;
+            }
+
+            #server-display .server-strip-version {
+                text-align: left;
+            }
+        }
+    </style>
+
+
+<style id="mobile-ranks-glass-override">
+  /* Glass mód: minden elem legyen átlátszóbb, ne csak a fő buborék */
+  body.mode-glass .glass-bubble,
+  body.mode-glass .hero-card,
+  body.mode-glass .hero-card-inner,
+  body.mode-glass .hero-btn-smp,
+  body.mode-glass .hero-btn-hytale,
+  body.mode-glass #login-panel,
+  body.mode-glass #discord-panel,
+  body.mode-glass #members-display,
+  body.mode-glass #server-placeholder,
+  body.mode-glass #server-display .server-strip-card,
+  body.mode-glass .member-card,
+  body.mode-glass .remeny-default-placeholder,
+  body.mode-glass .social-grid-final a,
+  body.mode-glass #ranks-container button,
+  body.mode-glass .theme-menu,
+  body.mode-glass .theme-toggle-button {
+    background: linear-gradient(135deg, rgba(11, 18, 40, 0.18), rgba(6, 12, 32, 0.12)) !important;
+    border-color: rgba(180, 220, 255, 0.20) !important;
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 10px 26px rgba(0,0,0,0.18) !important;
+  }
+
+  body.mode-glass .social-grid-final a:hover,
+  body.mode-glass #ranks-container button:hover,
+  body.mode-glass .hero-btn-smp:hover,
+  body.mode-glass .hero-btn-hytale:hover,
+  body.mode-glass .liquid-hover:hover {
+    background: linear-gradient(135deg, rgba(15, 24, 50, 0.26), rgba(8, 14, 36, 0.18)) !important;
+  }
+
+  /* A szerver rész legyen mindenhol hosszú, külön és vízszintes */
+  #servers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  #server-placeholder,
+  #server-display {
+    width: min(100%, 980px);
+    margin-inline: auto;
+  }
+
+  #server-display .server-strip-card {
+    width: 100%;
+    max-width: 980px;
+  }
+
+  #server-display .server-long-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0,1fr) auto !important;
+    align-items: center !important;
+    gap: 18px !important;
+  }
+
+  #server-display .server-long-main {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  #server-display .server-strip-logo {
+    width: 68px;
+    height: 68px;
+    flex: 0 0 68px;
+  }
+
+  #server-display .server-long-text {
+    min-width: 0;
+  }
+
+  #server-display .server-strip-title {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    line-height: 1.05;
+    font-weight: 900;
+  }
+
+  #server-display .server-strip-ip {
+    font-size: clamp(.92rem, 1.4vw, 1.02rem);
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  #server-display .server-strip-extra,
+  #server-display .server-strip-motd {
+    line-height: 1.25;
+  }
+
+  #server-display .server-long-side {
+    min-width: 132px;
+    align-items: flex-end;
+    gap: 9px;
+  }
+
+  /* Rangok: egy sor, mint a közösségi média rész */
+  #ranks-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    align-items: center;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+    padding: 4px 2px 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #ranks-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  #ranks-container > * {
+    flex: 0 0 auto;
+  }
+
+  #ranks-container button {
+    white-space: nowrap;
+  }
+
+  /* Mobilon is maradjon ugyanaz a szerver-elrendezés */
+  @media (max-width: 768px) {
+    #server-placeholder,
+    #server-display {
+      width: calc(100% - 12px);
+    }
+
+    #server-display .server-strip-card {
+      padding: 14px 14px;
+      border-radius: 22px;
+    }
+
+    #server-display .server-long-layout {
+      grid-template-columns: minmax(0,1fr) auto !important;
+      gap: 12px !important;
+      align-items: start !important;
+    }
+
+    #server-display .server-long-main {
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    #server-display .server-strip-logo {
+      width: 54px;
+      height: 54px;
+      flex-basis: 54px;
+      border-radius: 14px;
+    }
+
+    #server-display .server-strip-title {
+      font-size: 1.05rem;
+    }
+
+    #server-display .server-strip-ip {
+      font-size: 0.82rem;
+    }
+
+    #server-display .server-strip-extra {
+      font-size: 0.72rem;
+      gap: 4px;
+    }
+
+    #server-display .server-strip-motd {
+      font-size: 0.76rem;
+      margin-top: 4px;
+    }
+
+    #server-display .server-long-side {
+      min-width: 96px;
+      gap: 7px;
+      align-items: flex-end;
+    }
+
+    #server-display .server-strip-online {
+      font-size: 1.05rem;
+      text-align: right;
+    }
+
+    #server-display .server-strip-bars {
+      gap: 4px;
+      margin-left: 4px;
+    }
+
+    #server-display .server-strip-bars span {
+      width: 7px;
+      height: 12px;
+    }
+
+    #server-display .server-strip-version {
+      font-size: 0.74rem;
+      text-align: right;
+    }
+
+    #server-display .server-strip-button,
+    #server-display .server-strip-button--yellow {
+      min-width: 92px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+    }
+
+    #ranks-container {
+      gap: 10px;
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+  }
+</style>
+
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans -transparent mode-glass">
@@ -4535,7 +4957,7 @@
     <div class="flex items-start justify-between gap-4">
         <div>
             <h3 class="text-2xl font-black tracking-wide">
-                Írd be a játékos nevét
+                Írd be a játékos nevet
             </h3>
         </div>
 
@@ -4553,23 +4975,23 @@
 
         <div class="flex-1">
             <div id="player-name-display" class="text-white font-black text-lg normal-case">
-                Vendég
+                Vendég játékos
             </div>
             <div id="player-status" class="text-slate-400 text-sm">
-                Nincs betöltve.
+                Nincs betöltve
             </div>
         </div>
     </div>
 
     <div class="mt-5">
         <label for="minecraft-name" class="block text-sm text-slate-300 font-black mb-2">
-            Tudakozó
+            Minecraft név
         </label>
 
         <div class="flex gap-2">
             <input id="minecraft-name"
                    type="text"
-                   placeholder="Ird ide a nevet."
+                   placeholder="pl. Never"
                    class="w-full bg-black/40 border border-white/20 rounded-xl px-4 py-3 text-white outline-none focus:border-cyan-300 font-bold normal-case" autocomplete="off" spellcheck="false">
 
             <button id="player-load-button" onclick="loadPlayerStats()"
@@ -7522,6 +7944,208 @@ setInterval(loadServerCard, 30000);
     setTimeout(bindDirect, 300);
     setTimeout(bindDirect, 1000);
     setTimeout(bindDirect, 2500);
+})();
+</script>
+
+
+<script id="server-card-long-logic-override">
+(function () {
+    function byId(id) { return document.getElementById(id); }
+
+    async function fetchSmpData() {
+        try {
+            const response = await fetch('/api/minecraft', { cache: 'no-store' });
+            if (!response.ok) throw new Error('API hiba');
+            const data = await response.json();
+            return {
+                title: data.name || 'Remény SMP',
+                ip: [data.ip, data.port].filter(Boolean).join(':'),
+                motd: stripHtml(data.motd || 'Minecraft szerver'),
+                version: data.version || 'Paper',
+                online: Number(data.online) || 0,
+                max: Number(data.max) || 0,
+                logo: data.logo || 'logo.png',
+                type: 'smp'
+            };
+        } catch (e) {
+            return {
+                title: 'Remény SMP',
+                ip: 'remenymc.shockbyte.pro:25399',
+                motd: '[1.21 + REMÉNYSMP] [26.1 +]',
+                version: 'Paper 26.1.2',
+                online: 0,
+                max: 69,
+                logo: 'logo.png',
+                type: 'smp'
+            };
+        }
+    }
+
+    function getHytaleData() {
+        return {
+            title: 'Remény Hytale',
+            ip: 'remenyhytale.shockbyte.pro',
+            motd: 'Hytale szerver hamarosan.',
+            version: 'Hytale',
+            online: 'készülőben',
+            max: '',
+            logo: 'icon.png',
+            type: 'hytale'
+        };
+    }
+
+    function stripHtml(value) {
+        const div = document.createElement('div');
+        div.innerHTML = value;
+        return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function ensureMount() {
+        const servers = byId('servers');
+        if (!servers) return null;
+
+        let display = byId('server-display');
+        if (!display) {
+            display = document.createElement('div');
+            display.id = 'server-display';
+            display.className = 'hidden';
+        }
+        servers.appendChild(display);
+        return display;
+    }
+
+    function showPlaceholder() {
+        const ph = byId('server-placeholder');
+        if (ph) ph.classList.remove('hidden', 'is-hidden');
+    }
+
+    function hidePlaceholder() {
+        const ph = byId('server-placeholder');
+        if (ph) ph.classList.add('is-hidden');
+    }
+
+    function onlineMarkup(data) {
+        if (data.type === 'hytale') {
+            return '<span style="color:#ffe16c;font-size:1.1rem;font-weight:900">készülőben</span>';
+        }
+        const bars = '<span class="server-strip-bars"><span></span><span></span><span></span></span>';
+        return `${data.online}/${data.max || 0} ${bars}`;
+    }
+
+    function buttonMarkup(data) {
+        if (data.type === 'hytale') {
+            return '<button type="button" class="server-strip-button server-strip-button--yellow" data-copy-server-ip="remenyhytale.shockbyte.pro">IP másolása</button>';
+        }
+        return `<button type="button" class="server-strip-button" data-copy-server-ip="${escapeHtml(data.ip)}">IP másolása</button>`;
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;');
+    }
+
+    function render(data) {
+        const display = ensureMount();
+        if (!display) return;
+
+        const extra = data.type === 'smp'
+            ? '<div class="server-strip-extra"><span>[1.21 +</span><span class="server-strip-tag">REMÉNYSMP</span><span>]</span><span>[26.1 +</span><span>]</span></div>'
+            : '<div class="server-strip-extra"><span>hamarosan nyitunk</span></div>';
+
+        display.innerHTML = `
+            <div class="server-strip-card">
+                <div class="server-long-layout">
+                    <div class="server-long-main">
+                        <img src="${escapeHtml(data.logo)}" alt="${escapeHtml(data.title)}" class="server-strip-logo">
+                        <div class="server-long-text">
+                            <div class="server-strip-title remeny-title-gradient">${escapeHtml(data.title)}</div>
+                            <div class="server-strip-ip">${escapeHtml(data.ip)}</div>
+                            ${extra}
+                            <div class="server-strip-motd">${escapeHtml(data.motd || '')}</div>
+                        </div>
+                    </div>
+                    <div class="server-long-side">
+                        <div class="server-strip-online">${onlineMarkup(data)}</div>
+                        <div class="server-strip-version">${escapeHtml(data.version || '')}</div>
+                        ${buttonMarkup(data)}
+                    </div>
+                </div>
+            </div>`;
+
+        display.classList.remove('hidden');
+        display.dataset.openServerType = data.type;
+        hidePlaceholder();
+
+        const copyBtn = display.querySelector('[data-copy-server-ip]');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                const ip = copyBtn.getAttribute('data-copy-server-ip');
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(ip).catch(function(){});
+                }
+                alert('IP kimásolva: ' + ip);
+            });
+        }
+    }
+
+    function closeServer() {
+        const display = ensureMount();
+        if (!display) return;
+        display.innerHTML = '';
+        display.classList.add('hidden');
+        display.dataset.openServerType = '';
+        showPlaceholder();
+    }
+
+    async function toggleServer(type) {
+        const display = ensureMount();
+        const openType = display ? display.dataset.openServerType : '';
+        const isVisible = display && !display.classList.contains('hidden') && display.innerHTML.trim() !== '';
+
+        if (isVisible && openType === type) {
+            closeServer();
+            return;
+        }
+
+        if (type === 'hytale') {
+            render(getHytaleData());
+        } else {
+            render(await fetchSmpData());
+        }
+    }
+
+    window.showServerPanel = function(type) {
+        toggleServer(type === 'hytale' ? 'hytale' : 'smp');
+    };
+
+    function bindButtons() {
+        document.querySelectorAll('.hero-btn-smp').forEach(function(btn){
+            btn.onclick = function(e){ e.preventDefault(); e.stopPropagation(); toggleServer('smp'); };
+        });
+        document.querySelectorAll('.hero-btn-hytale').forEach(function(btn){
+            btn.onclick = function(e){ e.preventDefault(); e.stopPropagation(); toggleServer('hytale'); };
+        });
+    }
+
+    document.addEventListener('click', function(e){
+        const btn = e.target.closest('.hero-btn-smp, .hero-btn-hytale');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        toggleServer(btn.classList.contains('hero-btn-hytale') ? 'hytale' : 'smp');
+    }, true);
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function(){ ensureMount(); bindButtons(); showPlaceholder(); });
+    } else {
+        ensureMount(); bindButtons(); showPlaceholder();
+    }
 })();
 </script>
 
