@@ -78,10 +78,18 @@ app.get("/api/server-config", (req, res) => {
     res.json(config);
   } catch {
     res.json({
-      name: "Remény SMP",
-      ip: "remenymc.shockbyte.pro",
-      port: 25565,
-      logo: "logo.png"
+      smp: {
+        name: "Remény SMP",
+        ip: "remenymc.shockbyte.pro",
+        port: 25399,
+        logo: "mc-logo.png"
+      },
+      hytale: {
+        name: "Remény Hytale",
+        ip: "remenyhytale.shockbyte.pro",
+        port: 25838,
+        logo: "hytale-logo.png"
+      }
     });
   }
 });
@@ -98,14 +106,21 @@ app.post("/api/server-config", (req, res) => {
 app.get("/api/minecraft", async (req, res) => {
   try {
     const config = JSON.parse(fs.readFileSync("server.json", "utf8"));
+    const smp = config.smp;
+
+    if (!smp || !smp.ip) {
+      return res.status(400).json({
+        error: "Nincs SMP IP beállítva."
+      });
+    }
 
     const result = await status(
-      config.ip,
-      Number(config.port) || 25565
+      smp.ip,
+      Number(smp.port) || 25565
     );
 
     res.json({
-      ...config,
+      ...smp,
       online: result.players.online,
       max: result.players.max,
       version: result.version.name,
@@ -117,6 +132,27 @@ app.get("/api/minecraft", async (req, res) => {
 
     res.status(500).json({
       error: "Nem sikerült lekérni a Minecraft szerver adatait."
+    });
+  }
+});
+
+app.get("/api/hytale", (req, res) => {
+  try {
+    const config = JSON.parse(fs.readFileSync("server.json", "utf8"));
+
+    if (!config.hytale) {
+      return res.status(400).json({
+        error: "Nincs Hytale adat beállítva."
+      });
+    }
+
+    res.json(config.hytale);
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: "Nem sikerült lekérni a Hytale adatokat."
     });
   }
 });
