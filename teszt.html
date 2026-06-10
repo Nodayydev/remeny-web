@@ -5884,8 +5884,30 @@
   }
 </style>
 
-<style id="motd-safe-once-color-style">
-  /* Glass: sokkal átlátszóbb, de stabilan, script-loop nélkül */
+<style id="motd-refresh-on-smp-click-final-style">
+  /* MOTD mindig látszódjon, és ne maradjon bent a régi */
+  #server-display .server-strip-motd,
+  #server-display .server-strip-motd * {
+    font-family: inherit !important;
+    text-transform: none !important;
+    font-variant: normal !important;
+    font-variant-caps: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  #server-display .server-strip-motd {
+    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    color: rgba(235, 245, 255, 0.96) !important;
+  }
+
+  #server-display .server-strip-motd span {
+    font-weight: 850 !important;
+  }
+
   body.mode-glass .glass-bubble,
   body.mode-glass .hero-card,
   body.mode-glass .hero-card-inner,
@@ -5913,28 +5935,73 @@
       inset 0 1px 0 rgba(255,255,255,0.10),
       0 10px 26px rgba(0,0,0,0.12) !important;
   }
+</style>
 
-  /* MOTD színek */
-  #server-display .server-strip-motd,
-  #server-display .server-strip-motd * {
-    font-family: inherit !important;
-    text-transform: none !important;
-    font-variant: normal !important;
-    font-variant-caps: normal !important;
-    letter-spacing: normal !important;
+
+<style id="glass-darker-more-transparent-final">
+  /* Glass mód: kicsit sötétebb, de sokkal átlátszóbb minden buborékon */
+  body.mode-glass .glass-bubble,
+  body.mode-glass .hero-card,
+  body.mode-glass .hero-card-inner,
+  body.mode-glass .hero-btn-smp,
+  body.mode-glass .hero-btn-hytale,
+  body.mode-glass #server-placeholder,
+  body.mode-glass #server-display .server-strip-card,
+  body.mode-glass #login-panel,
+  body.mode-glass #discord-panel,
+  body.mode-glass #members-display,
+  body.mode-glass .member-card,
+  body.mode-glass .remeny-default-placeholder,
+  body.mode-glass .social-grid-final a,
+  body.mode-glass #ranks-container button,
+  body.mode-glass .map-warning-card,
+  body.mode-glass .map-frame-card,
+  body.mode-glass .remeny-ai-note,
+  body.mode-glass .top-widget,
+  body.mode-glass .theme-menu,
+  body.mode-glass .theme-control,
+  body.mode-glass .theme-toggle-button {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.026), rgba(255,255,255,0.004)),
+      rgba(0, 6, 20, 0.038) !important;
+    border-color: rgba(210, 235, 255, 0.085) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(155%) brightness(0.92) !important;
+    backdrop-filter: blur(22px) saturate(155%) brightness(0.92) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.085),
+      inset 0 -1px 0 rgba(255,255,255,0.012),
+      0 10px 28px rgba(0,0,0,0.10) !important;
   }
 
-  #server-display .server-strip-motd {
-    display: block !important;
-    max-height: none !important;
-    overflow: visible !important;
-    white-space: normal !important;
-    word-break: break-word !important;
-    color: rgba(235, 245, 255, 0.96) !important;
+  body.mode-glass .hero-card,
+  body.mode-glass .hero-card-inner,
+  body.mode-glass #server-display .server-strip-card,
+  body.mode-glass #members-display,
+  body.mode-glass .map-warning-card,
+  body.mode-glass .map-frame-card {
+    background:
+      radial-gradient(circle at 18% 8%, rgba(255,255,255,0.055), transparent 28%),
+      linear-gradient(135deg, rgba(255,255,255,0.018), rgba(255,255,255,0.004)),
+      rgba(0, 5, 18, 0.045) !important;
   }
 
-  #server-display .server-strip-motd span {
-    font-weight: 850 !important;
+  body.mode-glass .glass-bubble::before,
+  body.mode-glass .hero-card::before,
+  body.mode-glass .hero-card-inner::before,
+  body.mode-glass .hero-btn-smp::before,
+  body.mode-glass .hero-btn-hytale::before,
+  body.mode-glass .server-strip-card::before {
+    opacity: 0.10 !important;
+  }
+
+  body.mode-glass .glass-bubble:hover,
+  body.mode-glass .hero-btn-smp:hover,
+  body.mode-glass .hero-btn-hytale:hover,
+  body.mode-glass .social-grid-final a:hover,
+  body.mode-glass #ranks-container button:hover {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.045), rgba(255,255,255,0.007)),
+      rgba(0, 8, 24, 0.060) !important;
   }
 </style>
 
@@ -8368,7 +8435,7 @@
 })();
 </script>
 
-<script id="motd-safe-once-color-script">
+<script id="motd-refresh-on-smp-click-final-script">
 (function () {
     const mcColors = {
         "0": "#000000", "1": "#0000AA", "2": "#00AA00", "3": "#00AAAA",
@@ -8376,6 +8443,8 @@
         "8": "#555555", "9": "#5555FF", "a": "#55FF55", "b": "#55FFFF",
         "c": "#FF5555", "d": "#FF55FF", "e": "#FFFF55", "f": "#FFFFFF"
     };
+
+    let requestId = 0;
 
     function escapeHtml(value) {
         return String(value ?? "")
@@ -8391,7 +8460,7 @@
         return textarea.value;
     }
 
-    function sanitizeMotdHtml(value) {
+    function sanitizeHtml(value) {
         const raw = decodeEntities(value || "");
         const template = document.createElement("template");
         template.innerHTML = raw;
@@ -8524,13 +8593,12 @@
     }
 
     function motdToHtml(value) {
-        const raw = String(value || "");
-        const decoded = decodeEntities(raw);
+        const decoded = decodeEntities(value || "");
 
-        if (!decoded.trim()) return "";
+        if (!decoded.trim()) return "Block ami a TIÉD marad!";
 
         if (decoded.includes("<span") || decoded.includes("<br") || decoded.includes("<b") || decoded.includes("<strong")) {
-            return sanitizeMotdHtml(decoded);
+            return sanitizeHtml(decoded);
         }
 
         if (/[§&][0-9a-frklmnor]/i.test(decoded)) {
@@ -8540,36 +8608,91 @@
         return escapeHtml(decoded).replace(/\n/g, "<br>");
     }
 
-    function colorizeMotdOnce() {
+    function setMotd(raw) {
         const display = document.getElementById("server-display");
         if (!display || display.classList.contains("hidden")) return;
+        if ((display.dataset.openServerType || "").toLowerCase() !== "smp") return;
 
         const motd = display.querySelector(".server-strip-motd");
-        if (!motd || motd.dataset.colored === "1") return;
+        if (!motd) return;
 
-        const raw = motd.getAttribute("data-raw-motd") || motd.textContent || motd.innerHTML || "";
-        const html = motdToHtml(raw);
+        motd.removeAttribute("data-colored");
+        motd.setAttribute("data-raw-motd", raw || "");
+        motd.innerHTML = motdToHtml(raw || "Block ami a TIÉD marad!");
+    }
 
-        if (html) {
-            motd.innerHTML = html;
-            motd.dataset.colored = "1";
+    function fetchWithTimeout(url, ms) {
+        const controller = new AbortController();
+        const timer = setTimeout(function () {
+            controller.abort();
+        }, ms);
+
+        return fetch(url, {
+            cache: "no-store",
+            signal: controller.signal
+        }).finally(function () {
+            clearTimeout(timer);
+        });
+    }
+
+    async function refreshMotdOnce() {
+        const id = ++requestId;
+
+        // Azonnal töröljük a beragadt régit, hogy ne maradjon bent.
+        setMotd("MOTD betöltése...");
+
+        try {
+            const response = await fetchWithTimeout("/api/minecraft", 2500);
+            if (!response.ok) throw new Error("minecraft api hiba");
+
+            const data = await response.json();
+            if (id !== requestId) return;
+
+            const raw =
+                data.motdHtml ||
+                data.motd_html ||
+                data.htmlMotd ||
+                data.html ||
+                data.motd ||
+                data.rawMotd ||
+                data.raw ||
+                "";
+
+            setMotd(raw || "Block ami a TIÉD marad!");
+        } catch (error) {
+            if (id !== requestId) return;
+            setMotd("Block ami a TIÉD marad!");
         }
     }
 
-    function bindSmpButtonForMotd() {
-        document.querySelectorAll(".hero-btn-smp, .hero-btn-hytale").forEach(function (button) {
+    function bindButtons() {
+        document.querySelectorAll(".hero-btn-smp").forEach(function (button) {
+            if (button.__motdRefreshBound) return;
+            button.__motdRefreshBound = true;
+
             button.addEventListener("click", function () {
-                setTimeout(colorizeMotdOnce, 180);
-                setTimeout(colorizeMotdOnce, 700);
+                setTimeout(refreshMotdOnce, 120);
+            }, true);
+        });
+
+        document.querySelectorAll(".hero-btn-hytale").forEach(function (button) {
+            if (button.__motdHytaleClearBound) return;
+            button.__motdHytaleClearBound = true;
+
+            button.addEventListener("click", function () {
+                requestId++;
             }, true);
         });
     }
 
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", bindSmpButtonForMotd);
+        document.addEventListener("DOMContentLoaded", bindButtons);
     } else {
-        bindSmpButtonForMotd();
+        bindButtons();
     }
+
+    setTimeout(bindButtons, 700);
+    setTimeout(bindButtons, 1700);
 })();
 </script>
 
