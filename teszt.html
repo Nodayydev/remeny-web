@@ -7259,8 +7259,7 @@ setInterval(loadServerCard, 30000);
 })();
 </script>
 
-
-<script id="remeny-server-buttons-hard-final">
+<script id="remeny-buttons-and-outside-final">
 (function () {
     let openedServerType = null;
 
@@ -7281,29 +7280,56 @@ setInterval(loadServerCard, 30000);
         }
     };
 
+    function byId(id) {
+        return document.getElementById(id);
+    }
+
+    function isHidden(el) {
+        return !el || el.classList.contains("hidden") || el.classList.contains("is-hidden");
+    }
+
+    function show(el) {
+        if (!el) return;
+        el.classList.remove("hidden", "is-hidden");
+    }
+
+    function hide(el) {
+        if (!el) return;
+        el.classList.add("hidden");
+    }
+
+    function containsAny(target, selectors) {
+        return selectors.some(function (selector) {
+            try {
+                const elements = document.querySelectorAll(selector);
+                return Array.from(elements).some(function (el) {
+                    return el && el.contains(target);
+                });
+            } catch (e) {
+                return false;
+            }
+        });
+    }
+
     function getServerDisplay() {
-        return document.getElementById("server-display");
+        return byId("server-display");
     }
 
     function getServerPlaceholder() {
-        return document.getElementById("server-placeholder");
+        return byId("server-placeholder");
     }
 
-    function showPlaceholder() {
+    function showServerPlaceholder() {
         const ph = getServerPlaceholder();
-        if (ph) {
-            ph.classList.remove("hidden", "is-hidden");
-        }
+        if (ph) ph.classList.remove("hidden", "is-hidden");
     }
 
-    function hidePlaceholder() {
+    function hideServerPlaceholder() {
         const ph = getServerPlaceholder();
-        if (ph) {
-            ph.classList.add("is-hidden");
-        }
+        if (ph) ph.classList.add("is-hidden");
     }
 
-    function copyText(text) {
+    function copyServerIP(text) {
         if (!text || text === "Hamarosan") return;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -7317,7 +7343,18 @@ setInterval(loadServerCard, 30000);
         }
     }
 
-    function renderServer(type) {
+    function closeServerPanel() {
+        const display = getServerDisplay();
+        if (!display) return;
+
+        display.classList.add("hidden");
+        display.innerHTML = "";
+        display.dataset.openServerType = "";
+        openedServerType = null;
+        showServerPlaceholder();
+    }
+
+    function renderServerPanel(type) {
         const display = getServerDisplay();
         if (!display) return;
 
@@ -7364,7 +7401,7 @@ setInterval(loadServerCard, 30000);
         display.classList.remove("hidden");
         display.dataset.openServerType = type;
         openedServerType = type;
-        hidePlaceholder();
+        hideServerPlaceholder();
 
         display.classList.remove("panel-open-anim");
         void display.offsetWidth;
@@ -7375,18 +7412,7 @@ setInterval(loadServerCard, 30000);
         }
     }
 
-    function closeServer() {
-        const display = getServerDisplay();
-        if (!display) return;
-
-        display.classList.add("hidden");
-        display.innerHTML = "";
-        display.dataset.openServerType = "";
-        openedServerType = null;
-        showPlaceholder();
-    }
-
-    window.copyServerIPFinal = copyText;
+    window.copyServerIPFinal = copyServerIP;
 
     window.showServerPanel = function (type) {
         const display = getServerDisplay();
@@ -7396,133 +7422,162 @@ setInterval(loadServerCard, 30000);
         const isOpen = !display.classList.contains("hidden") && display.innerHTML.trim().length > 0;
 
         if (isOpen && currentType === type) {
-            closeServer();
+            closeServerPanel();
             return;
         }
 
-        renderServer(type);
+        renderServerPanel(type);
     };
 
-    function bindServerButtons() {
-        const smpButton = document.querySelector(".hero-btn-smp");
-        const hytaleButton = document.querySelector(".hero-btn-hytale");
+    function findServerButtons() {
+        let smp = document.querySelector(".hero-btn-smp");
+        let hytale = document.querySelector(".hero-btn-hytale");
 
-        if (smpButton) {
-            smpButton.type = "button";
-            smpButton.onclick = function (event) {
+        // Fallback: keressük szöveg alapján, ha a class valamiért nem jó
+        const allButtons = Array.from(document.querySelectorAll("button, a"));
+        if (!smp) {
+            smp = allButtons.find(function (el) {
+                return (el.textContent || "").trim().toLowerCase() === "smp";
+            });
+        }
+
+        if (!hytale) {
+            hytale = allButtons.find(function (el) {
+                return (el.textContent || "").trim().toLowerCase().includes("hytale");
+            });
+        }
+
+        return { smp, hytale };
+    }
+
+    function bindServerButtons() {
+        const buttons = findServerButtons();
+
+        if (buttons.smp) {
+            buttons.smp.type = "button";
+            buttons.smp.setAttribute("data-server-button", "smp");
+            buttons.smp.onclick = function (event) {
                 event.preventDefault();
+                event.stopPropagation();
                 window.showServerPanel("smp");
             };
         }
 
-        if (hytaleButton) {
-            hytaleButton.type = "button";
-            hytaleButton.onclick = function (event) {
+        if (buttons.hytale) {
+            buttons.hytale.type = "button";
+            buttons.hytale.setAttribute("data-server-button", "hytale");
+            buttons.hytale.onclick = function (event) {
                 event.preventDefault();
+                event.stopPropagation();
                 window.showServerPanel("hytale");
             };
         }
 
         const display = getServerDisplay();
         if (display && (display.classList.contains("hidden") || !display.innerHTML.trim())) {
-            showPlaceholder();
+            showServerPlaceholder();
         }
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", bindServerButtons);
-    } else {
-        bindServerButtons();
-    }
+    function findLoginTriggers() {
+        const triggers = [];
+        const selectors = [
+            "#login-button",
+            "#profile-button",
+            "[onclick*='toggleLoginPanel']",
+            "[onclick*='login-panel']",
+            ".login-button",
+            ".profile-button",
+            ".top-widget-button"
+        ];
 
-    setTimeout(bindServerButtons, 400);
-    setTimeout(bindServerButtons, 1200);
-})();
-</script>
+        selectors.forEach(function (selector) {
+            document.querySelectorAll(selector).forEach(function (el) {
+                const text = (el.textContent || "").toLowerCase();
+                const label = ((el.getAttribute("title") || "") + " " + (el.getAttribute("aria-label") || "")).toLowerCase();
 
-
-<script id="remeny-click-outside-close">
-(function () {
-    function isVisible(element) {
-        return element &&
-            !element.classList.contains("hidden") &&
-            !element.classList.contains("is-hidden") &&
-            element.offsetParent !== null;
-    }
-
-    function closePanel(element) {
-        if (!element) return;
-        element.classList.add("hidden");
-    }
-
-    function inside(target, selectors) {
-        return selectors.some(function (selector) {
-            const element = document.querySelector(selector);
-            return element && element.contains(target);
+                if (
+                    selector !== ".top-widget-button" ||
+                    text.includes("👤") ||
+                    label.includes("profil") ||
+                    label.includes("login") ||
+                    label.includes("bejelent")
+                ) {
+                    triggers.push(el);
+                }
+            });
         });
+
+        return Array.from(new Set(triggers));
     }
 
-    function initOutsideClose() {
-        document.addEventListener("pointerdown", function (event) {
-            const target = event.target;
+    function closeFloatingPanels(exceptTarget) {
+        const loginPanel = byId("login-panel");
+        const themeMenu = byId("theme-menu");
+        const discordPanel = byId("discord-panel");
 
-            const loginPanel = document.getElementById("login-panel");
-            const themeMenu = document.getElementById("theme-menu");
-            const discordPanel = document.getElementById("discord-panel");
+        if (
+            loginPanel &&
+            !isHidden(loginPanel) &&
+            !loginPanel.contains(exceptTarget) &&
+            !findLoginTriggers().some(function (el) { return el.contains(exceptTarget); })
+        ) {
+            hide(loginPanel);
+        }
 
-            // Játékosnév/profil panel: záródjon, ha nem a panelre és nem a login ikonra kattintasz.
-            if (
-                isVisible(loginPanel) &&
-                !inside(target, [
-                    "#login-panel",
-                    "#login-button",
-                    ".login-button",
-                    ".top-widget-button[title='Profil']",
-                    ".top-widget-button[aria-label='Profil']"
-                ])
-            ) {
-                closePanel(loginPanel);
-            }
+        if (
+            themeMenu &&
+            !isHidden(themeMenu) &&
+            !themeMenu.contains(exceptTarget) &&
+            !containsAny(exceptTarget, ["#theme-toggle-button", ".theme-control"])
+        ) {
+            hide(themeMenu);
+        }
 
-            // Stílus menü: záródjon, ha nem a menüre és nem a stílus gombra kattintasz.
-            if (
-                isVisible(themeMenu) &&
-                !inside(target, [
-                    "#theme-menu",
-                    "#theme-toggle-button",
-                    ".theme-control"
-                ])
-            ) {
-                closePanel(themeMenu);
-            }
+        if (
+            discordPanel &&
+            !isHidden(discordPanel) &&
+            !discordPanel.contains(exceptTarget) &&
+            !containsAny(exceptTarget, ["#discord-button", ".discord-button"])
+        ) {
+            hide(discordPanel);
+        }
+    }
 
-            // Discord panel, ha van: záródjon kikattintásra.
-            if (
-                isVisible(discordPanel) &&
-                !inside(target, [
-                    "#discord-panel",
-                    "#discord-button",
-                    ".discord-button"
-                ])
-            ) {
-                closePanel(discordPanel);
-            }
-        }, true);
+    function bindOutsideClose() {
+        if (window.__remenyOutsideFinalBound) return;
+        window.__remenyOutsideFinalBound = true;
 
-        // ESC-re is záródjanak.
+        document.addEventListener("click", function (event) {
+            closeFloatingPanels(event.target);
+        });
+
+        document.addEventListener("touchend", function (event) {
+            closeFloatingPanels(event.target);
+        });
+
         document.addEventListener("keydown", function (event) {
             if (event.key !== "Escape") return;
-
-            closePanel(document.getElementById("login-panel"));
-            closePanel(document.getElementById("theme-menu"));
-            closePanel(document.getElementById("discord-panel"));
+            hide(byId("login-panel"));
+            hide(byId("theme-menu"));
+            hide(byId("discord-panel"));
         });
     }
 
+    function boot() {
+        bindServerButtons();
+        bindOutsideClose();
+
+        // Ha más régi script később újraírná az onclickeket, visszakötjük.
+        setTimeout(bindServerButtons, 400);
+        setTimeout(bindServerButtons, 1200);
+        setTimeout(bindServerButtons, 2500);
+    }
+
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initOutsideClose);
+        document.addEventListener("DOMContentLoaded", boot);
     } else {
-        initOutsideClose();
+        boot();
     }
 })();
 </script>
