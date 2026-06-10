@@ -5864,53 +5864,6 @@
     letter-spacing: normal !important;
   }
 </style>
-
-
-<style id="server-smp-motd-live-safe-style">
-  /* SMP MOTD fix: mindig látszódjon, ne legyen levágva */
-  #server-display .server-strip-motd {
-    display: block !important;
-    max-height: none !important;
-    overflow: visible !important;
-    white-space: normal !important;
-    word-break: break-word !important;
-    color: rgba(235, 245, 255, 0.95) !important;
-    opacity: 1 !important;
-  }
-
-  #server-display .server-strip-motd.is-loading {
-    opacity: 0.72 !important;
-  }
-</style>
-
-
-<style id="motd-color-render-final-style">
-  /* MOTD színek megjelenítése */
-  #server-display .server-strip-motd,
-  #server-display .server-strip-motd * {
-    font-family: inherit !important;
-    font-style: normal !important;
-    text-transform: none !important;
-    font-variant: normal !important;
-    font-variant-caps: normal !important;
-    letter-spacing: normal !important;
-  }
-
-  #server-display .server-strip-motd {
-    display: block !important;
-    max-height: none !important;
-    overflow: visible !important;
-    white-space: normal !important;
-    word-break: break-word !important;
-    color: rgba(235, 245, 255, 0.95);
-  }
-
-  #server-display .server-strip-motd span {
-    font-weight: 800;
-  }
-</style>
-
-
 <style id="rank-empty-bubble-hardfix-style">
   /* Rangoknál ne maradjon ott üres buborék */
   #members-display.rank-empty-hidden,
@@ -5931,9 +5884,8 @@
   }
 </style>
 
-
-<style id="motd-colors-and-glass-transparent-final">
-  /* Glass: sokkal átlátszóbb minden buborékon */
+<style id="motd-safe-once-color-style">
+  /* Glass: sokkal átlátszóbb, de stabilan, script-loop nélkül */
   body.mode-glass .glass-bubble,
   body.mode-glass .hero-card,
   body.mode-glass .hero-card-inner,
@@ -5952,22 +5904,14 @@
   body.mode-glass .map-frame-card,
   body.mode-glass .remeny-ai-note {
     background:
-      linear-gradient(135deg, rgba(255,255,255,0.035), rgba(255,255,255,0.006)),
-      rgba(2, 8, 26, 0.055) !important;
+      linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.006)),
+      rgba(2, 8, 26, 0.06) !important;
     border-color: rgba(220, 245, 255, 0.10) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(155%) brightness(1.08) !important;
-    backdrop-filter: blur(20px) saturate(155%) brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(145%) brightness(1.06) !important;
+    backdrop-filter: blur(18px) saturate(145%) brightness(1.06) !important;
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.12),
-      inset 0 -1px 0 rgba(255,255,255,0.02),
-      0 10px 28px rgba(0,0,0,0.12) !important;
-  }
-
-  body.mode-glass .hero-card,
-  body.mode-glass #server-display .server-strip-card {
-    background:
-      radial-gradient(circle at 18% 10%, rgba(255,255,255,0.09), transparent 30%),
-      rgba(2, 8, 26, 0.045) !important;
+      inset 0 1px 0 rgba(255,255,255,0.10),
+      0 10px 26px rgba(0,0,0,0.12) !important;
   }
 
   /* MOTD színek */
@@ -8087,7 +8031,7 @@
                         <div class="server-long-text">
                             <div class="server-strip-title ${escapeHtml(data.titleClass || '')}">${escapeHtml(data.name)}</div>
                             <div class="server-strip-ip" title="${escapeHtml(data.address)}">${escapeHtml(data.address)}</div>
-                            ${data.motd ? `<div class="server-strip-motd">${escapeHtml(data.motd)}</div>` : ""}
+                            ${data.motd ? `<div class="server-strip-motd" data-raw-motd="${escapeHtml(data.motd)}">${escapeHtml(data.motd)}</div>` : ""}
                         </div>
                     </div>
 
@@ -8280,448 +8224,6 @@
     }
 })();
 </script>
-
-
-<script id="server-smp-motd-live-safe-final">
-(function () {
-    function byId(id) {
-        return document.getElementById(id);
-    }
-
-    function escapeHtml(value) {
-        return String(value ?? "")
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;");
-    }
-
-    function stripHtml(value) {
-        const div = document.createElement("div");
-        div.innerHTML = value || "";
-        return (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
-    }
-
-    function normalizeIp(ip, port) {
-        const ipText = String(ip || "").trim();
-        const portText = String(port || "").trim();
-
-        if (!ipText) return "";
-        if (!portText || ipText.includes(":")) return ipText;
-        return ipText + ":" + portText;
-    }
-
-    function fetchWithTimeout(url, ms) {
-        const controller = new AbortController();
-        const timer = setTimeout(function () {
-            controller.abort();
-        }, ms);
-
-        return fetch(url, {
-            cache: "no-store",
-            signal: controller.signal
-        }).finally(function () {
-            clearTimeout(timer);
-        });
-    }
-
-    async function loadServerJson() {
-        const fallback = {
-            smp: {
-                name: "Remény SMP",
-                ip: "remenymc.shockbyte.pro",
-                port: 25399,
-                logo: "mc-logo.png",
-                motd: "Block ami a TIÉD marad!",
-                version: "Paper 26.1.2",
-                online: 0,
-                max: 777
-            },
-            hytale: {
-                name: "Remény Hytale",
-                ip: "remenyhytale.shockbyte.pro",
-                port: 25838,
-                logo: "hytale-logo.png",
-                motd: "Hivatalos Hytale szerver",
-                version: "Build Alpha",
-                online: 0,
-                max: 777
-            }
-        };
-
-        const urls = ["/server.json", "server.json", "/api/server-config"];
-
-        for (const url of urls) {
-            try {
-                const response = await fetchWithTimeout(url, 1200);
-                if (!response.ok) continue;
-
-                const data = await response.json();
-
-                if (data && (data.smp || data.hytale)) {
-                    return {
-                        smp: { ...fallback.smp, ...(data.smp || {}) },
-                        hytale: { ...fallback.hytale, ...(data.hytale || {}) }
-                    };
-                }
-
-                if (data && (data.name || data.ip)) {
-                    return {
-                        smp: { ...fallback.smp, ...data },
-                        hytale: fallback.hytale
-                    };
-                }
-            } catch (error) {}
-        }
-
-        return fallback;
-    }
-
-    async function loadLiveSmp() {
-        try {
-            const response = await fetchWithTimeout("/api/minecraft", 2200);
-            if (!response.ok) throw new Error("minecraft api hiba");
-            return await response.json();
-        } catch (error) {
-            return null;
-        }
-    }
-
-    function ensureServerArea() {
-        const servers = byId("servers");
-        if (!servers) return byId("server-display");
-
-        let placeholder = byId("server-placeholder");
-        let display = byId("server-display");
-
-        if (!placeholder) {
-            placeholder = document.createElement("div");
-            placeholder.id = "server-placeholder";
-            placeholder.className = "remeny-default-placeholder glass-bubble glass-cyan rounded-2xl";
-            placeholder.innerHTML = "<strong>Válassz szervert</strong> — kattints az <strong>SMP</strong> vagy <strong>Hytale</strong> gombra a szerver adataihoz.";
-            servers.appendChild(placeholder);
-        }
-
-        if (!display) {
-            display = document.createElement("div");
-            display.id = "server-display";
-            display.className = "hidden";
-            servers.appendChild(display);
-        }
-
-        return display;
-    }
-
-    function showPlaceholder() {
-        const ph = byId("server-placeholder");
-        if (ph) ph.classList.remove("hidden", "is-hidden");
-    }
-
-    function hidePlaceholder() {
-        const ph = byId("server-placeholder");
-        if (ph) ph.classList.add("is-hidden");
-    }
-
-    function onlineMarkup(data) {
-        const online = Number.isFinite(Number(data.online)) ? Number(data.online) : 0;
-        const max = Number.isFinite(Number(data.max)) && Number(data.max) > 0 ? Number(data.max) : 777;
-
-        return escapeHtml(online) + "/" + escapeHtml(max) +
-            ' <span class="server-strip-bars"><span></span><span></span><span></span></span>';
-    }
-
-    function renderServer(data, loadingMotd) {
-        const display = ensureServerArea();
-        if (!display) return;
-
-        const titleClass = data.type === "hytale" ? "server-strip-title-hytale" : "server-strip-title-smp";
-        const address = data.address || normalizeIp(data.ip, data.port);
-
-        display.innerHTML = `
-            <div class="server-strip-card">
-                <div class="server-long-layout">
-                    <div class="server-long-main">
-                        <img src="${escapeHtml(data.logo || "logo.png")}" alt="${escapeHtml(data.name)}" class="server-strip-logo">
-                        <div class="server-long-text">
-                            <div class="server-strip-title ${escapeHtml(titleClass)}">${escapeHtml(data.name)}</div>
-                            <div class="server-strip-ip" title="${escapeHtml(address)}">${escapeHtml(address)}</div>
-                            <div class="server-strip-motd ${loadingMotd ? "is-loading" : ""}">${escapeHtml(data.motd || "MOTD betöltése...")}</div>
-                        </div>
-                    </div>
-
-                    <div class="server-long-side">
-                        <div class="server-strip-online">${onlineMarkup(data)}</div>
-                        <div class="server-strip-version">${escapeHtml(data.version || "")}</div>
-                        ${address ? `<button type="button" class="server-strip-button" data-copy-ip="${escapeHtml(address)}">IP másolása</button>` : ""}
-                    </div>
-                </div>
-            </div>
-        `;
-
-        display.classList.remove("hidden");
-        display.dataset.openServerType = data.type;
-        hidePlaceholder();
-
-        const copy = display.querySelector("[data-copy-ip]");
-        if (copy) {
-            copy.onclick = function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const ip = copy.getAttribute("data-copy-ip") || "";
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(ip).catch(function () {});
-                }
-
-                alert("IP kimásolva: " + ip);
-            };
-        }
-    }
-
-    function closeServer() {
-        const display = ensureServerArea();
-        if (!display) return;
-
-        display.innerHTML = "";
-        display.dataset.openServerType = "";
-        display.classList.add("hidden");
-        showPlaceholder();
-    }
-
-    async function openSmp() {
-        const config = await loadServerJson();
-        const smp = config.smp || {};
-
-        const base = {
-            type: "smp",
-            name: smp.name || "Remény SMP",
-            ip: smp.ip || "remenymc.shockbyte.pro",
-            port: smp.port || 25399,
-            address: normalizeIp(smp.ip || "remenymc.shockbyte.pro", smp.port || 25399),
-            logo: smp.logo || "mc-logo.png",
-            motd: smp.motd || "MOTD betöltése...",
-            version: smp.version || "Paper 26.1.2",
-            online: smp.online ?? 0,
-            max: smp.max ?? 777
-        };
-
-        renderServer(base, true);
-
-        const live = await loadLiveSmp();
-        const currentDisplay = byId("server-display");
-
-        if (!currentDisplay || currentDisplay.dataset.openServerType !== "smp") return;
-
-        if (live) {
-            renderServer({
-                ...base,
-                name: live.name || base.name,
-                ip: live.ip || base.ip,
-                port: live.port || base.port,
-                address: live.address || normalizeIp(live.ip || base.ip, live.port || base.port),
-                logo: live.logo || base.logo,
-                motd: live.motd || base.motd || "Block ami a TIÉD marad!",
-                version: live.version || base.version,
-                online: live.online ?? base.online,
-                max: live.max ?? base.max
-            }, false);
-        } else {
-            renderServer({
-                ...base,
-                motd: base.motd && base.motd !== "MOTD betöltése..." ? base.motd : "Block ami a TIÉD marad!"
-            }, false);
-        }
-    }
-
-    async function openHytale() {
-        const config = await loadServerJson();
-        const hytale = config.hytale || {};
-
-        renderServer({
-            type: "hytale",
-            name: hytale.name || "Remény Hytale",
-            ip: hytale.ip || "remenyhytale.shockbyte.pro",
-            port: hytale.port || 25838,
-            address: normalizeIp(hytale.ip || "remenyhytale.shockbyte.pro", hytale.port || 25838),
-            logo: hytale.logo || "hytale-logo.png",
-            motd: hytale.motd || "Hivatalos Hytale szerver",
-            version: hytale.version || "Build Alpha",
-            online: hytale.online ?? 0,
-            max: hytale.max ?? 777
-        }, false);
-    }
-
-    async function toggleServer(type) {
-        const display = ensureServerArea();
-        const isOpen = display && !display.classList.contains("hidden") && display.innerHTML.trim().length > 0;
-        const current = display ? display.dataset.openServerType : "";
-
-        if (isOpen && current === type) {
-            closeServer();
-            return;
-        }
-
-        if (type === "hytale") {
-            await openHytale();
-        } else {
-            await openSmp();
-        }
-    }
-
-    window.showServerPanel = function (type) {
-        toggleServer(type === "hytale" ? "hytale" : "smp");
-    };
-
-    function bindButtons() {
-        document.querySelectorAll(".hero-btn-smp").forEach(function (button) {
-            button.onclick = function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-                toggleServer("smp");
-            };
-        });
-
-        document.querySelectorAll(".hero-btn-hytale").forEach(function (button) {
-            button.onclick = function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-                toggleServer("hytale");
-            };
-        });
-    }
-
-    function boot() {
-        ensureServerArea();
-        bindButtons();
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", boot);
-    } else {
-        boot();
-    }
-
-    setTimeout(bindButtons, 600);
-    setTimeout(bindButtons, 1600);
-})();
-</script>
-
-
-<script id="motd-color-render-final-script">
-(function () {
-    function sanitizeMotdHtml(value) {
-        const raw = String(value || "");
-
-        // Ha plain text, sima szövegként adjuk vissza.
-        if (!raw.includes("<")) {
-            return raw
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replace(/\n/g, "<br>");
-        }
-
-        const template = document.createElement("template");
-        template.innerHTML = raw;
-
-        const allowedTags = new Set(["SPAN", "BR", "B", "STRONG", "I", "EM"]);
-        const allowedStyle = new Set(["color", "font-weight", "font-style", "text-shadow"]);
-
-        function clean(node) {
-            [...node.childNodes].forEach(function (child) {
-                if (child.nodeType === Node.ELEMENT_NODE) {
-                    if (!allowedTags.has(child.tagName)) {
-                        child.replaceWith(document.createTextNode(child.textContent || ""));
-                        return;
-                    }
-
-                    [...child.attributes].forEach(function (attr) {
-                        const name = attr.name.toLowerCase();
-
-                        if (name === "style") {
-                            const safeParts = [];
-                            attr.value.split(";").forEach(function (part) {
-                                const pieces = part.split(":");
-                                if (pieces.length < 2) return;
-
-                                const key = pieces[0].trim().toLowerCase();
-                                const val = pieces.slice(1).join(":").trim();
-
-                                if (!allowedStyle.has(key)) return;
-                                if (/url|expression|javascript/i.test(val)) return;
-
-                                safeParts.push(key + ": " + val);
-                            });
-
-                            if (safeParts.length) {
-                                child.setAttribute("style", safeParts.join("; "));
-                            } else {
-                                child.removeAttribute("style");
-                            }
-                        } else if (name !== "class") {
-                            child.removeAttribute(attr.name);
-                        }
-                    });
-
-                    clean(child);
-                }
-            });
-        }
-
-        clean(template.content);
-        return template.innerHTML;
-    }
-
-    function patchMotdColor() {
-        const display = document.getElementById("server-display");
-        if (!display || display.classList.contains("hidden")) return;
-
-        const motd = display.querySelector(".server-strip-motd");
-        if (!motd) return;
-
-        // Ha a backend HTML MOTD-t küld, ne textContent legyen, hanem biztonságos HTML.
-        const raw = motd.getAttribute("data-raw-motd");
-        if (raw) {
-            motd.innerHTML = sanitizeMotdHtml(raw);
-            return;
-        }
-
-        const current = motd.innerHTML || motd.textContent || "";
-        if (current.includes("&lt;span") || current.includes("<span")) {
-            const decoded = current
-                .replaceAll("&lt;", "<")
-                .replaceAll("&gt;", ">")
-                .replaceAll("&quot;", '"')
-                .replaceAll("&amp;", "&");
-            motd.innerHTML = sanitizeMotdHtml(decoded);
-        }
-    }
-
-    function hookRenderOutput() {
-        const display = document.getElementById("server-display");
-        if (!display) return;
-
-        const observer = new MutationObserver(function () {
-            setTimeout(patchMotdColor, 0);
-        });
-
-        observer.observe(display, {
-            childList: true,
-            subtree: true
-        });
-
-        patchMotdColor();
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", hookRenderOutput);
-    } else {
-        hookRenderOutput();
-    }
-})();
-</script>
-
-
 <script id="rank-empty-bubble-hardfix-script">
 (function () {
     function byId(id) {
@@ -8866,26 +8368,13 @@
 })();
 </script>
 
-
-<script id="motd-colors-and-glass-transparent-final-script">
+<script id="motd-safe-once-color-script">
 (function () {
     const mcColors = {
-        "0": "#000000",
-        "1": "#0000AA",
-        "2": "#00AA00",
-        "3": "#00AAAA",
-        "4": "#AA0000",
-        "5": "#AA00AA",
-        "6": "#FFAA00",
-        "7": "#AAAAAA",
-        "8": "#555555",
-        "9": "#5555FF",
-        "a": "#55FF55",
-        "b": "#55FFFF",
-        "c": "#FF5555",
-        "d": "#FF55FF",
-        "e": "#FFFF55",
-        "f": "#FFFFFF"
+        "0": "#000000", "1": "#0000AA", "2": "#00AA00", "3": "#00AAAA",
+        "4": "#AA0000", "5": "#AA00AA", "6": "#FFAA00", "7": "#AAAAAA",
+        "8": "#555555", "9": "#5555FF", "a": "#55FF55", "b": "#55FFFF",
+        "c": "#FF5555", "d": "#FF55FF", "e": "#FFFF55", "f": "#FFFFFF"
     };
 
     function escapeHtml(value) {
@@ -8903,8 +8392,7 @@
     }
 
     function sanitizeMotdHtml(value) {
-        const raw = String(value || "");
-
+        const raw = decodeEntities(value || "");
         const template = document.createElement("template");
         template.innerHTML = raw;
 
@@ -8913,43 +8401,43 @@
 
         function clean(node) {
             Array.from(node.childNodes).forEach(function (child) {
-                if (child.nodeType === Node.ELEMENT_NODE) {
-                    if (!allowedTags.has(child.tagName)) {
-                        child.replaceWith(document.createTextNode(child.textContent || ""));
+                if (child.nodeType !== Node.ELEMENT_NODE) return;
+
+                if (!allowedTags.has(child.tagName)) {
+                    child.replaceWith(document.createTextNode(child.textContent || ""));
+                    return;
+                }
+
+                Array.from(child.attributes).forEach(function (attr) {
+                    const name = attr.name.toLowerCase();
+
+                    if (name !== "style") {
+                        child.removeAttribute(attr.name);
                         return;
                     }
 
-                    Array.from(child.attributes).forEach(function (attr) {
-                        const name = attr.name.toLowerCase();
+                    const safe = [];
+                    attr.value.split(";").forEach(function (part) {
+                        const pieces = part.split(":");
+                        if (pieces.length < 2) return;
 
-                        if (name === "style") {
-                            const safe = [];
+                        const key = pieces[0].trim().toLowerCase();
+                        const val = pieces.slice(1).join(":").trim();
 
-                            attr.value.split(";").forEach(function (part) {
-                                const pieces = part.split(":");
-                                if (pieces.length < 2) return;
+                        if (!allowedStyle.has(key)) return;
+                        if (/url|expression|javascript/i.test(val)) return;
 
-                                const key = pieces[0].trim().toLowerCase();
-                                const val = pieces.slice(1).join(":").trim();
-
-                                if (!allowedStyle.has(key)) return;
-                                if (/url|expression|javascript/i.test(val)) return;
-
-                                safe.push(key + ": " + val);
-                            });
-
-                            if (safe.length) {
-                                child.setAttribute("style", safe.join("; "));
-                            } else {
-                                child.removeAttribute("style");
-                            }
-                        } else {
-                            child.removeAttribute(attr.name);
-                        }
+                        safe.push(key + ": " + val);
                     });
 
-                    clean(child);
-                }
+                    if (safe.length) {
+                        child.setAttribute("style", safe.join("; "));
+                    } else {
+                        child.removeAttribute("style");
+                    }
+                });
+
+                clean(child);
             });
         }
 
@@ -8962,10 +8450,10 @@
         text = text.replace(/&([0-9a-frklmnor])/gi, "§$1");
 
         let html = "";
-        let open = false;
         let currentColor = "#FFFFFF";
         let bold = false;
         let italic = false;
+        let open = false;
 
         function openSpan() {
             const style = [
@@ -8973,7 +8461,6 @@
                 bold ? "font-weight:900" : "font-weight:800",
                 italic ? "font-style:italic" : "font-style:normal"
             ].join(";");
-
             html += '<span style="' + style + '">';
             open = true;
         }
@@ -9029,32 +8516,23 @@
                 continue;
             }
 
-            if (ch === "\n") {
-                html += "<br>";
-            } else {
-                html += escapeHtml(ch);
-            }
+            html += ch === "\n" ? "<br>" : escapeHtml(ch);
         }
 
         closeSpan();
         return html;
     }
 
-    function motdToColoredHtml(value) {
+    function motdToHtml(value) {
         const raw = String(value || "");
-
-        if (!raw.trim()) {
-            return "Block ami a TIÉD marad!";
-        }
-
         const decoded = decodeEntities(raw);
 
-        // Backend HTML MOTD esetén
+        if (!decoded.trim()) return "";
+
         if (decoded.includes("<span") || decoded.includes("<br") || decoded.includes("<b") || decoded.includes("<strong")) {
             return sanitizeMotdHtml(decoded);
         }
 
-        // Minecraft § vagy & színkódok esetén
         if (/[§&][0-9a-frklmnor]/i.test(decoded)) {
             return minecraftCodesToHtml(decoded);
         }
@@ -9062,73 +8540,35 @@
         return escapeHtml(decoded).replace(/\n/g, "<br>");
     }
 
-    async function fetchLiveMotd() {
-        try {
-            const response = await fetch("/api/minecraft", { cache: "no-store" });
-            if (!response.ok) throw new Error("minecraft api hiba");
-
-            const data = await response.json();
-
-            // A legfontosabb: html legyen az első, különben a clean kiszedi a színeket.
-            return data.motdHtml || data.motd_html || data.htmlMotd || data.html || data.motd || data.rawMotd || "";
-        } catch (error) {
-            return "";
-        }
-    }
-
-    async function applyMotdColors() {
+    function colorizeMotdOnce() {
         const display = document.getElementById("server-display");
         if (!display || display.classList.contains("hidden")) return;
 
-        if ((display.dataset.openServerType || "").toLowerCase() !== "smp") return;
-
         const motd = display.querySelector(".server-strip-motd");
-        if (!motd) return;
+        if (!motd || motd.dataset.colored === "1") return;
 
-        let raw = motd.getAttribute("data-raw-motd") || motd.innerHTML || motd.textContent || "";
-        const live = await fetchLiveMotd();
+        const raw = motd.getAttribute("data-raw-motd") || motd.textContent || motd.innerHTML || "";
+        const html = motdToHtml(raw);
 
-        if (live) raw = live;
-
-        motd.innerHTML = motdToColoredHtml(raw);
+        if (html) {
+            motd.innerHTML = html;
+            motd.dataset.colored = "1";
+        }
     }
 
-    function observeServer() {
-        const display = document.getElementById("server-display");
-        if (!display || display.__motdColorObserverFinal) return;
-
-        display.__motdColorObserverFinal = true;
-
-        const observer = new MutationObserver(function () {
-            setTimeout(applyMotdColors, 60);
-            setTimeout(applyMotdColors, 600);
+    function bindSmpButtonForMotd() {
+        document.querySelectorAll(".hero-btn-smp, .hero-btn-hytale").forEach(function (button) {
+            button.addEventListener("click", function () {
+                setTimeout(colorizeMotdOnce, 180);
+                setTimeout(colorizeMotdOnce, 700);
+            }, true);
         });
-
-        observer.observe(display, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ["class", "data-open-server-type"]
-        });
-    }
-
-    function boot() {
-        observeServer();
-        applyMotdColors();
-
-        document.addEventListener("click", function (event) {
-            if (!event.target.closest(".hero-btn-smp")) return;
-
-            setTimeout(applyMotdColors, 150);
-            setTimeout(applyMotdColors, 800);
-            setTimeout(applyMotdColors, 1800);
-        }, true);
     }
 
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", boot);
+        document.addEventListener("DOMContentLoaded", bindSmpButtonForMotd);
     } else {
-        boot();
+        bindSmpButtonForMotd();
     }
 })();
 </script>
