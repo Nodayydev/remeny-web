@@ -4938,6 +4938,267 @@
   }
 </style>
 
+
+<style id="server-card-edge-and-glass-matt-final">
+  /* Szerverkártya jobb oldala menjen teljesen a szélére */
+  #server-display .server-strip-card {
+    padding: 18px 18px 18px 20px !important;
+  }
+
+  #server-display .server-long-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) max-content !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 18px !important;
+  }
+
+  #server-display .server-long-side {
+    justify-self: end !important;
+    align-self: center !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+    margin-left: auto !important;
+    padding-right: 0 !important;
+    min-width: 150px !important;
+  }
+
+  #server-display .server-strip-online,
+  #server-display .server-strip-version,
+  #server-display .server-strip-button {
+    align-self: flex-end !important;
+    text-align: right !important;
+  }
+
+  #server-display .server-strip-button {
+    text-align: center !important;
+  }
+
+  /* Az 1.21 + REMÉNYSMP sor ne foglaljon helyet */
+  #server-display .server-strip-extra {
+    display: none !important;
+  }
+
+  /* Glass mód: minden buborék átlátszóbb */
+  body.mode-glass .glass-bubble,
+  body.mode-glass .hero-card,
+  body.mode-glass .hero-card-inner,
+  body.mode-glass .hero-btn-smp,
+  body.mode-glass .hero-btn-hytale,
+  body.mode-glass #server-display,
+  body.mode-glass #server-display .server-strip-card,
+  body.mode-glass #server-placeholder,
+  body.mode-glass #login-panel,
+  body.mode-glass #discord-panel,
+  body.mode-glass #members-display,
+  body.mode-glass .member-card,
+  body.mode-glass .remeny-default-placeholder,
+  body.mode-glass .social-grid-final a,
+  body.mode-glass #ranks-container button,
+  body.mode-glass .map-warning-card,
+  body.mode-glass .map-frame-card,
+  body.mode-glass .remeny-ai-note {
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.012)),
+      rgba(3, 8, 24, 0.14) !important;
+    border-color: rgba(210, 235, 255, 0.16) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(145%) brightness(1.06) !important;
+    backdrop-filter: blur(18px) saturate(145%) brightness(1.06) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.15),
+      inset 0 -1px 0 rgba(255,255,255,0.03),
+      0 12px 28px rgba(0,0,0,0.16) !important;
+  }
+
+  body.mode-glass .hero-card {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255,255,255,0.12), transparent 26%),
+      rgba(3, 8, 24, 0.12) !important;
+  }
+
+  /* Matt mód: sötétebb, de fényesebb/highlightosabb */
+  body.mode-matt .glass-bubble,
+  body.mode-matt .hero-card,
+  body.mode-matt .hero-card-inner,
+  body.mode-matt .hero-btn-smp,
+  body.mode-matt .hero-btn-hytale,
+  body.mode-matt #server-display,
+  body.mode-matt #server-display .server-strip-card,
+  body.mode-matt #server-placeholder,
+  body.mode-matt #login-panel,
+  body.mode-matt #discord-panel,
+  body.mode-matt #members-display,
+  body.mode-matt .member-card,
+  body.mode-matt .remeny-default-placeholder,
+  body.mode-matt .social-grid-final a,
+  body.mode-matt #ranks-container button,
+  body.mode-matt .map-warning-card,
+  body.mode-matt .map-frame-card,
+  body.mode-matt .remeny-ai-note {
+    background:
+      linear-gradient(145deg, rgba(20, 30, 60, 0.98), rgba(2, 6, 18, 0.99)) !important;
+    border: none !important;
+    outline: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.10),
+      inset 0 -1px 0 rgba(0,0,0,0.55),
+      0 10px 26px rgba(0,0,0,0.38),
+      0 0 18px rgba(80, 150, 255, 0.045) !important;
+  }
+
+  body.mode-matt .hero-card,
+  body.mode-matt #server-display .server-strip-card {
+    background:
+      radial-gradient(circle at 16% 0%, rgba(95, 145, 255, 0.14), transparent 28%),
+      linear-gradient(145deg, rgba(14, 22, 48, 0.99), rgba(1, 5, 16, 1)) !important;
+  }
+
+  body.mode-matt .hero-btn-smp {
+    background:
+      linear-gradient(145deg, rgba(18, 45, 72, 0.99), rgba(2, 10, 26, 1)) !important;
+  }
+
+  body.mode-matt .hero-btn-hytale {
+    background:
+      linear-gradient(145deg, rgba(62, 44, 12, 0.99), rgba(16, 9, 2, 1)) !important;
+  }
+
+  @media (max-width: 768px) {
+    #server-display .server-strip-card {
+      padding: 14px 10px 14px 12px !important;
+    }
+
+    #server-display .server-long-layout {
+      grid-template-columns: minmax(0, 1fr) max-content !important;
+      gap: 8px !important;
+    }
+
+    #server-display .server-long-side {
+      min-width: 84px !important;
+      max-width: 92px !important;
+      justify-self: end !important;
+      align-items: flex-end !important;
+      padding-right: 0 !important;
+    }
+
+    #server-display .server-strip-button {
+      min-width: 78px !important;
+      padding: 7px 7px !important;
+      font-size: 0.62rem !important;
+      white-space: nowrap !important;
+    }
+
+    #server-display .server-strip-online {
+      font-size: 0.92rem !important;
+      white-space: nowrap !important;
+    }
+
+    #server-display .server-strip-version {
+      font-size: 0.64rem !important;
+      white-space: nowrap !important;
+    }
+  }
+</style>
+
+
+<style id="map-warning-and-mojang-italic-final">
+  /* Map alatti figyelmeztetés: sima betűtípus, dőlt */
+  .map-frame-card::after {
+    font-family: inherit !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    font-variant: normal !important;
+    font-variant-caps: normal !important;
+    letter-spacing: normal !important;
+    color: rgba(255, 255, 255, 0.68) !important;
+  }
+
+  /* Mojang/Minecraft leírás: sima betűtípus, dőlt, nem small caps */
+  .remeny-disclaimer,
+  .remeny-disclaimer strong {
+    font-family: inherit !important;
+    font-style: italic !important;
+    text-transform: none !important;
+    font-variant: normal !important;
+    font-variant-caps: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  .remeny-disclaimer {
+    font-weight: 400 !important;
+  }
+
+  .remeny-disclaimer strong {
+    font-weight: 600 !important;
+  }
+</style>
+
+
+<style id="placeholders-italic-and-outside-close-final">
+  /* Válassz szervert + rang kattintós szöveg: sima betűtípus, dőlt */
+  #server-placeholder,
+  #server-placeholder *,
+  #rank-placeholder,
+  #rank-placeholder *,
+  #members-display p {
+    font-family: inherit !important;
+    font-style: italic !important;
+    text-transform: none !important;
+    font-variant: normal !important;
+    font-variant-caps: normal !important;
+    letter-spacing: normal !important;
+  }
+
+  #server-placeholder,
+  #rank-placeholder,
+  #members-display p {
+    font-weight: 400 !important;
+  }
+
+  #server-placeholder strong,
+  #rank-placeholder strong {
+    font-weight: 600 !important;
+  }
+
+  #server-placeholder.is-hidden,
+  #rank-placeholder.is-hidden,
+  #members-display.is-hidden,
+  #server-display.hidden {
+    display: none !important;
+  }
+</style>
+
+
+<style id="section-order-spacing-final">
+  /* Új sorrend: rangok alatt térkép, AI szöveg alatt közösségi platformok */
+  #discord {
+    padding-bottom: 2rem !important;
+  }
+
+  #map-section,
+  #map,
+  #terkep {
+    margin-top: 0.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  #kozosseg {
+    margin-top: 1.25rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  footer #kozosseg,
+  .footer #kozosseg {
+    max-width: 1050px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+</style>
+
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans -transparent mode-glass">
@@ -5179,8 +5440,71 @@
             </p>
         </div>
     </section>
+<section id="map-section" class="max-w-6xl mx-auto mt-10 px-4">
+                <div id="map-warning-card" class="map-warning-card glass-bubble glass-cyan rounded-3xl p-6 text-center">
+                    <div class="text-3xl mb-3">⚠️</div>
+                    <h2 class="text-2xl md:text-3xl font-black mb-3 remeny-title-gradient">
+                        Minecraft térkép előnézet
+                    </h2>
+                    <p class="text-slate-300 max-w-2xl mx-auto mb-5 leading-relaxed">
+                        A map külső oldalról töltődik be, ezért csak óvatosan használd.
+                        Ha biztosan látni akarod, nyomd meg a gombot.
+                    </p>
 
-    <section id="kozosseg" class="py-12">
+                    <div class="map-action-row">
+                        <button type="button"
+                                id="show-map-button"
+                                class="map-show-button glass-bubble glass-cyan rounded-2xl px-6 py-3 font-black hover:scale-105 transition">
+                            Oldalon belül megnyitom
+                        </button>
+
+                        <a id="open-map-new-tab-warning"
+                           href="http://202.36.95.171:22097"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="map-show-button glass-bubble rounded-2xl px-6 py-3 font-black hover:scale-105 transition">
+                            Megnyitás új lapon
+                        </a>
+                    </div>
+                </div>
+
+                <div id="map-frame-card" class="map-frame-card glass-bubble glass-cyan rounded-3xl p-3 hidden">
+                    <div class="flex items-center justify-between gap-3 px-3 pb-3">
+                        <div class="font-black remeny-title-gradient">Remény map</div>
+                        <div class="flex items-center gap-2">
+                            <a id="open-map-new-tab-frame"
+                               href="http://202.36.95.171:22097"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
+                                Új lapon
+                            </a>
+
+                            <button type="button"
+                                    id="hide-map-button"
+                                    class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
+                                Bezárás
+                            </button>
+                        </div>
+                    </div>
+
+                    <iframe src="https://202.36.95.171:22097" width="100%" height="700" style="border:none;border-radius:20px;" loading="lazy">
+                    </iframe>
+                </div>
+            </section>
+
+<section id="remeny-footer-info" class="remeny-footer-info max-w-5xl mx-auto px-4 mt-10 mb-0">
+<p class="remeny-disclaimer">
+                    A <strong>Remény</strong> nem áll kapcsolatban a <strong>Minecraft</strong>, a
+                    <strong>Microsoft Corporation</strong> vagy a <strong>Mojang Studios</strong> vállalatokkal,
+                    és nem képviseli azokat. A Minecraft a Microsoft Corporation bejegyzett védjegye.
+                    Ez egy független, rajongók által üzemeltetett közösségi projekt.
+                </p>
+
+                <div class="remeny-ai-note">
+                    ◇ EZ A WEBOLDAL RÉSZBEN MESTERSÉGES INTELLIGENCIA (AI) SEGÍTSÉGÉVEL KÉSZÜLT
+                </div>
+<section id="kozosseg" class="py-12">
         <h2 class="text-3xl sm:text-4xl font-black mb-8 tracking-wider">
             közösségi platformok
         </h2>
@@ -5252,72 +5576,6 @@
 
     </section>
 
-
-            <section id="map-section" class="max-w-6xl mx-auto mt-10 px-4">
-                <div id="map-warning-card" class="map-warning-card glass-bubble glass-cyan rounded-3xl p-6 text-center">
-                    <div class="text-3xl mb-3">⚠️</div>
-                    <h2 class="text-2xl md:text-3xl font-black mb-3 remeny-title-gradient">
-                        Minecraft térkép előnézet
-                    </h2>
-                    <p class="text-slate-300 max-w-2xl mx-auto mb-5 leading-relaxed">
-                        A map külső oldalról töltődik be, ezért csak óvatosan használd.
-                        Ha biztosan látni akarod, nyomd meg a gombot.
-                    </p>
-
-                    <div class="map-action-row">
-                        <button type="button"
-                                id="show-map-button"
-                                class="map-show-button glass-bubble glass-cyan rounded-2xl px-6 py-3 font-black hover:scale-105 transition">
-                            Oldalon belül megnyitom
-                        </button>
-
-                        <a id="open-map-new-tab-warning"
-                           href="http://202.36.95.171:22097"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="map-show-button glass-bubble rounded-2xl px-6 py-3 font-black hover:scale-105 transition">
-                            Megnyitás új lapon
-                        </a>
-                    </div>
-                </div>
-
-                <div id="map-frame-card" class="map-frame-card glass-bubble glass-cyan rounded-3xl p-3 hidden">
-                    <div class="flex items-center justify-between gap-3 px-3 pb-3">
-                        <div class="font-black remeny-title-gradient">Remény map</div>
-                        <div class="flex items-center gap-2">
-                            <a id="open-map-new-tab-frame"
-                               href="http://202.36.95.171:22097"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
-                                Új lapon
-                            </a>
-
-                            <button type="button"
-                                    id="hide-map-button"
-                                    class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
-                                Bezárás
-                            </button>
-                        </div>
-                    </div>
-
-                    <iframe src="https://202.36.95.171:22097" width="100%" height="700" style="border:none;border-radius:20px;" loading="lazy">
-                    </iframe>
-                </div>
-            </section>
-
-
-            <section id="remeny-footer-info" class="remeny-footer-info max-w-5xl mx-auto px-4 mt-10 mb-0">
-<p class="remeny-disclaimer">
-                    A <strong>Remény</strong> nem áll kapcsolatban a <strong>Minecraft</strong>, a
-                    <strong>Microsoft Corporation</strong> vagy a <strong>Mojang Studios</strong> vállalatokkal,
-                    és nem képviseli azokat. A Minecraft a Microsoft Corporation bejegyzett védjegye.
-                    Ez egy független, rajongók által üzemeltetett közösségi projekt.
-                </p>
-
-                <div class="remeny-ai-note">
-                    ◇ EZ A WEBOLDAL RÉSZBEN MESTERSÉGES INTELLIGENCIA (AI) SEGÍTSÉGÉVEL KÉSZÜLT
-                </div>
 
                 <div class="remeny-copyright">
                     © 2025 Remény
@@ -8053,6 +8311,496 @@ setInterval(loadServerCard, 30000);
 
     setTimeout(bindServerButtons, 600);
     setTimeout(bindServerButtons, 1600);
+})();
+</script>
+
+
+<script id="server-config-reader-edge-final">
+(function () {
+    let openedType = null;
+
+    function byId(id) {
+        return document.getElementById(id);
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;");
+    }
+
+    function stripHtml(value) {
+        const div = document.createElement("div");
+        div.innerHTML = value || "";
+        return (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
+    }
+
+    async function getServerConfig() {
+        try {
+            const response = await fetch("/api/server-config", { cache: "no-store" });
+            if (!response.ok) throw new Error("server-config API hiba");
+            const config = await response.json();
+
+            return {
+                name: config.name || "Remény SMP",
+                ip: config.ip || "remenymc.shockbyte.pro",
+                port: config.port || "25399",
+                logo: config.logo || "logo.png"
+            };
+        } catch (error) {
+            return {
+                name: "Remény SMP",
+                ip: "remenymc.shockbyte.pro",
+                port: "25399",
+                logo: "logo.png"
+            };
+        }
+    }
+
+    async function getMinecraftLiveData() {
+        try {
+            const response = await fetch("/api/minecraft", { cache: "no-store" });
+            if (!response.ok) throw new Error("minecraft API hiba");
+            return await response.json();
+        } catch (error) {
+            return {};
+        }
+    }
+
+    function normalizeIp(ip, port) {
+        const ipText = String(ip || "").trim();
+        const portText = String(port || "").trim();
+
+        if (!ipText) return "";
+        if (!portText || ipText.includes(":")) return ipText;
+        return `${ipText}:${portText}`;
+    }
+
+    async function getSmpData() {
+        const config = await getServerConfig();
+        const live = await getMinecraftLiveData();
+
+        return {
+            type: "smp",
+            title: config.name || live.name || "Remény SMP",
+            ip: normalizeIp(config.ip, config.port) || "remenymc.shockbyte.pro:25399",
+            motd: stripHtml(live.motd || ""),
+            version: live.version || "Paper 26.1.2",
+            online: Number(live.online) || 0,
+            max: Number(live.max) || 69,
+            logo: config.logo || live.logo || "logo.png"
+        };
+    }
+
+    function getHytaleData() {
+        return {
+            type: "hytale",
+            title: "Remény Hytale",
+            ip: "Hamarosan",
+            motd: "Hytale szerver hamarosan.",
+            version: "Hytale",
+            online: "készülőben",
+            max: "",
+            logo: "icon.png"
+        };
+    }
+
+    function ensureServerArea() {
+        const servers = byId("servers");
+        if (!servers) return byId("server-display");
+
+        let placeholder = byId("server-placeholder");
+        if (!placeholder) {
+            placeholder = document.createElement("div");
+            placeholder.id = "server-placeholder";
+            placeholder.className = "remeny-default-placeholder glass-bubble glass-cyan rounded-2xl";
+            placeholder.innerHTML = "<strong>Válassz szervert</strong> — kattints az <strong>SMP</strong> vagy <strong>Hytale</strong> gombra a szerver adataihoz.";
+            servers.appendChild(placeholder);
+        }
+
+        let display = byId("server-display");
+        if (!display) {
+            display = document.createElement("div");
+            display.id = "server-display";
+            display.className = "hidden";
+            servers.appendChild(display);
+        }
+
+        if (placeholder.parentElement !== servers) servers.appendChild(placeholder);
+        if (display.parentElement !== servers) servers.appendChild(display);
+
+        return display;
+    }
+
+    function showPlaceholder() {
+        const ph = byId("server-placeholder");
+        if (ph) ph.classList.remove("hidden", "is-hidden");
+    }
+
+    function hidePlaceholder() {
+        const ph = byId("server-placeholder");
+        if (ph) ph.classList.add("is-hidden");
+    }
+
+    function onlineMarkup(data) {
+        if (data.type === "hytale") {
+            return '<span style="color:#ffe16c;font-size:1.0rem;font-weight:900">készülőben</span>';
+        }
+
+        return `${escapeHtml(data.online)}/${escapeHtml(data.max || 0)} <span class="server-strip-bars"><span></span><span></span><span></span></span>`;
+    }
+
+    function renderServer(data) {
+        const display = ensureServerArea();
+        if (!display) return;
+
+        display.innerHTML = `
+            <div class="server-strip-card">
+                <div class="server-long-layout">
+                    <div class="server-long-main">
+                        <img src="${escapeHtml(data.logo || "logo.png")}" alt="${escapeHtml(data.title)}" class="server-strip-logo">
+                        <div class="server-long-text">
+                            <div class="server-strip-title remeny-title-gradient">${escapeHtml(data.title)}</div>
+                            <div class="server-strip-ip">${escapeHtml(data.ip)}</div>
+                            ${data.motd ? `<div class="server-strip-motd">${escapeHtml(data.motd)}</div>` : ""}
+                        </div>
+                    </div>
+
+                    <div class="server-long-side">
+                        <div class="server-strip-online">${onlineMarkup(data)}</div>
+                        <div class="server-strip-version">${escapeHtml(data.version || "")}</div>
+                        ${data.type === "smp" ? `<button type="button" class="server-strip-button" data-copy-server-ip="${escapeHtml(data.ip)}">IP másolása</button>` : ""}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        display.classList.remove("hidden");
+        display.dataset.openServerType = data.type;
+        openedType = data.type;
+        hidePlaceholder();
+
+        const copyButton = display.querySelector("[data-copy-server-ip]");
+        if (copyButton) {
+            copyButton.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const ip = copyButton.getAttribute("data-copy-server-ip");
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(ip).catch(function () {});
+                }
+
+                alert("IP kimásolva: " + ip);
+            };
+        }
+    }
+
+    function closeServer() {
+        const display = ensureServerArea();
+        if (!display) return;
+
+        display.innerHTML = "";
+        display.classList.add("hidden");
+        display.dataset.openServerType = "";
+        openedType = null;
+        showPlaceholder();
+    }
+
+    async function toggleServer(type) {
+        const display = ensureServerArea();
+        const currentType = display ? (display.dataset.openServerType || openedType) : "";
+        const isOpen = display && !display.classList.contains("hidden") && display.innerHTML.trim().length > 0;
+
+        if (isOpen && currentType === type) {
+            closeServer();
+            return;
+        }
+
+        if (type === "hytale") {
+            renderServer(getHytaleData());
+        } else {
+            renderServer(await getSmpData());
+        }
+    }
+
+    window.showServerPanel = function (type) {
+        toggleServer(type === "hytale" ? "hytale" : "smp");
+    };
+
+    function bindServerButtons() {
+        document.querySelectorAll(".hero-btn-smp").forEach(function (button) {
+            button.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleServer("smp");
+            };
+        });
+
+        document.querySelectorAll(".hero-btn-hytale").forEach(function (button) {
+            button.onclick = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleServer("hytale");
+            };
+        });
+    }
+
+    document.addEventListener("click", function (event) {
+        const button = event.target.closest(".hero-btn-smp, .hero-btn-hytale");
+        if (!button) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+
+        toggleServer(button.classList.contains("hero-btn-hytale") ? "hytale" : "smp");
+    }, true);
+
+    function boot() {
+        ensureServerArea();
+        bindServerButtons();
+        showPlaceholder();
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
+
+    setTimeout(bindServerButtons, 600);
+    setTimeout(bindServerButtons, 1600);
+})();
+</script>
+
+
+<script id="outside-close-server-rank-player-final">
+(function () {
+    function byId(id) {
+        return document.getElementById(id);
+    }
+
+    function hideElement(el) {
+        if (!el) return;
+        el.classList.add("hidden");
+        el.classList.add("is-hidden");
+    }
+
+    function showElement(el) {
+        if (!el) return;
+        el.classList.remove("hidden");
+        el.classList.remove("is-hidden");
+    }
+
+    function hasContent(el) {
+        return el && el.innerHTML && el.innerHTML.trim().length > 0;
+    }
+
+    function isOpen(el) {
+        if (!el) return false;
+        if (el.classList.contains("hidden") || el.classList.contains("is-hidden")) return false;
+        return true;
+    }
+
+    function contains(target, selectors) {
+        return selectors.some(function (selector) {
+            try {
+                return Array.from(document.querySelectorAll(selector)).some(function (el) {
+                    return el && el.contains(target);
+                });
+            } catch (e) {
+                return false;
+            }
+        });
+    }
+
+    function closeServerPanel() {
+        const display = byId("server-display");
+        const placeholder = byId("server-placeholder");
+
+        if (display) {
+            display.innerHTML = "";
+            display.dataset.openServerType = "";
+            display.classList.add("hidden");
+        }
+
+        showElement(placeholder);
+    }
+
+    function closeRankPanel() {
+        const members = byId("members-display");
+        const placeholder = byId("rank-placeholder");
+
+        if (members) {
+            members.innerHTML = '<p class="text-slate-500 italic font-bold">Kattints egy rangra a tagok megtekintéséhez.</p>';
+            members.classList.add("hidden");
+            members.classList.add("is-hidden");
+        }
+
+        showElement(placeholder);
+    }
+
+    function closePlayerPanel() {
+        const loginPanel = byId("login-panel");
+        if (loginPanel) {
+            loginPanel.classList.add("hidden");
+            loginPanel.classList.add("is-hidden");
+        }
+    }
+
+    function closeThemePanel() {
+        const themeMenu = byId("theme-menu");
+        if (themeMenu) {
+            themeMenu.classList.add("hidden");
+            themeMenu.classList.add("is-hidden");
+        }
+    }
+
+    function closeDiscordPanel() {
+        const discordPanel = byId("discord-panel");
+        if (discordPanel) {
+            discordPanel.classList.add("hidden");
+            discordPanel.classList.add("is-hidden");
+        }
+    }
+
+    function ensureRankInitialState() {
+        const members = byId("members-display");
+        const placeholder = byId("rank-placeholder");
+
+        if (members && placeholder) {
+            const onlyDefaultText = (members.textContent || "").toLowerCase().includes("kattints egy rangra");
+            if (onlyDefaultText) {
+                members.classList.add("hidden");
+                members.classList.add("is-hidden");
+                showElement(placeholder);
+            }
+        }
+    }
+
+    function bindOutsideClose() {
+        if (window.__remenyOutsideCloseAllFinalBound) return;
+        window.__remenyOutsideCloseAllFinalBound = true;
+
+        document.addEventListener("click", function (event) {
+            const target = event.target;
+
+            // Játékosnév / profil panel: elég kikattintani
+            if (
+                isOpen(byId("login-panel")) &&
+                !contains(target, [
+                    "#login-panel",
+                    "#login-button",
+                    "#profile-button",
+                    ".login-button",
+                    ".profile-button",
+                    "[onclick*='login']",
+                    "[onclick*='Login']",
+                    "[onclick*='profile']",
+                    "[onclick*='Profile']"
+                ])
+            ) {
+                closePlayerPanel();
+            }
+
+            // Szerver panel: ha nyitva van, és nem a szerverre vagy SMP/Hytale gombra kattintasz, zárjon vissza
+            if (
+                byId("server-display") &&
+                hasContent(byId("server-display")) &&
+                !byId("server-display").classList.contains("hidden") &&
+                !contains(target, [
+                    "#server-display",
+                    "#server-placeholder",
+                    ".hero-btn-smp",
+                    ".hero-btn-hytale"
+                ])
+            ) {
+                closeServerPanel();
+            }
+
+            // Rang panel: ha tagok vannak nyitva, és nem rangra vagy taglistára kattintasz, zárjon vissza
+            if (
+                byId("members-display") &&
+                !byId("members-display").classList.contains("hidden") &&
+                !contains(target, [
+                    "#members-display",
+                    "#rank-placeholder",
+                    "#ranks-container"
+                ])
+            ) {
+                closeRankPanel();
+            }
+
+            // Stílus és Discord panel is maradjon kikattintós
+            if (
+                isOpen(byId("theme-menu")) &&
+                !contains(target, ["#theme-menu", "#theme-toggle-button", ".theme-control"])
+            ) {
+                closeThemePanel();
+            }
+
+            if (
+                isOpen(byId("discord-panel")) &&
+                !contains(target, ["#discord-panel", "#discord-button", ".discord-button"])
+            ) {
+                closeDiscordPanel();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key !== "Escape") return;
+
+            closePlayerPanel();
+            closeServerPanel();
+            closeRankPanel();
+            closeThemePanel();
+            closeDiscordPanel();
+        });
+    }
+
+    // A régi showMembers funkció után automatikusan elrejtjük a placeholdert és megmutatjuk a taglistát.
+    function patchShowMembers() {
+        if (window.__remenyShowMembersOutsidePatched) return;
+        if (typeof window.showMembers !== "function") return;
+
+        const oldShowMembers = window.showMembers;
+        window.showMembers = function () {
+            const result = oldShowMembers.apply(this, arguments);
+
+            setTimeout(function () {
+                hideElement(byId("rank-placeholder"));
+
+                const members = byId("members-display");
+                if (members) {
+                    members.classList.remove("hidden");
+                    members.classList.remove("is-hidden");
+                }
+            }, 0);
+
+            return result;
+        };
+
+        window.__remenyShowMembersOutsidePatched = true;
+    }
+
+    function boot() {
+        ensureRankInitialState();
+        bindOutsideClose();
+        patchShowMembers();
+
+        setTimeout(patchShowMembers, 500);
+        setTimeout(patchShowMembers, 1500);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot);
+    } else {
+        boot();
+    }
 })();
 </script>
 
