@@ -4301,6 +4301,121 @@
             }
         }
 
+    
+        /* Remény alsó leírás */
+        .remeny-footer-info {
+            text-align: center;
+            color: rgba(125, 211, 205, 0.64);
+            padding-bottom: 18px;
+        }
+
+        .remeny-footer-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.38), transparent);
+            margin: 0 auto 26px auto;
+        }
+
+        .remeny-disclaimer {
+            max-width: 780px;
+            margin: 0 auto 22px auto;
+            font-size: 0.98rem;
+            line-height: 1.75;
+            font-weight: 650;
+            color: rgba(125, 211, 205, 0.62);
+        }
+
+        .remeny-disclaimer strong {
+            color: rgba(156, 236, 229, 0.72);
+            font-weight: 900;
+        }
+
+        .remeny-ai-note {
+            max-width: 760px;
+            margin: 0 auto 22px auto;
+            padding: 12px 18px;
+            border-radius: 6px;
+            border: 1px solid rgba(45, 212, 191, 0.20);
+            background: rgba(3, 20, 22, 0.22);
+            color: rgba(125, 211, 205, 0.48);
+            font-size: 0.75rem;
+            font-weight: 850;
+            letter-spacing: 0.26em;
+            line-height: 1.65;
+        }
+
+        .remeny-copyright {
+            font-size: 0.95rem;
+            font-weight: 750;
+            color: rgba(125, 211, 205, 0.54);
+            padding-bottom: 4px;
+        }
+
+        body.mode-glass .remeny-ai-note {
+            -webkit-backdrop-filter: blur(8px) saturate(130%);
+            backdrop-filter: blur(8px) saturate(130%);
+        }
+
+        body.mode-matt .remeny-ai-note {
+            border: none !important;
+            background: rgba(5, 16, 20, 0.88) !important;
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .remeny-footer-info {
+                padding-left: 22px !important;
+                padding-right: 22px !important;
+                padding-bottom: 12px !important;
+            }
+
+            .remeny-footer-line {
+                margin-bottom: 22px;
+            }
+
+            .remeny-disclaimer {
+                font-size: 0.86rem;
+                line-height: 1.72;
+                margin-bottom: 18px;
+            }
+
+            .remeny-ai-note {
+                font-size: 0.62rem;
+                letter-spacing: 0.18em;
+                padding: 10px 12px;
+                margin-bottom: 18px;
+            }
+
+            .remeny-copyright {
+                font-size: 0.82rem;
+            }
+        }
+
+    
+        /* Remény alsó leírás fehér szín */
+        .remeny-footer-info,
+        .remeny-disclaimer,
+        .remeny-disclaimer strong,
+        .remeny-ai-note,
+        .remeny-copyright {
+            color: rgba(255, 255, 255, 0.78) !important;
+        }
+
+        .remeny-footer-line {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent) !important;
+        }
+
+        .remeny-ai-note {
+            border-color: rgba(255, 255, 255, 0.18) !important;
+            background: rgba(255, 255, 255, 0.035) !important;
+        }
+
+        body.mode-matt .remeny-ai-note {
+            background: rgba(255, 255, 255, 0.035) !important;
+            border: none !important;
+        }
+
     </style>
 </head>
 
@@ -4440,10 +4555,6 @@
             <div class="text-xs text-slate-400 font-bold mt-1">megtett blokk</div>
         </div>
     </div>
-
-    <p class="text-slate-400 text-xs mt-4 leading-relaxed">
-        Az API-t később kötjük rá. Most a név alapján előkészített profilnézet működik crackelt játékosoknak is.
-    </p>
 </div>
 
 <main class="relative z-10 container mx-auto px-4 pt-36 sm:pt-8 pb-10 text-center">
@@ -4475,11 +4586,7 @@
                 <div id="server-placeholder" class="remeny-default-placeholder glass-bubble glass-cyan rounded-2xl">
                     <strong>Válassz szervert</strong> — kattints az <strong>SMP</strong> vagy <strong>Hytale</strong> gombra a szerver adataihoz.
                 </div>
-
-<div id="server-display"
-             class="hidden glass-bubble glass-cyan p-5 sm:p-8 rounded-xl max-w-5xl mx-auto min-h-[120px] items-center justify-center mb-8">
-        </div>
-    </section>
+</section>
 <section id="partnerek" class="pt-6 pb-8">
         <h2 class="text-3xl sm:text-4xl font-black mb-6 tracking-wider">
             partner
@@ -4672,6 +4779,24 @@
 
                     <iframe src="https://202.36.95.171:22097" width="100%" height="700" style="border:none;border-radius:20px;" loading="lazy">
                     </iframe>
+                </div>
+            </section>
+
+
+            <section id="remeny-footer-info" class="remeny-footer-info max-w-5xl mx-auto px-4 mt-10 mb-0">
+<p class="remeny-disclaimer">
+                    A <strong>Remény</strong> nem áll kapcsolatban a <strong>Minecraft</strong>, a
+                    <strong>Microsoft Corporation</strong> vagy a <strong>Mojang Studios</strong> vállalatokkal,
+                    és nem képviseli azokat. A Minecraft a Microsoft Corporation bejegyzett védjegye.
+                    Ez egy független, rajongók által üzemeltetett közösségi projekt.
+                </p>
+
+                <div class="remeny-ai-note">
+                    ◇ EZ A WEBOLDAL RÉSZBEN MESTERSÉGES INTELLIGENCIA (AI) SEGÍTSÉGÉVEL KÉSZÜLT
+                </div>
+
+                <div class="remeny-copyright">
+                    © 2025 Remény
                 </div>
             </section>
 
