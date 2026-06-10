@@ -178,11 +178,14 @@ app.get("/api/minecraft", async (req, res) => {
       max: result.players?.max ?? 0,
       version: result.version?.name ?? "",
       motd:
-        result.motd?.clean ||
-        result.motd?.raw ||
         result.motd?.html ||
+        result.motd?.raw ||
+        result.motd?.clean ||
         smp.motd ||
-        ""
+        "",
+      motdHtml: result.motd?.html || "",
+      rawMotd: result.motd?.raw || "",
+      cleanMotd: result.motd?.clean || ""
     });
 
   } catch (error) {
@@ -195,6 +198,9 @@ app.get("/api/minecraft", async (req, res) => {
       max: 0,
       version: "Offline",
       motd: smp.motd || "A szerver állapota jelenleg nem elérhető.",
+      motdHtml: smp.motd || "",
+      rawMotd: smp.motd || "",
+      cleanMotd: smp.motd || "",
       error: true
     });
   }
