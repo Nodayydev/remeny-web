@@ -8698,5 +8698,51 @@
 })();
 </script>
 
+
+<script id="server-ip-port-hide-final-script">
+(function () {
+    function stripPortFromAddressText(value) {
+        const text = String(value || "").trim();
+
+        // Domain/IPv4 + port esetén a port eltüntetése. IPv6-hoz nem nyúl.
+        if (/^[a-z0-9.-]+:\d+$/i.test(text)) {
+            return text.replace(/:\d+$/, "");
+        }
+
+        return text;
+    }
+
+    function cleanVisibleServerIps() {
+        document.querySelectorAll("#server-display .server-strip-ip").forEach(function (el) {
+            const clean = stripPortFromAddressText(el.textContent || "");
+            el.textContent = clean;
+            el.setAttribute("title", clean);
+        });
+
+        document.querySelectorAll("#server-display [data-copy-ip]").forEach(function (button) {
+            const clean = stripPortFromAddressText(button.getAttribute("data-copy-ip") || "");
+            button.setAttribute("data-copy-ip", clean);
+        });
+    }
+
+    document.addEventListener("click", function (event) {
+        if (
+            event.target.closest(".hero-btn-smp") ||
+            event.target.closest(".hero-btn-hytale")
+        ) {
+            setTimeout(cleanVisibleServerIps, 80);
+            setTimeout(cleanVisibleServerIps, 350);
+            setTimeout(cleanVisibleServerIps, 900);
+        }
+    }, true);
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", cleanVisibleServerIps);
+    } else {
+        cleanVisibleServerIps();
+    }
+})();
+</script>
+
 </body>
 </html>
