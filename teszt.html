@@ -6004,6 +6004,79 @@
   }
 </style>
 
+
+<style id="map-iframe-blue-visible-final-style">
+  /* BlueMap beágyazás: ne takarja el glass réteg, és legyen látható */
+  .map-frame-card,
+  #map-frame-card,
+  #map-section .map-frame-card {
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .map-frame-card::before,
+  .map-frame-card::after,
+  #map-section .map-frame-card::before,
+  #map-section .map-frame-card::after {
+    pointer-events: none !important;
+    z-index: 0 !important;
+    opacity: 0.08 !important;
+  }
+
+  .remeny-map-iframe,
+  #map-section iframe,
+  .map-frame-card iframe {
+    display: block !important;
+    position: relative !important;
+    z-index: 5 !important;
+    width: 100% !important;
+    min-height: 610px !important;
+    height: 62vh !important;
+    border: 0 !important;
+    border-radius: 18px !important;
+    background: #050b1f !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .remeny-map-iframe,
+    #map-section iframe,
+    .map-frame-card iframe {
+      min-height: 430px !important;
+      height: 58vh !important;
+      border-radius: 16px !important;
+    }
+
+    /* Telefonon a rang gombok felirata kicsit nagyobb */
+    #ranks-container button,
+    #ranks-container button span,
+    button[onclick*="showMembers"],
+    button[onclick*="showMembers"] span,
+    button[onclick*="showRankMembers"],
+    button[onclick*="showRankMembers"] span,
+    .rank-button,
+    .rank-button span {
+      font-size: 0.96rem !important;
+      letter-spacing: 0.045em !important;
+    }
+  }
+
+  @media (max-width: 430px) {
+    #ranks-container button,
+    #ranks-container button span,
+    button[onclick*="showMembers"],
+    button[onclick*="showMembers"] span,
+    button[onclick*="showRankMembers"],
+    button[onclick*="showRankMembers"] span,
+    .rank-button,
+    .rank-button span {
+      font-size: 0.92rem !important;
+    }
+  }
+</style>
+
 </head>
 
 <body class="bg-remeny-fixed min-h-screen text-white font-sans -transparent mode-glass">
@@ -6296,7 +6369,7 @@
                         </div>
                     </div>
 
-                    <iframe src="https://remeny-map.s.gy/blue-map" width="100%" height="700" style="border:none;border-radius:20px;" loading="lazy">
+                    <iframe class="remeny-map-iframe" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://remeny-map.s.gy/blue-map/" width="100%" height="700" style="border:none;border-radius:20px;" loading="lazy">
                     </iframe>
                 </div>
             </section>
@@ -8741,6 +8814,39 @@
     } else {
         cleanVisibleServerIps();
     }
+})();
+</script>
+
+
+<script id="map-iframe-blue-visible-final-script">
+(function () {
+    const embedUrl = "https://remeny-map.s.gy/blue-map/";
+    const openUrl = "https://remeny-map.s.gy/";
+
+    function fixMapIframe() {
+        const iframe = document.querySelector("#map-section iframe, .map-frame-card iframe, iframe.remeny-map-iframe");
+        if (iframe) {
+            iframe.src = embedUrl;
+            iframe.classList.add("remeny-map-iframe");
+            iframe.setAttribute("loading", "lazy");
+            iframe.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
+            iframe.setAttribute("allowfullscreen", "");
+        }
+
+        document.querySelectorAll('a[href*="remeny-map.s.gy"]').forEach(function (a) {
+            if ((a.textContent || "").toLowerCase().includes("új") || (a.textContent || "").toLowerCase().includes("uj")) {
+                a.href = openUrl;
+            }
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", fixMapIframe);
+    } else {
+        fixMapIframe();
+    }
+
+    setTimeout(fixMapIframe, 600);
 })();
 </script>
 
