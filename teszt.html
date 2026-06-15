@@ -1,203 +1,656 @@
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
+​<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「 ✦ RÉMÉNY ✦ 」</title>
+    <link rel="icon" type="image/png" href="icon.png">
+<link rel="shortcut icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
 
-    body {
-        overflow-x: hidden;
-        font-variant-caps: small-caps;
-        background: #020617 !important;
-    }
+    <meta property="og:title" content="「 ✦ RÉMÉNY ✦ 」">
+    <meta property="og:description" content="Hogy mindig maradjon itt valami.">
 
-    * {
-        font-variant-caps: small-caps;
-    }
 
-    .small-caps {
-        font-variant-caps: small-caps;
-    }
 
-    /* Szöveges kivételek (ahol nem szeretnénk Small-Caps formázást) */
-    .normal-text,
-    .normal-text *,
-    #minecraft-name,
-    #player-name-display,
-    #player-status,
-    .server-strip-ip,
-    .server-strip-motd {
-        font-variant-caps: normal !important;
-        text-transform: none !important;
-        letter-spacing: normal !important;
-    }
 
-    /* Gradiens Szöveg Utilitik */
-    .remeny-gradient { background: linear-gradient(90deg, #55ffff, #5555ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-    .mineforum-gradient { background: linear-gradient(90deg, #ffff55, #ffaa00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-    .instagram-gradient { background: linear-gradient(90deg, #ff55ff, #ffaa55); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-    .youtube-gradient { background: linear-gradient(90deg, #ff5555, #ff0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-    .github-gradient { background: linear-gradient(90deg, #ffffff, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+        <meta property="og:image" content="https://remeny-web.onrender.com/preview.png?v=10">
+    <meta property="og:image:secure_url" content="https://remeny-web.onrender.com/preview.png?v=10">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:image" content="https://remeny-web.onrender.com/preview.png?v=10">
+<meta property="og:url" content="https://remeny-web.onrender.com/">
+    <meta property="og:type" content="website">
 
-    /* Fix Háttér Réteg (PC-n és Mobilon is stabil) */
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -2;
-        background: linear-gradient(rgba(0, 0, 30, 0.35), rgba(0, 0, 0, 0.78)), url("bg-remeny.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        pointer-events: none;
-        transform: translateZ(0);
-    }
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="「 ✦ RÉMÉNY ✦ 」">
+    <meta name="twitter:description" content="Hogy mindig maradjon itt valami.">
 
-    @media (max-width: 640px) {
-        body::before {
-            background: linear-gradient(rgba(0, 0, 30, 0.35), rgba(0, 0, 0, 0.78)), url("bg-remeny-telefon.png");
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1668891626196907"
+     crossorigin="anonymous"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            font-variant-caps: small-caps;
+        }
+
+        * {
+            font-variant-caps: small-caps;
+        }
+
+        .small-caps {
+            font-variant-caps: small-caps;
+        }
+
+        .remeny-gradient {
+            background: linear-gradient(90deg, #55ffff, #5555ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .mineforum-gradient {
+            background: linear-gradient(90deg, #ffff55, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .mcportal-gradient {
+            background: linear-gradient(90deg, #55ffff, #5555ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .mchirdeto-gradient {
+            background: linear-gradient(90deg, #55ffff, #5555ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .instagram-gradient {
+            background: linear-gradient(90deg, #ff55ff, #ffaa55);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .x-gradient {
+            background: linear-gradient(90deg, #ffffff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .youtube-gradient {
+            background: linear-gradient(90deg, #ff5555, #ff0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .github-gradient {
+            background: linear-gradient(90deg, #ffffff, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .bg-remeny-fixed {
+            background:
+                linear-gradient(rgba(0, 0, 30, 0.45), rgba(0, 0, 0, 0.82)),
+                url("bg-remeny.png");
             background-size: cover;
-            background-position: center top;
+            background-position: center;
+            background-attachment: fixed;
         }
-    }
 
-    /* Kártyák és Buborékok Alapstílusa (iOS26 és Extra Áttetsző Glass ötvözete) */
-    .hero-card {
-        position: relative;
-        max-width: 540px;
-        margin: 0 auto;
-        border-radius: 30px;
-        padding: 1px;
-        transition: all 0.25s ease;
-    }
-
-    .hero-card-inner {
-        border-radius: 28px;
-        padding: 28px 22px;
-        transition: all 0.25s ease;
-    }
-
-    .hero-logo {
-        width: min(96vw, 560px);
-        max-width: 100%;
-        height: auto;
-        max-height: 240px;
-        margin: 0 auto 22px;
-        object-fit: contain;
-        image-rendering: pixelated;
-        filter: drop-shadow(0 0 10px rgba(85, 255, 255, 0.35)) drop-shadow(0 0 22px rgba(85, 85, 255, 0.18));
-    }
-
-    .hero-btn-smp,
-    .hero-btn-hytale {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 130px;
-        padding: 12px 26px;
-        border-radius: 18px;
-        font-weight: 900;
-        transition: 0.25s ease;
-        letter-spacing: 0.05em;
-    }
-
-    .hero-btn-smp:hover,
-    .hero-btn-hytale:hover {
-        transform: translateY(-2px);
-    }
-
-    /* --- ÜVEG (GLASS) MÓD --- */
-    body.mode-glass .glass-bubble,
-    body.mode-glass .hero-card,
-    body.mode-glass .hero-btn-smp,
-    body.mode-glass .hero-btn-hytale,
-    body.mode-glass #server-display,
-    body.mode-glass #login-panel {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.012)) !important;
-        border: 1px solid rgba(255, 255, 255, 0.22) !important;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -1px 0 rgba(255, 255, 255, 0.035), 0 10px 30px rgba(0, 0, 0, 0.18), 0 0 22px rgba(130, 210, 255, 0.07) !important;
-        -webkit-backdrop-filter: blur(28px) saturate(210%) !important;
-        backdrop-filter: blur(28px) saturate(210%) !important;
-    }
-
-    body.mode-glass .hero-card-inner {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.008)) !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
-    }
-
-    /* --- MATT MÓD FELÜLBÍRÁLÁSOK --- */
-    body.mode-matt .hero-card { border-radius: 10px !important; }
-    body.mode-matt .hero-card-inner { border-radius: 8px !important; background: rgba(5, 9, 24, 0.98) !important; }
-    body.mode-matt .glass-bubble,
-    body.mode-matt .hero-btn-smp,
-    body.mode-matt .hero-btn-hytale,
-    body.mode-matt #server-display,
-    body.mode-matt #login-panel {
-        border-radius: 7px !important;
-        background: rgba(5, 9, 24, 0.98) !important;
-        border: 1px solid rgba(150, 170, 230, 0.14) !important;
-        box-shadow: 0 7px 18px rgba(0, 0, 0, 0.28) !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-
-    /* Alsó téma váltó gombok */
-    .glass-toggle {
-        position: fixed;
-        left: 12px;
-        bottom: 12px;
-        z-index: 60;
-        display: flex;
-        gap: 8px;
-    }
-
-    .glass-toggle button {
-        min-width: 70px;
-        padding: 9px 13px;
-        border-radius: 16px;
-        font-weight: 900;
-        transition: 0.2s ease;
-    }
-
-    .glass-toggle button:hover { transform: scale(1.04); }
-
-    /* Minecraft skin megjelenítés */
-    .minecraft-avatar-crop {
-        background-repeat: no-repeat !important;
-        background-size: 800% 800% !important;
-        background-position: 14.285% 14.285% !important;
-        image-rendering: pixelated;
-    }
-
-    /* Szerver Kártya Struktúra */
-    #server-display { width: min(92vw, 760px); margin: 0 auto; }
-    .server-strip-card { width: 100%; display: flex; align-items: center; gap: 14px; text-align: left; }
-    .server-strip-logo { width: 58px; height: 58px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
-    .server-strip-main { flex: 1; min-width: 0; }
-    .server-strip-title { font-size: 1rem; font-weight: 900; color: white; line-height: 1.1; }
-    .server-strip-ip { margin-top: 4px; font-size: 0.75rem; font-weight: 800; color: rgb(103, 232, 249); word-break: break-word; }
-    .server-strip-motd { margin-top: 5px; font-size: 0.72rem; line-height: 1.25; color: rgb(134, 239, 172); font-family: monospace; }
-    .server-strip-motd .motd-line { display: block; width: 100%; }
-    .server-strip-side { flex-shrink: 0; text-align: right; min-width: 82px; }
-    .server-strip-online { font-size: 0.9rem; font-weight: 900; color: white; }
-    .server-strip-version { margin-top: 4px; font-size: 0.68rem; color: rgb(148, 163, 184); }
-
-    /* Mobil widget elrendezések */
-    @media (max-width: 640px) {
-        .top-left-widgets {
-            position: absolute !important; top: 14px !important; left: 12px !important; right: 12px !important;
-            display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 8px !important; z-index: 50 !important;
+        .hero-card {
+            position: relative;
+            max-width: 540px;
+            margin: 0 auto;
+            border-radius: 28px;
+            padding: 1px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            backdrop-filter: blur(18px) saturate(180%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.34),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+                0 10px 34px rgba(0, 0, 0, 0.34),
+                0 0 24px rgba(85, 255, 255, 0.18);
         }
-        .top-left-widgets .top-info-box { width: 100% !important; height: 58px !important; padding: 8px 10px !important; border-radius: 18px !important; }
-        #clock-time { font-size: 1.25rem !important; line-height: 1.2rem !important; }
-        #clock-date { font-size: 0.78rem !important; line-height: 0.92rem !important; }
-        #clock-day { font-size: 0.68rem !important; }
-        .top-right-widgets { position: absolute !important; top: 82px !important; right: 12px !important; display: flex !important; gap: 8px !important; z-index: 51 !important; }
-        .top-right-widgets .glass-bubble { width: 44px !important; height: 44px !important; border-radius: 16px !important; font-size: 1.35rem !important; padding: 0 !important; }
-        #login-panel { top: 136px !important; right: 12px !important; left: 12px !important; width: auto !important; }
-        main { padding-top: 140px !important; }
-        .hero-card { max-width: 92% !important; }
-        .hero-card-inner { padding: 22px 14px !important; }
-        .glass-toggle { left: 50%; transform: translateX(-50%); bottom: 10px; }
-        .server-strip-card { gap: 10px; }
-        .server-strip-logo { width: 50px; height: 50px; border-radius: 10px; }
-    }
-</style>
+
+        .hero-card-inner {
+            background: rgba(3, 5, 24, 0.92);
+            border-radius: 26px;
+            padding: 24px 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-logo {
+            width: min(96vw, 560px);
+            max-width: 100%;
+            height: auto;
+            max-height: 240px;
+            margin: 0 auto 22px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            border-radius: 0;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            filter:
+                drop-shadow(0 0 10px rgba(85, 255, 255, 0.35))
+                drop-shadow(0 0 22px rgba(85, 85, 255, 0.18));
+        }
+
+        .server-strip-motd .motd-line {
+            display: block;
+            width: 100%;
+            line-height: 1.22;
+        }
+
+        @media (max-width: 640px) {
+            .hero-logo {
+                width: min(84vw, 380px);
+                max-height: 180px;
+                margin-bottom: 18px;
+            }
+
+            .server-strip-motd {
+                white-space: normal !important;
+            }
+
+            .server-strip-motd .motd-line {
+                display: block;
+                width: 100%;
+            }
+        }
+
+        .hero-btn-smp {
+            border: 2px solid #32d8ff;
+            color: #6ee7ff;
+            box-shadow: 0 0 16px rgba(50, 216, 255, 0.22);
+        }
+
+        .hero-btn-hytale {
+            border: 2px solid #ffcc33;
+            color: #ffd95c;
+            box-shadow: 0 0 16px rgba(255, 204, 51, 0.18);
+        }
+
+        .hero-btn-smp,
+        .hero-btn-hytale {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 130px;
+            padding: 12px 26px;
+            border-radius: 18px;
+            font-weight: 900;
+            transition: 0.25s ease;
+            background: rgba(0, 0, 0, 0.35);
+            letter-spacing: 0.05em;
+        }
+
+        .hero-btn-smp:hover,
+        .hero-btn-hytale:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .glass-bubble {
+            position: relative;
+            overflow: hidden;
+            background: rgba(4, 10, 22, 0.12) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
+            -webkit-backdrop-filter: blur(10px) saturate(135%);
+            backdrop-filter: blur(10px) saturate(135%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 22px rgba(0, 0, 0, 0.18),
+                0 0 16px rgba(120, 180, 255, 0.06);
+        }
+
+        .glass-bubble::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            background:
+                radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.09), transparent 24%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.07), transparent 40%);
+            opacity: 0.38;
+        }
+
+        .glass-bubble > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-cyan {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(85, 255, 255, 0.10);
+        }
+
+        .glass-mchirdeto {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(120, 255, 220, 0.14);
+        }
+
+        .glass-yellow {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(255, 190, 50, 0.10);
+        }
+
+        .glass-pink {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(255, 85, 200, 0.10);
+        }
+
+        .profile-avatar {
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.28),
+                0 0 18px rgba(85,255,255,0.16);
+        }
+
+        .glass-purple {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.10),
+                0 8px 20px rgba(0, 0, 0, 0.18),
+                0 0 18px rgba(190, 130, 255, 0.10);
+        }
+
+
+        @media (max-width: 640px) {
+            .top-left-widgets {
+                position: absolute !important;
+                top: 14px !important;
+                left: 12px !important;
+                right: 12px !important;
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px !important;
+                z-index: 50 !important;
+            }
+
+            .top-left-widgets .top-info-box {
+                width: 100% !important;
+                height: 58px !important;
+                min-width: 0 !important;
+                padding: 8px 10px !important;
+                border-radius: 18px !important;
+            }
+
+            #clock-time {
+                font-size: 1.25rem !important;
+                line-height: 1.2rem !important;
+            }
+
+            #clock-date {
+                font-size: 0.78rem !important;
+                line-height: 0.92rem !important;
+                white-space: normal !important;
+            }
+
+            #clock-day {
+                font-size: 0.68rem !important;
+            }
+
+            .top-right-widgets {
+                position: absolute !important;
+                top: 82px !important;
+                right: 12px !important;
+                display: flex !important;
+                gap: 8px !important;
+                z-index: 51 !important;
+            }
+
+            .top-right-widgets .glass-bubble {
+                width: 44px !important;
+                height: 44px !important;
+                min-width: 44px !important;
+                border-radius: 16px !important;
+                font-size: 1.35rem !important;
+                padding: 0 !important;
+            }
+
+            #login-panel {
+                top: 136px !important;
+                right: 12px !important;
+                left: 12px !important;
+                width: auto !important;
+            }
+
+            main {
+                padding-top: 140px !important;
+            }
+
+            main > section:first-child {
+                min-height: 46vh !important;
+                padding-top: 0 !important;
+            }
+
+            .hero-card {
+                max-width: 92% !important;
+            }
+
+            .hero-card-inner {
+                padding: 22px 14px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bg-remeny-fixed {
+                background-attachment: scroll;
+                background-position: center top;
+            }
+
+            .hero-card {
+                max-width: 94%;
+            }
+
+            .hero-card-inner {
+                padding: 28px 18px;
+            }
+
+            .hero-logo {
+                width: 92px;
+                height: 92px;
+            }
+        }
+    
+        .normal-text,
+        .normal-text * {
+            font-variant-caps: normal !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+        }
+
+        #minecraft-name,
+        #player-name-display,
+        #player-status {
+            font-variant-caps: normal !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+        }
+
+    
+        /* IOS26 GLASS OVERRIDE */
+
+        .hero-card {
+            position: relative;
+            max-width: 540px;
+            margin: 0 auto;
+            border-radius: 30px;
+            padding: 1px;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.06)),
+                radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.34), transparent 26%),
+                radial-gradient(circle at 90% 85%, rgba(85, 255, 255, 0.18), transparent 32%);
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            -webkit-backdrop-filter: blur(22px) saturate(190%);
+            backdrop-filter: blur(22px) saturate(190%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+                0 18px 55px rgba(0, 0, 0, 0.38),
+                0 0 38px rgba(85, 255, 255, 0.16),
+                0 0 70px rgba(180, 120, 255, 0.12);
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 38%),
+                radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.28), transparent 24%);
+            opacity: 0.75;
+        }
+
+        .hero-card-inner {
+            position: relative;
+            z-index: 1;
+            background:
+                linear-gradient(135deg, rgba(4, 8, 30, 0.72), rgba(2, 4, 18, 0.88));
+            border-radius: 28px;
+            padding: 28px 22px;
+            -webkit-backdrop-filter: blur(18px) saturate(170%);
+            backdrop-filter: blur(18px) saturate(170%);
+        }
+
+        .glass-bubble {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.045)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.28) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(185%);
+            backdrop-filter: blur(20px) saturate(185%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.38),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+                0 12px 34px rgba(0, 0, 0, 0.34),
+                0 0 28px rgba(120, 180, 255, 0.12);
+        }
+
+        .glass-bubble::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            background:
+                radial-gradient(circle at 16% 10%, rgba(255, 255, 255, 0.30), transparent 28%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 44%);
+            opacity: 0.55;
+        }
+
+        .glass-bubble > * {
+            position: relative;
+            z-index: 1;
+        }
+
+    
+        #servers {
+            margin-top: -18px;
+        }
+
+        @media (max-width: 640px) {
+            #servers {
+                margin-top: -10px;
+            }
+        }
+
+    
+        /* Egységes glass kinézet a fő Remény buboréknak és az SMP/Hytale gomboknak */
+        .hero-card {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.045)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.28) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.38),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+                0 12px 34px rgba(0, 0, 0, 0.34),
+                0 0 28px rgba(120, 180, 255, 0.12) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(185%) !important;
+            backdrop-filter: blur(20px) saturate(185%) !important;
+        }
+
+        .hero-card-inner {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(3, 5, 24, 0.64)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.18),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-btn-smp,
+        .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.045)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.28) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.38),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.07),
+                0 12px 34px rgba(0, 0, 0, 0.34),
+                0 0 22px rgba(120, 180, 255, 0.12) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(185%) !important;
+            backdrop-filter: blur(20px) saturate(185%) !important;
+        }
+
+    
+        /* Átlátszóbb glass módok */
+        body.glass-light .glass-bubble,
+        body.glass-light .hero-card,
+        body.glass-light .hero-btn-smp,
+        body.glass-light .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.025)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.30) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+                0 10px 32px rgba(0, 0, 0, 0.22),
+                0 0 24px rgba(130, 210, 255, 0.10) !important;
+            -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+            backdrop-filter: blur(24px) saturate(190%) !important;
+        }
+
+        body.glass-light .hero-card-inner {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.018)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        }
+
+        body.glass-dark .glass-bubble,
+        body.glass-dark .hero-card,
+        body.glass-dark .hero-btn-smp,
+        body.glass-dark .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.10)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.20) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.24),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+                0 12px 34px rgba(0, 0, 0, 0.42),
+                0 0 24px rgba(85, 255, 255, 0.10) !important;
+            -webkit-backdrop-filter: blur(22px) saturate(175%) !important;
+            backdrop-filter: blur(22px) saturate(175%) !important;
+        }
+
+        body.glass-dark .hero-card-inner {
+            background:
+                linear-gradient(135deg, rgba(0, 0, 0, 0.32), rgba(3, 5, 24, 0.42)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        }
+
+        .glass-toggle {
+            position: fixed;
+            left: 12px;
+            bottom: 12px;
+            z-index: 60;
+            display: flex;
+            gap: 8px;
+        }
+
+        .glass-toggle button {
+            min-width: 70px;
+            padding: 9px 13px;
+            border-radius: 16px;
+            font-weight: 900;
+            transition: 0.2s ease;
+        }
+
+        .glass-toggle button:hover {
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 640px) {
+            .glass-toggle {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 10px;
+            }
+
+            .glass-toggle button {
+                min-width: 64px;
+                padding: 8px 11px;
+                font-size: 0.82rem;
+            }
+        }
+
+    
+        /* Extra áttetsző glass override */
+        body.glass-light .glass-bubble,
+        body.glass-light .hero-card,
+        body.glass-light .hero-btn-smp,
+        body.glass-light .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.012)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.22) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.28),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.035),
+                0 10px 30px rgba(0, 0, 0, 0.18),
+                0 0 22px rgba(130, 210, 255, 0.07) !important;
+            -webkit-backdrop-filter: blur(28px) saturate(210%) !important;
+            backdrop-filter: blur(28px) saturate(210%) !important;
+        }
+
+        body.glass-light .hero-card-inner {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.008)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        }
+
+        body.glass-dark .glass-bubble,
+        body.glass-dark .hero-card,
+        body.glass-dark .hero-btn-smp,
+        body.glass-dark .hero-btn-hytale {
+            background:
+                linear-gradient(135deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.045)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.16) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.16),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.025),
+                0 12px 32px rgba(0, 0, 0, 0.28),
+                0 0 20px rgba(85, 255, 255, 0.06) !important;
+            -webkit-backdrop-filter: blur(26px) saturate(190%) !important;
+            backdrop-filter: blur(26px) saturate(190%) !important;
+        }
+
+        body.glass-dark .hero-card-inner {
+            background:
+                linear-gradient(135deg, rgba(0, 0, 0, 0.18), rgba(3, 5, 24, 0.24)) !important;
+            border: 1px solid rgba(255, 255, 255, 0.075) !important;
+        }
