@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>「 ✦ RÉMÉNY ✦ 」</title>
+    <title>Remény Hub</title>
     <link rel="icon" type="image/png" href="icon.png">
 <link rel="shortcut icon" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
 
-    <meta property="og:title" content="「 ✦ RÉMÉNY ✦ 」">
+    <meta property="og:title" content="Remény Hub">
     <meta property="og:description" content="Hogy mindig maradjon itt valami.">
 
         <meta property="og:image" content="https://remeny-web.onrender.com/preview.png?v=10">
@@ -21,7 +21,7 @@
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="「 ✦ RÉMÉNY ✦ 」">
+    <meta name="twitter:title" content="Remény Hub">
     <meta name="twitter:description" content="Hogy mindig maradjon itt valami.">
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1668891626196907"
@@ -1232,7 +1232,7 @@
         body.mode-glass .hero-btn-hytale,
         body.mode-glass #server-display,
         body.mode-glass #login-panel {
-            border-radius: 24px !important;
+            border-radius: 22px !important;
             background: rgba(3, 9, 22, 0.10) !important;
             border: 1px solid rgba(255, 255, 255, 0.09) !important;
             -webkit-backdrop-filter: blur(10px) saturate(135%) brightness(0.92) !important;
@@ -4496,530 +4496,7 @@
 
     </style>
 
-    <style id="server-card-long-override">
-        #servers {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 14px;
-            padding-top: 0.5rem;
-            padding-bottom: 1.2rem;
-        }
-
-        #server-placeholder,
-        #server-display {
-            width: min(100%, 980px);
-            margin-inline: auto;
-        }
-
-        #server-display.hidden {
-            display: none !important;
-        }
-
-        #server-placeholder.is-hidden {
-            display: none !important;
-        }
-
-        #server-display .server-strip-card {
-            width: 100%;
-            max-width: 980px;
-            padding: 18px 20px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, rgba(2,10,30,0.96), rgba(1,7,25,0.93));
-            border: 1px solid rgba(64, 196, 255, 0.45);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.04);
-            position: relative;
-            overflow: hidden;
-        }
-
-        body.mode-glass #server-display .server-strip-card {
-            background: linear-gradient(135deg, rgba(3, 11, 34, 0.90), rgba(1, 8, 28, 0.86));
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
-        body.mode-matt #server-display .server-strip-card {
-            background: linear-gradient(135deg, #050b1d, #020816);
-            border-color: rgba(59, 130, 246, 0.40);
-        }
-
-        #server-display .server-strip-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(56,189,248,0.06), transparent 28%, transparent 72%, rgba(96,165,250,0.04));
-            pointer-events: none;
-        }
-
-        #server-display .server-long-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            align-items: center;
-            gap: 18px;
-            position: relative;
-            z-index: 1;
-        }
-
-        #server-display .server-long-main {
-            min-width: 0;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        #server-display .server-strip-logo {
-            width: 68px;
-            height: 68px;
-            flex: 0 0 68px;
-            border-radius: 18px;
-            object-fit: contain;
-            background: rgba(255,255,255,0.03);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-            padding: 4px;
-        }
-
-        #server-display .server-long-text {
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        #server-display .server-strip-title {
-            font-size: clamp(1.35rem, 2.1vw, 1.85rem);
-            line-height: 1.1;
-            font-weight: 900;
-        }
-
-        #server-display .server-strip-ip {
-            color: #8ee8ff;
-            font-weight: 800;
-            font-size: 1.02rem;
-            word-break: break-word;
-        }
-
-        #server-display .server-strip-extra {
-            color: rgba(255,255,255,0.92);
-            font-weight: 800;
-            font-size: 0.96rem;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        #server-display .server-strip-tag {
-            color: #67e8f9;
-            font-size: 0.84rem;
-            font-weight: 900;
-        }
-
-        #server-display .server-strip-motd {
-            color: rgba(226, 232, 240, 0.82);
-            font-size: 0.95rem;
-            margin-top: 2px;
-        }
-
-        #server-display .server-long-side {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 10px;
-            min-width: 150px;
-        }
-
-        #server-display .server-strip-online {
-            color: #ffffff;
-            font-size: 1.65rem;
-            font-weight: 900;
-            line-height: 1;
-            white-space: nowrap;
-        }
-
-        #server-display .server-strip-bars {
-            display: inline-flex;
-            gap: 6px;
-            margin-left: 8px;
-            vertical-align: middle;
-            transform: translateY(-2px);
-        }
-
-        #server-display .server-strip-bars span {
-            width: 10px;
-            height: 18px;
-            border-radius: 2px;
-            background: linear-gradient(180deg, #78ff8b, #4ade80);
-            box-shadow: 0 0 10px rgba(74, 222, 128, 0.22);
-            display: inline-block;
-        }
-
-        #server-display .server-strip-version {
-            color: rgba(226,232,240,0.86);
-            font-size: 0.94rem;
-            font-weight: 700;
-            text-align: right;
-        }
-
-        #server-display .server-strip-button {
-            min-width: 116px;
-            padding: 10px 16px;
-            border-radius: 14px;
-            border: 1px solid rgba(74,222,128,0.85);
-            color: #69ff8d;
-            background: rgba(10, 24, 16, 0.35);
-            font-weight: 900;
-            font-size: 0.92rem;
-            transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
-        }
-
-        #server-display .server-strip-button:hover {
-            transform: translateY(-1px);
-            background: rgba(34,197,94,0.10);
-            box-shadow: 0 8px 20px rgba(34,197,94,0.12);
-        }
-
-        #server-display .server-strip-button--yellow {
-            border-color: rgba(250, 204, 21, 0.85);
-            color: #ffe16c;
-            background: rgba(38, 33, 10, 0.35);
-        }
-
-        #server-display .server-strip-button--yellow:hover {
-            background: rgba(250,204,21,0.10);
-            box-shadow: 0 8px 20px rgba(250,204,21,0.10);
-        }
-
-        @media (max-width: 768px) {
-            #server-display .server-strip-card {
-                padding: 16px;
-                border-radius: 22px;
-            }
-
-            #server-display .server-long-layout {
-                grid-template-columns: 1fr;
-                gap: 14px;
-            }
-
-            #server-display .server-long-side {
-                align-items: flex-start;
-                min-width: 0;
-            }
-
-            #server-display .server-strip-online {
-                font-size: 1.45rem;
-            }
-
-            #server-display .server-strip-version {
-                text-align: left;
-            }
-        }
-    </style>
-
-<style id="hard-server-ranks-mobile-final">
-  /* Külön szerver rész */
-  #servers {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    width: 100% !important;
-    max-width: 1120px !important;
-    margin: 0 auto !important;
-    box-sizing: border-box !important;
-  }
-
-  #server-placeholder,
-  #server-display {
-    width: 100% !important;
-    max-width: 980px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  #server-display.hidden,
-  #server-placeholder.is-hidden {
-    display: none !important;
-  }
-
-  #server-display .server-strip-card {
-    width: 100% !important;
-    max-width: 980px !important;
-    padding: 18px 20px !important;
-    border-radius: 24px !important;
-    background: linear-gradient(135deg, rgba(2,10,30,0.88), rgba(1,7,25,0.82)) !important;
-    border: 1px solid rgba(64, 196, 255, 0.38) !important;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.05) !important;
-    box-sizing: border-box !important;
-  }
-
-  body.mode-glass #server-display .server-strip-card {
-    background: linear-gradient(135deg, rgba(8, 16, 42, 0.30), rgba(4, 10, 30, 0.20)) !important;
-    border-color: rgba(190, 225, 255, 0.18) !important;
-    backdrop-filter: blur(16px) saturate(135%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(135%) !important;
-  }
-
-  #server-display .server-long-layout {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) auto !important;
-    align-items: center !important;
-    gap: 18px !important;
-  }
-
-  #server-display .server-long-main {
-    min-width: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 16px !important;
-  }
-
-  #server-display .server-strip-logo {
-    width: 68px !important;
-    height: 68px !important;
-    flex: 0 0 68px !important;
-    border-radius: 18px !important;
-    object-fit: contain !important;
-    background: rgba(255,255,255,0.035) !important;
-    padding: 4px !important;
-  }
-
-  #server-display .server-long-text {
-    min-width: 0 !important;
-    text-align: left !important;
-  }
-
-  #server-display .server-strip-title {
-    font-size: clamp(1.25rem, 2vw, 1.85rem) !important;
-    line-height: 1.08 !important;
-    font-weight: 900 !important;
-  }
-
-  #server-display .server-strip-ip {
-    color: #8ee8ff !important;
-    font-weight: 850 !important;
-    font-size: 1rem !important;
-    line-height: 1.2 !important;
-    word-break: break-word !important;
-  }
-
-  #server-display .server-strip-extra,
-  #server-display .server-strip-motd {
-    color: rgba(226,232,240,0.86) !important;
-    font-size: 0.92rem !important;
-    line-height: 1.25 !important;
-  }
-
-  #server-display .server-strip-tag {
-    color: #67e8f9 !important;
-    font-weight: 950 !important;
-  }
-
-  #server-display .server-long-side {
-    min-width: 132px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-end !important;
-    gap: 9px !important;
-  }
-
-  #server-display .server-strip-online {
-    color: white !important;
-    font-size: 1.55rem !important;
-    font-weight: 950 !important;
-    line-height: 1 !important;
-    white-space: nowrap !important;
-  }
-
-  #server-display .server-strip-bars {
-    display: inline-flex !important;
-    gap: 5px !important;
-    margin-left: 7px !important;
-    vertical-align: middle !important;
-  }
-
-  #server-display .server-strip-bars span {
-    display: inline-block !important;
-    width: 9px !important;
-    height: 17px !important;
-    border-radius: 2px !important;
-    background: linear-gradient(180deg, #78ff8b, #4ade80) !important;
-  }
-
-  #server-display .server-strip-version {
-    color: rgba(226,232,240,0.86) !important;
-    font-size: 0.9rem !important;
-    font-weight: 750 !important;
-    text-align: right !important;
-  }
-
-  #server-display .server-strip-button {
-    min-width: 112px !important;
-    padding: 10px 14px !important;
-    border-radius: 14px !important;
-    border: 1px solid rgba(74,222,128,0.85) !important;
-    color: #69ff8d !important;
-    background: rgba(10, 24, 16, 0.35) !important;
-    font-weight: 900 !important;
-    font-size: 0.88rem !important;
-  }
-
-  /* Rangok: telefonon ne lógjanak ki; legyen fix 2 oszlop */
-  #ranks-container {
-    width: 100% !important;
-    max-width: 760px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 12px !important;
-    overflow: visible !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  #ranks-container button {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-    box-sizing: border-box !important;
-    white-space: nowrap !important;
-  }
-
-  @media (max-width: 768px) {
-    #server-placeholder,
-    #server-display {
-      max-width: 100% !important;
-    }
-
-    #server-display .server-strip-card {
-      padding: 14px 14px !important;
-      border-radius: 22px !important;
-    }
-
-    #server-display .server-long-layout {
-      grid-template-columns: minmax(0, 1fr) auto !important;
-      gap: 10px !important;
-      align-items: start !important;
-    }
-
-    #server-display .server-long-main {
-      gap: 10px !important;
-      align-items: flex-start !important;
-    }
-
-    #server-display .server-strip-logo {
-      width: 52px !important;
-      height: 52px !important;
-      flex-basis: 52px !important;
-      border-radius: 14px !important;
-    }
-
-    #server-display .server-strip-title {
-      font-size: 1.02rem !important;
-    }
-
-    #server-display .server-strip-ip {
-      font-size: 0.78rem !important;
-    }
-
-    #server-display .server-strip-extra,
-    #server-display .server-strip-motd {
-      font-size: 0.70rem !important;
-      line-height: 1.25 !important;
-    }
-
-    #server-display .server-long-side {
-      min-width: 88px !important;
-      gap: 6px !important;
-    }
-
-    #server-display .server-strip-online {
-      font-size: 0.98rem !important;
-      text-align: right !important;
-    }
-
-    #server-display .server-strip-bars {
-      gap: 3px !important;
-      margin-left: 3px !important;
-    }
-
-    #server-display .server-strip-bars span {
-      width: 6px !important;
-      height: 11px !important;
-    }
-
-    #server-display .server-strip-version {
-      font-size: 0.68rem !important;
-    }
-
-    #server-display .server-strip-button {
-      min-width: 82px !important;
-      padding: 7px 8px !important;
-      border-radius: 11px !important;
-      font-size: 0.66rem !important;
-    }
-
-    #ranks-container {
-      width: calc(100% - 28px) !important;
-      max-width: 420px !important;
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      gap: 10px !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      overflow: visible !important;
-    }
-
-    #ranks-container button {
-      min-width: 0 !important;
-      font-size: 0.78rem !important;
-      padding: 9px 6px !important;
-    }
-
-    #ranks-container button:last-child {
-      grid-column: 1 / -1 !important;
-      max-width: 190px !important;
-      justify-self: center !important;
-    }
-  }
-</style>
-
-<style id="map-warning-and-mojang-italic-final">
-  /* Map alatti figyelmeztetés: sima betűtípus, dőlt */
-  .map-frame-card::after {
-    font-family: inherit !important;
-    font-style: italic !important;
-    font-weight: 400 !important;
-    text-transform: none !important;
-    font-variant: normal !important;
-    font-variant-caps: normal !important;
-    letter-spacing: normal !important;
-    color: rgba(255, 255, 255, 0.68) !important;
-  }
-
-  /* Mojang/Minecraft leírás: sima betűtípus, dőlt, nem small caps */
-  .remeny-disclaimer,
-  .remeny-disclaimer strong {
-    font-family: inherit !important;
-    font-style: italic !important;
-    text-transform: none !important;
-    font-variant: normal !important;
-    font-variant-caps: normal !important;
-    letter-spacing: normal !important;
-  }
-
-  .remeny-disclaimer {
-    font-weight: 400 !important;
-  }
-
-  .remeny-disclaimer strong {
-    font-weight: 600 !important;
-  }
-</style>
-
-<style id="placeholders-italic-and-outside-close-final">
+    <style id="placeholders-italic-and-outside-close-final">
   /* Válassz szervert + rang kattintós szöveg: sima betűtípus, dőlt */
   #server-placeholder,
   #server-placeholder *,
@@ -5080,78 +4557,6 @@
   }
 </style>
 
-<style id="map-iframe-blue-visible-final-style">
-  /* BlueMap beágyazás: ne takarja el glass réteg, és legyen látható */
-  .map-frame-card,
-  #map-frame-card,
-  #map-section .map-frame-card {
-    position: relative !important;
-    overflow: hidden !important;
-  }
-
-  .map-frame-card::before,
-  .map-frame-card::after,
-  #map-section .map-frame-card::before,
-  #map-section .map-frame-card::after {
-    pointer-events: none !important;
-    z-index: 0 !important;
-    opacity: 0.08 !important;
-  }
-
-  .remeny-map-iframe,
-  #map-section iframe,
-  .map-frame-card iframe {
-    display: block !important;
-    position: relative !important;
-    z-index: 5 !important;
-    width: 100% !important;
-    min-height: 610px !important;
-    height: 62vh !important;
-    border: 0 !important;
-    border-radius: 18px !important;
-    background: #050b1f !important;
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-  }
-
-  @media (max-width: 768px) {
-    .remeny-map-iframe,
-    #map-section iframe,
-    .map-frame-card iframe {
-      min-height: 430px !important;
-      height: 58vh !important;
-      border-radius: 16px !important;
-    }
-
-    /* Telefonon a rang gombok felirata kicsit nagyobb */
-    #ranks-container button,
-    #ranks-container button span,
-    button[onclick*="showMembers"],
-    button[onclick*="showMembers"] span,
-    button[onclick*="showRankMembers"],
-    button[onclick*="showRankMembers"] span,
-    .rank-button,
-    .rank-button span {
-      font-size: 0.96rem !important;
-      letter-spacing: 0.045em !important;
-    }
-  }
-
-  @media (max-width: 430px) {
-    #ranks-container button,
-    #ranks-container button span,
-    button[onclick*="showMembers"],
-    button[onclick*="showMembers"] span,
-    button[onclick*="showRankMembers"],
-    button[onclick*="showRankMembers"] span,
-    .rank-button,
-    .rank-button span {
-      font-size: 0.92rem !important;
-    }
-  }
-</style>
-
 <style id="linktree-normal-size-final">
   .social-featured-linktree {
     display: flex !important;
@@ -5190,296 +4595,6 @@
       min-width: 20px !important;
       max-width: 20px !important;
     }
-  }
-</style>
-
-<style id="remeny-final-clean-server-card-css">
-  .hero-logo,
-  .hero-card .hero-logo,
-  img.hero-logo {
-    display: block !important;
-    width: min(92vw, 560px) !important;
-    max-width: 100% !important;
-    height: auto !important;
-    max-height: 230px !important;
-    margin: 0 auto 22px !important;
-    object-fit: contain !important;
-    image-rendering: auto !important;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-  }
-
-  #server-display {
-    width: min(92vw, 760px) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  #server-display .remeny-clean-server-card {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 72px minmax(0, 1fr) 160px;
-    gap: 18px;
-    align-items: center;
-    text-align: left;
-  }
-
-  #server-display .remeny-clean-logo {
-    width: 68px;
-    height: 68px;
-    border-radius: 18px;
-    object-fit: contain;
-    background: rgba(255,255,255,0.03);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-    padding: 4px;
-  }
-
-  #server-display .remeny-clean-main {
-    min-width: 0;
-    overflow: hidden;
-  }
-
-  #server-display .remeny-clean-title {
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    line-height: 1.05;
-    font-weight: 950;
-    color: #ffffff;
-  }
-
-  #server-display .remeny-clean-title.smp {
-    background: linear-gradient(90deg, #55ffff, #5555ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  #server-display .remeny-clean-title.hytale {
-    background: linear-gradient(90deg, #ffd95c, #ff9f1c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  #server-display .remeny-clean-ip {
-    margin-top: 4px;
-    color: #8ee8ff;
-    font-weight: 900;
-    font-size: 0.95rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-  }
-
-  #server-display .remeny-clean-motd {
-    margin-top: 6px;
-    font-weight: 900;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-    font-size: 0.86rem;
-    line-height: 1.14;
-    white-space: normal;
-    overflow: visible;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-  }
-
-  #server-display .remeny-clean-motd-line {
-    display: block;
-    width: 100%;
-    line-height: 1.14;
-  }
-
-  #server-display .remeny-clean-motd-line.one {
-    color: #8effff;
-  }
-
-  #server-display .remeny-clean-motd-line.two {
-    color: #ffb84d;
-  }
-
-  #server-display .remeny-clean-side {
-    text-align: right;
-    min-width: 0;
-  }
-
-  #server-display .remeny-clean-online {
-    color: #ffffff;
-    font-size: 1.45rem;
-    font-weight: 950;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  #server-display .remeny-clean-bars {
-    display: inline-flex;
-    gap: 4px;
-    margin-left: 6px;
-    transform: translateY(-2px);
-  }
-
-  #server-display .remeny-clean-bars span {
-    width: 8px;
-    height: 16px;
-    border-radius: 2px;
-    background: linear-gradient(180deg, #78ff8b, #4ade80);
-    box-shadow: 0 0 10px rgba(74, 222, 128, 0.22);
-    display: inline-block;
-  }
-
-  #server-display .remeny-clean-version {
-    margin-top: 6px;
-    color: rgba(226,232,240,0.86);
-    font-size: 0.78rem;
-    font-weight: 800;
-    white-space: normal;
-  }
-
-  #server-display .remeny-clean-copy {
-    margin-top: 9px;
-    border-radius: 999px;
-    padding: 7px 10px;
-    font-size: 0.70rem;
-    font-weight: 950;
-    color: #afffaf;
-    border: 1px solid rgba(85,255,136,0.9);
-    background: rgba(0,0,0,0.16);
-    white-space: nowrap;
-  }
-
-  @media (max-width: 640px) {
-    .hero-logo,
-    .hero-card .hero-logo,
-    img.hero-logo {
-      width: min(86vw, 430px) !important;
-      max-height: 190px !important;
-      margin-bottom: 18px !important;
-    }
-
-    #server-display {
-      width: calc(100vw - 28px) !important;
-      padding: 12px !important;
-      min-height: auto !important;
-      overflow: hidden !important;
-    }
-
-    #server-display .remeny-clean-server-card {
-      display: grid !important;
-      grid-template-columns: 54px minmax(0, 1fr) 96px !important;
-      gap: 9px !important;
-      align-items: center !important;
-      width: 100% !important;
-      min-height: 82px !important;
-    }
-
-    #server-display .remeny-clean-logo {
-      width: 52px !important;
-      height: 52px !important;
-      border-radius: 12px !important;
-      padding: 3px !important;
-    }
-
-    #server-display .remeny-clean-title {
-      font-size: 0.82rem !important;
-      line-height: 1.03 !important;
-      white-space: normal !important;
-    }
-
-    #server-display .remeny-clean-ip {
-      font-size: 0.62rem !important;
-      line-height: 1.05 !important;
-      max-width: 100% !important;
-      margin-top: 3px !important;
-    }
-
-    #server-display .remeny-clean-motd {
-      margin-top: 4px !important;
-      font-size: 0.58rem !important;
-      line-height: 1.07 !important;
-      max-width: 100% !important;
-    }
-
-    #server-display .remeny-clean-motd-line {
-      line-height: 1.07 !important;
-      white-space: normal !important;
-      word-break: normal !important;
-      overflow-wrap: normal !important;
-    }
-
-    #server-display .remeny-clean-motd-line.one {
-      white-space: nowrap !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-    }
-
-    #server-display .remeny-clean-side {
-      width: 96px !important;
-      min-width: 96px !important;
-      text-align: right !important;
-    }
-
-    #server-display .remeny-clean-online {
-      font-size: 0.82rem !important;
-    }
-
-    #server-display .remeny-clean-bars {
-      gap: 3px !important;
-      margin-left: 4px !important;
-    }
-
-    #server-display .remeny-clean-bars span {
-      width: 5px !important;
-      height: 12px !important;
-    }
-
-    #server-display .remeny-clean-version {
-      font-size: 0.54rem !important;
-      line-height: 1.05 !important;
-      margin-top: 5px !important;
-    }
-
-    #server-display .remeny-clean-copy {
-      margin-top: 6px !important;
-      padding: 6px 7px !important;
-      font-size: 0.52rem !important;
-    }
-  }
-</style>
-
-<style id="remeny-safe-theme-and-motd-css">
-  body.mode-glass #theme-toggle-button,
-  body.mode-glass .theme-choice-glass {
-    outline: 1px solid rgba(120, 255, 255, 0.45) !important;
-  }
-
-  body.mode-matt .theme-choice-matt {
-    outline: 1px solid rgba(255, 255, 255, 0.70) !important;
-  }
-
-  #server-display .remeny-clean-motd,
-  #server-display .remeny-clean-motd *,
-  #server-display .server-strip-motd,
-  #server-display .server-strip-motd * {
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    background: none !important;
-    background-clip: initial !important;
-    -webkit-background-clip: initial !important;
-    -webkit-text-fill-color: initial !important;
-  }
-
-  #server-display .remeny-clean-motd,
-  #server-display .server-strip-motd {
-    color: #ffffff !important;
-  }
-
-  #server-display .remeny-clean-motd-line.one,
-  #server-display .remeny-clean-motd-line.two,
-  #server-display .motd-line {
-    color: inherit !important;
-    display: block !important;
-    line-height: 1.12 !important;
   }
 </style>
 
@@ -5753,132 +4868,6 @@
     #server-display .remeny-motd-line {
       display:block!important;
       line-height:1.13!important;
-    }
-  }
-</style>
-
-<style id="remeny-live-server-colored-motd-plain-title-final">
-  /*
-    Szerverkártya:
-    - realtime játékosszám / max
-    - színes MOTD, nem clean
-    - Remény SMP / Hytale cím sima betűstílussal
-  */
-
-  #server-display .server-strip-title,
-  #server-display .server-strip-title-smp,
-  #server-display .server-strip-title-hytale,
-  #server-display .remeny-clean-title,
-  #server-display .remeny-clean-title.smp,
-  #server-display .remeny-clean-title.hytale {
-    background: none !important;
-    background-image: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: currentColor !important;
-    color: #ffffff !important;
-    font-family: inherit !important;
-    font-style: normal !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    text-shadow: none !important;
-  }
-
-  #server-display .server-strip-online {
-    color: #ffffff !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-  }
-
-  #server-display .server-strip-motd {
-    color: #ffffff;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    background: transparent !important;
-    background-image: none !important;
-    -webkit-text-fill-color: currentColor !important;
-    white-space: normal !important;
-    overflow: visible !important;
-    max-height: none !important;
-    height: auto !important;
-  }
-
-  #server-display .server-strip-motd span {
-    background: transparent !important;
-    background-image: none !important;
-    -webkit-background-clip: initial !important;
-    background-clip: initial !important;
-    -webkit-text-fill-color: currentColor !important;
-  }
-
-  #server-display .server-strip-motd br.remeny-live-motd-break {
-    display: block !important;
-  }
-
-  #server-display .server-strip-card {
-    min-height: 132px !important;
-    padding: 18px 20px !important;
-  }
-
-  @media (max-width: 640px) {
-    #server-display .server-strip-card {
-      min-height: 146px !important;
-      padding: 15px !important;
-    }
-
-    #server-display .server-long-layout {
-      display: grid !important;
-      grid-template-columns: 54px minmax(0, 1fr) 112px !important;
-      grid-template-rows: auto auto auto !important;
-      column-gap: 10px !important;
-      row-gap: 4px !important;
-      align-items: center !important;
-      width: 100% !important;
-      min-width: 0 !important;
-    }
-
-    #server-display .server-long-main,
-    #server-display .server-long-text {
-      display: contents !important;
-    }
-
-    #server-display .server-strip-logo {
-      grid-column: 1 !important;
-      grid-row: 1 / span 2 !important;
-      width: 50px !important;
-      height: 50px !important;
-    }
-
-    #server-display .server-strip-title {
-      grid-column: 2 !important;
-      grid-row: 1 !important;
-      min-width: 0 !important;
-    }
-
-    #server-display .server-strip-ip {
-      grid-column: 2 !important;
-      grid-row: 2 !important;
-      min-width: 0 !important;
-    }
-
-    #server-display .server-strip-motd {
-      grid-column: 1 / -1 !important;
-      grid-row: 3 !important;
-      margin-top: 8px !important;
-      font-size: 0.78rem !important;
-      line-height: 1.15 !important;
-    }
-
-    #server-display .server-long-side {
-      grid-column: 3 !important;
-      grid-row: 1 / span 2 !important;
-      justify-self: end !important;
-      align-self: center !important;
-      min-width: 0 !important;
-      width: auto !important;
     }
   }
 </style>
@@ -6177,563 +5166,6 @@
   }
 </style>
 
-<style id="remeny-logo-bubble-input-refine-fix">
-  /* Fő buborék: kevésbé fehéres, üvegesebb, sötétebb */
-  .hero-card {
-    background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.01)) !important;
-    border: 1px solid rgba(255,255,255,0.14) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
-    backdrop-filter: blur(18px) saturate(160%) !important;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.12),
-      inset 0 -1px 0 rgba(255,255,255,0.03),
-      0 14px 38px rgba(0,0,0,0.28),
-      0 0 26px rgba(85,255,255,0.08) !important;
-  }
-
-  .hero-card::before {
-    opacity: 0.22 !important;
-    background:
-      linear-gradient(135deg, rgba(255,255,255,0.08), transparent 40%),
-      radial-gradient(circle at 18% 14%, rgba(255,255,255,0.09), transparent 24%) !important;
-  }
-
-  .hero-card-inner {
-    background: linear-gradient(135deg, rgba(4,8,30,0.24), rgba(2,4,18,0.34)) !important;
-    -webkit-backdrop-filter: blur(14px) saturate(150%) !important;
-    backdrop-filter: blur(14px) saturate(150%) !important;
-  }
-
-  /* Új logo: sokkal nagyobb */
-  .hero-logo {
-    width: min(98vw, 760px) !important;
-    max-width: 100% !important;
-    max-height: 380px !important;
-    margin: 0 auto 14px !important;
-    object-fit: contain !important;
-    image-rendering: pixelated !important;
-    background: transparent !important;
-    border: 0 !important;
-    padding: 0 !important;
-    filter:
-      drop-shadow(0 0 10px rgba(85,255,255,0.25))
-      drop-shadow(0 0 20px rgba(85,85,255,0.10)) !important;
-  }
-
-  @media (max-width: 640px) {
-    .hero-logo {
-      width: min(94vw, 560px) !important;
-      max-height: 290px !important;
-      margin-bottom: 12px !important;
-    }
-
-    .hero-card-inner {
-      padding-top: 18px !important;
-      padding-bottom: 18px !important;
-    }
-  }
-
-  /* Játékosnév mező maradjon sötétebb */
-  #login-panel #minecraft-name,
-  #minecraft-name,
-  #minecraft-name-input,
-  input[name="minecraft-name"],
-  input[placeholder*="Minecraft"] {
-    background: rgba(2, 6, 23, 0.84) !important;
-    border: 1px solid rgba(255,255,255,0.16) !important;
-    color: #ffffff !important;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.04),
-      0 8px 18px rgba(0,0,0,0.22) !important;
-    -webkit-backdrop-filter: blur(6px) saturate(118%) !important;
-    backdrop-filter: blur(6px) saturate(118%) !important;
-  }
-
-  #login-panel #minecraft-name::placeholder,
-  #minecraft-name::placeholder {
-    color: rgba(255,255,255,0.58) !important;
-    opacity: 1 !important;
-  }
-</style>
-
-<style id="remeny-clean-version-final-css">
-  .hero-card {
-    max-width: 720px !important;
-    background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.01)) !important;
-    border: 1px solid rgba(255,255,255,0.14) !important;
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.12),
-      inset 0 -1px 0 rgba(255,255,255,0.03),
-      0 14px 38px rgba(0,0,0,0.28),
-      0 0 26px rgba(85,255,255,0.08) !important;
-  }
-
-  .hero-card::before {
-    opacity: 0.22 !important;
-  }
-
-  .hero-card-inner {
-    background: linear-gradient(135deg, rgba(4,8,30,0.24), rgba(2,4,18,0.34)) !important;
-  }
-
-  .hero-logo {
-    width: min(98vw, 700px) !important;
-    max-width: 100% !important;
-    max-height: 340px !important;
-    margin: 0 auto 14px !important;
-    object-fit: contain !important;
-    image-rendering: pixelated !important;
-  }
-
-  #login-panel #minecraft-name,
-  #minecraft-name,
-  #minecraft-name-input,
-  input[name="minecraft-name"],
-  input[placeholder*="Minecraft"] {
-    background: rgba(2, 6, 23, 0.84) !important;
-    border: 1px solid rgba(255,255,255,0.16) !important;
-    color: #ffffff !important;
-  }
-
-  @media (max-width: 640px) {
-    .hero-card { max-width: 100% !important; }
-    .hero-logo {
-      width: min(94vw, 520px) !important;
-      max-height: 275px !important;
-    }
-  }
-</style>
-
-
-<style id="remeny-logo-bigger-player-panel-blur-final">
-  /* Fő logo nagyobb */
-  .hero-card {
-    max-width: 820px !important;
-  }
-
-  .hero-card-inner {
-    padding-top: 24px !important;
-    padding-bottom: 24px !important;
-  }
-
-  .hero-logo {
-    width: min(99vw, 820px) !important;
-    max-width: 100% !important;
-    max-height: 420px !important;
-    margin: 0 auto 10px !important;
-    object-fit: contain !important;
-  }
-
-  @media (max-width: 640px) {
-    .hero-card {
-      max-width: 100% !important;
-    }
-
-    .hero-card-inner {
-      padding-top: 16px !important;
-      padding-bottom: 18px !important;
-    }
-
-    .hero-logo {
-      width: min(96vw, 640px) !important;
-      max-height: 340px !important;
-      margin-bottom: 8px !important;
-    }
-  }
-
-  /* Fiók / játékosnév panel: homályosabb, sötétebb, kevésbé zavaró */
-  #login-panel {
-    background:
-      linear-gradient(135deg, rgba(5, 10, 28, 0.78), rgba(2, 5, 18, 0.88)) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(145%) brightness(0.78) !important;
-    backdrop-filter: blur(28px) saturate(145%) brightness(0.78) !important;
-    box-shadow:
-      0 18px 44px rgba(0, 0, 0, 0.42),
-      inset 0 1px 0 rgba(255, 255, 255, 0.10),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.04) !important;
-  }
-
-  #login-panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at 18% 10%, rgba(255, 255, 255, 0.10), transparent 28%),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 48%);
-    opacity: 0.45;
-  }
-
-  #login-panel > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  #login-panel .glass-bubble {
-    background: rgba(2, 6, 23, 0.58) !important;
-    border-color: rgba(255, 255, 255, 0.12) !important;
-    -webkit-backdrop-filter: blur(14px) saturate(120%) brightness(0.82) !important;
-    backdrop-filter: blur(14px) saturate(120%) brightness(0.82) !important;
-  }
-
-  #login-panel #minecraft-name,
-  #minecraft-name {
-    background: rgba(1, 4, 15, 0.88) !important;
-    border: 1px solid rgba(255,255,255,0.16) !important;
-  }
-
-  @media (max-width: 640px) {
-    #login-panel {
-      background:
-        linear-gradient(135deg, rgba(4, 8, 24, 0.84), rgba(1, 3, 14, 0.92)) !important;
-      -webkit-backdrop-filter: blur(32px) saturate(140%) brightness(0.72) !important;
-      backdrop-filter: blur(32px) saturate(140%) brightness(0.72) !important;
-      border-radius: 22px !important;
-    }
-  }
-</style>
-
-
-<style id="remeny-map-warning-text-simple-italic-final">
-  /* Map figyelmeztetés szöveg: sima betűtípus, dőlt, szürke */
-  .remeny-map-warning-note {
-    display: none !important;
-  }
-
-  .remeny-map-warning-text,
-  #map-warning-card p,
-  #map-warning-card .remeny-map-warning-text {
-    font-family: inherit !important;
-    font-style: italic !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    color: rgba(170, 176, 190, 0.92) !important;
-    -webkit-text-fill-color: rgba(170, 176, 190, 0.92) !important;
-    text-shadow: none !important;
-    font-weight: 400 !important;
-  }
-
-  #map-warning-card h2,
-  #map-warning-card .remeny-map-warning-title {
-    font-family: inherit !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-  }
-</style>
-
-
-<style id="remeny-motd-map-logo-layout-finalfix">
-  /* Fő Remény logo még nagyobb */
-  .hero-card {
-    max-width: 900px !important;
-  }
-
-  .hero-card-inner {
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
-  }
-
-  .hero-logo {
-    width: min(99vw, 900px) !important;
-    max-width: 100% !important;
-    max-height: 500px !important;
-    margin: 0 auto 6px !important;
-    object-fit: contain !important;
-  }
-
-  @media (max-width: 640px) {
-    .hero-logo {
-      width: min(98vw, 720px) !important;
-      max-height: 390px !important;
-      margin-bottom: 6px !important;
-    }
-  }
-
-  /* Szerverkártya fixebb méret: ne menjen össze rövid MOTD-nál */
-  #server-display,
-  #server-display .server-strip,
-  #server-display .server-long-card,
-  #server-display .server-card,
-  #server-display .server-info-card {
-    min-height: 156px !important;
-  }
-
-  #server-display .server-strip,
-  #server-display .server-long-card,
-  #server-display .server-card,
-  #server-display .server-info-card {
-    width: min(920px, 100%) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: grid !important;
-    grid-template-columns: 86px minmax(0, 1fr) auto !important;
-    align-items: center !important;
-    gap: 18px !important;
-    padding: 20px 22px !important;
-    box-sizing: border-box !important;
-  }
-
-  #server-display img,
-  #server-display .server-icon,
-  #server-display .server-logo,
-  #server-display .server-favicon {
-    width: 72px !important;
-    height: 72px !important;
-    min-width: 72px !important;
-    min-height: 72px !important;
-    max-width: 72px !important;
-    max-height: 72px !important;
-    object-fit: contain !important;
-    image-rendering: pixelated !important;
-    grid-column: 1 !important;
-    justify-self: center !important;
-  }
-
-  #server-display .server-strip-main,
-  #server-display .server-main,
-  #server-display .server-text,
-  #server-display .server-content {
-    min-width: 0 !important;
-    grid-column: 2 !important;
-    align-self: center !important;
-  }
-
-  #server-display .server-strip-title,
-  #server-display .server-title {
-    min-height: 28px !important;
-    line-height: 1.1 !important;
-    margin-bottom: 8px !important;
-  }
-
-  /* MOTD: valódi két sor, fix hely, rövidebb MOTD-nál se húzza össze a kártyát */
-  #server-display .server-strip-motd,
-  #server-display .server-motd,
-  .server-strip-motd {
-    display: block !important;
-    min-height: 50px !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    line-height: 1.25 !important;
-    overflow: visible !important;
-    text-align: left !important;
-  }
-
-  #server-display .server-strip-motd .motd-line,
-  #server-display .server-motd .motd-line,
-  .server-strip-motd .motd-line {
-    display: block !important;
-    width: 100% !important;
-    min-height: 22px !important;
-    line-height: 1.25 !important;
-  }
-
-  #server-display .server-long-side,
-  #server-display .server-side,
-  #server-display .server-online {
-    grid-column: 3 !important;
-    justify-self: end !important;
-    align-self: center !important;
-    min-width: 110px !important;
-  }
-
-  @media (max-width: 640px) {
-    #server-display,
-    #server-display .server-strip,
-    #server-display .server-long-card,
-    #server-display .server-card,
-    #server-display .server-info-card {
-      min-height: 188px !important;
-    }
-
-    #server-display .server-strip,
-    #server-display .server-long-card,
-    #server-display .server-card,
-    #server-display .server-info-card {
-      display: grid !important;
-      grid-template-columns: 64px minmax(0, 1fr) !important;
-      grid-template-rows: auto auto auto !important;
-      gap: 10px 12px !important;
-      padding: 16px 14px !important;
-    }
-
-    #server-display img,
-    #server-display .server-icon,
-    #server-display .server-logo,
-    #server-display .server-favicon {
-      width: 58px !important;
-      height: 58px !important;
-      min-width: 58px !important;
-      min-height: 58px !important;
-      max-width: 58px !important;
-      max-height: 58px !important;
-      grid-column: 1 !important;
-      grid-row: 1 / span 2 !important;
-    }
-
-    #server-display .server-strip-main,
-    #server-display .server-main,
-    #server-display .server-text,
-    #server-display .server-content {
-      grid-column: 2 !important;
-      grid-row: 1 / span 2 !important;
-    }
-
-    #server-display .server-strip-motd,
-    #server-display .server-motd,
-    .server-strip-motd {
-      min-height: 56px !important;
-      font-size: 0.82rem !important;
-      line-height: 1.25 !important;
-    }
-
-    #server-display .server-long-side,
-    #server-display .server-side,
-    #server-display .server-online {
-      grid-column: 1 / -1 !important;
-      grid-row: 3 !important;
-      justify-self: stretch !important;
-      min-width: 0 !important;
-      width: 100% !important;
-    }
-  }
-
-  /* Map figyelmeztetés: nagy, sima, szürke, dőlt realtime spawn map szöveg */
-  #map-warning-card .remeny-map-warning-title,
-  #map-warning-card h2,
-  #map-warning-card h3 {
-    font-family: inherit !important;
-    font-style: italic !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
-    line-height: 1.12 !important;
-    color: rgba(205, 211, 222, 0.96) !important;
-    -webkit-text-fill-color: rgba(205, 211, 222, 0.96) !important;
-    text-shadow: none !important;
-    font-weight: 700 !important;
-  }
-
-  #map-warning-card .remeny-map-warning-text,
-  #map-warning-card p {
-    font-family: inherit !important;
-    font-style: italic !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    color: rgba(165, 173, 188, 0.94) !important;
-    -webkit-text-fill-color: rgba(165, 173, 188, 0.94) !important;
-    text-shadow: none !important;
-    font-weight: 400 !important;
-    font-size: clamp(1.03rem, 2.2vw, 1.35rem) !important;
-    line-height: 1.5 !important;
-  }
-
-  .remeny-map-warning-note {
-    display: none !important;
-  }
-</style>
-
-
-<style id="remeny-map-explicit-hard-remove-final">
-  /* Biztonsági elrejtés, ha régi explicit blokk még DOM-ba kerülne */
-  #map-warning-card [data-explicit],
-  #map-warning-card .explicit,
-  #map-warning-card .explicit-warning,
-  #map-warning-card .map-explicit,
-  #map-warning-card .remeny-explicit-warning {
-    display: none !important;
-  }
-
-  #map-warning-card .remeny-map-warning-title,
-  #map-warning-card h2,
-  #map-warning-card h3 {
-    font-family: inherit !important;
-    font-style: italic !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    color: rgba(205, 211, 222, 0.96) !important;
-    -webkit-text-fill-color: rgba(205, 211, 222, 0.96) !important;
-    text-shadow: none !important;
-  }
-
-  #map-warning-card .remeny-map-warning-text,
-  #map-warning-card p {
-    font-family: inherit !important;
-    font-style: italic !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    color: rgba(165, 173, 188, 0.94) !important;
-    -webkit-text-fill-color: rgba(165, 173, 188, 0.94) !important;
-    text-shadow: none !important;
-    font-weight: 400 !important;
-  }
-</style>
-
-
-<style id="remeny-motd-mobile-line-order-final">
-  /* MOTD pontos sorrend:
-     1. sor: [1.21+] Remény SMP [26.1+]
-     2. sor: a többi szöveg
-  */
-  #server-display .server-strip-motd,
-  #server-display .server-motd,
-  .server-strip-motd {
-    display: block !important;
-    white-space: normal !important;
-    line-height: 1.24 !important;
-    min-height: 54px !important;
-    overflow: visible !important;
-  }
-
-  #server-display .server-strip-motd .motd-line,
-  #server-display .server-motd .motd-line,
-  .server-strip-motd .motd-line {
-    display: block !important;
-    width: 100% !important;
-    min-height: 22px !important;
-    line-height: 1.24 !important;
-    white-space: normal !important;
-  }
-
-  #server-display .server-strip-motd .motd-line:first-child,
-  #server-display .server-motd .motd-line:first-child,
-  .server-strip-motd .motd-line:first-child {
-    white-space: nowrap !important;
-    font-size: clamp(0.72rem, 2.85vw, 0.96rem) !important;
-  }
-
-  #server-display .server-strip-motd .motd-line:nth-child(2),
-  #server-display .server-motd .motd-line:nth-child(2),
-  .server-strip-motd .motd-line:nth-child(2) {
-    margin-top: 3px !important;
-  }
-
-  @media (max-width: 640px) {
-    #server-display .server-strip-motd,
-    #server-display .server-motd,
-    .server-strip-motd {
-      min-height: 58px !important;
-      line-height: 1.22 !important;
-      font-size: 0.82rem !important;
-    }
-
-    #server-display .server-strip-motd .motd-line:first-child,
-    #server-display .server-motd .motd-line:first-child,
-    .server-strip-motd .motd-line:first-child {
-      font-size: clamp(0.62rem, 2.65vw, 0.78rem) !important;
-      letter-spacing: -0.015em !important;
-    }
-  }
-</style>
-
-
 <style id="remeny-desktop-hover-dot-and-outside-close-final">
   /*
     Csak gépen:
@@ -6867,116 +5299,1513 @@
 </style>
 
 
-<style id="remeny-motd-line-hard-layout-and-map-warning-clean-final">
-  /* MOTD: első sor fix, második sor alatta. Mobilon se csússzon be a [26.1+] */
-  #server-display .server-strip-motd,
-  #server-display .server-motd,
-  .server-strip-motd {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: center !important;
-    gap: 2px !important;
-    width: 100% !important;
-    min-height: 58px !important;
-    white-space: normal !important;
-    overflow: visible !important;
-    line-height: 1.18 !important;
-    text-align: left !important;
+<style id="remeny-linktree-inline-social-row-final">
+  /* Linktree ugyanakkora legyen, mint a többi közösségi buborék, és ugyanabba a sorba kerüljön */
+  .social-featured-linktree {
+    display: none !important;
   }
 
-  #server-display .server-strip-motd .motd-line,
-  #server-display .server-motd .motd-line,
-  .server-strip-motd .motd-line {
+  .social-grid-final {
+    display: grid !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    max-width: 1240px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .social-grid-final a,
+  .social-grid-final .remeny-linktree-in-grid {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: 58px !important;
+    height: 58px !important;
+    padding: 12px 10px !important;
+    box-sizing: border-box !important;
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
+    gap: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .social-grid-final .social-svg,
+  .social-grid-final svg {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    max-width: 22px !important;
+    flex-shrink: 0 !important;
+  }
+
+  @media (max-width: 1100px) {
+    .social-grid-final {
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      max-width: 900px !important;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .social-grid-final {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      max-width: 100% !important;
+      gap: 10px !important;
+    }
+
+    .social-grid-final a,
+    .social-grid-final .remeny-linktree-in-grid {
+      height: 54px !important;
+      min-height: 54px !important;
+      font-size: 0.78rem !important;
+      padding: 10px 8px !important;
+    }
+
+    .social-grid-final .social-svg,
+    .social-grid-final svg {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      max-width: 20px !important;
+    }
+  }
+</style>
+
+
+<style id="remeny-clean-date-clock-dropdown-final">
+  /*
+    Tiszta dátum + óra dropdown rendszer:
+    - dátum rövidítve, egy sorban: 2026. Jún. 15.
+    - nincs ugrálás, nincs <br>
+    - óra és dátum lenyíló pontosan saját buborék alatt
+  */
+
+  #remeny-final-time-box,
+  #remeny-final-date-box {
+    cursor: pointer !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  #remeny-final-date {
     display: block !important;
     width: 100% !important;
-    line-height: 1.2 !important;
-    min-height: 21px !important;
-    white-space: normal !important;
-  }
-
-  #server-display .server-strip-motd .motd-line-one,
-  #server-display .server-motd .motd-line-one,
-  .server-strip-motd .motd-line-one {
+    max-width: 100% !important;
     white-space: nowrap !important;
-    font-size: clamp(0.62rem, 2.4vw, 0.86rem) !important;
-    letter-spacing: -0.035em !important;
-    word-spacing: -0.08em !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    text-transform: none !important;
+    line-height: 1 !important;
+    font-size: clamp(0.64rem, 1.05vw, 0.84rem) !important;
+    letter-spacing: -0.015em !important;
+    transform: none !important;
   }
 
-  #server-display .server-strip-motd .motd-line-two,
-  #server-display .server-motd .motd-line-two,
-  .server-strip-motd .motd-line-two {
-    font-size: clamp(0.72rem, 2.65vw, 0.92rem) !important;
-    color: rgba(225,230,240,0.92) !important;
+  #remeny-final-date br {
+    display: none !important;
+  }
+
+  #remeny-final-day {
+    display: block !important;
+    white-space: nowrap !important;
+    line-height: 1.05 !important;
+  }
+
+  @media (min-width: 641px) {
+    #remeny-final-toolbar {
+      grid-template-columns: 155px 190px minmax(0, 1fr) 155px 155px !important;
+    }
+
+    #remeny-final-date {
+      font-size: 0.78rem !important;
+      letter-spacing: -0.01em !important;
+    }
   }
 
   @media (max-width: 640px) {
-    #server-display .server-strip-motd,
-    #server-display .server-motd,
-    .server-strip-motd {
-      min-height: 64px !important;
-      gap: 1px !important;
+    #remeny-final-date {
+      font-size: clamp(0.48rem, 2.15vw, 0.62rem) !important;
+      letter-spacing: -0.045em !important;
     }
 
-    #server-display .server-strip-motd .motd-line-one,
-    #server-display .server-motd .motd-line-one,
-    .server-strip-motd .motd-line-one {
-      font-size: clamp(0.56rem, 2.05vw, 0.68rem) !important;
-      letter-spacing: -0.055em !important;
-      word-spacing: -0.12em !important;
-    }
-
-    #server-display .server-strip-motd .motd-line-two,
-    #server-display .server-motd .motd-line-two,
-    .server-strip-motd .motd-line-two {
-      font-size: clamp(0.66rem, 2.5vw, 0.78rem) !important;
-      line-height: 1.18 !important;
+    #remeny-final-day {
+      font-size: clamp(0.46rem, 2.05vw, 0.58rem) !important;
+      letter-spacing: 0.01em !important;
     }
   }
 
-  /* Map figyelmeztetés: csak egy nagy cím, alatta kis szürke dőlt hosszú szöveg */
-  #map-warning-card .remeny-map-warning-title,
-  #map-warning-card .map-warning-title,
-  #map-warning-card h2,
-  #map-warning-card h3 {
-    font-family: inherit !important;
-    font-style: normal !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: 0.01em !important;
-    font-size: clamp(1.95rem, 5.5vw, 3.15rem) !important;
-    line-height: 1.05 !important;
-    color: rgba(245, 248, 255, 0.96) !important;
-    -webkit-text-fill-color: rgba(245, 248, 255, 0.96) !important;
-    text-shadow: none !important;
-    font-weight: 900 !important;
-    margin: 0 0 12px 0 !important;
+  @media (max-width: 380px) {
+    #remeny-final-date {
+      font-size: clamp(0.42rem, 1.95vw, 0.54rem) !important;
+      letter-spacing: -0.06em !important;
+    }
   }
 
-  #map-warning-card .remeny-map-warning-text,
-  #map-warning-card .map-warning-text,
-  #map-warning-card p {
-    font-family: inherit !important;
-    font-style: italic !important;
-    font-variant-caps: normal !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
-    color: rgba(160, 168, 182, 0.92) !important;
-    -webkit-text-fill-color: rgba(160, 168, 182, 0.92) !important;
-    text-shadow: none !important;
-    font-weight: 400 !important;
-    font-size: clamp(0.82rem, 2.4vw, 1.02rem) !important;
-    line-height: 1.45 !important;
-    margin: 0 !important;
+  .remeny-clean-popup {
+    position: fixed !important;
+    z-index: 2147483646 !important;
+    left: var(--remeny-popup-left, 12px) !important;
+    top: var(--remeny-popup-top, 90px) !important;
+    right: auto !important;
+    width: min(360px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px) !important;
+    transform: none !important;
+    padding: 15px !important;
+    border-radius: 22px !important;
+    background: linear-gradient(135deg, rgba(6, 12, 34, 0.86), rgba(2, 5, 18, 0.92)) !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    box-shadow: 0 18px 42px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.10) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(145%) !important;
+    backdrop-filter: blur(22px) saturate(145%) !important;
+    color: rgba(245,248,255,0.96) !important;
   }
 
-  #map-warning-card .remeny-map-warning-note,
-  #map-warning-card .explicit,
-  #map-warning-card .explicit-warning,
-  #map-warning-card .map-explicit,
-  #map-warning-card .remeny-explicit-warning {
+  .remeny-clean-popup.hidden {
     display: none !important;
+  }
+
+  .remeny-clean-popup-title {
+    font-size: 1rem !important;
+    font-weight: 950 !important;
+    margin-bottom: 12px !important;
+    text-align: center !important;
+  }
+
+  .remeny-calendar-grid {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    gap: 5px !important;
+    text-align: center !important;
+  }
+
+  .remeny-calendar-dayname {
+    font-size: 0.68rem !important;
+    color: rgba(165,173,188,0.9) !important;
+    font-weight: 900 !important;
+    padding-bottom: 4px !important;
+  }
+
+  .remeny-calendar-day {
+    min-height: 32px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.82rem !important;
+    font-weight: 800 !important;
+    color: rgba(235,240,250,0.9) !important;
+    background: rgba(255,255,255,0.035) !important;
+    border: 1px solid rgba(255,255,255,0.06) !important;
+  }
+
+  .remeny-calendar-day.is-today {
+    color: #ffffff !important;
+    background: rgba(85,255,255,0.16) !important;
+    border-color: rgba(85,255,255,0.34) !important;
+    box-shadow: 0 0 16px rgba(85,255,255,0.18) !important;
+  }
+
+  .remeny-clock-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .remeny-clock-tab {
+    border: 1px solid rgba(255,255,255,0.14) !important;
+    border-radius: 12px !important;
+    background: rgba(255,255,255,0.05) !important;
+    color: rgba(235,240,250,0.92) !important;
+    font-size: 0.72rem !important;
+    font-weight: 900 !important;
+    padding: 8px 6px !important;
+    cursor: pointer !important;
+  }
+
+  .remeny-clock-tab.active {
+    background: rgba(85,255,255,0.16) !important;
+    border-color: rgba(85,255,255,0.36) !important;
+    color: #ffffff !important;
+  }
+
+  .remeny-clock-display {
+    min-height: 140px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .remeny-clock-digital {
+    font-size: 2.35rem !important;
+    font-weight: 950 !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  .remeny-clock-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-size: 1.95rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .remeny-analog-clock {
+    width: 126px !important;
+    height: 126px !important;
+    border-radius: 999px !important;
+    border: 2px solid rgba(255,255,255,0.28) !important;
+    position: relative !important;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), rgba(0,0,0,0.18)) !important;
+  }
+
+  .remeny-analog-hand {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 50% !important;
+    transform-origin: bottom center !important;
+    border-radius: 999px !important;
+    background: rgba(245,248,255,0.95) !important;
+  }
+
+  .remeny-analog-hour { width: 5px !important; height: 36px !important; }
+  .remeny-analog-minute { width: 3px !important; height: 48px !important; }
+  .remeny-analog-second { width: 2px !important; height: 54px !important; background: rgba(85,255,255,0.95) !important; }
+
+  .remeny-analog-dot {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    transform: translate(-50%, -50%) !important;
+  }
+</style>
+
+
+
+<style id="remeny_map_clean_single_system_final">
+  /*
+    Tiszta, egyetlen map rendszer:
+    - nincs régi map-warning/map-frame dupla buborék
+    - a térkép alapból betöltve van, homályosan
+    - gombnyomásra csak az overlay tűnik el, az iframe tiszta/interaktív lesz
+  */
+
+  .remeny-map-section {
+    width: min(92vw, 820px) !important;
+    max-width: 820px !important;
+    margin: 30px auto 38px !important;
+    padding: 0 8px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    position: relative !important;
+    z-index: 3 !important;
+  }
+
+  .remeny-map-card {
+    width: 100% !important;
+    padding: 10px !important;
+    border-radius: 28px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    background: rgba(6, 10, 28, 0.20) !important;
+    border: 1px solid rgba(108, 152, 255, 0.24) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 14px 36px rgba(0,0,0,0.30),
+      0 0 22px rgba(80, 140, 255, 0.10) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+    backdrop-filter: blur(10px) saturate(120%) !important;
+  }
+
+  .remeny-map-title {
+    text-align: center !important;
+    font-weight: 950 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.045em !important;
+    color: #ffffff !important;
+    font-size: clamp(1.65rem, 4.2vw, 2.55rem) !important;
+    line-height: 1 !important;
+    padding: 10px 8px 14px !important;
+    text-shadow:
+      0 2px 0 rgba(0,0,0,0.32),
+      0 0 18px rgba(255,255,255,0.14) !important;
+  }
+
+  .remeny-map-window {
+    position: relative !important;
+    width: 100% !important;
+    height: 540px !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+    background: rgba(2, 6, 23, 0.74) !important;
+    border: 1px solid rgba(116, 165, 255, 0.16) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.06),
+      0 10px 24px rgba(0,0,0,0.22) !important;
+  }
+
+  .remeny-map-iframe {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: rgba(2, 6, 23, 0.74) !important;
+    filter: blur(8px) brightness(0.60) saturate(1.06) !important;
+    transform: scale(1.04) !important;
+    transform-origin: center center !important;
+    pointer-events: none !important;
+    transition: filter 360ms ease, transform 360ms ease !important;
+    z-index: 1 !important;
+  }
+
+  .remeny-map-card.map-accepted .remeny-map-iframe {
+    filter: none !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .remeny-map-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 5 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 18px !important;
+    background: rgba(2, 6, 23, 0.22) !important;
+    transition: opacity 240ms ease, visibility 240ms ease !important;
+  }
+
+  .remeny-map-card.map-accepted .remeny-map-overlay {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .remeny-map-overlay-panel {
+    width: min(90%, 560px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 14px !important;
+    padding: 18px !important;
+    border-radius: 24px !important;
+    background: rgba(4, 8, 20, 0.58) !important;
+    border: 1px solid rgba(120, 160, 230, 0.16) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+    backdrop-filter: blur(10px) saturate(120%) !important;
+    box-shadow:
+      0 12px 28px rgba(0,0,0,0.32),
+      inset 0 1px 0 rgba(255,255,255,0.06) !important;
+  }
+
+  .remeny-map-warning-text {
+    margin: 0 !important;
+    padding: 14px 14px !important;
+    width: 100% !important;
+    border-radius: 18px !important;
+    background: rgba(5, 9, 24, 0.50) !important;
+    color: rgba(176, 182, 194, 0.96) !important;
+    -webkit-text-fill-color: rgba(176, 182, 194, 0.96) !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    letter-spacing: 0.012em !important;
+    line-height: 1.62 !important;
+    text-align: center !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.42) !important;
+  }
+
+  .remeny-map-main-button {
+    width: min(100%, 360px) !important;
+    min-height: 58px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    user-select: none !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255,255,255,0.16) !important;
+    background: rgba(22, 28, 52, 0.72) !important;
+    color: #fff !important;
+    font-weight: 950 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    text-decoration: none !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.11),
+      0 8px 20px rgba(0,0,0,0.24) !important;
+  }
+
+  /* matt mód */
+  body.mode-matt .remeny-map-card,
+  body.matt-light .remeny-map-card,
+  body.matt-dark .remeny-map-card {
+    background: rgba(4, 8, 22, 0.48) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    -webkit-backdrop-filter: blur(7px) saturate(108%) brightness(0.95) !important;
+    backdrop-filter: blur(7px) saturate(108%) brightness(0.95) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 10px 24px rgba(0,0,0,0.22) !important;
+  }
+
+  body.mode-matt .remeny-map-window,
+  body.mode-matt .remeny-map-overlay-panel,
+  body.matt-light .remeny-map-window,
+  body.matt-light .remeny-map-overlay-panel,
+  body.matt-dark .remeny-map-window,
+  body.matt-dark .remeny-map-overlay-panel {
+    background: rgba(8, 12, 30, 0.56) !important;
+    border-color: rgba(255,255,255,0.10) !important;
+    -webkit-backdrop-filter: blur(7px) saturate(108%) brightness(0.95) !important;
+    backdrop-filter: blur(7px) saturate(108%) brightness(0.95) !important;
+  }
+
+  /* MOTD betöltés maszkolás */
+  #server-display.remeny-motd-hold .remeny-server-motd,
+  #server-display.remeny-motd-hold .server-strip-motd {
+    position: relative !important;
+    overflow: hidden !important;
+    min-height: 39px !important;
+  }
+
+  #server-display.remeny-motd-hold .remeny-server-motd > *,
+  #server-display.remeny-motd-hold .server-strip-motd > * {
+    opacity: 0 !important;
+  }
+
+  #server-display.remeny-motd-hold .remeny-server-motd::before,
+  #server-display.remeny-motd-hold .server-strip-motd::before {
+    content: "MOTD betöltés..." !important;
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    color: rgba(190, 198, 212, 0.86) !important;
+    font-style: italic !important;
+    font-weight: 850 !important;
+    letter-spacing: 0.02em !important;
+    white-space: nowrap !important;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.36) !important;
+  }
+
+  @media (max-width: 640px) {
+    .remeny-map-section {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+      margin-top: 28px !important;
+      box-sizing: border-box !important;
+    }
+
+    .remeny-map-card {
+      padding: 9px !important;
+      border-radius: 28px !important;
+    }
+
+    .remeny-map-title {
+      font-size: clamp(1.35rem, 7vw, 2rem) !important;
+      padding: 8px 6px 10px !important;
+      letter-spacing: 0.035em !important;
+    }
+
+    .remeny-map-window {
+      height: 430px !important;
+      border-radius: 22px !important;
+    }
+
+    .remeny-map-overlay {
+      padding: 12px !important;
+    }
+
+    .remeny-map-overlay-panel {
+      width: 94% !important;
+      padding: 14px !important;
+      gap: 12px !important;
+      border-radius: 20px !important;
+    }
+
+    .remeny-map-warning-text {
+      font-size: 0.92rem !important;
+      line-height: 1.58 !important;
+      padding: 14px 12px !important;
+    }
+
+    .remeny-map-main-button {
+      width: 100% !important;
+      min-height: 56px !important;
+      border-radius: 18px !important;
+      font-size: 0.98rem !important;
+    }
+  }
+</style>
+
+
+<style id="remeny_hero_logo_gombok_feljebb_final">
+  /*
+    Fő logo + SMP/Hytale gombok feljebb húzása.
+    Méretet nem változtat, csak pozíciót.
+  */
+
+  main > section:first-of-type {
+    margin-top: -42px !important;
+    padding-top: 0 !important;
+    padding-bottom: 10px !important;
+  }
+
+  main > section:first-of-type .hero-card {
+    transform: translateY(-34px) !important;
+    margin-bottom: -28px !important;
+  }
+
+  main > section:first-of-type .hero-card-inner {
+    transform: translateY(-8px) !important;
+  }
+
+  .hero-logo,
+  .hero-card .hero-logo,
+  img.hero-logo {
+    margin-top: -14px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-card .flex.flex-wrap.justify-center.gap-4 {
+    transform: translateY(-10px) !important;
+    margin-top: 0 !important;
+  }
+
+  #servers {
+    margin-top: -18px !important;
+  }
+
+  @media (max-width: 640px) {
+    main > section:first-of-type {
+      margin-top: -34px !important;
+      padding-bottom: 6px !important;
+    }
+
+    main > section:first-of-type .hero-card {
+      transform: translateY(-28px) !important;
+      margin-bottom: -24px !important;
+    }
+
+    main > section:first-of-type .hero-card-inner {
+      transform: translateY(-6px) !important;
+    }
+
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      margin-top: -10px !important;
+      margin-bottom: 6px !important;
+    }
+
+    .hero-card .flex.flex-wrap.justify-center.gap-4 {
+      transform: translateY(-8px) !important;
+    }
+
+    #servers {
+      margin-top: -14px !important;
+    }
+  }
+</style>
+
+
+
+
+
+<style id="remeny_clean_single_server_nojump_final">
+  /*
+    Egyetlen tiszta szerver rendszer:
+    - nincs több egymásnak ütköző render
+    - bezárás/újranyitás után nem ugrál
+    - mobil/desktop külön CSS
+    - gombok ikon nélkül
+  */
+
+  .hero-btn-smp,
+  .hero-btn-hytale {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  main > section:first-of-type {
+    margin-top: -52px !important;
+    padding-top: 0 !important;
+  }
+
+  main > section:first-of-type .hero-card {
+    transform: translateY(-42px) !important;
+    margin-bottom: -36px !important;
+  }
+
+  .hero-logo,
+  .hero-card .hero-logo,
+  img.hero-logo {
+    margin-top: 0 !important;
+    margin-bottom: 14px !important;
+    transform: none !important;
+  }
+
+  .hero-card .flex.flex-wrap.justify-center.gap-4 {
+    transform: translateY(-10px) !important;
+    margin-top: 0 !important;
+  }
+
+  #servers {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: -22px !important;
+    width: 100% !important;
+  }
+
+  #server-placeholder.is-hidden,
+  #server-placeholder.hidden,
+  #server-display.hidden {
+    display: none !important;
+  }
+
+  #server-placeholder:not(.is-hidden):not(.hidden) {
+    display: flex !important;
+  }
+
+  #server-placeholder {
+    width: min(94vw, 760px) !important;
+    max-width: 760px !important;
+    min-height: 78px !important;
+    margin: 0 auto !important;
+    padding: 18px 22px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.45 !important;
+    box-sizing: border-box !important;
+  }
+
+  #server-placeholder * {
+    white-space: normal !important;
+    word-break: normal !important;
+  }
+
+  #server-display {
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .remeny-clean-server-card {
+    width: min(94vw, 980px) !important;
+    max-width: 980px !important;
+    min-height: 150px !important;
+    display: grid !important;
+    grid-template-columns: 86px minmax(0, 1fr) 170px !important;
+    align-items: center !important;
+    gap: 22px !important;
+    padding: 22px 26px !important;
+    border-radius: 28px !important;
+    overflow: hidden !important;
+    background: rgba(6, 12, 35, 0.54) !important;
+    border: 1px solid rgba(190, 220, 255, 0.22) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.10),
+      0 14px 34px rgba(0,0,0,0.24) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(135%) !important;
+    backdrop-filter: blur(12px) saturate(135%) !important;
+    box-sizing: border-box !important;
+  }
+
+  .remeny-clean-server-icon {
+    width: 78px !important;
+    height: 78px !important;
+    border-radius: 22px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(2, 8, 22, 0.64) !important;
+    border: 1px solid rgba(255,255,255,0.14) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.10),
+      0 8px 18px rgba(0,0,0,0.22) !important;
+    overflow: hidden !important;
+  }
+
+  .remeny-clean-server-icon img {
+    width: 58px !important;
+    height: 58px !important;
+    object-fit: contain !important;
+    image-rendering: pixelated !important;
+  }
+
+  .remeny-clean-server-main {
+    min-width: 0 !important;
+    text-align: left !important;
+    overflow: hidden !important;
+  }
+
+  .remeny-clean-server-title {
+    font-size: clamp(1.45rem, 1.8vw, 2.1rem) !important;
+    line-height: 1 !important;
+    margin-bottom: 7px !important;
+    font-weight: 950 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .remeny-clean-server-title .remeny-word {
+    background: linear-gradient(180deg, #d8fbff 0%, #91e8ff 36%, #56baff 68%, #316bff 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+  }
+
+  .remeny-clean-server-title .tail-word {
+    color: #fff !important;
+  }
+
+  .remeny-clean-server-ip {
+    font-size: clamp(0.9rem, 0.65vw + 0.72rem, 1.12rem) !important;
+    color: #7ce8ff !important;
+    font-weight: 950 !important;
+    line-height: 1.12 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin-bottom: 7px !important;
+  }
+
+  .remeny-clean-line1 {
+    display: block !important;
+    font-size: clamp(0.78rem, 0.35vw + 0.68rem, 0.98rem) !important;
+    color: #fff !important;
+    font-weight: 850 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .remeny-clean-line2 {
+    display: block !important;
+    margin-top: 8px !important;
+    font-size: clamp(0.86rem, 0.42vw + 0.72rem, 1.02rem) !important;
+    font-weight: 900 !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    min-height: 1.2em !important;
+  }
+
+  .remeny-clean-server-side {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 9px !important;
+    min-width: 150px !important;
+    text-align: right !important;
+  }
+
+  .remeny-clean-online {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 10px !important;
+    color: #fff !important;
+    font-size: clamp(1.08rem, 0.8vw + 0.85rem, 1.55rem) !important;
+    font-weight: 950 !important;
+    white-space: nowrap !important;
+  }
+
+  .remeny-clean-bars {
+    display: inline-flex !important;
+    gap: 6px !important;
+    align-items: flex-end !important;
+  }
+
+  .remeny-clean-bars span {
+    width: 10px !important;
+    height: 30px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(180deg, #a5ff98 0%, #79f573 45%, #4bce5e 100%) !important;
+    box-shadow: 0 0 10px rgba(98,255,116,.32) !important;
+  }
+
+  .remeny-clean-version {
+    color: rgba(235,238,248,0.95) !important;
+    font-size: clamp(0.86rem, 0.5vw + 0.72rem, 1.08rem) !important;
+    font-weight: 900 !important;
+    white-space: nowrap !important;
+  }
+
+  .remeny-clean-copy {
+    border: 1.6px solid rgba(255,214,64,.72) !important;
+    background: linear-gradient(180deg, rgba(255,214,64,.18), rgba(255,177,0,.09)) !important;
+    color: #ffd54f !important;
+    font-weight: 950 !important;
+    border-radius: 16px !important;
+    padding: 9px 14px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.09),
+      0 0 12px rgba(255,210,80,.10) !important;
+    cursor: pointer !important;
+  }
+
+  @media (max-width: 640px) {
+    main {
+      padding-top: 6.55rem !important;
+    }
+
+    main > section:first-of-type {
+      margin-top: -66px !important;
+      padding-top: 0 !important;
+    }
+
+    main > section:first-of-type .hero-card {
+      transform: translateY(-54px) !important;
+      margin-bottom: -48px !important;
+    }
+
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      width: min(87vw, 500px) !important;
+      max-width: min(87vw, 500px) !important;
+      max-height: 275px !important;
+      margin-top: 0 !important;
+      margin-bottom: 9px !important;
+      transform: translateY(-6px) !important;
+    }
+
+    .hero-card .flex.flex-wrap.justify-center.gap-4 {
+      transform: translateY(-18px) !important;
+      margin-top: 0 !important;
+      gap: 14px !important;
+    }
+
+    #servers {
+      margin-top: -30px !important;
+    }
+
+    #server-placeholder {
+      width: min(92vw, 520px) !important;
+      max-width: 520px !important;
+      font-size: clamp(0.95rem, 4vw, 1.12rem) !important;
+      padding: 16px 18px !important;
+    }
+
+    .remeny-clean-server-card {
+      width: min(95vw, 450px) !important;
+      max-width: 450px !important;
+      min-height: 132px !important;
+      grid-template-columns: 72px minmax(0, 1fr) 80px !important;
+      gap: 8px !important;
+      padding: 12px 10px !important;
+      border-radius: 25px !important;
+    }
+
+    .remeny-clean-server-icon {
+      width: 66px !important;
+      height: 66px !important;
+      border-radius: 18px !important;
+    }
+
+    .remeny-clean-server-icon img {
+      width: 52px !important;
+      height: 52px !important;
+    }
+
+    .remeny-clean-server-title {
+      font-size: clamp(1.03rem, 4.8vw, 1.28rem) !important;
+      margin-bottom: 5px !important;
+    }
+
+    .remeny-clean-server-ip {
+      font-size: clamp(0.68rem, 2.95vw, 0.84rem) !important;
+      margin-bottom: 5px !important;
+    }
+
+    .remeny-clean-line1 {
+      font-size: clamp(0.47rem, 2.0vw, 0.60rem) !important;
+      letter-spacing: -0.07em !important;
+      word-spacing: -0.13em !important;
+    }
+
+    .remeny-clean-line2 {
+      font-size: clamp(0.53rem, 2.25vw, 0.68rem) !important;
+      margin-top: 7px !important;
+    }
+
+    .remeny-clean-server-side {
+      min-width: 76px !important;
+      gap: 5px !important;
+    }
+
+    .remeny-clean-online {
+      font-size: 0.74rem !important;
+      gap: 5px !important;
+    }
+
+    .remeny-clean-bars {
+      gap: 3px !important;
+    }
+
+    .remeny-clean-bars span {
+      width: 6px !important;
+      height: 23px !important;
+    }
+
+    .remeny-clean-version {
+      font-size: 0.48rem !important;
+    }
+
+    .remeny-clean-copy {
+      font-size: 0.43rem !important;
+      padding: 6px 4px !important;
+      border-radius: 9px !important;
+      max-width: 74px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+  }
+</style>
+
+
+<style id="remeny_hero_buborek_teljes_kivetel_placeholder_clean_final">
+  /*
+    Tiszta hero fix:
+    - fő logónál nincs buborék / nincs második ablak
+    - csak a logo + SMP/Hytale gombok maradnak
+    - Válassz szervert szöveg újra normálisan, dupe/törés nélkül
+  */
+
+  main > section:first-of-type,
+  main > section:first-of-type .hero-card,
+  main > section:first-of-type .hero-card-inner {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  main > section:first-of-type .hero-card::before,
+  main > section:first-of-type .hero-card::after,
+  main > section:first-of-type .hero-card-inner::before,
+  main > section:first-of-type .hero-card-inner::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  main > section:first-of-type .hero-card {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 980px !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  main > section:first-of-type .hero-card-inner {
+    padding: 0 !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  .hero-logo,
+  .hero-card .hero-logo,
+  img.hero-logo {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    object-fit: contain !important;
+    image-rendering: pixelated !important;
+  }
+
+  .hero-card .flex.flex-wrap.justify-center.gap-4 {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 18px !important;
+  }
+
+  .hero-btn-smp,
+  .hero-btn-hytale {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  .hero-btn-smp > span,
+  .hero-btn-hytale > span {
+    display: inline-block !important;
+    white-space: nowrap !important;
+  }
+
+  #server-placeholder {
+    width: min(94vw, 760px) !important;
+    max-width: 760px !important;
+    min-height: 76px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 18px 22px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.45 !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    hyphens: none !important;
+  }
+
+  #server-placeholder.is-hidden,
+  #server-placeholder.hidden {
+    display: none !important;
+  }
+
+  #server-placeholder .server-placeholder-text {
+    display: inline !important;
+    white-space: normal !important;
+    word-break: normal !important;
+  }
+
+  @media (max-width: 640px) {
+    main {
+      padding-top: 6.7rem !important;
+    }
+
+    main > section:first-of-type {
+      min-height: auto !important;
+      padding-top: 0 !important;
+      margin-top: -54px !important;
+      padding-bottom: 0 !important;
+    }
+
+    main > section:first-of-type .hero-card {
+      transform: translateY(-42px) !important;
+      margin-bottom: -32px !important;
+    }
+
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      width: min(86vw, 500px) !important;
+      max-width: min(86vw, 500px) !important;
+      max-height: 272px !important;
+      margin-top: 0 !important;
+      margin-bottom: 12px !important;
+      transform: none !important;
+    }
+
+    .hero-card .flex.flex-wrap.justify-center.gap-4 {
+      transform: translateY(-8px) !important;
+      gap: 16px !important;
+    }
+
+    #servers {
+      margin-top: -14px !important;
+    }
+
+    #server-placeholder {
+      width: min(92vw, 520px) !important;
+      max-width: 520px !important;
+      min-height: 74px !important;
+      padding: 15px 18px !important;
+      font-size: clamp(0.92rem, 3.8vw, 1.08rem) !important;
+      line-height: 1.38 !important;
+    }
+  }
+
+  @media (min-width: 641px) {
+    main > section:first-of-type {
+      margin-top: -42px !important;
+      padding-top: 0 !important;
+      min-height: auto !important;
+    }
+
+    main > section:first-of-type .hero-card {
+      transform: translateY(-26px) !important;
+      margin-bottom: -20px !important;
+    }
+
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      width: min(78vw, 900px) !important;
+      max-width: min(78vw, 900px) !important;
+      max-height: 430px !important;
+      margin-bottom: 18px !important;
+    }
+
+    #servers {
+      margin-top: -8px !important;
+    }
+  }
+</style>
+
+
+<style id="remeny_fo_logo_nagyobb_mobil_gep_fix">
+  /*
+    Fő logo nagyobb telefonon és gépen.
+    A hero buborék továbbra is ki van véve.
+  */
+
+  @media (max-width: 640px) {
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      width: min(94vw, 560px) !important;
+      max-width: min(94vw, 560px) !important;
+      max-height: 330px !important;
+      margin-top: 0 !important;
+      margin-bottom: 12px !important;
+      transform: none !important;
+    }
+  }
+
+  @media (min-width: 641px) {
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      width: min(88vw, 1080px) !important;
+      max-width: min(88vw, 1080px) !important;
+      max-height: 520px !important;
+      margin-top: 0 !important;
+      margin-bottom: 20px !important;
+      transform: none !important;
+    }
+
+    main > section:first-of-type .hero-card {
+      max-width: 1120px !important;
+      width: min(96vw, 1120px) !important;
+    }
+  }
+</style>
+
+
+<style id="remeny_logo_placeholder_mobile_center_fix">
+  /* Mobil: nagyobb fő logo + középre igazított "Válassz szervert" buborék */
+  @media (max-width: 640px) {
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      display: block !important;
+      width: clamp(260px, 68vw, 340px) !important;
+      max-width: clamp(260px, 68vw, 340px) !important;
+      height: auto !important;
+      max-height: none !important;
+      margin: 0 auto 14px !important;
+      transform: none !important;
+    }
+
+    #servers {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    #server-placeholder,
+    #server-display {
+      width: min(calc(100vw - 32px), 680px) !important;
+      max-width: calc(100vw - 32px) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      align-self: center !important;
+      left: auto !important;
+      right: auto !important;
+      transform: none !important;
+    }
+
+    #server-placeholder {
+      text-align: center !important;
+      justify-content: center !important;
+    }
+  }
+
+  /* Gép: maradjon középen, a fő logo legyen valamivel nagyobb */
+  @media (min-width: 641px) {
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      display: block !important;
+      width: min(42vw, 620px) !important;
+      max-width: min(42vw, 620px) !important;
+      height: auto !important;
+      max-height: none !important;
+      margin: 0 auto 18px !important;
+      transform: none !important;
+    }
+
+    #servers {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    #server-placeholder,
+    #server-display {
+      width: min(94vw, 980px) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      align-self: center !important;
+    }
+  }
+</style>
+
+
+<style id="remeny_hytale_sarga_logo_feljebb_fix">
+  /* Hytale cím: a REMÉNY sárga legyen, fő logo kicsit feljebb */
+  .remeny-clean-server-title.hytale-title .remeny-word {
+    background: linear-gradient(180deg, #fff0a8 0%, #ffe27a 32%, #ffd54a 64%, #ffbf1f 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+  }
+
+  .remeny-clean-server-title.hytale-title .tail-word {
+    color: #ffffff !important;
+  }
+
+  @media (max-width: 640px) {
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      transform: translateY(-8px) !important;
+      margin-bottom: 6px !important;
+    }
+
+    .hero-card .flex.flex-wrap.justify-center.gap-4 {
+      transform: translateY(-6px) !important;
+    }
+  }
+</style>
+
+
+<style id="remeny_desktop_logo_serverbubble_refine_fix">
+  /* Gép: kisebb és feljebb lévő fő logo + vékonyabb szerver buborékok */
+  @media (min-width: 641px) {
+    .hero-logo,
+    .hero-card .hero-logo,
+    img.hero-logo {
+      display: block !important;
+      width: min(34vw, 500px) !important;
+      max-width: min(34vw, 500px) !important;
+      height: auto !important;
+      max-height: none !important;
+      margin: 0 auto 12px !important;
+      transform: translateY(-18px) !important;
+    }
+
+    main > section:first-of-type {
+      margin-top: -56px !important;
+    }
+
+    main > section:first-of-type .hero-card {
+      transform: translateY(-34px) !important;
+      margin-bottom: -28px !important;
+      max-width: 1120px !important;
+      width: min(96vw, 1120px) !important;
+    }
+
+    .hero-card .flex.flex-wrap.justify-center.gap-4 {
+      transform: translateY(-12px) !important;
+      margin-top: -4px !important;
+    }
+
+    #server-placeholder {
+      width: min(94vw, 980px) !important;
+      max-width: 980px !important;
+      min-height: 88px !important;
+      padding: 16px 24px !important;
+      border-radius: 24px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+
+    .remeny-clean-server-card {
+      width: min(94vw, 980px) !important;
+      max-width: 980px !important;
+      min-height: 124px !important;
+      grid-template-columns: 76px minmax(0, 1fr) 162px !important;
+      gap: 18px !important;
+      padding: 14px 24px !important;
+      border-radius: 24px !important;
+      align-items: center !important;
+    }
+
+    .remeny-clean-server-icon {
+      width: 68px !important;
+      height: 68px !important;
+      border-radius: 18px !important;
+    }
+
+    .remeny-clean-server-icon img {
+      width: 54px !important;
+      height: 54px !important;
+    }
+
+    .remeny-clean-server-title {
+      font-size: clamp(1.28rem, 1.4vw, 1.72rem) !important;
+      margin-bottom: 5px !important;
+    }
+
+    .remeny-clean-server-ip {
+      font-size: clamp(0.84rem, 0.52vw + 0.68rem, 1rem) !important;
+      margin-bottom: 5px !important;
+    }
+
+    .remeny-clean-line1 {
+      font-size: clamp(0.74rem, 0.28vw + 0.64rem, 0.92rem) !important;
+    }
+
+    .remeny-clean-line2 {
+      margin-top: 5px !important;
+      font-size: clamp(0.82rem, 0.34vw + 0.70rem, 0.96rem) !important;
+    }
+
+    .remeny-clean-server-side {
+      gap: 7px !important;
+      min-width: 142px !important;
+    }
+
+    .remeny-clean-online {
+      font-size: clamp(1rem, 0.7vw + 0.78rem, 1.38rem) !important;
+      gap: 9px !important;
+    }
+
+    .remeny-clean-bars span {
+      width: 9px !important;
+      height: 26px !important;
+    }
+
+    .remeny-clean-version {
+      font-size: clamp(0.82rem, 0.42vw + 0.70rem, 1rem) !important;
+    }
+
+    .remeny-clean-copy {
+      padding: 8px 13px !important;
+      border-radius: 14px !important;
+      font-size: 0.95rem !important;
+    }
+  }
+</style>
+
+
+<style id="remeny_map_reblur_desktop_tabs_refine_fix">
+  /* Desktop: SMP/Hytale gombok legyenek magasabban és nagyobbak */
+  @media (min-width: 641px) {
+    .hero-card .flex.flex-wrap.justify-center.gap-4 {
+      transform: translateY(-22px) !important;
+      margin-top: -8px !important;
+      gap: 18px !important;
+    }
+
+    .hero-btn-smp,
+    .hero-btn-hytale {
+      min-width: 176px !important;
+      min-height: 66px !important;
+      padding: 14px 28px !important;
+      font-size: 1.72rem !important;
+      line-height: 1 !important;
+      border-radius: 999px !important;
+    }
+
+    .hero-btn-smp span,
+    .hero-btn-hytale span {
+      font-size: 1.72rem !important;
+      letter-spacing: 0.018em !important;
+    }
+  }
+
+  /* Térkép vissza-homályosítás gomb */
+  .remeny-map-top-actions {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 14px;
+  }
+
+  .remeny-map-reblur-button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: linear-gradient(180deg, rgba(90, 110, 180, 0.40), rgba(24, 34, 72, 0.72));
+    color: #f6f8ff;
+    font-weight: 900;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 10px 26px rgba(2,8,23,.24);
+    -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+    backdrop-filter: blur(10px) saturate(120%) !important;
+    transition: transform .18s ease, opacity .18s ease, filter .18s ease;
+    cursor: pointer;
+  }
+
+  .remeny-map-reblur-button:hover {
+    transform: translateY(-1px) scale(1.01);
+    filter: brightness(1.06);
+  }
+
+  .remeny-map-card.map-accepted .remeny-map-reblur-button {
+    display: inline-flex;
+  }
+
+  @media (max-width: 640px) {
+    .remeny-map-top-actions {
+      margin: 6px 0 12px;
+    }
+
+    .remeny-map-reblur-button {
+      min-width: 180px;
+      padding: 10px 14px;
+      font-size: .92rem;
+    }
   }
 </style>
 
@@ -7091,8 +6920,8 @@
                 <img src="remeny-logo.png" alt="Remény Hub logo" class="hero-logo" decoding="sync" fetchpriority="high" loading="eager">
 
 <div class="flex flex-wrap justify-center gap-4">
-                    <button type="button" class="hero-btn-smp glass-bubble glass-cyan" onclick="showServerPanel('smp')"><span>SMP</span></button>
-                    <button type="button" class="hero-btn-hytale glass-bubble glass-yellow" onclick="showServerPanel('hytale')"><span>Hytale</span></button>
+                    <button type="button" class="hero-btn-smp glass-bubble glass-cyan" onclick="showServerPanel(\'smp\')"><span>SMP</span></button>
+                    <button type="button" class="hero-btn-hytale glass-bubble glass-yellow" onclick="showServerPanel(\'hytale\')"><span>Hytale</span></button>
 </div>
 
             </div>
@@ -7164,7 +6993,7 @@
             </button>
 
             <button onclick="showMembers('ʜᴇʟᴘɪ')" class="glass-bubble glass-cyan px-4 sm:px-6 py-2 rounded-xl hover:scale-[1.02] transition text-base sm:text-lg font-black font-sans tracking-wide">
-                <span class="text-white">「</span><span style="color:#ffffff">H</span><span style="color:#ffd6ef">E</span><span style="color:#ffaddc">L</span><span style="color:#ff7ac8">P</span><span style="color:#ff4fb4">I</span><span class="text-white">」</span>
+                <span class="text-white">「</span><span style="color:#ffd6ef">H</span><span style="color:#ffb8e1">E</span><span style="color:#ff92d0">L</span><span style="color:#f85ab5">P</span><span style="color:#cf2b8d">I</span><span class="text-white">」</span>
             </button>
 
             <button onclick="showMembers('ʜᴏꜱᴛ')" class="glass-bubble glass-cyan px-4 sm:px-6 py-2 rounded-xl hover:scale-[1.02] transition text-base sm:text-lg font-black font-sans tracking-wide">
@@ -7186,66 +7015,41 @@
             </p>
         </div>
     </section>
-<section id="map-section" class="max-w-6xl mx-auto mt-10 px-4">
-                <div id="map-warning-card" class="map-warning-card glass-bubble glass-cyan rounded-3xl p-6 text-center remeny-map-explicit-card">
-                    <div class="remeny-map-warning-topline">
-                        <span class="remeny-map-warning-chip">Figyelmeztetés</span>
-                        <span class="remeny-map-warning-divider"></span>
-                    </div>
 
-                    <div class="remeny-map-warning-subline">Realtime spawn map</div>
 
-                    <div class="remeny-map-warning-brackets">[&nbsp;&nbsp;&nbsp;&nbsp;]</div>
 
-                    <h2 class="text-2xl md:text-4xl font-black mb-5 remeny-map-warning-title">
-                        LEHETSÉGES<br>
-                    </h2>
 
-                    <p class="remeny-map-warning-text max-w-2xl mx-auto mb-6 leading-relaxed">
-                        Ez a Remény SMP spawnjának realtime térképét látod. Időnként megjelenhet rajta játékosok által épített, sértő vagy nem mindenki számára megfelelő tartalom. A folytatással elfogadod, hogy 18+ vagy, és tisztában vagy a kockázattal.
-                    </p>
+<section id="map-section" class="remeny-map-section">
+  <div id="remeny-map-card" class="remeny-map-card">
+    <div class="remeny-map-title">Valós időbeli térkép</div>
 
-                    <div class="map-action-row remeny-map-warning-actions">
-                        <button type="button"
-                                id="show-map-button"
-                                class="map-show-button glass-bubble glass-cyan rounded-2xl px-6 py-3 font-black hover:scale-105 transition remeny-map-warning-btn">
-                            &gt; ÉRTEM, MUTASD
-                        </button>
+    <div class="remeny-map-window">
+      <iframe id="remeny-map-iframe" class="remeny-map-iframe" src="https://158.180.230.142:5448/" allowfullscreen referrerpolicy="no-referrer-when-downgrade" loading="eager"></iframe>
 
-                        <a id="open-map-new-tab-warning"
-                           href="http://158.180.230.142:5448/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="map-show-button glass-bubble rounded-2xl px-6 py-3 font-black hover:scale-105 transition remeny-map-warning-btn-secondary">
-                            Megnyitás új lapon
-                        </a>
-                    </div>
-</div>
+      <div id="remeny-map-overlay" class="remeny-map-overlay">
+        <div class="remeny-map-overlay-panel">
+          <p class="remeny-map-warning-text">
+            Itt a Remény SMP élő térképét tudod megnyitni. A nézet játékosok által létrehozott elemeket is megjeleníthet,
+            ezért időnként feltűnhet olyan részlet, ami nem mindenkinek kellemes. Csak akkor folytasd, ha ezzel tisztában vagy.
+          </p>
 
-                <div id="map-frame-card" class="map-frame-card glass-bubble glass-cyan rounded-3xl p-3 hidden">
-                    <div class="flex items-center justify-between gap-3 px-3 pb-3">
-                        <div class="font-black remeny-title-gradient">Remény map</div>
-                        <div class="flex items-center gap-2">
-                            <a id="open-map-new-tab-frame"
-                               href="http://158.180.230.142:5448/"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
-                                Új lapon
-                            </a>
+          <button type="button" id="show-map-button" class="remeny-map-main-button">
+            LÁTNI SZERETNÉD?
+          </button>
 
-                            <button type="button"
-                                    id="hide-map-button"
-                                    class="glass-bubble rounded-xl px-3 py-2 text-sm font-black hover:scale-105 transition">
-                                Bezárás
-                            </button>
-                        </div>
-                    </div>
+          <a id="open-map-new-tab-warning"
+             href="http://158.180.230.142:5448/"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="remeny-map-main-button remeny-map-link-button">
+            MEGNYITÁS ÚJ LAPON
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <iframe class="remeny-map-iframe" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://158.180.230.142:5448/" width="100%" height="700" style="border:none;border-radius:20px;" loading="lazy">
-                    </iframe>
-                </div>
-            </section>
 
 <section id="remeny-footer-info" class="remeny-footer-info max-w-5xl mx-auto px-4 mt-10 mb-0">
 <p class="remeny-disclaimer">
@@ -7258,6 +7062,8 @@
                 <div class="remeny-ai-note">
                     ◇ EZ A WEBOLDAL RÉSZBEN MESTERSÉGES INTELLIGENCIA (AI) SEGÍTSÉGÉVEL KÉSZÜLT
                 </div>
+</section>
+
 <section id="kozosseg" class="py-12">
         <h2 class="text-3xl sm:text-4xl font-black mb-8 tracking-wider">
             közösségi platformok
@@ -7345,7 +7151,6 @@
                 <div class="remeny-copyright">
                     © 2025 Remény
                 </div>
-            </section>
 
 </main>
 
@@ -7760,43 +7565,6 @@
 })();
 </script>
 
-<script id="remeny-map-warning-toggle">
-(function () {
-    function initMapToggle() {
-        const warning = document.getElementById("map-warning-card");
-        const frame = document.getElementById("map-frame-card");
-        const showButton = document.getElementById("show-map-button");
-        const hideButton = document.getElementById("hide-map-button");
-
-        if (!warning || !frame || !showButton) return;
-
-        showButton.onclick = function () {
-            warning.classList.add("hidden");
-            frame.classList.remove("hidden");
-            setTimeout(function () {
-                frame.scrollIntoView({ behavior: "smooth", block: "center" });
-            }, 80);
-        };
-
-        if (hideButton) {
-            hideButton.onclick = function () {
-                frame.classList.add("hidden");
-                warning.classList.remove("hidden");
-                setTimeout(function () {
-                    warning.scrollIntoView({ behavior: "smooth", block: "center" });
-                }, 80);
-            };
-        }
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initMapToggle);
-    } else {
-        initMapToggle();
-    }
-})();
-</script>
-
 <!-- SERVER_GLASS_MOTD_SIZE_FIX_START -->
 
 <!-- SERVER_GLASS_MOTD_SIZE_FIX_END -->
@@ -7945,428 +7713,6 @@
 })();
 </script>
 
-<script id="map-iframe-blue-visible-final-script">
-(function () {
-    const embedUrl = "http://158.180.230.142:5448/";
-    const openUrl = "http://158.180.230.142:5448/";
-
-    function fixMapIframe() {
-        const iframe = document.querySelector("#map-section iframe, .map-frame-card iframe, iframe.remeny-map-iframe");
-        if (iframe) {
-            iframe.src = embedUrl;
-            iframe.classList.add("remeny-map-iframe");
-            iframe.setAttribute("loading", "lazy");
-            iframe.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
-            iframe.setAttribute("allowfullscreen", "");
-        }
-
-        document.querySelectorAll('a[href*="remeny-map.s.gy"]').forEach(function (a) {
-            if ((a.textContent || "").toLowerCase().includes("új") || (a.textContent || "").toLowerCase().includes("uj")) {
-                a.href = openUrl;
-            }
-        });
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", fixMapIframe);
-    } else {
-        fixMapIframe();
-    }
-
-    setTimeout(fixMapIframe, 600);
-})();
-</script>
-
-<script id="map-new-tab-official-ip-final">
-(function () {
-    const officialMapOpenUrl = "http://158.180.230.142:5448/";
-
-    function fixMapNewTabLinks() {
-        ["open-map-new-tab-warning", "open-map-new-tab-frame"].forEach(function (id) {
-            const link = document.getElementById(id);
-            if (link) link.href = officialMapOpenUrl;
-        });
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", fixMapNewTabLinks);
-    } else {
-        fixMapNewTabLinks();
-    }
-
-    setTimeout(fixMapNewTabLinks, 600);
-})();
-</script>
-
-<script id="remeny-live-server-colored-motd-plain-title-final">
-(function () {
-  const MC_COLORS = {
-    "0":"#000000","1":"#0000AA","2":"#00AA00","3":"#00AAAA",
-    "4":"#AA0000","5":"#AA00AA","6":"#FFAA00","7":"#AAAAAA",
-    "8":"#555555","9":"#5555FF","a":"#55FF55","b":"#55FFFF",
-    "c":"#FF5555","d":"#FF55FF","e":"#FFFF55","f":"#FFFFFF"
-  };
-
-  function escapeHtml(value) {
-    return String(value ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;");
-  }
-
-  function decodeEntities(value) {
-    const textarea = document.createElement("textarea");
-    textarea.innerHTML = String(value || "");
-    return textarea.value;
-  }
-
-  function mcCodesToHtml(value) {
-    let text = decodeEntities(value || "").replace(/&([0-9a-frklmnor])/gi, "§$1");
-    text = text.replace(/\\n/g, "\n").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-
-    let html = "";
-    let color = "#FFFFFF";
-    let bold = false;
-    let italic = false;
-    let open = false;
-
-    function close() {
-      if (open) {
-        html += "</span>";
-        open = false;
-      }
-    }
-
-    function openSpan() {
-      const style = [
-        "color:" + color,
-        bold ? "font-weight:900" : "font-weight:800",
-        italic ? "font-style:italic" : "font-style:normal"
-      ].join(";");
-      html += '<span style="' + style + '">';
-      open = true;
-    }
-
-    openSpan();
-
-    for (let i = 0; i < text.length; i++) {
-      const ch = text[i];
-
-      if (ch === "§" && i + 1 < text.length) {
-        const code = text[i + 1].toLowerCase();
-
-        if (MC_COLORS[code]) {
-          close();
-          color = MC_COLORS[code];
-          bold = false;
-          italic = false;
-          openSpan();
-          i++;
-          continue;
-        }
-
-        if (code === "l") { bold = true; close(); openSpan(); i++; continue; }
-        if (code === "o") { italic = true; close(); openSpan(); i++; continue; }
-        if (code === "r") { color = "#FFFFFF"; bold = false; italic = false; close(); openSpan(); i++; continue; }
-        if ("mnk".includes(code)) { i++; continue; }
-      }
-
-      html += ch === "\n" ? "<br>" : escapeHtml(ch);
-    }
-
-    close();
-    return html;
-  }
-
-  function sanitizeMotdHtml(value) {
-    const template = document.createElement("template");
-    template.innerHTML = String(value || "")
-      .replace(/\\n/g, "<br>")
-      .replace(/\r\n/g, "<br>")
-      .replace(/\r/g, "<br>")
-      .replace(/\n+/g, "<br>");
-
-    const allowedTags = new Set(["SPAN", "BR", "B", "STRONG", "I", "EM"]);
-    const allowedStyles = new Set(["color", "font-weight", "font-style"]);
-
-    function walk(root) {
-      Array.from(root.childNodes).forEach(function (child) {
-        if (child.nodeType !== Node.ELEMENT_NODE) return;
-
-        if (!allowedTags.has(child.tagName)) {
-          child.replaceWith(document.createTextNode(child.textContent || ""));
-          return;
-        }
-
-        Array.from(child.attributes).forEach(function (attr) {
-          if (attr.name.toLowerCase() !== "style") {
-            child.removeAttribute(attr.name);
-            return;
-          }
-
-          const safe = [];
-          attr.value.split(";").forEach(function (part) {
-            const pieces = part.split(":");
-            if (pieces.length < 2) return;
-            const key = pieces[0].trim().toLowerCase();
-            const val = pieces.slice(1).join(":").trim();
-            if (!allowedStyles.has(key)) return;
-            if (/url|expression|javascript/i.test(val)) return;
-            safe.push(key + ":" + val);
-          });
-
-          if (safe.length) child.setAttribute("style", safe.join(";"));
-          else child.removeAttribute("style");
-        });
-
-        walk(child);
-      });
-    }
-
-    walk(template.content);
-    return template.innerHTML;
-  }
-
-  function motdToHtml(data) {
-    const raw =
-      data.motdHtml ||
-      data.motd_html ||
-      data.htmlMotd ||
-      data.html ||
-      data.rawMotd ||
-      data.raw ||
-      data.motd ||
-      "";
-
-    if (!raw) return "";
-
-    if (String(raw).includes("<span") || String(raw).includes("<br") || String(raw).includes("<b")) {
-      return sanitizeMotdHtml(raw);
-    }
-
-    if (/[§&][0-9a-frklmnor]/i.test(String(raw))) {
-      return mcCodesToHtml(raw);
-    }
-
-    return escapeHtml(decodeEntities(raw)).replace(/\\n/g, "<br>").replace(/\n+/g, "<br>");
-  }
-
-  function insertMotdBreak(box) {
-    if (!box || box.dataset.remenyLiveBreakDone === "1") return;
-
-    const full = String(box.textContent || "").replace(/\s+/g, " ");
-    const match = full.match(/\[26\.1\s*\+\]/i);
-    if (!match || typeof match.index !== "number") return;
-
-    const target = match.index + match[0].length;
-
-    const walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT, {
-      acceptNode: function (node) {
-        return node.nodeValue && node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-      }
-    });
-
-    let count = 0;
-    let node;
-
-    while ((node = walker.nextNode())) {
-      const text = node.nodeValue || "";
-      const normalized = text.replace(/\s+/g, " ");
-      const next = count + normalized.length;
-
-      if (target <= next) {
-        let local = Math.max(0, Math.min(text.length, target - count));
-        node.nodeValue = text.slice(0, local).replace(/\[26\.1\s*\+\]/i, "[26.1+]");
-
-        let after = text.slice(local).replace(/^\s+/, "");
-        if (after && !after.trim().startsWith(":")) after = ": " + after;
-        else after = after.replace(/^:\s*/, ": ");
-
-        const br = document.createElement("br");
-        br.className = "remeny-live-motd-break";
-
-        node.parentNode.insertBefore(br, node.nextSibling);
-        node.parentNode.insertBefore(document.createTextNode(after), br.nextSibling);
-
-        box.dataset.remenyLiveBreakDone = "1";
-        return;
-      }
-
-      count = next;
-    }
-  }
-
-  function getServerArea() {
-    let display = document.getElementById("server-display");
-    const servers = document.getElementById("servers");
-
-    if (!display && servers) {
-      display = document.createElement("div");
-      display.id = "server-display";
-      servers.appendChild(display);
-    }
-
-    return display;
-  }
-
-  function onlineMarkup(data) {
-    const online = Number.isFinite(Number(data.online)) ? Number(data.online) : 0;
-    const max = Number.isFinite(Number(data.max)) && Number(data.max) > 0 ? Number(data.max) : 777;
-    return escapeHtml(online) + "/" + escapeHtml(max) +
-      ' <span class="server-strip-bars"><span></span><span></span><span></span></span>';
-  }
-
-  function fullAddress(data) {
-    const address = data.address || data.ip || "";
-    const port = data.port;
-    if (!address) return "Hamarosan";
-    if (!port || String(address).includes(":")) return String(address);
-    return String(address) + ":" + String(port);
-  }
-
-  function plainName(type, data) {
-    if (type === "hytale") return "Remény Hytale";
-    return "Remény SMP";
-  }
-
-  function renderLiveServer(type, data) {
-    const display = getServerArea();
-    if (!display) return;
-
-    const name = plainName(type, data);
-    const address = fullAddress(data);
-    const logo = data.logo || (type === "hytale" ? "hytale-logo.png" : "mc-logo.png");
-    const version = data.version || (type === "hytale" ? "Hamarosan" : "");
-    const motdHtml = type === "smp" ? motdToHtml(data) : escapeHtml(data.motd || "Hivatalos Hytale szerver");
-
-    display.innerHTML = `
-      <div class="server-strip-card">
-        <div class="server-long-layout">
-          <div class="server-long-main">
-            <img src="${escapeHtml(logo)}" alt="${escapeHtml(name)}" class="server-strip-logo">
-            <div class="server-long-text">
-              <div class="server-strip-title">${escapeHtml(name)}</div>
-              <div class="server-strip-ip" title="${escapeHtml(address)}">${escapeHtml(address)}</div>
-              ${motdHtml ? `<div class="server-strip-motd">${motdHtml}</div>` : ""}
-            </div>
-          </div>
-
-          <div class="server-long-side">
-            <div class="server-strip-online">${onlineMarkup(data)}</div>
-            <div class="server-strip-version">${escapeHtml(version)}</div>
-            ${address && address !== "Hamarosan" ? `<button type="button" class="server-strip-button" data-copy-ip="${escapeHtml(address)}">IP másolása</button>` : ""}
-          </div>
-        </div>
-      </div>
-    `;
-
-    display.classList.remove("hidden");
-    display.dataset.openServerType = type;
-
-    const ph = document.getElementById("server-placeholder");
-    if (ph) ph.classList.add("is-hidden");
-
-    const motd = display.querySelector(".server-strip-motd");
-    if (motd) insertMotdBreak(motd);
-
-    const copy = display.querySelector("[data-copy-ip]");
-    if (copy) {
-      copy.onclick = function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        const ip = copy.getAttribute("data-copy-ip") || "";
-        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ip).catch(function () {});
-        alert("IP kimásolva: " + ip);
-      };
-    }
-  }
-
-  async function fetchJson(url) {
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error("API hiba: " + url);
-    return await res.json();
-  }
-
-  async function openServer(type) {
-    const display = getServerArea();
-    if (display && !display.classList.contains("hidden") && display.dataset.openServerType === type) {
-      display.innerHTML = "";
-      display.classList.add("hidden");
-      display.dataset.openServerType = "";
-      const ph = document.getElementById("server-placeholder");
-      if (ph) ph.classList.remove("is-hidden");
-      return;
-    }
-
-    if (type === "smp") {
-      try {
-        const live = await fetchJson("/api/minecraft");
-        renderLiveServer("smp", live);
-        return;
-      } catch (e) {
-        console.warn(e);
-      }
-    }
-
-    if (type === "hytale") {
-      try {
-        const data = await fetchJson("/api/hytale");
-        renderLiveServer("hytale", data);
-        return;
-      } catch (e) {
-        renderLiveServer("hytale", {
-          name: "Remény Hytale",
-          ip: "remenyhytale.shockbyte.pro",
-          port: 25838,
-          logo: "hytale-logo.png",
-          motd: "Hivatalos Hytale szerver",
-          version: "Hamarosan",
-          online: 0,
-          max: 777
-        });
-      }
-    }
-  }
-
-  function bindButtons() {
-    document.querySelectorAll(".hero-btn-smp").forEach(function (btn) {
-      btn.removeAttribute("onclick");
-      btn.onclick = function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        openServer("smp");
-        return false;
-      };
-    });
-
-    document.querySelectorAll(".hero-btn-hytale").forEach(function (btn) {
-      btn.removeAttribute("onclick");
-      btn.onclick = function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        openServer("hytale");
-        return false;
-      };
-    });
-  }
-
-  window.showServerPanel = function (type) {
-    openServer(type === "hytale" ? "hytale" : "smp");
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bindButtons);
-  } else {
-    bindButtons();
-  }
-
-  setTimeout(bindButtons, 400);
-  setTimeout(bindButtons, 1200);
-  setTimeout(bindButtons, 2500);
-})();
-</script>
-
 <script id="remeny-final-toolbar-single-clean-js">
 (function () {
   const THEME_CLASSES = [
@@ -8388,15 +7734,9 @@
 
     if (time) time.textContent = two(now.getHours()) + ":" + two(now.getMinutes());
 
-    if (date) {
-      const months = ["JANUÁR","FEBRUÁR","MÁRCIUS","ÁPRILIS","MÁJUS","JÚNIUS","JÚLIUS","AUGUSZTUS","SZEPTEMBER","OKTÓBER","NOVEMBER","DECEMBER"];
-      date.innerHTML = now.getFullYear() + ". " + months[now.getMonth()] + "<br>" + now.getDate() + ".";
-    }
+    if (date) { const months = ["JAN.","FEB.","MÁRC.","ÁPR.","MÁJ.","JÚN.","JÚL.","AUG.","SZEPT.","OKT.","NOV.","DEC."]; date.textContent = now.getFullYear() + ". " + months[now.getMonth()] + " " + now.getDate() + "."; }
 
-    if (day) {
-      const days = ["VASÁRNAP","HÉTFŐ","KEDD","SZERDA","CSÜTÖRTÖK","PÉNTEK","SZOMBAT"];
-      day.textContent = days[now.getDay()];
-    }
+    if (day) { const days = ["VASÁRNAP","HÉTFŐ","KEDD","SZERDA","CSÜTÖRTÖK","PÉNTEK","SZOMBAT"]; day.textContent = days[now.getDay()]; }
   }
 
   function hideDuplicates() {
@@ -8556,271 +7896,6 @@
 </script>
 
 
-<script id="remeny-motd-map-warning-layout-finalfix">
-(function () {
-  const MAP_TITLE = "Realtime spawn map";
-  const MAP_TEXT = "Ez a Remény SMP spawnjának realtime térképét látod. Időnként megjelenhet rajta játékosok által épített, nem mindenki számára megfelelő tartalom. A folytatással elfogadod, hogy tisztában vagy a kockázattal.";
-
-  function splitMotdLines(root) {
-    document.querySelectorAll(".server-strip-motd, .server-motd").forEach(function (el) {
-      if (!el) return;
-
-      // Ha már sorokra van bontva, csak fixáljuk.
-      if (el.querySelector(".motd-line")) {
-        el.querySelectorAll(".motd-line").forEach(function (line) {
-          line.style.display = "block";
-          line.style.width = "100%";
-        });
-        return;
-      }
-
-      const raw = el.getAttribute("data-raw-motd") || el.innerText || "";
-      const parts = String(raw)
-        .replace(/\\n/g, "\n")
-        .split(/\n+/)
-        .map(function (x) { return x.trim(); })
-        .filter(Boolean);
-
-      if (parts.length >= 2) {
-        el.innerHTML = parts.slice(0, 2).map(function (line) {
-          const safe = line.replace(/[&<>"']/g, function (m) {
-            return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" })[m];
-          });
-          return '<span class="motd-line">' + safe + '</span>';
-        }).join("");
-      }
-    });
-  }
-
-  function fixMapWarningText() {
-    const card = document.getElementById("map-warning-card");
-    if (!card) return;
-
-    const all = Array.from(card.querySelectorAll("*"));
-    all.forEach(function (el) {
-      const t = (el.textContent || "").trim().toLowerCase();
-      if (t.includes("lehetséges explicit") || t.includes("a választást megjegyezzük")) {
-        el.remove();
-      }
-    });
-
-    let title = card.querySelector(".remeny-map-warning-title, h2, h3");
-    if (title) title.textContent = MAP_TITLE;
-
-    let text = card.querySelector(".remeny-map-warning-text, p");
-    if (text) text.textContent = MAP_TEXT;
-  }
-
-  function run() {
-    splitMotdLines();
-    fixMapWarningText();
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
-  else run();
-
-  setTimeout(run, 400);
-  setTimeout(run, 1200);
-  setTimeout(run, 2500);
-
-  const observer = new MutationObserver(function () {
-    clearTimeout(window.__remenyMotdMapFixTimer);
-    window.__remenyMotdMapFixTimer = setTimeout(run, 80);
-  });
-
-  if (document.body) observer.observe(document.body, { childList: true, subtree: true });
-})();
-</script>
-
-
-<script id="remeny-map-explicit-hard-remove-final">
-(function () {
-  const MAP_TITLE = "Realtime spawn map";
-  const MAP_TEXT = "Ez a Remény SMP spawnjának realtime térképét látod. Időnként megjelenhet rajta játékosok által épített, nem mindenki számára megfelelő tartalom. A folytatással elfogadod, hogy tisztában vagy a kockázattal.";
-
-  function norm(value) {
-    return String(value || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  function removeExplicitText() {
-    const card = document.getElementById("map-warning-card");
-    if (!card) return;
-
-    // Explicit tartalmú elemek teljes eltávolítása
-    Array.from(card.querySelectorAll("*")).forEach(function (el) {
-      const t = norm(el.textContent);
-      if (
-        t.includes("") ||
-        t.includes("lehetseges explicit") ||
-        t.includes("a valasztast megjegyezzuk")
-      ) {
-        el.remove();
-      }
-    });
-
-    // Text node szintű takarítás, ha nem külön elemben van
-    const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-
-    nodes.forEach(function (node) {
-      node.nodeValue = String(node.nodeValue || "")
-        .replace(/LEHETSÉGES\s*EXPLICIT\s*TARTALOM/gi, "")
-        .replace(/Lehetséges\s*explicit\s*tartalom\.?/gi, "")
-        .replace(/EXPLICIT\s*TARTALOM/gi, "")
-        .replace(/\[\s*\]/g, "");
-    });
-
-    // Üres elemek eltüntetése
-    Array.from(card.querySelectorAll("*")).forEach(function (el) {
-      const t = (el.textContent || "").replace(/\s+/g, " ").trim();
-      if (t === "" || t === "[]" || t === "[ ]") {
-        if (!el.querySelector("button,a,iframe,img,input")) el.remove();
-      }
-    });
-
-    // Cím és szöveg rendbetétele
-    let title = card.querySelector(".remeny-map-warning-title, h2, h3");
-    if (title) title.textContent = MAP_TITLE;
-
-    let text = card.querySelector(".remeny-map-warning-text, p");
-    if (text) text.textContent = MAP_TEXT;
-  }
-
-  function run() {
-    removeExplicitText();
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
-  else run();
-
-  setTimeout(run, 300);
-  setTimeout(run, 1000);
-  setTimeout(run, 2500);
-
-  if (document.body) {
-    new MutationObserver(function () {
-      clearTimeout(window.__remenyExplicitRemoveTimer);
-      window.__remenyExplicitRemoveTimer = setTimeout(run, 60);
-    }).observe(document.body, { childList: true, subtree: true, characterData: true });
-  }
-})();
-</script>
-
-
-<script id="remeny-motd-mobile-line-order-final">
-(function () {
-  function esc(value) {
-    return String(value || "").replace(/[&<>"']/g, function (m) {
-      return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" })[m];
-    });
-  }
-
-  function stripTags(value) {
-    const tmp = document.createElement("div");
-    tmp.innerHTML = String(value || "");
-    return tmp.textContent || tmp.innerText || "";
-  }
-
-  function fixOneMotd(el) {
-    if (!el) return;
-
-    const source =
-      el.getAttribute("data-raw-motd") ||
-      el.getAttribute("data-motd") ||
-      stripTags(el.innerHTML) ||
-      el.textContent ||
-      "";
-
-    let text = String(source)
-      .replace(/\\n/g, "\n")
-      .replace(/\r/g, "\n")
-      .replace(/\s+/g, " ")
-      .replace(/\[\s*/g, "[")
-      .replace(/\s*\]/g, "]")
-      .replace(/\+\s*\]/g, "+]")
-      .trim();
-
-    // Pontos cél: [1.21+] Remény SMP [26.1+] maradjon egy sorban.
-    let firstLine = "";
-    let secondLine = "";
-
-    const versionPair = text.match(/(\[1\.21\+\]\s*Remény\s*SMP\s*\[26\.1\+\])/i);
-    if (versionPair) {
-      firstLine = versionPair[1]
-        .replace(/\s+/g, " ")
-        .replace(/\[\s*/g, "[")
-        .replace(/\s*\]/g, "]")
-        .trim();
-
-      secondLine = text
-        .replace(versionPair[0], "")
-        .replace(/^[\s\-–—|:]+/, "")
-        .trim();
-    } else {
-      // Ha a backend máshogy adja, még akkor is rakjuk össze az első sort.
-      const has121 = /\[1\.21\+\]/i.test(text);
-      const has261 = /\[26\.1\+\]/i.test(text);
-      const hasSmp = /Remény\s*SMP/i.test(text);
-
-      if (has121 && has261 && hasSmp) {
-        firstLine = "[1.21+] Remény SMP [26.1+]";
-        secondLine = text
-          .replace(/\[1\.21\+\]/ig, "")
-          .replace(/Remény\s*SMP/ig, "")
-          .replace(/\[26\.1\+\]/ig, "")
-          .replace(/^[\s\-–—|:]+/, "")
-          .replace(/\s+/g, " ")
-          .trim();
-      }
-    }
-
-    if (!firstLine) return;
-
-    // Ne legyen üres / ismételt verzió a második sorban.
-    secondLine = secondLine
-      .replace(/\[1\.21\+\]/ig, "")
-      .replace(/\[26\.1\+\]/ig, "")
-      .replace(/Remény\s*SMP/ig, "")
-      .replace(/^[\s\-–—|:]+/, "")
-      .replace(/\s+/g, " ")
-      .trim();
-
-    if (!secondLine) secondLine = "Block ami a TIÉD és ami a MIÉNK";
-
-    el.setAttribute("data-raw-motd", firstLine + "\n" + secondLine);
-    el.innerHTML =
-      '<span class="motd-line motd-line-one">' + esc(firstLine) + '</span>' +
-      '<span class="motd-line motd-line-two">' + esc(secondLine) + '</span>';
-  }
-
-  function run() {
-    document.querySelectorAll(".server-strip-motd, .server-motd").forEach(fixOneMotd);
-  }
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
-  else run();
-
-  setTimeout(run, 250);
-  setTimeout(run, 800);
-  setTimeout(run, 1600);
-  setTimeout(run, 3000);
-
-  if (document.body) {
-    new MutationObserver(function () {
-      clearTimeout(window.__remenyMotdLineOrderTimer);
-      window.__remenyMotdLineOrderTimer = setTimeout(run, 70);
-    }).observe(document.body, { childList: true, subtree: true, characterData: true });
-  }
-})();
-</script>
-
-
 <script id="remeny-desktop-hover-dot-and-outside-close-final">
 (function () {
   function isDesktopPointer() {
@@ -8956,216 +8031,873 @@
 </script>
 
 
-<script id="remeny-motd-line-hard-layout-and-map-warning-clean-final">
+<script id="remeny-linktree-inline-social-row-final">
 (function () {
-  const MAP_TITLE = "Realtime spawn map";
-  const MAP_TEXT = "Ez a Remény SMP spawnjának realtime térképét látod. Időnként megjelenhet rajta játékosok által épített, nem mindenki számára megfelelő tartalom. A folytatással elfogadod, hogy tisztában vagy a kockázattal.";
+  function moveLinktreeIntoSocialGrid() {
+    const featured = document.querySelector(".social-featured-linktree");
+    const grid = document.querySelector(".social-grid-final");
+    if (!featured || !grid) return;
 
-  const MC_COLORS = {
-    "0":"#000000","1":"#0000AA","2":"#00AA00","3":"#00AAAA","4":"#AA0000","5":"#AA00AA","6":"#FFAA00","7":"#AAAAAA",
-    "8":"#555555","9":"#5555FF","a":"#55FF55","b":"#55FFFF","c":"#FF5555","d":"#FF55FF","e":"#FFFF55","f":"#FFFFFF"
-  };
+    const link = featured.querySelector("a");
+    if (!link) return;
 
-  function esc(value) {
-    return String(value || "").replace(/[&<>"']/g, function (m) {
-      return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" })[m];
-    });
+    link.classList.add("remeny-linktree-in-grid");
+    grid.insertBefore(link, grid.firstElementChild);
+
+    featured.remove();
   }
 
-  function cleanMinecraftSpacing(value) {
-    return String(value || "")
-      .replace(/\u00a7[0-9a-fk-or]/gi, "")
-      .replace(/&[0-9a-fk-or]/gi, "")
-      .replace(/\s+/g, " ")
-      .replace(/\[\s*/g, "[")
-      .replace(/\s*\]/g, "]")
-      .replace(/\+\s*\]/g, "+]")
-      .replace(/\[\s*1\s*\.\s*21\s*\+\s*\]/gi, "[1.21+]")
-      .replace(/\[\s*26\s*\.\s*1\s*\+\s*\]/gi, "[26.1+]")
-      .trim();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", moveLinktreeIntoSocialGrid);
+  else moveLinktreeIntoSocialGrid();
+
+  setTimeout(moveLinktreeIntoSocialGrid, 300);
+  setTimeout(moveLinktreeIntoSocialGrid, 1000);
+})();
+</script>
+
+
+<script id="remeny-bongeszo-cim-es-iconpng-final">
+(function () {
+  function ensureIconPngFavicon() {
+    try {
+      document.title = "Remény Hub";
+
+      var iconHref = "icon.png";
+
+      var link = document.querySelector('link[rel="icon"]') || document.createElement('link');
+      link.setAttribute('rel', 'icon');
+      link.setAttribute('type', 'image/png');
+      link.setAttribute('href', iconHref);
+      document.head.appendChild(link);
+
+      var shortcut = document.querySelector('link[rel="shortcut icon"]') || document.createElement('link');
+      shortcut.setAttribute('rel', 'shortcut icon');
+      shortcut.setAttribute('type', 'image/png');
+      shortcut.setAttribute('href', iconHref);
+      document.head.appendChild(shortcut);
+
+      var apple = document.querySelector('link[rel="apple-touch-icon"]') || document.createElement('link');
+      apple.setAttribute('rel', 'apple-touch-icon');
+      apple.setAttribute('href', iconHref);
+      document.head.appendChild(apple);
+    } catch (e) {}
   }
 
-  function htmlFromMinecraftCodes(value) {
-    let color = "";
-    let bold = false;
-    let italic = false;
-    let out = "";
-    const text = String(value || "");
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensureIconPngFavicon);
+  } else {
+    ensureIconPngFavicon();
+  }
+})();
+</script>
 
-    for (let i = 0; i < text.length; i++) {
-      const ch = text[i];
-      if ((ch === "§" || ch === "&") && i + 1 < text.length) {
-        const code = text[++i].toLowerCase();
-        if (MC_COLORS[code]) {
-          color = MC_COLORS[code];
-          bold = false;
-          italic = false;
-        } else if (code === "l") {
-          bold = true;
-        } else if (code === "o") {
-          italic = true;
-        } else if (code === "r") {
-          color = "";
-          bold = false;
-          italic = false;
-        }
-        continue;
-      }
 
-      const style = [
-        color ? "color:" + color : "",
-        bold ? "font-weight:900" : "",
-        italic ? "font-style:italic" : ""
-      ].filter(Boolean).join(";");
 
-      out += style ? '<span style="' + style + '">' + esc(ch) + '</span>' : esc(ch);
+
+
+<script id="remeny-clean-date-clock-dropdown-final">
+(function () {
+  const MONTHS_SHORT = ["Jan.","Feb.","Márc.","Ápr.","Máj.","Jún.","Júl.","Aug.","Szept.","Okt.","Nov.","Dec."];
+  const MONTHS_FULL = ["Január","Február","Március","Április","Május","Június","Július","Augusztus","Szeptember","Október","November","December"];
+  const DAYS_FULL = ["VASÁRNAP","HÉTFŐ","KEDD","SZERDA","CSÜTÖRTÖK","PÉNTEK","SZOMBAT"];
+  const DAYS_SHORT = ["V","H","K","Sze","Cs","P","Szo"];
+
+  let clockMode = "digital";
+
+  function two(n) {
+    return String(n).padStart(2, "0");
+  }
+
+  function stableDateText(now) {
+    return now.getFullYear() + ". " + MONTHS_SHORT[now.getMonth()] + " " + now.getDate() + ".";
+  }
+
+  function updateTopDate() {
+    const now = new Date();
+    const date = document.getElementById("remeny-final-date");
+    const day = document.getElementById("remeny-final-day");
+
+    if (date) {
+      const v = stableDateText(now);
+      if (date.textContent !== v) date.textContent = v;
+      date.style.whiteSpace = "nowrap";
+      date.style.wordBreak = "keep-all";
+      date.style.overflowWrap = "normal";
     }
 
-    return out;
+    if (day) {
+      const v = DAYS_FULL[now.getDay()];
+      if (day.textContent !== v) day.textContent = v;
+    }
   }
 
-  function getMotdText(el) {
-    const raw =
-      el.getAttribute("data-raw-motd") ||
-      el.getAttribute("data-motd") ||
-      el.textContent ||
-      "";
-    return String(raw).replace(/\\n/g, "\n").replace(/\r/g, "\n");
+  function ensurePopup(id) {
+    let el = document.getElementById(id);
+    if (!el) {
+      el = document.createElement("div");
+      el.id = id;
+      el.className = "remeny-clean-popup hidden";
+      document.body.appendChild(el);
+    }
+    return el;
   }
 
-  function fixOneMotd(el) {
-    if (!el) return;
+  function placeUnder(box, popup) {
+    if (!box || !popup) return;
 
-    const text = getMotdText(el);
-    const cleaned = cleanMinecraftSpacing(text);
+    const rect = box.getBoundingClientRect();
+    const w = Math.min(360, window.innerWidth - 24);
 
-    // Keresett állapot:
-    // első sor: [1.21+] Remény SMP [26.1+]
-    // második sor: minden utána, de verziók nélkül
-    let first = "[1.21+] Remény SMP [26.1+]";
-    let second = cleaned;
+    let left = rect.left + (rect.width / 2) - (w / 2);
+    if (left < 12) left = 12;
+    if (left + w > window.innerWidth - 12) left = window.innerWidth - w - 12;
 
-    second = second
-      .replace(/\[1\.21\+\]/ig, "")
-      .replace(/\[26\.1\+\]/ig, "")
-      .replace(/Remény\s*SMP/ig, "")
-      .replace(/^[\s\-–—|:]+/, "")
-      .replace(/\s+/g, " ")
-      .trim();
+    let top = rect.bottom + 10;
+    if (top > window.innerHeight - 90) top = rect.bottom + 6;
 
-    if (!second) {
-      // Ha a live lekérésből nem jön második sor, legyen egy stabil fallback.
-      second = "Azahriah: “Megteheted, ne hidd azt, hogy nem teheted”";
+    popup.style.setProperty("--remeny-popup-left", left + "px");
+    popup.style.setProperty("--remeny-popup-top", top + "px");
+  }
+
+  function closePopups(exceptId) {
+    ["remeny-clean-calendar-popup", "remeny-clean-clock-popup"].forEach(function (id) {
+      if (id === exceptId) return;
+      const el = document.getElementById(id);
+      if (el) el.classList.add("hidden");
+    });
+  }
+
+  function renderCalendar() {
+    const now = new Date();
+    const popup = ensurePopup("remeny-clean-calendar-popup");
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const today = now.getDate();
+    const first = new Date(year, month, 1);
+    const last = new Date(year, month + 1, 0);
+    const offset = first.getDay();
+
+    let html = '<div class="remeny-clean-popup-title">' + year + '. ' + MONTHS_FULL[month] + '</div>';
+    html += '<div class="remeny-calendar-grid">';
+    DAYS_SHORT.forEach(function (d) {
+      html += '<div class="remeny-calendar-dayname">' + d + '</div>';
+    });
+
+    for (let i = 0; i < offset; i++) html += '<div></div>';
+
+    for (let d = 1; d <= last.getDate(); d++) {
+      html += '<div class="remeny-calendar-day ' + (d === today ? 'is-today' : '') + '">' + d + '</div>';
     }
 
-    // Ha valamiért a második sorban maradt [26.1+], vedd ki.
-    second = second
-      .replace(/\[26\.1\+\]/ig, "")
-      .replace(/\[1\.21\+\]/ig, "")
-      .replace(/\s+/g, " ")
-      .trim();
-
-    el.setAttribute("data-raw-motd", first + "\n" + second);
-
-    el.innerHTML =
-      '<span class="motd-line motd-line-one">' + esc(first) + '</span>' +
-      '<span class="motd-line motd-line-two">' + htmlFromMinecraftCodes(second) + '</span>';
+    html += '</div>';
+    popup.innerHTML = html;
+    return popup;
   }
 
-  function fixMotd() {
-    document.querySelectorAll(".server-strip-motd, .server-motd").forEach(fixOneMotd);
-  }
+  function renderClock() {
+    const popup = ensurePopup("remeny-clean-clock-popup");
+    popup.innerHTML =
+      '<div class="remeny-clean-popup-title">Óra típus</div>' +
+      '<div class="remeny-clock-tabs">' +
+        '<button type="button" class="remeny-clock-tab" data-mode="digital">Digitális</button>' +
+        '<button type="button" class="remeny-clock-tab" data-mode="analog">Sima</button>' +
+        '<button type="button" class="remeny-clock-tab" data-mode="mono">Mono</button>' +
+      '</div>' +
+      '<div class="remeny-clock-display" id="remeny-clean-clock-display"></div>';
 
-  function norm(value) {
-    return String(value || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  function fixMapWarning() {
-    const card = document.getElementById("map-warning-card");
-    if (!card) return;
-
-    Array.from(card.querySelectorAll("*")).forEach(function (el) {
-      const t = norm(el.textContent);
-      if (
-        t.includes("explicit tartalom") ||
-        t.includes("lehetseges explicit") ||
-        t.includes("a valasztast megjegyezzuk")
-      ) {
-        el.remove();
-      }
+    popup.querySelectorAll(".remeny-clock-tab").forEach(function (btn) {
+      btn.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        clockMode = btn.getAttribute("data-mode") || "digital";
+        updateClockDisplay();
+      };
     });
 
-    // Többször megjelenő "Realtime spawn map" törlése, csak az első címet hagyjuk.
-    const candidates = Array.from(card.querySelectorAll("h1,h2,h3,h4,strong,b,div,span"));
-    let titleUsed = false;
+    updateClockDisplay();
+    return popup;
+  }
 
-    candidates.forEach(function (el) {
-      if (!el || !el.isConnected) return;
-      const t = norm(el.textContent);
+  function updateClockDisplay() {
+    const display = document.getElementById("remeny-clean-clock-display");
+    if (!display) return;
 
-      if (t === "realtime spawn map") {
-        if (!titleUsed) {
-          el.textContent = MAP_TITLE;
-          el.classList.add("remeny-map-warning-title");
-          titleUsed = true;
-        } else {
-          el.remove();
-        }
-      }
+    const now = new Date();
+
+    document.querySelectorAll(".remeny-clock-tab").forEach(function (btn) {
+      btn.classList.toggle("active", btn.getAttribute("data-mode") === clockMode);
     });
 
-    let title = card.querySelector(".remeny-map-warning-title, h2, h3");
-    if (!title) {
-      title = document.createElement("h2");
-      title.className = "remeny-map-warning-title";
-      card.prepend(title);
+    if (clockMode === "analog") {
+      const hourDeg = ((now.getHours() % 12) + now.getMinutes() / 60) * 30;
+      const minDeg = now.getMinutes() * 6;
+      const secDeg = now.getSeconds() * 6;
+      display.innerHTML =
+        '<div class="remeny-analog-clock">' +
+          '<div class="remeny-analog-hand remeny-analog-hour" style="transform: translateX(-50%) rotate(' + hourDeg + 'deg);"></div>' +
+          '<div class="remeny-analog-hand remeny-analog-minute" style="transform: translateX(-50%) rotate(' + minDeg + 'deg);"></div>' +
+          '<div class="remeny-analog-hand remeny-analog-second" style="transform: translateX(-50%) rotate(' + secDeg + 'deg);"></div>' +
+          '<div class="remeny-analog-dot"></div>' +
+        '</div>';
+    } else if (clockMode === "mono") {
+      display.innerHTML = '<div class="remeny-clock-mono">' + two(now.getHours()) + ':' + two(now.getMinutes()) + ':' + two(now.getSeconds()) + '</div>';
+    } else {
+      display.innerHTML = '<div class="remeny-clock-digital">' + two(now.getHours()) + ':' + two(now.getMinutes()) + ':' + two(now.getSeconds()) + '</div>';
     }
-    title.textContent = MAP_TITLE;
+  }
 
-    // Hosszú szöveg: csak egy darab legyen.
-    Array.from(card.querySelectorAll("p,.remeny-map-warning-text,.map-warning-text")).forEach(function (el, index) {
-      if (index > 0) el.remove();
-    });
+  function bind() {
+    const timeBox = document.getElementById("remeny-final-time-box");
+    const dateBox = document.getElementById("remeny-final-date-box");
 
-    let text = card.querySelector(".remeny-map-warning-text, .map-warning-text, p");
-    if (!text) {
-      text = document.createElement("p");
-      text.className = "remeny-map-warning-text";
-      title.insertAdjacentElement("afterend", text);
+    if (timeBox && !timeBox.dataset.remenyCleanClockBound) {
+      timeBox.dataset.remenyCleanClockBound = "1";
+      timeBox.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const popup = renderClock();
+        placeUnder(timeBox, popup);
+        closePopups("remeny-clean-clock-popup");
+        popup.classList.toggle("hidden");
+        setTimeout(function () { placeUnder(timeBox, popup); }, 50);
+      }, true);
     }
-    text.classList.add("remeny-map-warning-text");
-    text.textContent = MAP_TEXT;
 
-    // Üres zárójel / üres elemek
-    Array.from(card.querySelectorAll("*")).forEach(function (el) {
-      const t = (el.textContent || "").replace(/\s+/g, " ").trim();
-      if ((t === "" || t === "[]" || t === "[ ]") && !el.querySelector("button,a,iframe,img,input")) {
-        el.remove();
-      }
+    if (dateBox && !dateBox.dataset.remenyCleanCalendarBound) {
+      dateBox.dataset.remenyCleanCalendarBound = "1";
+      dateBox.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const popup = renderCalendar();
+        placeUnder(dateBox, popup);
+        closePopups("remeny-clean-calendar-popup");
+        popup.classList.toggle("hidden");
+        setTimeout(function () { placeUnder(dateBox, popup); }, 50);
+      }, true);
+    }
+  }
+
+  document.addEventListener("click", function (event) {
+    if (
+      event.target.closest("#remeny-clean-calendar-popup") ||
+      event.target.closest("#remeny-clean-clock-popup") ||
+      event.target.closest("#remeny-final-time-box") ||
+      event.target.closest("#remeny-final-date-box")
+    ) return;
+    closePopups(null);
+  }, true);
+
+  function boot() {
+    updateTopDate();
+    bind();
+    updateClockDisplay();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+
+  setInterval(function () {
+    updateTopDate();
+    updateClockDisplay();
+
+    const clock = document.getElementById("remeny-clean-clock-popup");
+    if (clock && !clock.classList.contains("hidden")) {
+      placeUnder(document.getElementById("remeny-final-time-box"), clock);
+    }
+
+    const cal = document.getElementById("remeny-clean-calendar-popup");
+    if (cal && !cal.classList.contains("hidden")) {
+      placeUnder(document.getElementById("remeny-final-date-box"), cal);
+    }
+  }, 250);
+
+  [100, 400, 1000, 2500].forEach(function (ms) {
+    setTimeout(boot, ms);
+  });
+})();
+</script>
+
+
+<script id="remeny_map_clean_single_system_final">
+(function () {
+  const MAP_URL = "http://158.180.230.142:5448/";
+  const HOLD_MS = 2600;
+
+  function startMotdHold() {
+    const display = document.getElementById("server-display");
+    if (!display) return;
+
+    display.classList.add("remeny-motd-hold");
+    clearTimeout(window.__remenyMotdHoldTimer);
+    window.__remenyMotdHoldTimer = setTimeout(function () {
+      display.classList.remove("remeny-motd-hold");
+    }, HOLD_MS);
+  }
+
+  function wireServerHold() {
+    document.querySelectorAll(".hero-btn-smp,.hero-btn-hytale").forEach(function (btn) {
+      if (btn.dataset.remenyMotdHoldClean === "1") return;
+      btn.dataset.remenyMotdHoldClean = "1";
+      btn.addEventListener("click", function () {
+        startMotdHold();
+        setTimeout(startMotdHold, 80);
+        setTimeout(startMotdHold, 250);
+      }, true);
     });
   }
 
-  function run() {
-    fixMotd();
-    fixMapWarning();
+  function wireMap() {
+    const card = document.getElementById("remeny-map-card");
+    const iframe = document.getElementById("remeny-map-iframe");
+    const show = document.getElementById("show-map-button");
+    const newtab = document.getElementById("open-map-new-tab-warning");
+
+    if (iframe && iframe.getAttribute("src") !== MAP_URL) {
+      iframe.setAttribute("src", MAP_URL);
+    }
+
+    if (show && show.dataset.remenyMapClean !== "1") {
+      show.dataset.remenyMapClean = "1";
+      show.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (iframe) iframe.setAttribute("src", MAP_URL);
+        if (card) card.classList.add("map-accepted");
+
+        return false;
+      };
+    }
+
+    if (newtab && newtab.dataset.remenyMapNewTabClean !== "1") {
+      newtab.dataset.remenyMapNewTabClean = "1";
+      newtab.setAttribute("href", MAP_URL);
+      newtab.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        window.open(MAP_URL, "_blank", "noopener,noreferrer");
+        return false;
+      };
+    }
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);
-  else run();
+  function boot() {
+    wireServerHold();
+    wireMap();
+  }
 
-  [250, 700, 1400, 2600, 4200].forEach(function (ms) {
-    setTimeout(run, ms);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+
+  [100, 400, 1000, 2200].forEach(function (ms) {
+    setTimeout(boot, ms);
   });
 
   if (document.body) {
     new MutationObserver(function () {
-      clearTimeout(window.__remenyMotdMapStrictTimer);
-      window.__remenyMotdMapStrictTimer = setTimeout(run, 80);
+      clearTimeout(window.__remenyCleanMapTimer);
+      window.__remenyCleanMapTimer = setTimeout(boot, 120);
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+})();
+</script>
+
+
+
+
+
+<script id="remeny_clean_single_server_nojump_final">
+(function () {
+  const fallback = {
+    smp: {
+      name: "Remény SMP",
+      ip: "remenymc.tejaa.eu",
+      logo: "smp-icon.png",
+      online: 0,
+      max: 777,
+      version: "PAPER 26.1.2",
+      line1: "[1.21+] Remény SMP [26.1+]",
+      motd: "&bHogy mindig maradjon valami."
+    },
+    hytale: {
+      name: "Remény Hytale",
+      ip: "remenyhytale.shockbyte.pro",
+      logo: "hytale-icon.png",
+      online: 0,
+      max: 777,
+      version: "HAMAROSAN",
+      line1: "Hytale szerver",
+      motd: "&eHivatalos Remény Hytale szerver"
+    }
+  };
+
+  const colors = {
+    "0":"#000000","1":"#0000AA","2":"#00AA00","3":"#00AAAA","4":"#AA0000","5":"#AA00AA","6":"#FFAA00","7":"#AAAAAA",
+    "8":"#555555","9":"#5555FF","a":"#55FF55","b":"#55FFFF","c":"#FF5555","d":"#FF55FF","e":"#FFFF55","f":"#FFFFFF"
+  };
+
+  let openType = "";
+
+  function esc(v) {
+    return String(v == null ? "" : v).replace(/[&<>"']/g, function (m) {
+      return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;" })[m];
+    });
+  }
+
+  function noPort(v) {
+    return String(v || "").replace(/^https?:\/\//i, "").replace(/:\d+\s*$/, "").trim();
+  }
+
+  function stripJunk(text, type) {
+    return String(text || "")
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\\n/g, " ")
+      .replace(/\r?\n/g, " ")
+      .replace(/\[\s*1\s*\.?\s*21[^\]]*\]/gi, " ")
+      .replace(/\[\s*26\s*\.?\s*1[^\]]*\]/gi, " ")
+      .replace(type === "hytale" ? /Rem[eé]ny\s+Hytale/gi : /Rem[eé]ny\s+SMP/gi, " ")
+      .replace(/PAPER\s*26\.1\.2/gi, " ")
+      .replace(/0\s*\/\s*777/gi, " ")
+      .replace(/IP\s*M[ÁA]SOL[ÁA]SA/gi, " ")
+      .replace(/^[\s:|–—-]+/, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function stripLeadingServerNameKeepingColors(raw, type) {
+    const input = String(raw || "");
+    const target = (type === "hytale" ? "Remény Hytale" : "Remény SMP").toLowerCase().replace(/\s+/g, " ");
+    const plain = input
+      .replace(/[&§][0-9a-frk-or]/ig, "")
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\\n/g, " ")
+      .replace(/\r?\n/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
+    if (!plain.startsWith(target)) return input;
+
+    let i = 0;
+    let seen = "";
+    let lastColorToken = "";
+
+    while (i < input.length && seen.replace(/\s+/g, " ").trim().toLowerCase() !== target) {
+      const ch = input[i];
+      const n = input[i + 1];
+      if ((ch === "&" || ch === "§") && n && /[0-9a-frk-or]/i.test(n)) {
+        if (/[0-9a-fr]/i.test(n)) lastColorToken = ch + n;
+        i += 2;
+        continue;
+      }
+      seen += ch;
+      i++;
+      if (seen.replace(/\s+/g, " ").trim().toLowerCase() === target) break;
+      if (!target.startsWith(seen.replace(/\s+/g, " ").trim().toLowerCase())) {
+        return input;
+      }
+    }
+
+    while (i < input.length && /[\s:|,.;\-–—]/.test(input[i])) i++;
+    let rest = input.slice(i);
+    if (rest && !/^[&§][0-9a-frk-or]/i.test(rest) && lastColorToken) rest = lastColorToken + rest;
+    return rest;
+  }
+
+  function colorize(raw, type) {
+    let preparedRaw = stripLeadingServerNameKeepingColors(raw, type);
+    let s = String(preparedRaw || "");
+    s = stripJunk(s, type);
+    if (!s) s = fallback[type].motd.replace(/[&§][0-9a-fr]/ig, "");
+    if (!/[&§][0-9a-fr]/i.test(String(preparedRaw || ""))) return esc(s);
+
+    let source = String(preparedRaw || "")
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\\n/g, " ")
+      .replace(/\r?\n/g, " ")
+      .replace(/\[\s*1\s*\.?\s*21[^\]]*\]/gi, " ")
+      .replace(/\[\s*26\s*\.?\s*1[^\]]*\]/gi, " ")
+      .replace(type === "hytale" ? /Rem[eé]ny\s+Hytale/gi : /Rem[eé]ny\s+SMP/gi, " ")
+      .replace(/PAPER\s*26\.1\.2/gi, " ")
+      .replace(/0\s*\/\s*777/gi, " ")
+      .replace(/IP\s*M[ÁA]SOL[ÁA]SA/gi, " ");
+
+    let out = "";
+    let color = null;
+    let buf = "";
+
+    function flush() {
+      if (!buf) return;
+      const safe = esc(buf.replace(/\s+/g, " "));
+      if (color) out += '<span style="color:' + color + '">' + safe + '</span>';
+      else out += '<span>' + safe + '</span>';
+      buf = "";
+    }
+
+    for (let i = 0; i < source.length; i++) {
+      const ch = source[i];
+      const n = source[i + 1];
+      if ((ch === "&" || ch === "§") && n && /[0-9a-fr]/i.test(n)) {
+        flush();
+        color = n.toLowerCase() === "r" ? null : colors[n.toLowerCase()] || color;
+        i++;
+      } else {
+        buf += ch;
+      }
+    }
+    flush();
+
+    const plain = out.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    return plain ? out : esc(fallback[type].motd.replace(/[&§][0-9a-fr]/ig, ""));
+  }
+
+  function display() {
+    return document.getElementById("server-display");
+  }
+
+  function placeholder() {
+    return document.getElementById("server-placeholder");
+  }
+
+  async function fetchData(type) {
+    const f = fallback[type];
+    try {
+      const r = await fetch(type === "hytale" ? "/api/hytale" : "/api/minecraft", { cache: "no-store" });
+      if (!r.ok) throw new Error("api");
+      const d = await r.json();
+      return {
+        name: type === "hytale" ? "Remény Hytale" : "Remény SMP",
+        ip: noPort(d.ip || d.address || f.ip),
+        logo: (d.logo || d.icon || d.favicon || d.iconUrl || (type === "smp" ? "smp-icon.png" : "hytale-icon.png")), 
+        online: Number.isFinite(Number(d.online)) ? Number(d.online) : f.online,
+        max: Number.isFinite(Number(d.max)) && Number(d.max) > 0 ? Number(d.max) : f.max,
+        version: String(d.version || f.version).replace(/\s+/g, " ").trim(),
+        line1: f.line1,
+        motd: d.rawMotd || d.motdHtml || d.motd || d.cleanMotd || f.motd
+      };
+    } catch (e) {
+      return Object.assign({}, f, { ip: noPort(f.ip) });
+    }
+  }
+
+  function render(type, data) {
+    const el = display();
+    if (!el) return;
+
+    const tail = type === "hytale" ? "HYTALE" : "SMP";
+    const titleClass = type === 'hytale' ? 'remeny-clean-server-title hytale-title' : 'remeny-clean-server-title';
+    const nameHtml = '<span class="remeny-word">REMÉNY</span> <span class="tail-word">' + tail + '</span>';
+    const logoSrc = data.logo || (type === "smp" ? "smp-icon.png" : "hytale-icon.png");
+    const logoAlt = type === "hytale" ? "Remény Hytale" : "Remény SMP";
+    const logoHtml = logoSrc
+      ? '<div class="remeny-clean-server-icon"><img src="' + esc(logoSrc) + '" alt="' + logoAlt + '" onerror="this.onerror=null;this.closest(\' .remeny-clean-server-icon\').innerHTML=\'<span style=&quot;font-weight:950;color:#ffe27a;font-size:2rem&quot;>H</span>\';"></div>'
+      : '<div class="remeny-clean-server-icon"><span style="font-weight:950;color:#ffe27a;font-size:2rem">H</span></div>';
+
+    el.innerHTML =
+      '<div class="remeny-clean-server-card">' +
+        logoHtml +
+        '<div class="remeny-clean-server-main">' +
+          '<div class="' + titleClass + '">' + nameHtml + '</div>' +
+          '<div class="remeny-clean-server-ip">' + esc(data.ip) + '</div>' +
+          '<span class="remeny-clean-line1">' + esc(data.line1) + '</span>' +
+          '<span class="remeny-clean-line2">' + colorize(data.motd, type) + '</span>' +
+        '</div>' +
+        '<div class="remeny-clean-server-side">' +
+          '<div class="remeny-clean-online">' + esc(data.online) + '/' + esc(data.max) +
+            '<span class="remeny-clean-bars"><span></span><span></span><span></span></span>' +
+          '</div>' +
+          '<div class="remeny-clean-version">' + esc(data.version) + '</div>' +
+          '<button class="remeny-clean-copy" type="button" data-ip="' + esc(data.ip) + '">IP MÁSOLÁSA</button>' +
+        '</div>' +
+      '</div>';
+
+    el.classList.remove("hidden");
+    el.style.display = "";
+    el.dataset.openServerType = type;
+    openType = type;
+
+    const ph = placeholder();
+    if (ph) ph.classList.add("is-hidden");
+
+    const btn = el.querySelector(".remeny-clean-copy");
+    if (btn) {
+      btn.onclick = function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const ip = btn.getAttribute("data-ip") || "";
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ip).catch(function(){});
+      };
+    }
+  }
+
+  function close() {
+    const el = display();
+    if (!el) return;
+    el.innerHTML = "";
+    el.classList.add("hidden");
+    el.style.display = "none";
+    el.dataset.openServerType = "";
+    openType = "";
+    const ph = placeholder();
+    if (ph) ph.classList.remove("is-hidden");
+  }
+
+  async function toggle(type) {
+    const el = display();
+    if (el && el.dataset.openServerType === type) {
+      close();
+      return;
+    }
+    render(type, await fetchData(type));
+  }
+
+  function bind() {
+    document.querySelectorAll(".hero-btn-smp").forEach(function (btn) {
+      btn.innerHTML = "<span>SMP</span>";
+      btn.removeAttribute("onclick");
+      btn.onclick = function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        if (ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+        toggle("smp");
+        return false;
+      };
+    });
+
+    document.querySelectorAll(".hero-btn-hytale").forEach(function (btn) {
+      btn.innerHTML = "<span>Hytale</span>";
+      btn.removeAttribute("onclick");
+      btn.onclick = function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        if (ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+        toggle("hytale");
+        return false;
+      };
+    });
+
+    window.showServerPanel = function (type) {
+      toggle(type === "hytale" ? "hytale" : "smp");
+    };
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bind);
+  } else {
+    bind();
+  }
+  [100, 400, 1200].forEach(function (ms) {
+    setTimeout(bind, ms);
+  });
+})();
+</script>
+
+
+<script id="remeny_hero_buborek_teljes_kivetel_placeholder_clean_final">
+(function () {
+  function cleanHeroAndPlaceholder() {
+    document.querySelectorAll(".hero-btn-smp").forEach(function (btn) {
+      btn.innerHTML = "<span>SMP</span>";
+      btn.removeAttribute("data-clean-inner");
+      btn.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (window.showServerPanel) window.showServerPanel("smp");
+        return false;
+      };
+    });
+
+    document.querySelectorAll(".hero-btn-hytale").forEach(function (btn) {
+      btn.innerHTML = "<span>Hytale</span>";
+      btn.removeAttribute("data-clean-inner");
+      btn.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (window.showServerPanel) window.showServerPanel("hytale");
+        return false;
+      };
+    });
+
+    var ph = document.getElementById("server-placeholder");
+    if (ph && !ph.classList.contains("is-hidden") && !ph.classList.contains("hidden")) {
+      ph.innerHTML = '<span class="server-placeholder-text"><strong>Válassz szervert</strong> — kattints az <strong>SMP</strong> vagy <strong>Hytale</strong> gombra a szerver adataihoz.</span>';
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", cleanHeroAndPlaceholder);
+  } else {
+    cleanHeroAndPlaceholder();
+  }
+
+  [100, 400, 1000, 2500].forEach(function (ms) {
+    setTimeout(cleanHeroAndPlaceholder, ms);
+  });
+})();
+</script>
+
+
+<script id="remeny_map_reblur_button_runtime_fix">
+(function () {
+  function ensureMapReblurButton() {
+    const card = document.getElementById('remeny-map-card');
+    if (!card) return;
+
+    let actions = card.querySelector('.remeny-map-top-actions');
+    if (!actions) {
+      actions = document.createElement('div');
+      actions.className = 'remeny-map-top-actions';
+      const title = card.querySelector('.remeny-map-title');
+      if (title && title.nextSibling) {
+        card.insertBefore(actions, title.nextSibling);
+      } else if (title) {
+        title.insertAdjacentElement('afterend', actions);
+      } else {
+        card.insertBefore(actions, card.firstChild);
+      }
+    }
+
+    let btn = document.getElementById('remeny-map-reblur-button');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = 'remeny-map-reblur-button';
+      btn.className = 'remeny-map-reblur-button';
+      btn.textContent = 'VISSZA HOMÁLYOSÍTÁS';
+      actions.appendChild(btn);
+    }
+
+    if (btn.dataset.reblurBound !== '1') {
+      btn.dataset.reblurBound = '1';
+      btn.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        card.classList.remove('map-accepted');
+        return false;
+      });
+    }
+
+    const showBtn = document.getElementById('show-map-button');
+    if (showBtn && showBtn.dataset.reblurShowBound !== '1') {
+      showBtn.dataset.reblurShowBound = '1';
+      showBtn.addEventListener('click', function () {
+        setTimeout(function () { card.classList.add('map-accepted'); }, 10);
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensureMapReblurButton);
+  } else {
+    ensureMapReblurButton();
+  }
+
+  [100, 500, 1500].forEach(function (ms) {
+    setTimeout(ensureMapReblurButton, ms);
+  });
+})();
+</script>
+
+
+<script id="remeny_motd_prefix_remeny_smp_vegleg_kivesz_fix">
+(function () {
+  /*
+    MOTD végleges prefix-takarítás:
+    - csak az alsó MOTD sor elejéről veszi ki a "Remény SMP" részt
+    - a megmaradó színezett span-eket nem írja újra, így a színek megmaradnak
+  */
+
+  function normalizeText(value) {
+    return String(value || "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase()
+      .replace(/é/g, "e");
+  }
+
+  function removeFirstVisibleChars(root, count) {
+    if (!root || count <= 0) return;
+
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    var node;
+
+    while ((node = walker.nextNode())) {
+      nodes.push(node);
+    }
+
+    for (var i = 0; i < nodes.length && count > 0; i++) {
+      var textNode = nodes[i];
+      var text = textNode.nodeValue || "";
+
+      if (text.length <= count) {
+        count -= text.length;
+        textNode.nodeValue = "";
+      } else {
+        textNode.nodeValue = text.slice(count);
+        count = 0;
+      }
+    }
+  }
+
+  function stripMotdPrefixOnce(el) {
+    if (!el) return;
+
+    var full = el.textContent || "";
+    var leading = full.match(/^\s*/);
+    var start = leading ? leading[0].length : 0;
+    var rest = full.slice(start);
+
+    var normalizedRest = normalizeText(rest);
+    if (!normalizedRest.startsWith("remeny smp")) return;
+
+    var prefixMatch = rest.match(/^Rem[ée]ny\s*SMP/i);
+    if (!prefixMatch) {
+      prefixMatch = rest.match(/^Remeny\s*SMP/i);
+    }
+    if (!prefixMatch) return;
+
+    var removeLen = start + prefixMatch[0].length;
+
+    // Utána lévő elválasztók / szóközök eltávolítása is.
+    var after = full.slice(removeLen);
+    var sep = after.match(/^[\s:|,.;\-–—]+/);
+    if (sep) removeLen += sep[0].length;
+
+    removeFirstVisibleChars(el, removeLen);
+
+    // Üres span-ek ne hagyjanak láthatatlan hézagokat.
+    el.querySelectorAll("span").forEach(function (span) {
+      if (!(span.textContent || "").trim()) {
+        span.remove();
+      }
+    });
+  }
+
+  function cleanMotd() {
+    document.querySelectorAll("#server-display .remeny-clean-line2, #server-display .remeny-motd-line-two, #server-display .server-strip-motd .motd-line:nth-child(2)").forEach(stripMotdPrefixOnce);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", cleanMotd);
+  } else {
+    cleanMotd();
+  }
+
+  [80, 200, 500, 1000, 2000, 3500].forEach(function (ms) {
+    setTimeout(cleanMotd, ms);
+  });
+
+  if (document.body) {
+    new MutationObserver(function () {
+      clearTimeout(window.__remenyMotdPrefixFinalTimer);
+      window.__remenyMotdPrefixFinalTimer = setTimeout(cleanMotd, 80);
     }).observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 })();
