@@ -1,8 +1,8 @@
 {
   "smp": {
     "name": "Remény SMP",
-    "ip": "remenymc.shockbyte.pro",
-    "port": 25399,
+    "ip": "remenysmp.minekeep.gg",
+    "port": 25565,
     "logo": "mc-logo.png"
   },
   "hytale": {
