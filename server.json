@@ -1,14 +1,14 @@
 {
   "smp": {
     "name": "Remény SMP",
-    "ip": "remenysmp.minekeep.gg",
-    "port": 25565,
+    "ip": "remenymc.shockbyte.app",
+    "port": 26533,
     "logo": "mc-logo.png"
   },
   "hytale": {
     "name": "Remény Hytale",
-    "ip": "remenyhytale.shockbyte.pro",
-    "port": 25838,
+    "ip": "remenyhytale.shockbyte.app",
+    "port": 26804,
     "logo": "hytale-logo.png"
   }
 }
