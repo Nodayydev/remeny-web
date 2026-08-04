@@ -1,13 +1,13 @@
 {
   "smp": {
     "name": "Remény SMP",
-    "ip": "remenymc.shockbyte.app",
+    "ip": "remenyhub.nodayy.hu",
     "port": 26533,
     "logo": "mc-logo.png"
   },
   "hytale": {
     "name": "Remény Hytale",
-    "ip": "51.38.155.219:26804",
+    "ip": "remenyhytale.nodayy.hu",
     "port": 26804,
     "logo": "hytale-logo.png"
   }
